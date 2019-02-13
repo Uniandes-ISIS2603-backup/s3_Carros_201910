@@ -14,12 +14,13 @@ import java.io.Serializable;
 public class EmpleadoDTO implements Serializable{
     private Long empleadoID;
     private String nombre;
-    private int extension;
+    private Integer extension;
     private String correo;
     
     public EmpleadoDTO(){
     }
-
+    
+    
     
     /**
      * @return the empleadoID
