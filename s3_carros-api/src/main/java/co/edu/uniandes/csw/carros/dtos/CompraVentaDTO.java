@@ -7,7 +7,38 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import java.util.Date;
 
-/**
+/**CompraVentaDTO Objeto de transferencia de datos de CompraVentas. Los DTO
+ * contienen las representaciones de los JSON que se transfieren entre el
+ * cliente y el servidor.
+ *"
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "ventaID": number,
+ *      "calificacionCompra": number,
+ *      "fecha": date,
+ *      "factura": {
+ *                     "transaccionId": number,
+ *                     "cuentaOrigen": number,
+ *                     "fecha": date
+ *                 }
+ *   }
+ * </pre> Por ejemplo una compraVenta se representa asi:<br>
+ *
+ * <pre>
+ *
+ *   {
+ *      "ventaID": 13579,
+ *      "calificacionCompra": "4.5",
+ *      "fecha": "23-02-2018",
+ *      "factura": {
+ *                     "transaccionId": 13579,
+ *                     "cuentaOrigen": 147852369,
+ *                     "fecha": "23-02-2018"
+ *                 }
+ *   }
+ *
+ * </pre>
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
@@ -34,7 +65,7 @@ public class CompraVentaDTO extends CascaraDTO
     private Factura factura;
 
     /**
-     * Constructor vacío de CompraVentaDTO.
+     * Constructor por defecto de CompraVentaDTO.
      */
     public CompraVentaDTO( )
     {
