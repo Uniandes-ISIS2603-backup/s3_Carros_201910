@@ -27,7 +27,7 @@ public class MarcaDTO implements Serializable{
     /**
      * id de la marca dentro del concecionario
      */
-    private Integer idMarca;
+    private Long idMarca;
 
     /**
      * @return the nombreMarca
@@ -46,14 +46,14 @@ public class MarcaDTO implements Serializable{
     /**
      * @return the idMarca
      */
-    public Integer getIdMarca() {
+    public Long getIdMarca() {
         return idMarca;
     }
 
     /**
      * @param idMarca the idMarca to set
      */
-    public void setIdMarca(Integer idMarca) {
+    public void setIdMarca(Long idMarca) {
         this.idMarca = idMarca;
     }
     

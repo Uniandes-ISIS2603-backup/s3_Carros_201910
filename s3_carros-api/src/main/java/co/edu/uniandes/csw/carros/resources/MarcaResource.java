@@ -35,11 +35,8 @@ public class MarcaResource {
     
     
     @GET
-    public MarcaDTO getMarca(){
-        MarcaDTO m = new MarcaDTO();
-        m.setIdMarca(123);
-        m.setNombreMarca("default-name");
-        return m;
+    public void getMarca(){
+        
     }
     
     @PUT

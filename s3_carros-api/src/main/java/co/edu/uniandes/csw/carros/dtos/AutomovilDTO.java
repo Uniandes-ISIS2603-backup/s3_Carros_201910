@@ -16,7 +16,7 @@ public class AutomovilDTO  implements Serializable{
      * identificador unico de un automovil dentro del 
      * concesionario
      */
-    private Integer autoId;
+    private Long autoId;
     
     /**
      * disponibilidad del vehiculo dentro del 
@@ -96,14 +96,14 @@ public class AutomovilDTO  implements Serializable{
     /**
      * @return the autoId
      */
-    public Integer getAutoId() {
+    public Long getAutoId() {
         return autoId;
     }
 
     /**
      * @param autoId the autoId to set
      */
-    public void setAutoId(Integer autoId) {
+    public void setAutoId(Long autoId) {
         this.autoId = autoId;
     }
 
