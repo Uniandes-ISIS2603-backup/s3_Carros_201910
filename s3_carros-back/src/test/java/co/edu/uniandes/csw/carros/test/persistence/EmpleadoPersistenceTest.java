@@ -122,4 +122,13 @@ public class EmpleadoPersistenceTest {
         Assert.assertNull(search);
     }
     
+    @Test
+    public void updateEmpleadoTest(){
+        EmpleadoEntity entity = data.get(0);
+        entity.setNombre("Carlos Moreno");
+        ep.updateEmpleado(entity);
+        EmpleadoEntity search = em.find(EmpleadoEntity.class, entity.getId());
+        Assert.assertEquals(search.getNombre(),"Carlos Moreno" );
+    }
+    
 }

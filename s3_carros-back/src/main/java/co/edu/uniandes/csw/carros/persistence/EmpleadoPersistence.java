@@ -42,4 +42,8 @@ public class EmpleadoPersistence {
         em.remove(entity);
     }
     
+    public void updateEmpleado(EmpleadoEntity empleado){
+        em.merge(empleado);
+    }
+    
 }

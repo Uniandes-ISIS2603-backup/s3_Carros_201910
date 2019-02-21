@@ -118,4 +118,14 @@ public class ClientePersistenceTest {
         ClienteEntity search = em.find(ClienteEntity.class, entity.getId());
         Assert.assertNull(search);
     }
+    
+    @Test
+    public void updateClienteTest(){
+        ClienteEntity entity = data.get(0);
+        entity.setNombre("Juan Osorio");
+        cp.updateCliente(entity);
+        ClienteEntity search = em.find(ClienteEntity.class, entity.getId());
+        Assert.assertEquals(search.getNombre(),"Juan Osorio" );
+    }
 }
+
