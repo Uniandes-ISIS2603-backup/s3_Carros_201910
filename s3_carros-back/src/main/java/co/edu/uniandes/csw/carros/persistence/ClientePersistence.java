@@ -40,8 +40,4 @@ public class ClientePersistence {
         ClienteEntity entity = findCliente(clienteID);
         em.remove(entity);
     }
-    
-    public void updateCliente(ClienteEntity cliente){
-        em.merge(cliente);
-    }
 }

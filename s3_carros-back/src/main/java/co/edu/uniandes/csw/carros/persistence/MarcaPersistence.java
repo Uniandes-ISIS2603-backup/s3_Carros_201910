@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.carros.persistence;
 
 import co.edu.uniandes.csw.carros.entities.MarcaEntity;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,32 +22,25 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MarcaPersistence {
     
-    
+    private static final Logger LOGGER = Logger.getLogger(MarcaPersistence.class.getName());
     
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
     
-    public MarcaEntity create(MarcaEntity marcaEntity){        
-        em.persist(marcaEntity);       
+    public MarcaEntity create(MarcaEntity marcaEntity){
+        LOGGER.log(Level.INFO, "creando una marca nueva");
+        em.persist(marcaEntity);        
+        LOGGER.log(Level.INFO, "Saliendo de crear una marca nueva ");
         return marcaEntity;
     }
     
-    public MarcaEntity findMarca(Long marcaId){
+    public MarcaEntity find(Long marcaId){
         return em.find(MarcaEntity.class, marcaId);
     }
     
-    public List<MarcaEntity> findAllMarcas(){
+    public List<MarcaEntity> findAll(){
         TypedQuery<MarcaEntity> query = em.createQuery("select u from MarcaEntity u", MarcaEntity.class);
         return query.getResultList();
-    }
-    
-    public void deleteMarca(Long marcaID){
-        MarcaEntity entity = em.find(MarcaEntity.class, marcaID);
-        em.remove(entity);
-    }
-    
-    public void updateMarca(MarcaEntity marca){
-        em.merge(marca);
     }
     
 }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -28,9 +27,6 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     //@PodamExclude
     //@OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
     //private List<CompraVentaEntity> ventas = new ArrayList<CompraVentaEntity>();
-    
-    //@ManyToOne
-    //private PuntoVentaEntity puntoVenta;
 
     public EmpleadoEntity(){
         
@@ -90,20 +86,8 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     //public void setVentas(List<CompraVentaEntity> ventas) {
     //    this.ventas = ventas;
     //}
-
-    /**
-     * @return the puntoVenta
-     */
-    //public PuntoVentaEntity getPuntoVenta() {
-    //    return puntoVenta;
-    //}
-
-    /**
-     * @param puntoVenta the puntoVenta to set
-     */
-    //public void setPuntoVenta(PuntoVentaEntity puntoVenta) {
-    //    this.puntoVenta = puntoVenta;
-    //}
     
-    
+    //public void addVenta(CompraVentaEntity venta){
+    //    ventas.add(venta);
+    //}
 }

@@ -5,15 +5,11 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-
 /**
  *
  * @author estudiante
  */
-@Entity
-public class PuntoVentaEntity extends BaseEntity implements Serializable
+public class PuntoVentaEntity extends BaseEntity
 {
    private String dirreccion;
    

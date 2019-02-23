@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.persistence;
 
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -39,10 +40,6 @@ public class EmpleadoPersistence {
     public void deleteEmpleado(Long empleadoID){
         EmpleadoEntity entity = em.find(EmpleadoEntity.class, empleadoID);
         em.remove(entity);
-    }
-    
-    public void updateEmpleado(EmpleadoEntity empleado){
-        em.merge(empleado);
     }
     
 }
