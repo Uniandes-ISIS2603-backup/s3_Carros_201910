@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.carros.dtos;
-import java.io.Serializable;
+package co.edu.uniandes.csw.carros.entities;
+
+import javax.persistence.Entity;
 
 /**
  *
- * @author Andres Forero
+ * @author estudiante
  */
-public class AutomovilDTO  implements Serializable{
+@Entity
+public class AutomovilEntity extends BaseEntity{
     
-    /**
-     * identificador unico de un automovil dentro del 
-     * concesionario
-     */
-    private Long autoId;
+    
+   public AutomovilEntity(){}
     
     /**
      * disponibilidad del vehiculo dentro del 
@@ -75,31 +74,20 @@ public class AutomovilDTO  implements Serializable{
 
     
     /**
-     * ide del punto de venta donde esta el automovil
+     * de del punto de venta donde esta el automovil
      */
     private Integer puntoVentaID;
     
     
     /**
-     * constructor vacio
+     * modelo del automovil
      */
-    public AutomovilDTO(){}
+    private Modelo modelo;
+
+   
     
-
-    /**
-     * @return the autoId
-     */
-    public Long getAutoId() {
-        return autoId;
-    }
-
-    /**
-     * @param autoId the autoId to set
-     */
-    public void setAutoId(Long autoId) {
-        this.autoId = autoId;
-    }
-
+    
+    
     /**
      * @return the disponible
      */
@@ -144,7 +132,7 @@ public class AutomovilDTO  implements Serializable{
 
     /**
      * @return the anio
-     */
+     */ 
     public Integer getAnio() {
         return anio;
     }
@@ -253,10 +241,20 @@ public class AutomovilDTO  implements Serializable{
     public void setPuntoVentaID(Integer puntoVentaID) {
         this.puntoVentaID = puntoVentaID;
     }
-    
-    
-    
-    
+
+    /**
+     * @return the modelo
+     */
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
     
     
     

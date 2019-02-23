@@ -5,9 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.test.persistence;
 
-
-import co.edu.uniandes.csw.carros.entities.MarcaEntity;
-import co.edu.uniandes.csw.carros.persistence.MarcaPersistence;
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
+import co.edu.uniandes.csw.carros.persistence.AutomovilPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -15,11 +14,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,10 +31,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Andres Forero
  */
 @RunWith(Arquillian.class)
-public class MarcaPersistenceTest {
+public class AutomovilPersistenceTest {
     
-    @Inject    
-    private MarcaPersistence mp;
+    @Inject
+    private AutomovilPersistence ap;
     
     @PersistenceContext
     private EntityManager em;
@@ -43,13 +42,13 @@ public class MarcaPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private List<MarcaEntity> data = new ArrayList<>();
+    private List<AutomovilEntity> data = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeplyment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(MarcaEntity.class.getPackage())
-                .addPackage(MarcaPersistence.class.getPackage())
+                .addPackage(AutomovilEntity.class.getPackage())
+                .addPackage(AutomovilPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -71,69 +70,68 @@ public class MarcaPersistenceTest {
                 e1.printStackTrace();
             }
         }
+        
     }
     
+    
     private void clearData(){
-      em.createQuery("delete from MarcaEntity").executeUpdate();
+        em.createQuery("delete from AutomovilEntity").executeUpdate();
     }
     
     
     public void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
       for(int i=0;i<3; i++){
-            MarcaEntity entity = factory.manufacturePojo(MarcaEntity.class);
+            AutomovilEntity entity = factory.manufacturePojo(AutomovilEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
     
-    @Test    
-    public void createMarcaTest(){
-        PodamFactory factory = new PodamFactoryImpl();
-        MarcaEntity newEntity = factory.manufacturePojo(MarcaEntity.class);
-        MarcaEntity result = mp.create(newEntity);       
-        
-        Assert.assertNotNull(result);   
-        
-        MarcaEntity entity = em.find(MarcaEntity.class, result.getId());
-        
-        Assert.assertEquals(newEntity.getNombreMarca(), entity.getNombreMarca());
-        
+   
+    @Test
+    public void createAutomovilTest(){
+      PodamFactory factory = new PodamFactoryImpl();
+      AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+      AutomovilEntity result = ap.create(newEntity);
+      
+       Assert.assertNotNull(result);
+       
+       AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
+       
+       Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
     }
     
     @Test
-    public void findMarcaTest(){
-        MarcaEntity entity = data.get(0);
-        MarcaEntity search = mp.findMarca(entity.getId());
+    public void findAutomovilTest(){
+        AutomovilEntity entity = data.get(0);
+        AutomovilEntity search = ap.findAutomovil(entity.getId());
         
         Assert.assertNotNull(search);
         Assert.assertEquals(entity.getId(), search.getId());
     }
+    
     @Test
-    public void findALLMarcasTest(){
-        TypedQuery<MarcaEntity> query = em.createQuery("Select u from MarcaEntity u",MarcaEntity.class);
-        Assert.assertEquals(query.getResultList(), mp.findAllMarcas());
+    public void findAllAutomovilesTest(){
+        TypedQuery<AutomovilEntity> query = em.createQuery("Select u from AutomovilEntity u", AutomovilEntity.class);
+        Assert.assertEquals(query.getResultList(),ap.finfAllAutomoviles());
+    } 
+    
+    public void deleteAutomovilTest(){
+        AutomovilEntity entity = data.get(1);
+        ap.deleteAutomovil(entity.getId());
+        AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertNull(search);        
     }
     
     @Test
-    public void deleteMarcaTest(){
-        MarcaEntity entity = data.get(1);
-        mp.deleteMarca(entity.getId());
-        MarcaEntity search = em.find(MarcaEntity.class, entity.getId());
-        Assert.assertNull(search);
+    public void updateAutomovilTest(){
+        AutomovilEntity entity = data.get(0);
+        entity.setCuidadMatricula("tokio");
+        ap.updateMarca(entity);
+        AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertEquals(search.getCuidadMatricula(), "tokio");
     }
-    
-    @Test
-    public void updateMarcaTest(){
-        MarcaEntity entity = data.get(0);
-        entity.setNombreMarca("concord");
-        mp.updateMarca(entity);
-        MarcaEntity search = em.find(MarcaEntity.class, entity.getId());
-        Assert.assertEquals(search.getNombreMarca(), "concord");
-    }
-    
-    
-    
-    
+   
     
 }

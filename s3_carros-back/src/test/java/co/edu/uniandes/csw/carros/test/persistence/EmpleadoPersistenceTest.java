@@ -41,7 +41,7 @@ public class EmpleadoPersistenceTest {
     @Inject
     UserTransaction utx;
    
-    private List<EmpleadoEntity> data = new ArrayList<EmpleadoEntity>();
+    private List<EmpleadoEntity> data = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment(){
@@ -78,7 +78,7 @@ public class EmpleadoPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for(int i=0;i<3; i++){
             EmpleadoEntity entity = factory.manufacturePojo(EmpleadoEntity.class);
-            em.persist(entity);
+            em.persist(entity); 
             data.add(entity);
         }
     }
@@ -120,6 +120,15 @@ public class EmpleadoPersistenceTest {
         ep.deleteEmpleado(entity.getId());
         EmpleadoEntity search = em.find(EmpleadoEntity.class, entity.getId());
         Assert.assertNull(search);
+    }
+    
+    @Test
+    public void updateEmpleadoTest(){
+        EmpleadoEntity entity = data.get(0);
+        entity.setNombre("Carlos Moreno");
+        ep.updateEmpleado(entity);
+        EmpleadoEntity search = em.find(EmpleadoEntity.class, entity.getId());
+        Assert.assertEquals(search.getNombre(),"Carlos Moreno" );
     }
     
 }

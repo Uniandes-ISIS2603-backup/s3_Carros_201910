@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.test.persistence;
 
-import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
-import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
+import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
+import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,37 +22,37 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Daniel Lozano
+ * @author Julio Ruiz
  */
-@RunWith(Arquillian.class)    
-public class PuntoVentaPersistanceTest 
-{
+@RunWith(Arquillian.class)
+public class EntityPersistenceTest {
+
     @Inject
-    private PuntoVentaPersistence pvp;
+    private QuejasReclamosPersistence qrp;
     
     @PersistenceContext
-    private EntityManager em; 
-@Deployment
+    private EntityManager em;
+    
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PuntoVentaEntity.class.getPackage())
-                .addPackage(PuntoVentaPersistence.class.getPackage())
+                .addPackage(QuejasReclamosEntity.class.getPackage())
+                .addPackage(QuejasReclamosPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-   }
+    }
+
     @Test
-    public void cratedPuntoVentaTest()
-    {
- 
-        PodamFactory factory = new PodamFactoryImpl();
-        PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
+    public void createQuejasReclamosTest() {
         
-       PuntoVentaEntity pve = pvp.create(newEntity);
-       Assert.assertNotNull(pve);
-       
-       PuntoVentaEntity entity   =  em.find(PuntoVentaEntity.class, pve.getId());
-       
-       Assert.assertEquals(newEntity.getDirreccion(), entity.getDirreccion());
-       
+        PodamFactory factory = new PodamFactoryImpl();
+        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        
+        QuejasReclamosEntity qre = qrp.create(newEntity);
+        
+        Assert.assertNotNull(qre);
+        
+        QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, qre.getId());
+        
     }
 }
