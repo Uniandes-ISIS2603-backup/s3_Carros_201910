@@ -12,30 +12,26 @@ import java.util.Date;
  */
 public class Factura 
 {
+     
     /**
      * Número de la cuenta bancaria del consecionario.
      */
     public final static int CUENTA_DESTINO = 123456;
     
     /**
-     * Identificador único de la factura.
+     * Identificador único de la transacción asociada a la factura.
      */
-    private Long facturaID;
+    private int transaccionID;
    
      /**
      * Número de la cuenta bancaria del cliente.
      */
-    private Long cuentaOrigen;
+    private int cuentaOrigen;
     
      /**
      * Fecha de realización de la factura.
      */
     private Date fecha;
-    
-    /**
-     * Transacción asociada a la factura
-     */
-    private CompraVentaDTO compraVenta;
     
      /**
      * Constructor vacío de Factura.
@@ -46,30 +42,30 @@ public class Factura
     }
 
     /**
-     * @return the facturaID
+     * @return the transaccionID
      */
-    public Long getFacturaID() {
-        return facturaID;
+    public int getTransaccionID() {
+        return transaccionID;
     }
 
     /**
-     * @param facturaID the facturaID to set
+     * @param transaccionID the transaccionID to set
      */
-    public void setFacturaID(Long facturaID) {
-        this.facturaID = facturaID;
+    public void setTransaccionID(int transaccionID) {
+        this.transaccionID = transaccionID;
     }
 
     /**
      * @return the cuentaOrigen
      */
-    public Long getCuentaOrigen() {
+    public int getCuentaOrigen() {
         return cuentaOrigen;
     }
 
     /**
      * @param cuentaOrigen the cuentaOrigen to set
      */
-    public void setCuentaOrigen(Long cuentaOrigen) {
+    public void setCuentaOrigen(int cuentaOrigen) {
         this.cuentaOrigen = cuentaOrigen;
     }
 
@@ -85,20 +81,6 @@ public class Factura
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    /**
-     * @return the compraVenta
-     */
-    public CompraVentaDTO getCompraVenta() {
-        return compraVenta;
-    }
-
-    /**
-     * @param compraVenta the compraVenta to set
-     */
-    public void setCompraVenta(CompraVentaDTO compraVenta) {
-        this.compraVenta = compraVenta;
     }
 }
 

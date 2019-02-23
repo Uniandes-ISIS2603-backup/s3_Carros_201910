@@ -8,11 +8,9 @@ package co.edu.uniandes.csw.carros.resources;
 import co.edu.uniandes.csw.carros.dtos.CompraVentaDTO;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,7 +23,6 @@ import javax.ws.rs.core.MediaType;
 @Path("/compraVentas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@RequestScoped
 public class CompraVentaResourse 
 {
     private final static Logger LOGGER = Logger.getLogger(CompraVentaResourse.class.getName());
@@ -59,30 +56,11 @@ public class CompraVentaResourse
     /**
      * Retorna la compraVenta asociada al id dado por parametro.
      * @param ventaID: Identificador de la compraVenta.
-     * @return JSON {@link CompraVentaDTO} La compraVenta buscada.
-    // * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-    // * Error de lógica que se genera cuando no se encuentra la compraVenta.
+     * @return compraVenta asociada al id dado por parametro, null de lo contrario.
      */
     @GET
     @Path("{VentaID: \\d+}")
     public CompraVentaDTO getCompraVenta( @PathParam("VentaID") Long ventaID )
-    {
-        return null;
-    }
-    
-    /**
-     * Actualiza la compraVenta con el id recibido en la URL con la informacion
-     * que se recibe en el cuerpo de la petición.
-     * 
-     * @param ventaID Identificador de la compraVenta que se desea actualizar. Este debe ser una cadena de dígitos.
-     * @param compraVenta {@link CompraVentaDTO} La compraVenta que se desea guardar.
-     * @return JSON {@link CompraVentaDTO} La compraVenta guardada.
-    // * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-    // * Error de lógica que se genera cuando no se encuentra la compraVenta a actualizar.
-     */
-    @PUT
-    @Path("{VentaID: \\d+}")
-    public CompraVentaDTO setFacturaCompraVenta( @PathParam("VentaID") Long ventaID, CompraVentaDTO compraVenta)
     {
         return null;
     }

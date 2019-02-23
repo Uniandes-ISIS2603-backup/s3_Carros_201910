@@ -5,71 +5,40 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Clase que contiene una colección de representaciones básicas de QuejasReclamosDTO
  * @author Kevin Hernán Castrillón Castañeda
  */
-public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
+public class CompraVentaDetailDTO 
 {
-    /**
-     * Lista de quejas y reclamos del cliente.
-     */
-    private List<QuejasReclamosDTO> quejasReclamosCliente;
-    
-    /**
-     * Lista de quejas y reclamos del empleado.
-     */
-    private List<QuejasReclamosDTO> quejasReclamosEmpleado;
+    private List<QuejasReclamosDTO> listaQuejas;
 
     /**
      * Retorna la lista de quejas.
-     * @return the quejasReclamosCliente
+     * @return the listaQuejas
      */
-    public List<QuejasReclamosDTO> getQuejasReclamosCliente() 
+    public List<QuejasReclamosDTO> getListaQuejas() 
     {
-        return quejasReclamosCliente;
+        return listaQuejas;
     }
 
     /**
-     * @param quejasReclamosCliente the quejasReclamosCliente set
+     * Asigna una lista de quejas.
+     * @param listaQuejas the listaQuejas set
      */
-    public void setQuejasReclamosCliente(List<QuejasReclamosDTO> quejasReclamosCliente) 
+    public void setListaQuejas(List<QuejasReclamosDTO> listaQuejas) 
     {
-        this.quejasReclamosCliente = quejasReclamosCliente;
+        this.listaQuejas = listaQuejas;
     }
     
     /**
-     * Agrega una nueva queja a la lista de quejas del cliente.
+     * Agrega una nueva queja a la lista de quejas
      * @param queja: Es la queja que se va a agregar a la lista de quejas.
      */
-    public void addQuejaCliente(QuejasReclamosDTO queja)
+    public void addQueja(QuejasReclamosDTO queja)
     {
-        this.getQuejasReclamosCliente().add(queja);
-    }
-
-    /**
-     * @return the quejasReclamosEmpleado
-     */
-    public List<QuejasReclamosDTO> getQuejasReclamosEmpleado() {
-        return quejasReclamosEmpleado;
-    }
-
-    /**
-     * @param quejasReclamosEmpleado the quejasReclamosEmpleado to set
-     */
-    public void setQuejasReclamosEmpleado(List<QuejasReclamosDTO> quejasReclamosEmpleado) {
-        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
-    }
-    
-    /**
-     * Agrega una nueva queja a la lista de quejas del cliente.
-     * @param queja: Es la queja que se va a agregar a la lista de quejas.
-     */
-    public void addQuejaEmpleado(QuejasReclamosDTO queja)
-    {
-        this.getQuejasReclamosEmpleado().add(queja);
+        this.listaQuejas.add(queja);
     }
 }
