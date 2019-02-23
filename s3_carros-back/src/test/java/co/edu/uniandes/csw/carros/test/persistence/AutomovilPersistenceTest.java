@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -101,6 +102,36 @@ public class AutomovilPersistenceTest {
        Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
     }
     
+    @Test
+    public void findAutomovilTest(){
+        AutomovilEntity entity = data.get(0);
+        AutomovilEntity search = ap.findAutomovil(entity.getId());
+        
+        Assert.assertNotNull(search);
+        Assert.assertEquals(entity.getId(), search.getId());
+    }
     
+    @Test
+    public void findAllAutomovilesTest(){
+        TypedQuery<AutomovilEntity> query = em.createQuery("Select u from AutomovilEntity u", AutomovilEntity.class);
+        Assert.assertEquals(query.getResultList(),ap.finfAllAutomoviles());
+    } 
+    
+    public void deleteAutomovilTest(){
+        AutomovilEntity entity = data.get(1);
+        ap.deleteAutomovil(entity.getId());
+        AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertNull(search);        
+    }
+    
+    @Test
+    public void updateAutomovilTest(){
+        AutomovilEntity entity = data.get(0);
+        entity.setCuidadMatricula("tokio");
+        ap.updateMarca(entity);
+        AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertEquals(search.getCuidadMatricula(), "tokio");
+    }
+   
     
 }
