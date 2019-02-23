@@ -5,14 +5,17 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author estudiante
  */
+@Entity
 public class AutomovilEntity extends BaseEntity{
     
     
-   
+   public AutomovilEntity(){}
     
     /**
      * disponibilidad del vehiculo dentro del 
@@ -237,6 +240,20 @@ public class AutomovilEntity extends BaseEntity{
      */
     public void setPuntoVentaID(Integer puntoVentaID) {
         this.puntoVentaID = puntoVentaID;
+    }
+
+    /**
+     * @return the modelo
+     */
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
     }
     
     

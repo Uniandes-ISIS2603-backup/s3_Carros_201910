@@ -6,17 +6,19 @@
 package co.edu.uniandes.csw.carros.persistence;
 
 import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
-import java.util.logging.Logger;
+import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author estudiante
  */
+@Stateless
 public class AutomovilPersistence {
     
-    private static final Logger LOGGER = Logger.getLogger(MarcaPersistence.class.getName());
     
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
@@ -24,6 +26,24 @@ public class AutomovilPersistence {
     public AutomovilEntity create(AutomovilEntity automovilEntity){
         em.persist(automovilEntity);
         return automovilEntity;
+    }
+    
+    public AutomovilEntity findAutomovil(Long autoId){
+        return em.find(AutomovilEntity.class, autoId);
+    }
+    
+    public List<AutomovilEntity> finfAllAutomoviles(){
+        TypedQuery<AutomovilEntity> query = em.createQuery("select u from AutomovilEntity u", AutomovilEntity.class);
+        return query.getResultList();
+    }
+    
+    public void deleteAutomovil(Long autoId){
+        AutomovilEntity entity = em.find(AutomovilEntity.class, autoId);
+        em.remove(entity);
+    }
+    
+    public void updateMarca(AutomovilEntity auto){
+        em.merge(auto);
     }
     
     
