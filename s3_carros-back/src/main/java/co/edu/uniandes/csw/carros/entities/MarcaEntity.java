@@ -11,20 +11,15 @@ import javax.persistence.Entity;
  *
  * @author estudiante
  */
-@Entity     
-public class MarcaEntity extends BaseEntity{    
+@Entity
+public class MarcaEntity extends BaseEntity{
+    
     
     
     
     public MarcaEntity(){}
     
-    
-    /**
-     * nombre de la marca
-     */
     private String nombreMarca;
-    
-    
 
     /**
      * @return the nombreMarca
@@ -39,7 +34,5 @@ public class MarcaEntity extends BaseEntity{
     public void setNombreMarca(String nombreMarca) {
         this.nombreMarca = nombreMarca;
     }
-    
-    
     
 }

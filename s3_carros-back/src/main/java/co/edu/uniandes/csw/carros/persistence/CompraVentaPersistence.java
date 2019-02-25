@@ -65,10 +65,10 @@ public class CompraVentaPersistence
     /**
      * Busca si hay alguna CompraVenta con el id que se envía de argumento
      *
-     * @param ids: Lista de ids de la CompraVenta que se está buscando.
+     * @param ids: Lista de ids de compraVentas que se están buscando.
      * @return Lista de CompraVentas, null si no existe ninguna.
      */
-    public List<CompraVentaEntity> findListByID(List<Long> ids) {
+    public List<CompraVentaEntity> findListByIDs(List<Long> ids) {
         LOGGER.log(Level.INFO, "Consultando lista CompraVenta por ids", ids);
         // Se crea un query para buscar una CompraVenta con el id que recibe el método como argumento. ":id" es un placeholder que debe ser remplazado
         List<CompraVentaEntity> result = new ArrayList<>();        
@@ -87,5 +87,37 @@ public class CompraVentaPersistence
             return null;
         }
         return result;
+    }
+    
+    /**
+     * Devuelve todas las compraVentas de la base de datos.
+     *
+     * @return una lista con todas las compraVentas que encuentre en la base de datos.
+     */
+    public List<CompraVentaEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todas las compraVentas");
+        // Se crea un query para buscar todas las compraVentas en la base de datos.
+        //"select u from CompraVentaEntity u" es como un "select * from CompraVentaEntity;" - "SELECT * FROM table_name" en SQL        
+        TypedQuery query = em.createQuery("select u from CompraVentaEntity u", CompraVentaEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de compraVentas.
+        return query.getResultList();
+    }
+    
+     /**
+     * Actualiza una compraVenta.
+     *
+     * @param compraVentaEntity: la editorial que viene con los nuevos cambios.
+     * Por ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
+     * update.
+     * @return una editorial con los cambios aplicados.
+     */
+    public CompraVentaEntity update(CompraVentaEntity compraVentaEntity) {
+        LOGGER.log(Level.INFO, "Actualizando compraVenta con id = {0}", compraVentaEntity.getId());
+        /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
+        la editorial con los cambios, esto es similar a 
+        "UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
+         */
+        LOGGER.log(Level.INFO, "Saliendo de actualizar la compraVenta con id = {0}", compraVentaEntity.getId());
+        return em.merge(compraVentaEntity);
     }
 }

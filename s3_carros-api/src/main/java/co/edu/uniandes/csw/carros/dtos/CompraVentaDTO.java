@@ -17,6 +17,7 @@ import java.util.Date;
  *      "ventaID": number,
  *      "calificacionCompra": number,
  *      "fecha": date,
+ *      "pagado": boolean,
  *      "factura": {
  *                     "transaccionId": number,
  *                     "cuentaOrigen": number,
@@ -31,6 +32,7 @@ import java.util.Date;
  *      "ventaID": 13579,
  *      "calificacionCompra": "4.5",
  *      "fecha": "23-02-2018",
+ *      "pagado": "true",
  *      "factura": {
  *                     "transaccionId": 13579,
  *                     "cuentaOrigen": 147852369,
@@ -58,6 +60,11 @@ public class CompraVentaDTO extends CascaraDTO
      * Fecha en la que se hizo la CompraVenta.
      */
     private Date fecha;
+    
+    /**
+     * Indica si la compraVenta ya fue pagada.
+     */
+    private boolean pagado;
     
     /**
      * Factura asociada a la CompraVenta.
@@ -125,5 +132,19 @@ public class CompraVentaDTO extends CascaraDTO
      */
     public void setFactura(Factura factura) {
         this.factura = factura;
+    }
+
+    /**
+     * @return the pagado
+     */
+    public boolean isPagado() {
+        return pagado;
+    }
+
+    /**
+     * @param pagado the pagado to set
+     */
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
     }
 }

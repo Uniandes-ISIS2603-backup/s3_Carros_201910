@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.carros.dtos;
+package co.edu.uniandes.csw.carros.entities;
+
+import java.io.Serializable;
 
 /**
  *
- * @author estudiante
+ * @author Kevin Hernán Castrillón Castañeda
  */
-public class QuejasReclamosDTO {
+public class FacturaEntity extends BaseEntity implements Serializable
+{
     
 }

@@ -6,12 +6,14 @@
 package co.edu.uniandes.csw.carros.test.persistence;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
+<<<<<<< HEAD
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+=======
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistance;
+>>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -24,12 +26,13 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Daniel Lozano
+ * @author estudiante
  */
 @RunWith(Arquillian.class)    
 public class PuntoVentaPersistanceTest 
 {
     @Inject
+<<<<<<< HEAD
     private PuntoVentaPersistence pvp;
     
     @PersistenceContext
@@ -38,16 +41,21 @@ public class PuntoVentaPersistanceTest
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
     
     @Deployment
+=======
+    private PuntoVentaPersistance puntoVPersitence;
+@Deployment
+>>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PuntoVentaEntity.class.getPackage())
-                .addPackage(PuntoVentaPersistence.class.getPackage())
+                .addPackage(PuntoVentaPersistance.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
     @Test
     public void cratedPuntoVentaTest()
     {
+<<<<<<< HEAD
  
         PodamFactory factory = new PodamFactoryImpl();
         PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
@@ -59,6 +67,14 @@ public class PuntoVentaPersistanceTest
        
        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
        
+=======
+        //PodamFactory factory = new PodamFactoryImpl();
+        //PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
+       // PuntoVentaEntity result = PuntoVentaPersistance.create(newEntity);
+          
+        //Assert.assertNotNull(result);
+          
+>>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
     }
     
     @Test
