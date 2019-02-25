@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import java.io.Serializable;
 
 /**
@@ -20,6 +21,14 @@ public class EmpleadoDTO implements Serializable{
     public EmpleadoDTO(){
     }
     
+    public EmpleadoDTO(EmpleadoEntity entity){
+        if(entity != null){
+            this.empleadoID = entity.getId();
+            this.nombre = entity.getNombre();
+            this.extension = entity.getExtension();
+            this.correo = entity.getCorreo();
+        }
+    }
     
     
     /**
@@ -77,6 +86,18 @@ public class EmpleadoDTO implements Serializable{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+    
+    public EmpleadoEntity toEntity(){
+        EmpleadoEntity entity = new EmpleadoEntity();
+        entity.setNombre(this.nombre);
+        entity.setCorreo(this.correo);
+        entity.setExtension(this.extension);
+        entity.setId(this.empleadoID);
+        
+        return entity;
+    }
+    
+    
     
     
 }

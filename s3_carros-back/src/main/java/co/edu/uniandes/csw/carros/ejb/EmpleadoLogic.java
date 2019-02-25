@@ -22,15 +22,35 @@ public class EmpleadoLogic {
     private EmpleadoPersistence persistence;
     
     public EmpleadoEntity createEmpleado(EmpleadoEntity nuevoEmpleado) throws BusinessLogicException{
-        EmpleadoEntity search = persistence.findEmpleado(nuevoEmpleado.getId());
+        EmpleadoEntity search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
         if(search == null){
             persistence.create(nuevoEmpleado);
             return nuevoEmpleado;
         }
         else{
-            throw new BusinessLogicException("El empleado ya existe");
+            throw new BusinessLogicException("El empleado con el correo ingresado ya existe");
         }
     }
     
+    public void deleteEmpleado(Long empleadoID){
+        persistence.deleteEmpleado(empleadoID);
+    }
     
+    public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
+        String correo = empleado.getCorreo();
+        EmpleadoEntity ee = persistence.findEmpleado(empleado.getId());
+        if(ee.getCorreo().equals(correo)){
+            persistence.updateEmpleado(empleado);
+        }
+        else{
+            EmpleadoEntity search = persistence.findEmpleadoPorCorreo(correo);
+            if(search == null){
+                persistence.updateEmpleado(empleado);
+            }
+            else{
+                throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
+            }
+        }
+        return empleado;
+    }
 }

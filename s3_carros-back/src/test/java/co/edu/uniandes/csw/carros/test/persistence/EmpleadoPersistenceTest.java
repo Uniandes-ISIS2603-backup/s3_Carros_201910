@@ -130,5 +130,13 @@ public class EmpleadoPersistenceTest {
         EmpleadoEntity search = em.find(EmpleadoEntity.class, entity.getId());
         Assert.assertEquals(search.getNombre(),"Carlos Moreno" );
     }
-    
+
+    @Test
+    public void finEmpleadoPorCorreoTest(){
+        EmpleadoEntity entity = data.get(0);
+        String correo = ep.findEmpleadoPorCorreo(entity.getCorreo()).getCorreo();   
+        TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
+        query = query.setParameter("correo", correo);
+        Assert.assertEquals(correo, query.getSingleResult().getCorreo());
+    }
 }

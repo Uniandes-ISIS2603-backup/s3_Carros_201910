@@ -23,7 +23,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     
     private String nombre;
     private Integer extension;
-    private String telefono;
+    private String correo;
     
     //@PodamExclude
     //@OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -66,15 +66,15 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     /**
      * @return the telefono
      */
-    public String getTelefono() {
-        return telefono;
+    public String getCorreo() {
+        return correo;
     }
 
     /**
      * @param telefono the telefono to set
      */
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     /**

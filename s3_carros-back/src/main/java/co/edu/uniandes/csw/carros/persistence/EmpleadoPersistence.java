@@ -46,4 +46,9 @@ public class EmpleadoPersistence {
         em.merge(empleado);
     }
     
+    public EmpleadoEntity findEmpleadoPorCorreo(String correo){
+        TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
+        query = query.setParameter("correo", correo);
+        return query.getSingleResult();
+    }
 }

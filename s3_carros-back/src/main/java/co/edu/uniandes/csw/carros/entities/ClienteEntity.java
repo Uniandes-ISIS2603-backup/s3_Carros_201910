@@ -28,6 +28,10 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     //@OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     //private List<CompraVentaEntity> compras = new ArrayList<CompraVentaEntity>();
     
+    //@PodamExclude
+    //@ManyToMany(mappedBy = "clientes", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    //private List<PuntoVentaEntity> puntos = new ArrayList<PuntoVentaEntity>();
+    
     
     public ClienteEntity(){
         

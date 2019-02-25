@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,9 +7,13 @@ package co.edu.uniandes.csw.carros.resources;
 
 import co.edu.uniandes.csw.carros.dtos.EmpleadoDTO;
 import co.edu.uniandes.csw.carros.dtos.EmpleadoDetailDTO;
+import co.edu.uniandes.csw.carros.ejb.EmpleadoLogic;
+import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,13 +36,19 @@ public class EmpleadoResource {
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoResource.class.getName());
     
+    @Inject
+    private EmpleadoLogic empleadoLogic;
+    
     @POST
-    public EmpleadoDTO createEmpleado(EmpleadoDTO empleado){
-        return empleado;
+    public EmpleadoDTO createEmpleado(EmpleadoDTO empleado) throws BusinessLogicException{
+        EmpleadoEntity entity = empleado.toEntity();
+        empleadoLogic.createEmpleado(entity);
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO(entity);
+        return empleadoDTO;
     }
     
     @GET
-    public ArrayList<EmpleadoDTO> getEmpleados(){
+    public List<EmpleadoDTO> getEmpleados(){
         return new ArrayList<>();
     }
     
