@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.persistence;
 
+<<<<<<< HEAD
 import co.edu.uniandes.csw.carros.entities.RegistroCompraEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +14,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+=======
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
 
 /**
  *
@@ -21,6 +26,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class RegistroCompraPersistence 
 {
+<<<<<<< HEAD
     private static final Logger LOGGER = Logger.getLogger(RegistroCompraPersistence.class.getName());
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
@@ -87,4 +93,8 @@ public class RegistroCompraPersistence
         LOGGER.log(Level.INFO, "Saliendo de consultar registro de compra por nombre ", name);
         return result;
     }
+=======
+    protected EntityManager em;
+    
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
 }

@@ -7,13 +7,19 @@ package co.edu.uniandes.csw.carros.test.persistence;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 =======
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistance;
 >>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
+=======
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -26,29 +32,35 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 @RunWith(Arquillian.class)    
 public class PuntoVentaPersistanceTest 
 {
     @Inject
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
     private PuntoVentaPersistence pvp;
     
     @PersistenceContext
     private EntityManager em; 
+<<<<<<< HEAD
     
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
     
     @Deployment
 =======
     private PuntoVentaPersistance puntoVPersitence;
+=======
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
 @Deployment
 >>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PuntoVentaEntity.class.getPackage())
-                .addPackage(PuntoVentaPersistance.class.getPackage())
+                .addPackage(PuntoVentaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
@@ -56,6 +68,9 @@ public class PuntoVentaPersistanceTest
     public void cratedPuntoVentaTest()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
  
         PodamFactory factory = new PodamFactoryImpl();
         PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
@@ -65,6 +80,7 @@ public class PuntoVentaPersistanceTest
        
        PuntoVentaEntity entity   =  em.find(PuntoVentaEntity.class, pve.getId());
        
+<<<<<<< HEAD
        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
        
 =======
@@ -130,5 +146,9 @@ public class PuntoVentaPersistanceTest
 
         newEntity = pvp.findByDireccion(null);
         Assert.assertNull(newEntity);
+=======
+       Assert.assertEquals(newEntity.getDirreccion(), entity.getDirreccion());
+       
+>>>>>>> parent of 776afaa... Revert "Merge origin/master"
     }
 }

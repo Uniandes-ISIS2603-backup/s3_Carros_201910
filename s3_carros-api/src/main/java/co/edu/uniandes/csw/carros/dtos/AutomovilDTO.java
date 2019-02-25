@@ -27,12 +27,8 @@ public class AutomovilDTO  implements Serializable{
     /**
      * tipo "Sedan"|"Campero"|"QP"|"camioneta"...etc
      */
-    private String tipo;
+    private String tipo;    
     
-    /**
-     * nombre de la marca del vehiculo
-     */
-    private String marca;
     
     /**
      * referencia del vehiculo seguida de la marca
@@ -71,20 +67,17 @@ public class AutomovilDTO  implements Serializable{
      */
     private String cuidadMatricula;
     
-    /**
-     * precio de compra por parte del concesionario 
-     */
-    private Double precioComprado;
-    
+        
     /**
      * precio de venta al publico
      */
     private Double precioVenta;
 
+    
     /**
-     * modelo del automovil
+     * ide del punto de venta donde esta el automovil
      */
-    private Modelo modelo;
+    private Integer puntoVentaID;
     
     
     /**
@@ -92,7 +85,7 @@ public class AutomovilDTO  implements Serializable{
      */
     public AutomovilDTO(){}
     
-    
+
     /**
      * @return the autoId
      */
@@ -133,20 +126,6 @@ public class AutomovilDTO  implements Serializable{
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    /**
-     * @return the marca
-     */
-    public String getMarca() {
-        return marca;
-    }
-
-    /**
-     * @param marca the marca to set
-     */
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     /**
@@ -248,20 +227,6 @@ public class AutomovilDTO  implements Serializable{
     }
 
     /**
-     * @return the precioComprado
-     */
-    public Double getPrecioComprado() {
-        return precioComprado;
-    }
-
-    /**
-     * @param precioComprado the precioComprado to set
-     */
-    public void setPrecioComprado(Double precioComprado) {
-        this.precioComprado = precioComprado;
-    }
-
-    /**
      * @return the precioVenta
      */
     public Double getPrecioVenta() {
@@ -276,18 +241,21 @@ public class AutomovilDTO  implements Serializable{
     }
 
     /**
-     * @return the modelo
+     * @return the puntoVentaID
      */
-    public Modelo getModelo() {
-        return modelo;
+    public Integer getPuntoVentaID() {
+        return puntoVentaID;
     }
 
     /**
-     * @param modelo the modelo to set
+     * @param puntoVentaID the puntoVentaID to set
      */
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
+    public void setPuntoVentaID(Integer puntoVentaID) {
+        this.puntoVentaID = puntoVentaID;
     }
+    
+    
+    
     
     
     
