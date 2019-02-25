@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class Modelo {
+public class Modelo implements Serializable{
     
     /**
      * numerop puertas del automovil con este modelo
