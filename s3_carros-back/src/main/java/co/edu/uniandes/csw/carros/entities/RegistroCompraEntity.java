@@ -21,9 +21,9 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     private double precioComprado; 
    
     @Temporal(TemporalType.DATE)
-    private Date fechaCompra; 
-    
+    private Date fechaCompra;
     private String nombreVendedor; 
+    private String nombreVnededor; 
 
     public RegistroCompraEntity()
     {
@@ -34,7 +34,7 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
      */
     public double getPrecioComprado() {
         return precioComprado;
-    } 
+    }
     /**
      * @param precioComprado the precioComprado to set
      */

@@ -26,13 +26,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 @RunWith(Arquillian.class)    
 public class PuntoVentaPersistanceTest 
 {
     @Inject
-
     private PuntoVentaPersistence pvp;
     
     @PersistenceContext  

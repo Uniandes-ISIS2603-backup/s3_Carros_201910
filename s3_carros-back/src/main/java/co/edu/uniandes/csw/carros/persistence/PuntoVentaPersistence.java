@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,8 +29,6 @@ public class PuntoVentaPersistence {
     public PuntoVentaEntity create(PuntoVentaEntity puntoVentaEntity)
     {
         LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
-        
-        
         em.persist(puntoVentaEntity);
         LOGGER.log(Level.INFO, "Saliendo de  crear un nuevo punto de venta");
         return puntoVentaEntity;
