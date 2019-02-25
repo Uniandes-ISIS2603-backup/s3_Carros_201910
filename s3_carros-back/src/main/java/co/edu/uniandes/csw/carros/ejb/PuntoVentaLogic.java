@@ -5,10 +5,30 @@
  */
 package co.edu.uniandes.csw.carros.ejb;
 
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
+import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
-public class PuntoVentaLogic {
+@Stateless
+public class PuntoVentaLogic
+{
+    @Inject
+    private PuntoVentaPersistence persistence; 
+    
+    public PuntoVentaEntity createPuntoVenta(PuntoVentaEntity puntoVenta) throws BusinessLogicException
+    {
+        if(persistence.findByDireccion(puntoVenta.getDireccion())!= null)
+        {
+            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion:  "+ puntoVenta.getDireccion());
+        }
+        puntoVenta = persistence.create(puntoVenta);
+        return puntoVenta;
+    }
     
 }

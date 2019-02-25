@@ -6,14 +6,14 @@
 package co.edu.uniandes.csw.carros.test.persistence;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
-<<<<<<< HEAD
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.ArrayList;
 import java.util.List;
-=======
-import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistance;
->>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
+
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
+ 
 /**
  *
  * @author estudiante
@@ -32,34 +32,33 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class PuntoVentaPersistanceTest 
 {
     @Inject
-<<<<<<< HEAD
+
     private PuntoVentaPersistence pvp;
     
-    @PersistenceContext
-    private EntityManager em; 
+    @PersistenceContext  
+    private EntityManager em;  
     
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
     
-    @Deployment
-=======
-    private PuntoVentaPersistance puntoVPersitence;
+    
+    private PuntoVentaPersistence puntoVPersitence;
+
+    
 @Deployment
->>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PuntoVentaEntity.class.getPackage())
-                .addPackage(PuntoVentaPersistance.class.getPackage())
+                .addPackage(PuntoVentaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
     @Test
     public void cratedPuntoVentaTest()
     {
-<<<<<<< HEAD
  
         PodamFactory factory = new PodamFactoryImpl();
         PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
-        
+                
        PuntoVentaEntity pve = pvp.create(newEntity);
        Assert.assertNotNull(pve);
        
@@ -67,8 +66,6 @@ public class PuntoVentaPersistanceTest
        
        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
        
-=======
-
     }
     
     @Test
