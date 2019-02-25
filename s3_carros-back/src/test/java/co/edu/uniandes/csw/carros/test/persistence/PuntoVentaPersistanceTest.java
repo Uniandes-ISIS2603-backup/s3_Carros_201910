@@ -68,13 +68,7 @@ public class PuntoVentaPersistanceTest
        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
        
 =======
-        //PodamFactory factory = new PodamFactoryImpl();
-        //PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
-       // PuntoVentaEntity result = PuntoVentaPersistance.create(newEntity);
-          
-        //Assert.assertNotNull(result);
-          
->>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
+
     }
     
     @Test
