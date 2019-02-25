@@ -6,17 +6,9 @@
 package co.edu.uniandes.csw.carros.test.persistence;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.ArrayList;
 import java.util.List;
-=======
-import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistance;
->>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
-=======
-import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
->>>>>>> parent of 776afaa... Revert "Merge origin/master"
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,25 +30,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class PuntoVentaPersistanceTest 
 {
     @Inject
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 776afaa... Revert "Merge origin/master"
     private PuntoVentaPersistence pvp;
     
     @PersistenceContext
     private EntityManager em; 
-<<<<<<< HEAD
     
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
     
-    @Deployment
-=======
-    private PuntoVentaPersistance puntoVPersitence;
-=======
->>>>>>> parent of 776afaa... Revert "Merge origin/master"
 @Deployment
->>>>>>> 50253cd292aa7d87ecc984206685ec412a8955a9
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PuntoVentaEntity.class.getPackage())
@@ -66,12 +47,7 @@ public class PuntoVentaPersistanceTest
    }
     @Test
     public void cratedPuntoVentaTest()
-    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 776afaa... Revert "Merge origin/master"
- 
+    { 
         PodamFactory factory = new PodamFactoryImpl();
         PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
         
@@ -80,11 +56,6 @@ public class PuntoVentaPersistanceTest
        
        PuntoVentaEntity entity   =  em.find(PuntoVentaEntity.class, pve.getId());
        
-<<<<<<< HEAD
-       Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
-       
-=======
-
     }
     
     @Test
@@ -146,9 +117,5 @@ public class PuntoVentaPersistanceTest
 
         newEntity = pvp.findByDireccion(null);
         Assert.assertNull(newEntity);
-=======
-       Assert.assertEquals(newEntity.getDirreccion(), entity.getDirreccion());
-       
->>>>>>> parent of 776afaa... Revert "Merge origin/master"
     }
 }

@@ -25,7 +25,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Julio Ruiz
  */
 @RunWith(Arquillian.class)
-public class EntityPersistenceTest {
+public class QuejasReclamosPersistenceTest {
 
     @Inject
     private QuejasReclamosPersistence qrp;

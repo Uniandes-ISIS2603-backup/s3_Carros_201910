@@ -45,7 +45,7 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToOne
-    private clienteEntity cliente;
+    private ClienteEntity cliente;
 
     @PodamExclude
     @OneToMany(mappedBy = "venta")

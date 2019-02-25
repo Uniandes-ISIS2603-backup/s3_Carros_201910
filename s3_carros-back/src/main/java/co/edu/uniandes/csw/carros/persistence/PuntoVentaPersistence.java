@@ -1,7 +1,3 @@
-<<<<<<< HEAD:s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistance.java
-<<<<<<< HEAD:s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistence.java
-=======
->>>>>>> parent of 776afaa... Revert "Merge origin/master":s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistence.java
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,17 +29,11 @@ public class PuntoVentaPersistence {
     public PuntoVentaEntity create(PuntoVentaEntity puntoVentaEntity)
     {
         LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
-<<<<<<< HEAD:s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistance.java
-        
-        
-=======
->>>>>>> parent of 776afaa... Revert "Merge origin/master":s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistence.java
         em.persist(puntoVentaEntity);
         LOGGER.log(Level.INFO, "Saliendo de  crear un nuevo punto de venta");
         return puntoVentaEntity;
     }
     
-<<<<<<< HEAD:s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistance.java
     public List<PuntoVentaEntity> findAll()
     {
         LOGGER.log(Level.INFO, "Consultando toos los puntos de venta");
@@ -95,27 +85,5 @@ public class PuntoVentaPersistence {
         }
         LOGGER.log(Level.INFO, "Saliendo de consultar punto de venta por direccion ", direccion);
         return result;
-=======
-    public PuntoVentaEntity find(Long puntoVentaID)
-    {
-        return em.find(PuntoVentaEntity.class, puntoVentaID);
     }
-    
-    public List<PuntoVentaEntity> findAll()
-    {
-        TypedQuery query = em.createQuery("select u from PuntoVentaEntity u", PuntoVentaEntity.class);
-        return  query.getResultList();
->>>>>>> parent of 776afaa... Revert "Merge origin/master":s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistence.java
-    }
-    
-    
-    
-<<<<<<< HEAD:s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistance.java
-    
-    
-    
 }
-=======
-=======
-}
->>>>>>> parent of 776afaa... Revert "Merge origin/master":s3_carros-back/src/main/java/co/edu/uniandes/csw/carros/persistence/PuntoVentaPersistence.java
