@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class PuntoVentaEntity extends BaseEntity implements Serializable
 {
-   private String dirreccion;
+   private String direccion;
    
    private String telefono;
 
@@ -26,15 +26,15 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     /**
      * @return the dirreccion
      */
-    public String getDirreccion() {
-        return dirreccion;
+    public String getDireccion() {
+        return direccion;
     }
 
     /**
      * @param dirreccion the dirreccion to set
      */
-    public void setDirreccion(String dirreccion) {
-        this.dirreccion = dirreccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     /**

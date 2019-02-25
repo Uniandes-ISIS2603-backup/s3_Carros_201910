@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
  *
  * @author estudiante
  */
+@Entity
 public class RegistroCompraEntity extends BaseEntity implements Serializable
 {
     private double precioComprado; 
@@ -21,7 +23,7 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     @Temporal(TemporalType.DATE)
     private Date fechaCompra; 
     
-    private String nombreVnededor; 
+    private String nombreVendedor; 
 
     public RegistroCompraEntity()
     {
@@ -32,7 +34,7 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
      */
     public double getPrecioComprado() {
         return precioComprado;
-    }
+    } 
     /**
      * @param precioComprado the precioComprado to set
      */
@@ -57,15 +59,15 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     /**
      * @return the nombreVnededor
      */
-    public String getNombreVnededor() {
-        return nombreVnededor;
+    public String getNombreVendedor() {
+        return nombreVendedor;
     }
 
     /**
      * @param nombreVnededor the nombreVnededor to set
      */
-    public void setNombreVnededor(String nombreVnededor) {
-        this.nombreVnededor = nombreVnededor;
+    public void setNombreVendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
     }
  
     

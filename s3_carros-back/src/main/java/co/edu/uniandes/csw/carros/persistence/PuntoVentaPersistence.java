@@ -29,21 +29,68 @@ public class PuntoVentaPersistence {
     public PuntoVentaEntity create(PuntoVentaEntity puntoVentaEntity)
     {
         LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
+        
+        
         em.persist(puntoVentaEntity);
         LOGGER.log(Level.INFO, "Saliendo de  crear un nuevo punto de venta");
         return puntoVentaEntity;
     }
     
-    public PuntoVentaEntity find(Long puntoVentaID)
-    {
-        return em.find(PuntoVentaEntity.class, puntoVentaID);
-    }
-    
     public List<PuntoVentaEntity> findAll()
     {
+        LOGGER.log(Level.INFO, "Consultando toos los puntos de venta");
         TypedQuery query = em.createQuery("select u from PuntoVentaEntity u", PuntoVentaEntity.class);
         return  query.getResultList();
     }
+    
+    public PuntoVentaEntity find(Long puntoVentaID)
+    {
+        LOGGER.log(Level.INFO, "Consultando punto de venta  con id={0}", puntoVentaID);
+        return em.find(PuntoVentaEntity.class, puntoVentaID);
+    }
+    
+    public PuntoVentaEntity update(PuntoVentaEntity puntoVentaEntity)
+    {
+         LOGGER.log(Level.INFO, "Actualizando punto de venta con id = {0}", puntoVentaEntity.getId());
+         
+         LOGGER.log(Level.INFO, "Saliendo de actualizar el punto de venta  con id = {0}", puntoVentaEntity.getId());
+        return em.merge(puntoVentaEntity); 
+    }
+    
+    public void delete(Long puntoVentaId)
+    {
+        LOGGER.log(Level.INFO, "Borrando de punto de venta con id = {0}", puntoVentaId);
+        
+        PuntoVentaEntity entity = em.find(PuntoVentaEntity.class, puntoVentaId);
+        em.remove(entity);
+        
+        LOGGER.log(Level.INFO, "Saliendo de borrar el punto de venta con id = {0}", puntoVentaId);
+    }
+    
+    public PuntoVentaEntity findByDireccion(String direccion)
+    {
+        LOGGER.log(Level.INFO, "Consultando punto de venta por direccion ", direccion);
+        
+        TypedQuery query = em.createQuery("Select e From PuntoVentaEntity e where e.direccion = :direccion", PuntoVentaEntity.class);
+        
+        query = query.setParameter("direccion", direccion);
+        
+        List<PuntoVentaEntity> sameDireccion = query.getResultList();
+        PuntoVentaEntity result;
+        
+        if (sameDireccion == null) {
+            result = null;
+        } else if (sameDireccion.isEmpty()) {
+            result = null;
+        } else {
+            result = sameDireccion.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar punto de venta por direccion ", direccion);
+        return result;
+    }
+    
+    
+    
     
     
     
