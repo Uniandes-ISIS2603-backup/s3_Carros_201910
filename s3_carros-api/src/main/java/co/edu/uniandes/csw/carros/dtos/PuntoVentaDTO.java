@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
 import java.util.List;
 
@@ -85,6 +86,18 @@ public class PuntoVentaDTO implements Serializable
         this.registros = registros;
     }
  
- 
- 
+    public PuntoVentaEntity toEntity()
+    {
+        PuntoVentaEntity entity = new PuntoVentaEntity();
+       entity.setDireccion(this.dirreccion);
+       entity.setTelefono(this.telefoo);
+       entity.setId(this.id);
+        return entity;
+    }
+ public PuntoVentaDTO(PuntoVentaEntity entity)
+ {
+      this.dirreccion = entity.getDireccion();
+        this.telefoo = entity.getTelefono();
+        this.id = entity.getId();
+ }
 }

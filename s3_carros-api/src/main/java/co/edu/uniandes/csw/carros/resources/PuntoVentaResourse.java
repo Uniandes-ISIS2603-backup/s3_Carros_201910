@@ -6,9 +6,12 @@
 package co.edu.uniandes.csw.carros.resources;
 
 import co.edu.uniandes.csw.carros.dtos.PuntoVentaDTO;
+import co.edu.uniandes.csw.carros.ejb.PuntoVentaLogic;
+import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,11 +32,17 @@ import javax.ws.rs.core.MediaType;
 @RequestScoped
 public class PuntoVentaResourse 
 {
+    
     private static final Logger LOGGER = Logger.getLogger(PuntoVentaResourse.class.getName());
     
+    @Inject
+    private PuntoVentaLogic logica;
+    
     @POST
-    public PuntoVentaDTO createdRegistroCompra(PuntoVentaDTO puntoVenta)
+    public PuntoVentaDTO createdPuntoVenta(PuntoVentaDTO puntoVenta) throws BusinessLogicException
     {
+        logica.createPuntoVenta(puntoVenta.toEntity());
+        
         return puntoVenta;
     }
     

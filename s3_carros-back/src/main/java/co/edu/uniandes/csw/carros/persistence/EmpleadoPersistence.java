@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.carros.persistence;
 
-import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import java.util.List;
 import javax.ejb.Stateless;
