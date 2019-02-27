@@ -5,13 +5,19 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Andres Forero
  */
-public class Modelo {
+public class ModeloDTO implements Serializable{
     
     
+    /**
+     * id del modelo
+     */
+    private Long modeloID;
     
     /**
      * numerop puertas del automovil con este modelo
@@ -71,7 +77,7 @@ public class Modelo {
     /**
      * constructor vacio
      */
-    public Modelo(){}
+    public ModeloDTO(){}
     
     
     
@@ -227,6 +233,20 @@ public class Modelo {
      */
     public void setVidrios(String vidrios) {
         this.vidrios = vidrios;
+    }
+
+    /**
+     * @return the modeloID
+     */
+    public Long getModeloID() {
+        return modeloID;
+    }
+
+    /**
+     * @param modeloID the modeloID to set
+     */
+    public void setModeloID(Long modeloID) {
+        this.modeloID = modeloID;
     }
 
     

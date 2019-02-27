@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
 {
-   private List<EmpleadoDTO> emplados;
+   private List<EmpleadoDTO> empleados;
    
    private List<ClienteDTO> clientes; 
    
@@ -28,14 +28,14 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
      * @return the emplados
      */
     public List<EmpleadoDTO> getEmplados() {
-        return emplados;
+        return empleados;
     }
 
     /**
      * @param emplados the emplados to set
      */
     public void setEmplados(List<EmpleadoDTO> emplados) {
-        this.emplados = emplados;
+        this.empleados = emplados;
     }
 
     /**
@@ -44,7 +44,7 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
      */
     public void addEmpleado(EmpleadoDTO empleado)
     {
-       this.emplados.add(empleado);
+       this.empleados.add(empleado);
     }
     /**
      * @return the clientes

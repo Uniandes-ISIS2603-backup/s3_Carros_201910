@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Andres Forero
  */
 public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     
@@ -21,29 +21,25 @@ public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     public MarcaDetailDTO(){}
     
     /**
-     * lista de autos asociados a esta marca
+     * lista de modelos  asociados a esta marca
      */
-    private List<AutomovilDTO> listaAutos;
+    private List<ModeloDTO> listaModelo;
 
     /**
-     * @return the listaAutos
+     * @return the listaModelo
      */
-    public List<AutomovilDTO> getListaAutos() {
-        return listaAutos;
+    public List<ModeloDTO> getListaModelo() {
+        return listaModelo;
     }
 
     /**
-     * @param listaAutos the listaAutos to set
+     * @param listaModelo the listaModelo to set
      */
-    public void setListaAutos(List<AutomovilDTO> listaAutos) {
-        this.listaAutos = listaAutos;
+    public void setListaModelo(List<ModeloDTO> listaModelo) {
+        this.listaModelo = listaModelo;
     }
-    
-    public void addAutomovil(AutomovilDTO auto){
-        this.listaAutos.add(auto);
-    }
-    
-    
-    
-    
+
+    public void addModelo(ModeloDTO modelo){
+        this.listaModelo.add(modelo);
+    }    
 }
