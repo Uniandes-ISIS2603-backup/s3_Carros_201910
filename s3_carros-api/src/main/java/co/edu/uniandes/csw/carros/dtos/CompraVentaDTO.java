@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**CompraVentaDTO Objeto de transferencia de datos de CompraVentas. Los DTO
@@ -18,11 +19,7 @@ import java.util.Date;
  *      "calificacionCompra": number,
  *      "fecha": date,
  *      "pagado": boolean,
- *      "factura": {
- *                     "transaccionId": number,
- *                     "cuentaOrigen": number,
- *                     "fecha": date
- *                 }
+ *      "factura": {@link FacturaDTO}
  *   }
  * </pre> Por ejemplo una compraVenta se representa asi:<br>
  *
@@ -31,12 +28,12 @@ import java.util.Date;
  *   {
  *      "ventaID": 13579,
  *      "calificacionCompra": "4.5",
- *      "fecha": "23-02-2018",
+ *      "fecha": "2018-08-20T00:00:00-05:00",
  *      "pagado": "true",
  *      "factura": {
  *                     "transaccionId": 13579,
  *                     "cuentaOrigen": 147852369,
- *                     "fecha": "23-02-2018"
+ *                     "fecha": "2018-08-20T00:00:00-07:00"
  *                 }
  *   }
  *
@@ -44,7 +41,7 @@ import java.util.Date;
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
-public class CompraVentaDTO extends CascaraDTO
+public class CompraVentaDTO extends CascaraDTO implements Serializable
 {
     /**
      * Identificador único de la transacción.
@@ -69,7 +66,7 @@ public class CompraVentaDTO extends CascaraDTO
     /**
      * Factura asociada a la CompraVenta.
      */
-    private Factura factura;
+    private FacturaDTO factura;
 
     /**
      * Constructor por defecto de CompraVentaDTO.
@@ -123,14 +120,14 @@ public class CompraVentaDTO extends CascaraDTO
     /**
      * @return the factura
      */
-    public Factura getFactura() {
+    public FacturaDTO getFactura() {
         return factura;
     }
 
     /**
      * @param factura the factura to set
      */
-    public void setFactura(Factura factura) {
+    public void setFactura(FacturaDTO factura) {
         this.factura = factura;
     }
 

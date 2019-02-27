@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author estudiante
  */
-public class Modelo implements Serializable{
+public class Modelo implements Serializable
+{
     
     /**
      * numerop puertas del automovil con este modelo
