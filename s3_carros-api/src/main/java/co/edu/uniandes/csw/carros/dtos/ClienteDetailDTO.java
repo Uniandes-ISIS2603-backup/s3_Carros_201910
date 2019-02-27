@@ -5,13 +5,14 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Juan Pablo Patarroyo Duque
  */
-public class ClienteDetailDTO {
+public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     private List<CompraVentaDTO> listaCompras;
     
     public ClienteDetailDTO(){  

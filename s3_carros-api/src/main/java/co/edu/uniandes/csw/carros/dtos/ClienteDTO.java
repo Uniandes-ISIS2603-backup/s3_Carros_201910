@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Juan Pablo Patarroyo Duque
  */
-public class ClienteDTO {
+public class ClienteDTO implements Serializable{
     
     private Long clienteID;
     private String nombre;
