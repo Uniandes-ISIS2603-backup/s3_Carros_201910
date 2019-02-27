@@ -30,8 +30,8 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     private List<CompraVentaEntity> compras = new ArrayList<CompraVentaEntity>();
     
     @PodamExclude
-    @ManyToMany(mappedBy = "clientes")
-    private List<PuntoVentaEntity> puntos;
+    @ManyToMany
+    private List<PuntoVentaEntity> puntosVenta;
     
     
     public ClienteEntity(){
