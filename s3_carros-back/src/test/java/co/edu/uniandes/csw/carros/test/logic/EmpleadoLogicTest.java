@@ -89,7 +89,7 @@ public class EmpleadoLogicTest {
     public void createEmpleadoTest() throws BusinessLogicException{
         EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
         EmpleadoEntity result = empleadoLogic.createEmpleado(nuevoEmpleado);
-        //Assert.assertNotNull(result);
+        Assert.assertNotNull(result);
         EmpleadoEntity entity = em.find(EmpleadoEntity.class, result.getId());
         Assert.assertEquals(nuevoEmpleado.getId(), entity.getId());
     }
