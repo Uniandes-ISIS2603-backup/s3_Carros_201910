@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 public class RegistroCompraDTO implements Serializable
 {

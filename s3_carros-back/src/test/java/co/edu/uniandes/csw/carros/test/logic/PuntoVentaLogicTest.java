@@ -73,7 +73,7 @@ public class PuntoVentaLogicTest {
      
     @Test
     public void getPuntosVentaTest() {
-        List<PuntoVentaEntity> list = puntoVentaLogic.getEditorials();
+        List<PuntoVentaEntity> list = puntoVentaLogic.getPuntosVenta();
         Assert.assertEquals(data.size(), list.size());
         for (PuntoVentaEntity entity : list) {
             boolean found = false;

@@ -8,7 +8,8 @@ package co.edu.uniandes.csw.carros.ejb;
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Logger;
+
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 @Stateless
 public class PuntoVentaLogic
 {
+     private static final Logger LOGGER = Logger.getLogger(PuntoVentaLogic.class.getName());
     @Inject
     private PuntoVentaPersistence persistence; 
     
@@ -34,7 +36,7 @@ public class PuntoVentaLogic
         return puntoVenta;
     }
     
-    public List<PuntoVentaEntity> getEditorials()
+    public List<PuntoVentaEntity> getPuntosVenta()
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los puntos de venta");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
@@ -43,7 +45,7 @@ public class PuntoVentaLogic
         return puntosVenta;
     }
     
-    public PuntoVentaEntity getEditorial(Long puntoVentaId)
+    public PuntoVentaEntity getPuntoVenta(Long puntoVentaId)
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el punto de venta con id = {0}", puntoVentaId);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
@@ -65,7 +67,7 @@ public class PuntoVentaLogic
         return newEntity;
     }
     
-        public void deletePuntoVenta (Long puntoVentaId) throws BusinessLogicException 
+    public void deletePuntoVenta (Long puntoVentaId) throws BusinessLogicException 
         {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el punto de venta con id = {0}", puntoVentaId);
          
