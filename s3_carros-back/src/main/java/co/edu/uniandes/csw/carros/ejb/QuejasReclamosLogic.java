@@ -27,6 +27,15 @@ public class QuejasReclamosLogic {
         if (persistence.findByName(queja.getId()) != null){
             throw new BusinessLogicException("Ya existe una queja/reclamo con ese id");
         }
+        if (queja.isSolucionado()){
+            throw new BusinessLogicException("No se puede crear una queja con estado solucionado");
+        }
+        if (queja.getTipo() > 5 || queja.getTipo() < 0){
+            throw new BusinessLogicException("El tipo de queja en invalido");
+        }
+        if (queja.getTipo() == 5 && queja.getComentarios().isEmpty()){
+            throw new BusinessLogicException("Si la queja es de tipo OTRO el comentario no puede ser vacio");
+        }
         queja = persistence.create(queja);
         return queja;
     }

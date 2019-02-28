@@ -50,4 +50,13 @@ public class QuejasReclamosPersistence {
         TypedQuery<QuejasReclamosEntity> query = em.createQuery("select u from QuejasReclamosEntity u", QuejasReclamosEntity.class);
         return query.getResultList();
     }
+    
+    public void update(QuejasReclamosEntity auto){
+        em.merge(auto);
+    }
+    
+    public void delete(Long casoId){
+        QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, casoId);
+        em.remove(entity);
+    }
 }
