@@ -48,7 +48,7 @@ public class EmpleadoLogic {
     }
     
     public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
-         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado);
+         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado.getId());
         String correo = empleado.getCorreo();
         EmpleadoEntity ee = persistence.findEmpleado(empleado.getId());
         if(ee.getCorreo().equals(correo)){

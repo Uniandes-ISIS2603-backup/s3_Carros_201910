@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.resources;
 
 import co.edu.uniandes.csw.carros.dtos.FacturaDTO;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -48,7 +49,7 @@ public class FacturaResourse
      * @return lista de facturas.
      */
     @GET
-    public ArrayList<FacturaDTO> getFacturas( )
+    public List<FacturaDTO> getFacturas( )
     {
         return new ArrayList<>();
     }

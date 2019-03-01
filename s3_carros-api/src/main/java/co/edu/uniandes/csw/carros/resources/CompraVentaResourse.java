@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.resources;
 
 import co.edu.uniandes.csw.carros.dtos.CompraVentaDTO;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -49,7 +50,7 @@ public class CompraVentaResourse
      * @return lista de compraVentas.
      */
     @GET
-    public ArrayList<CompraVentaDTO> getCompraVentas( )
+    public List<CompraVentaDTO> getCompraVentas( )
     {
         return new ArrayList<>();
     }

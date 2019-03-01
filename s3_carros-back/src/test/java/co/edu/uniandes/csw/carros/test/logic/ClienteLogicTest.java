@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.carros.test.logic;
 
-import co.edu.uniandes.csw.carros.ejb.EmpleadoLogic;
-import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.carros.ejb.ClienteLogic;
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.carros.persistence.EmpleadoPersistence;
+import co.edu.uniandes.csw.carros.persistence.ClientePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,10 +31,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Juan Pablo Patarroyo Duque
  */
 @RunWith(Arquillian.class)
-public class EmpleadoLogicTest {
+public class ClienteLogicTest {
     
     @Inject 
-    private EmpleadoLogic empleadoLogic;
+    private ClienteLogic clienteLogic;
     
     @Inject
     UserTransaction utx;
@@ -44,14 +44,14 @@ public class EmpleadoLogicTest {
     @PersistenceContext
     private EntityManager em;
     
-    private List<EmpleadoEntity> data = new ArrayList<EmpleadoEntity>();
+    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
     
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EmpleadoEntity.class.getPackage())
-                .addPackage(EmpleadoLogic.class.getPackage())
-                .addPackage(EmpleadoPersistence.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -79,53 +79,50 @@ public class EmpleadoLogicTest {
     
     private void insertData(){
         for(int i=0; i<3; i++){
-            EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
+            ClienteEntity empleado = factory.manufacturePojo(ClienteEntity.class);
             em.persist(empleado);
             data.add(empleado);
         }
     }
     
     @Test
-    public void createEmpleadoTest() throws BusinessLogicException{
-        EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
-        EmpleadoEntity result = empleadoLogic.createEmpleado(nuevoEmpleado);
+    public void createClienteTest() throws BusinessLogicException{
+        ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = clienteLogic.createCliente(nuevoCliente);
         Assert.assertNotNull(result);
-        EmpleadoEntity entity = em.find(EmpleadoEntity.class, result.getId());
-        Assert.assertEquals(nuevoEmpleado.getId(), entity.getId());
+        ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
+        Assert.assertEquals(nuevoCliente.getId(), entity.getId());
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createEmpleadoConMismoCorreoTest()throws BusinessLogicException{
-        EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
-        nuevoEmpleado.setCorreo(data.get(0).getCorreo());
-        empleadoLogic.createEmpleado(nuevoEmpleado);
+    public void createClienteConMismoCorreoTest()throws BusinessLogicException{
+        ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        nuevoCliente.setCorreo(data.get(0).getCorreo());
+        clienteLogic.createCliente(nuevoCliente);
     }
     
     @Test
-    public void updateEmpleadoTest() throws BusinessLogicException{
-        EmpleadoEntity empleado = data.get(0);
-        empleado.setCorreo("aaaaa");
-        empleadoLogic.updateEmpleado(empleado);
-        EmpleadoEntity search = em.find(EmpleadoEntity.class, empleado.getId());
-        Assert.assertEquals(search.getCorreo(), empleado.getCorreo());
+    public void updateClienteTest() throws BusinessLogicException{
+        ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity cliente = data.get(0);
+        cliente.setCorreo(nuevoCliente.getCorreo());
+        clienteLogic.updateCliente(cliente);
+        ClienteEntity search = em.find(ClienteEntity.class, cliente.getId());
+        Assert.assertEquals(search.getCorreo(), cliente.getCorreo());
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void updateEmpleadoConMismoCorreoTest() throws BusinessLogicException{
-        EmpleadoEntity empleado = data.get(0);
-        empleado.setCorreo(data.get(1).getCorreo());
-        empleadoLogic.updateEmpleado(empleado);
+    public void updateClienteConMismoCorreoTest() throws BusinessLogicException{
+        ClienteEntity cliente = data.get(0);
+        cliente.setCorreo(data.get(1).getCorreo());
+        clienteLogic.updateCliente(cliente);
     }
-           
+    
     @Test
     public void deleteEmpleadoTest(){
-        EmpleadoEntity empleado = data.get(0);
-        empleadoLogic.deleteEmpleado(empleado.getId());
-        EmpleadoEntity deleted = em.find(EmpleadoEntity.class, empleado.getId());
+        ClienteEntity cliente = data.get(0);
+        clienteLogic.deleteCliente(cliente.getId());
+        ClienteEntity deleted = em.find(ClienteEntity.class, cliente.getId());
         Assert.assertNull(deleted);
     }
-    
-    
-    
 }
-

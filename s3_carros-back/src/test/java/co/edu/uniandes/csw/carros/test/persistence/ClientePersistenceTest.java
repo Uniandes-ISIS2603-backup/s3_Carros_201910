@@ -127,5 +127,15 @@ public class ClientePersistenceTest {
         ClienteEntity search = em.find(ClienteEntity.class, entity.getId());
         Assert.assertEquals(search.getNombre(),"Juan Osorio" );
     }
+    
+    @Test
+    public void finEmpleadoPorCorreoTest(){
+        ClienteEntity entity = data.get(0);
+        String correo = cp.findClientePorCorreo(entity.getCorreo()).getCorreo();   
+        TypedQuery<ClienteEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", ClienteEntity.class);
+        query = query.setParameter("correo", correo);
+        Assert.assertEquals(correo, query.getSingleResult().getCorreo());
+    }
+    
 }
 
