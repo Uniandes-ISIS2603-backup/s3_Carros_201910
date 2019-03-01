@@ -37,9 +37,9 @@ public class RegistroCompraResourse
     }
     
     @GET
-    public ArrayList<RegistroCompraDTO> getRegistrosCompra(ArrayList<RegistroCompraDTO> registrosCompras)
+    public ArrayList<RegistroCompraDTO> getRegistrosCompra()
     {
-        return registrosCompras;
+        return new ArrayList<>() ;
     }
     
     @GET

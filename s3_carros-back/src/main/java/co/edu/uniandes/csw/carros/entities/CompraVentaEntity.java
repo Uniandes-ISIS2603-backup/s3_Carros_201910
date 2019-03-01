@@ -47,13 +47,13 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private ClienteEntity cliente;
 
-//    @PodamExclude
-//    @OneToMany(mappedBy = "compraVenta")
-//    private List<QuejasReclamosEntity> quejasReclamosEmpleado = new ArrayList<QuejasReclamosEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy = "compraVenta")
+    private List<QuejasReclamosEntity> quejasReclamosEmpleado = new ArrayList<QuejasReclamosEntity>();
     
-//   @PodamExclude
-//    @OneToMany(mappedBy = "compraVenta")
-//    private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
+   @PodamExclude
+    @OneToMany(mappedBy = "compraVenta")
+    private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
     @OneToOne

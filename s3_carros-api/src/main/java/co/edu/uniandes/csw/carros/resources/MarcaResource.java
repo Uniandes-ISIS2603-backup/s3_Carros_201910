@@ -35,8 +35,8 @@ public class MarcaResource {
     
     
     @GET
-    public void getMarca(){
-        
+    public MarcaDTO getMarca(){
+        return null;
     }
     
     @PUT

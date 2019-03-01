@@ -37,7 +37,7 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
    private List<ClienteEntity> clientes;
    
    @PodamExclude
-   @OneToMany( mappedBy = "puntosVenta", fetch = LAZY)
+   @ManyToMany( mappedBy = "puntosVenta", fetch = LAZY)
    private List<MarcaEntity> marcas; 
    
    @PodamExclude
