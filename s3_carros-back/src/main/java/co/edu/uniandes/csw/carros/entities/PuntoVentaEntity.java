@@ -29,7 +29,7 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
    private String telefono;
    
    @PodamExclude
-   @OneToMany( mappedBy = "puntosVenta", fetch = LAZY)
+   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
    private List<EmpleadoEntity> empleados;
    
    @PodamExclude
@@ -37,7 +37,7 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
    private List<ClienteEntity> clientes;
    
    @PodamExclude
-   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
+   @OneToMany( mappedBy = "puntosVenta", fetch = LAZY)
    private List<MarcaEntity> marcas; 
    
    @PodamExclude
