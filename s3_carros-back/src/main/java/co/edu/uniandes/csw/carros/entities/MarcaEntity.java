@@ -5,14 +5,30 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author Andres Forero
  */
 @Entity     
 public class MarcaEntity extends BaseEntity{    
+    
+    @PodamExclude                                 
+    @ManyToMany
+    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ModeloEntity> modelos = new ArrayList<>();
+    
     
     
     
