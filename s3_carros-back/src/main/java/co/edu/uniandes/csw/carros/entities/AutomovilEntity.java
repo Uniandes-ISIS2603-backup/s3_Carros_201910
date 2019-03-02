@@ -6,14 +6,27 @@
 package co.edu.uniandes.csw.carros.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author Andres Forero
  */
 @Entity
 public class AutomovilEntity extends BaseEntity{
     
+    
+    @PodamExclude
+    @ManyToOne
+    private ModeloEntity modelo;
+   
+    
+    @PodamExclude
+    @OneToOne
+    private RegistroCompraEntity registroCompra;
+           
     
    public AutomovilEntity(){}
     
@@ -79,10 +92,7 @@ public class AutomovilEntity extends BaseEntity{
     private Integer puntoVentaID;
     
     
-    /**
-     * modelo del automovil
-     */
-    private Modelo modelo;
+    
 
    
     
@@ -245,14 +255,14 @@ public class AutomovilEntity extends BaseEntity{
     /**
      * @return the modelo
      */
-    public Modelo getModelo() {
+    public ModeloEntity getModelo() {
         return modelo;
     }
 
     /**
      * @param modelo the modelo to set
      */
-    public void setModelo(Modelo modelo) {
+    public void setModelo(ModeloEntity modelo) {
         this.modelo = modelo;
     }
     

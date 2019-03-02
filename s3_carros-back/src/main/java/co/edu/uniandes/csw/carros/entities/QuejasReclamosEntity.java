@@ -7,6 +7,10 @@ package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,10 +19,14 @@ import javax.persistence.Entity;
 @Entity
 public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     
-    private int carroId;
+    private Long carroId;
     private boolean solucionado;
     private int tipo;
     private String comentarios;
+    
+    @PodamExclude
+    @ManyToOne()
+    private CompraVentaEntity compraVenta;
     
     public QuejasReclamosEntity(){
         
@@ -68,14 +76,14 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     /**
      * @return the carroId
      */
-    public int getCarroId() {
+    public Long getCarroId() {
         return carroId;
     }
 
     /**
      * @param carroId the carroId to set
      */
-    public void setCarroId(int carroId) {
+    public void setCarroId(Long carroId) {
         this.carroId = carroId;
     }
 }

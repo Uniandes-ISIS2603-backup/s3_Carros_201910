@@ -6,7 +6,13 @@
 package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,10 +21,33 @@ import javax.persistence.Entity;
 @Entity
 public class PuntoVentaEntity extends BaseEntity implements Serializable
 {
+    
+   @Id 
+   private Long id;
    private String direccion;
    
    private String telefono;
-
+   
+   @PodamExclude
+   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
+   private List<EmpleadoEntity> empleados;
+   
+   @PodamExclude
+   @ManyToMany( mappedBy = "puntosVenta", fetch = LAZY)
+   private List<ClienteEntity> clientes;
+   
+   @PodamExclude
+   @ManyToMany( mappedBy = "puntosVenta", fetch = LAZY)
+   private List<MarcaEntity> marcas; 
+   
+   @PodamExclude
+   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
+   private List<RegistroCompraEntity> compras;
+   
+   @PodamExclude
+   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
+   private List<CompraVentaEntity> ventas;      
+   
    public PuntoVentaEntity()
    {
        

@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class QuejasReclamosResource {
     
-        private static final Logger LOGGER = Logger.getLogger(QuejasReclamosResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(QuejasReclamosResource.class.getName());
     
     @POST
     public QuejasReclamosDTO createQuejasReclamos(QuejasReclamosDTO queja){
@@ -37,7 +37,9 @@ public class QuejasReclamosResource {
     }
     
     @GET
-    public void getQuejasReclamos(){
+    public ArrayList<QuejasReclamosDTO> getQuejasReclamos()
+    {
+        return new ArrayList<>();
     }
     
     @PUT

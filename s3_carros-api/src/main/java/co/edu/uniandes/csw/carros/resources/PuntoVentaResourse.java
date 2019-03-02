@@ -46,9 +46,9 @@ public class PuntoVentaResourse
     }
     
     @GET
-    public ArrayList<PuntoVentaDTO> getPuntosVenta(ArrayList<PuntoVentaDTO> puntoVenta)
+    public ArrayList<PuntoVentaDTO> getPuntosVenta()
     {
-        return puntoVenta;
+        return new ArrayList<>();
     }
     
     @GET

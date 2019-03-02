@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.carros.test.persistence;
 
-import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
-import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
+
+import co.edu.uniandes.csw.carros.entities.ModeloEntity;
+import co.edu.uniandes.csw.carros.persistence.ModeloPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -20,20 +21,22 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+import org.junit.Test;
 
 /**
  *
- * @author Julio Ruiz
+ * @author Andres Forero
  */
 @RunWith(Arquillian.class)
-public class QuejasReclamosPersistenceTest {
-
+public class ModeloPersistenceTest {
+    
     @Inject
-    private QuejasReclamosPersistence qrp;
+    private ModeloPersistence mp;
+    
     
     @PersistenceContext
     private EntityManager em;
@@ -41,14 +44,16 @@ public class QuejasReclamosPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private List<QuejasReclamosEntity> data = new ArrayList<>();
+    
+    private List<ModeloEntity> data = new ArrayList<>();
+    
     
     @Deployment
-    public static JavaArchive createDeployment() {
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(QuejasReclamosEntity.class.getPackage())
-                .addPackage(QuejasReclamosPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addPackage(ModeloEntity.class.getPackage())
+                .addPackage(ModeloPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
@@ -78,56 +83,51 @@ public class QuejasReclamosPersistenceTest {
     public void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
       for(int i=0;i<3; i++){
-            QuejasReclamosEntity entity = factory.manufacturePojo(QuejasReclamosEntity.class);
+            ModeloEntity entity = factory.manufacturePojo(ModeloEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-
-    @Test
-    public void createQuejasReclamosTest() {
-        
+    
+    @Test 
+    public void createModeloTest(){
         PodamFactory factory = new PodamFactoryImpl();
-        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        ModeloEntity newEntity = factory.manufacturePojo(ModeloEntity.class);
+        ModeloEntity result = mp.createModelo(newEntity);
         
-        QuejasReclamosEntity qre = qrp.create(newEntity);
+        Assert.assertNotNull(result);  
         
-        Assert.assertNotNull(qre);
+        ModeloEntity entity = em.find(ModeloEntity.class, result.getId());
         
-        QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, qre.getId());
-        
-        Assert.assertEquals(newEntity.getCarroId(), entity.getCarroId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         
     }
     
     @Test
-    public void findQuejasReclamosTest(){
-        QuejasReclamosEntity entity = data.get(0);
-        QuejasReclamosEntity search = qrp.find(entity.getCarroId());
+    public void findModeloTest(){
+        ModeloEntity entity = data.get(0);
+        ModeloEntity search = mp.findModelo(entity.getId());
         
         Assert.assertNotNull(search);
-        Assert.assertEquals(entity.getCarroId(), search.getCarroId());
-    }
-    @Test
-    public void findALLQuejasReclamosTest(){
-        TypedQuery<QuejasReclamosEntity> query = em.createQuery("Select u from QuejasReclamosEntity u",QuejasReclamosEntity.class);
-        Assert.assertEquals(query.getResultList(), qrp.findAll());
+        Assert.assertEquals(entity.getId(), search.getId());
     }
     
+    
     @Test
-    public void deleteQuejasReclamosTest(){
-        QuejasReclamosEntity entity = data.get(1);
-        qrp.delete(entity.getCarroId());
-        QuejasReclamosEntity search = em.find(QuejasReclamosEntity.class, entity.getId());
+    public void findAllModelosTest(){
+        TypedQuery<ModeloEntity> query = em.createQuery("Select u from ModeloEntity u", ModeloEntity.class);
+        Assert.assertEquals(query.getResultList(), mp.findAllModelos());
+    }
+    
+    
+    @Test
+    public void deleteModeloTest(){
+        ModeloEntity entity = data.get(1);
+        mp.deleteModelo(entity.getId());
+        ModeloEntity search = em.find(ModeloEntity.class, entity.getId());
         Assert.assertNull(search);
     }
     
-    @Test
-    public void updateQuejasReclamosTest(){
-        QuejasReclamosEntity entity = data.get(0);
-        entity.setSolucionado(true);
-        qrp.update(entity);
-        QuejasReclamosEntity search = em.find(QuejasReclamosEntity.class, entity.getId());
-        Assert.assertEquals(search.isSolucionado(), true);
-    }
+    
+    
 }

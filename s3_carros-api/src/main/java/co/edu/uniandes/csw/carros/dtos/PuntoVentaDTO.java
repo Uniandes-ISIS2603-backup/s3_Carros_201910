@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 public class PuntoVentaDTO implements Serializable
 {

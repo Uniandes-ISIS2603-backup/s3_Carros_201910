@@ -25,12 +25,13 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     private Integer extension;
     private String correo;
     
-    //@PodamExclude
-    //@OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    //private List<CompraVentaEntity> ventas = new ArrayList<CompraVentaEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy = "empleado")
+    private List<CompraVentaEntity> ventas = new ArrayList<CompraVentaEntity>();
     
-    //@ManyToOne
-    //private PuntoVentaEntity puntoVenta;
+    @PodamExclude
+    @ManyToOne
+    private PuntoVentaEntity puntoVenta;
 
     public EmpleadoEntity(){
         
@@ -80,30 +81,30 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     /**
      * @return the ventas
      */
-    //public List<CompraVentaEntity> getVentas() {
-    //    return ventas;
-    //}
+    public List<CompraVentaEntity> getVentas() {
+        return ventas;
+    }
 
     /**
      * @param ventas the ventas to set
      */
-    //public void setVentas(List<CompraVentaEntity> ventas) {
-    //    this.ventas = ventas;
-    //}
+    public void setVentas(List<CompraVentaEntity> ventas) {
+        this.ventas = ventas;
+    }
 
     /**
      * @return the puntoVenta
      */
-    //public PuntoVentaEntity getPuntoVenta() {
-    //    return puntoVenta;
-    //}
+    public PuntoVentaEntity getPuntoVenta() {
+        return puntoVenta;
+    }
 
     /**
      * @param puntoVenta the puntoVenta to set
      */
-    //public void setPuntoVenta(PuntoVentaEntity puntoVenta) {
-    //    this.puntoVenta = puntoVenta;
-    //}
+    public void setPuntoVenta(PuntoVentaEntity puntoVenta) {
+        this.puntoVenta = puntoVenta;
+    }
     
     
 }

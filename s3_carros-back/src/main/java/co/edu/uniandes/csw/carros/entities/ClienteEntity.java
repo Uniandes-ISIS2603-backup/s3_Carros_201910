@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -24,13 +25,13 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     private String correo;
     private String telefono;
     
-    //@PodamExclude
-    //@OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    //private List<CompraVentaEntity> compras = new ArrayList<CompraVentaEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<CompraVentaEntity> compras = new ArrayList<CompraVentaEntity>();
     
-    //@PodamExclude
-    //@ManyToMany(mappedBy = "clientes", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    //private List<PuntoVentaEntity> puntos = new ArrayList<PuntoVentaEntity>();
+    @PodamExclude
+    @ManyToMany
+    private List<PuntoVentaEntity> puntosVenta;
     
     
     public ClienteEntity(){
@@ -82,18 +83,14 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     /**
      * @return the compras
      */
-    //public List<CompraVentaEntity> getCompras() {
-    //    return compras;
-    //}
+    public List<CompraVentaEntity> getCompras() {
+        return compras;
+    }
 
     /**
      * @param compras the compras to set
      */
-    //public void setCompras(List<CompraVentaEntity> compras) {
-    //    this.compras = compras;
-    //}
-    
-    //public void addCompra(CompraVentaEntity compra){
-    //    compras.add(compra);
-    //}
+    public void setCompras(List<CompraVentaEntity> compras) {
+        this.compras = compras;
+    }
 }
