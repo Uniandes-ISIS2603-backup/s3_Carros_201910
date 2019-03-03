@@ -27,13 +27,13 @@ public class QuejasReclamosPersistence {
         return quejasReclamosEntity;
     }
 
-    public QuejasReclamosEntity find(Long quejasReclamosId) {
-        return em.find(QuejasReclamosEntity.class, quejasReclamosId);
+    public QuejasReclamosEntity find(Long casoId) {
+        return em.find(QuejasReclamosEntity.class, casoId);
     }
     
     public QuejasReclamosEntity findByName(Long casoID){
         TypedQuery<QuejasReclamosEntity> query = em.createQuery("select e From QuejasReclamosEntity e where e.name = :name", QuejasReclamosEntity.class);
-        query = query.setParameter("came", casoID);
+        query = query.setParameter("name", casoID);
         List<QuejasReclamosEntity> sameName = query.getResultList();
         QuejasReclamosEntity result;
         if(sameName == null){
