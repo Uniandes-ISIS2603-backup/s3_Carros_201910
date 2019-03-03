@@ -17,9 +17,9 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Julio Ruiz
  */
 @Entity
-public class QuejasReclamosEntity extends BaseEntity implements Serializable{
+public class QuejasReclamosEntity extends BaseEntity{
     
-    private Long carroId;
+    private Long casoId;
     private boolean solucionado;
     private int tipo;
     private String comentarios;
@@ -77,13 +77,13 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
      * @return the carroId
      */
     public Long getCarroId() {
-        return carroId;
+        return casoId;
     }
 
     /**
      * @param carroId the carroId to set
      */
     public void setCarroId(Long carroId) {
-        this.carroId = carroId;
+        this.casoId = carroId;
     }
 }

@@ -89,9 +89,9 @@ public class QuejasReclamosLogicTest {
     public void createQuejasReclamosTest() throws BusinessLogicException{
         QuejasReclamosEntity nuevaQueja = factory.manufacturePojo(QuejasReclamosEntity.class);
         QuejasReclamosEntity result = quejasReclamosLogic.createQuejasReclamos(nuevaQueja);
-        //Assert.assertNotNull(result);
+        Assert.assertNotNull(result);
         QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
-        Assert.assertEquals(nuevaQueja.getId(), entity.getId());
+        Assert.assertEquals(nuevaQueja.getCarroId(), entity.getCarroId());
     }
     
     

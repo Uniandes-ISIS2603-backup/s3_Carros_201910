@@ -71,7 +71,7 @@ public class QuejasReclamosPersistenceTest {
     }
     
     private void clearData(){
-      em.createQuery("delete from MarcaEntity").executeUpdate();
+      em.createQuery("delete from QuejasReclamosEntity").executeUpdate();
     }
     
     
