@@ -14,11 +14,13 @@ import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -37,10 +39,12 @@ public class PuntoVentaPersistanceTest
     @PersistenceContext  
     private EntityManager em;  
     
+    @Inject
+    UserTransaction utx;
+    
+    
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
-    
-    
-    private PuntoVentaPersistence puntoVPersitence;
+   
 
     
 @Deployment
@@ -51,19 +55,22 @@ public class PuntoVentaPersistanceTest
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
+    
+
+    
     @Test
     public void cratedPuntoVentaTest()
     {
  
-        PodamFactory factory = new PodamFactoryImpl();
-        PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);
-                
-       PuntoVentaEntity pve = pvp.create(newEntity);
-       Assert.assertNotNull(pve);
+    PodamFactory factory = new PodamFactoryImpl();
+    PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);                
+    PuntoVentaEntity pve = pvp.create(newEntity);
+    
+    Assert.assertNotNull(pve);
+      
+    PuntoVentaEntity entity   =  em.find(PuntoVentaEntity.class, pve.getId());
        
-       PuntoVentaEntity entity   =  em.find(PuntoVentaEntity.class, pve.getId());
-       
-       Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
+    Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
        
     }
     
@@ -90,12 +97,13 @@ public class PuntoVentaPersistanceTest
     public void getPuntoVentaTest() {
         PuntoVentaEntity entity = data.get(0);
         PuntoVentaEntity newEntity = pvp.find(entity.getId());
+        
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDireccion(), newEntity.getDireccion());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
     @Test
-    public void deleteEditorialTest() {
+    public void deletePuntosTest() {
         PuntoVentaEntity entity = data.get(0);
         pvp.delete(entity.getId());
         PuntoVentaEntity deleted = em.find(PuntoVentaEntity.class, entity.getId());
@@ -103,7 +111,7 @@ public class PuntoVentaPersistanceTest
     }
     
     @Test
-    public void updateEditorialTest() {
+    public void updatePuntoVentaTest() {
         PuntoVentaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         PuntoVentaEntity newEntity = factory.manufacturePojo(PuntoVentaEntity.class);

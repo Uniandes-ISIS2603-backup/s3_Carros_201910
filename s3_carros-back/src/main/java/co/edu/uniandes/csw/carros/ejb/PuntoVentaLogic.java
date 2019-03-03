@@ -23,6 +23,7 @@ import javax.inject.Inject;
 public class PuntoVentaLogic
 {
      private static final Logger LOGGER = Logger.getLogger(PuntoVentaLogic.class.getName());
+   
     @Inject
     private PuntoVentaPersistence persistence; 
     
