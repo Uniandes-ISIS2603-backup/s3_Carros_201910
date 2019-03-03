@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.carros.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +27,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     private Date fecha;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
 
     public FacturaEntity( )       

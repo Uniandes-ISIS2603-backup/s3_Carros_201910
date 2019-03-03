@@ -63,7 +63,7 @@ public class CompraVentaPersistence
     }
     
     /**
-     * Busca si hay alguna CompraVenta con el id que se envía de argumento
+     * Busca si hay CompraVentas con los ids que se envían de argumento
      *
      * @param ids: Lista de ids de compraVentas que se están buscando.
      * @return Lista de CompraVentas, null si no existe ninguna.

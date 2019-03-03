@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,23 +37,23 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     private boolean pagado;
     
     @PodamExclude
-    @OneToOne(mappedBy = "compraVenta")
+    @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
     private FacturaEntity factura;
 
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     private EmpleadoEntity empleado;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     private ClienteEntity cliente;
 
     @PodamExclude
-    @OneToMany(mappedBy = "compraVenta")
+    @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
     private List<QuejasReclamosEntity> quejasReclamosEmpleado = new ArrayList<QuejasReclamosEntity>();
     
    @PodamExclude
-    @OneToMany(mappedBy = "compraVenta")
+    @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
     private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
@@ -113,30 +114,30 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     /**
      * @return the quejasReclamosEmpleado
      */
-//    public List<QuejasReclamosEntity> getQuejasReclamosEmpleado() {
-//        return quejasReclamosEmpleado;
-//    }
+    public List<QuejasReclamosEntity> getQuejasReclamosEmpleado() {
+        return quejasReclamosEmpleado;
+    }
 
     /**
      * @param quejasReclamosEmpleado the quejasReclamosEmpleado to set
      */
-//    public void setQuejasReclamosEmpleado(List<QuejasReclamosEntity> quejasReclamosEmpleado) {
-//        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
-//    }
+    public void setQuejasReclamosEmpleado(List<QuejasReclamosEntity> quejasReclamosEmpleado) {
+        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
+    }
 
     /**
      * @return the quejasReclamosCliente
      */
-//    public List<QuejasReclamosEntity> getQuejasReclamosCliente() {
-//        return quejasReclamosCliente;
-//    }
+    public List<QuejasReclamosEntity> getQuejasReclamosCliente() {
+        return quejasReclamosCliente;
+    }
 
     /**
      * @param quejasReclamosCliente the quejasReclamosCliente to set
      */
-//    public void setQuejasReclamosCliente(List<QuejasReclamosEntity> quejasReclamosCliente) {
-//        this.quejasReclamosCliente = quejasReclamosCliente;
-//    }
+    public void setQuejasReclamosCliente(List<QuejasReclamosEntity> quejasReclamosCliente) {
+        this.quejasReclamosCliente = quejasReclamosCliente;
+    }
 
     /**
      * @return the automovilFacturado

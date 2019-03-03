@@ -6,8 +6,15 @@
 package co.edu.uniandes.csw.carros.resources;
 
 import co.edu.uniandes.csw.carros.dtos.CompraVentaDTO;
+import co.edu.uniandes.csw.carros.dtos.CompraVentaDetailDTO;
+import co.edu.uniandes.csw.carros.ejb.CompraVentaLogic;
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
+import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -28,6 +36,9 @@ public class CompraVentaResourse
 {
     private final static Logger LOGGER = Logger.getLogger(CompraVentaResourse.class.getName());
     
+    @Inject
+    private CompraVentaLogic compraVentaLogic; 
+    
      /**
      * Crea una nueva CompraVenta con la informacion que se recibe en el cuerpo de
      * la petición y se regresa un objeto identico con un id auto-generado por
@@ -37,33 +48,58 @@ public class CompraVentaResourse
      * guardar.
      * @return JSON {@link CompraVentaDTO} - La compraVenta guardada con el atributo
      * id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe la compraventa.
      */
     @POST
-    public CompraVentaDTO createCompraVenta( CompraVentaDTO compraVenta )
+    public CompraVentaDTO createCompraVenta( CompraVentaDTO compraVenta ) throws BusinessLogicException
     {
-        return compraVenta;
+        LOGGER.log(Level.INFO, "ComporaVentaResourse createCompraVenta: imput: {0}", compraVenta);
+        //DTO (json) a Entity para ser manejado por la lógica.
+        CompraVentaEntity compraVentaEntity = compraVenta.toEntity();
+        //Invoca la lógica para crear la compraVenta nueva.
+        CompraVentaEntity nuevaCompraVentaEntity = compraVentaLogic.createCompraVenta(compraVentaEntity);
+        //Como debe retornar DTO (json) se invoca el constructor del DTO con argumento el entity nuevo.
+        CompraVentaDTO nuevaCompraVentaDTO = new CompraVentaDTO(nuevaCompraVentaEntity);
+        LOGGER.log(Level.INFO, "CompraVentaResourse createCompraVenta: output: {0}", nuevaCompraVentaDTO);
+        return nuevaCompraVentaDTO;
     }
     
     /**
-     * Retorna la lista de compraVentas.
-     * @return lista de compraVentas.
+     * Busca y retorna todas las CompraVentas que existen en la aplicación.
+     * 
+     * @return JSONArray {@link CompraVentaDetailDTO} - Las CompraVentas
+     * encontradas en la aplicacion. Si no hay ninguna ratorna una lista vacía..
      */
     @GET
-    public ArrayList<CompraVentaDTO> getCompraVentas( )
+    public List<CompraVentaDetailDTO> getCompraVentas( )
     {
-        return new ArrayList<>();
+        LOGGER.log(Level.INFO, "ComporaVentaResourse getCompraVentas: imput: void");
+        List<CompraVentaDetailDTO> listaCompraVentas = listEntity2DetailDTO(compraVentaLogic.getCompraVentas());
+        LOGGER.log(Level.INFO, "ComporaVentaResourse createCompraVenta: output: {0}", listaCompraVentas);
+        return listaCompraVentas;
     }
 
     /**
-     * Retorna la compraVenta asociada al id dado por parametro.
+     * Busca la compraVenta con el id asociado recibido en la URL y la devuelve.
+     * 
      * @param ventaID: Identificador de la compraVenta.
-     * @return compraVenta asociada al id dado por parametro, null de lo contrario.
+     * @return JSON {@link CompraVentaDetailDTO} - La compraVenta buscada. 
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la CompraVenta.
      */
     @GET
     @Path("{ventaID: \\d+}")
-    public CompraVentaDTO getCompraVenta( @PathParam("VentaID") Long ventaID )
+    public CompraVentaDetailDTO getCompraVenta( @PathParam("ventaID") Long ventaID ) throws WebApplicationException
     {
-        return null;
+        LOGGER.log(Level.INFO, "CompraVentaResurse getCompraVenta: imput: {0}", ventaID);
+        CompraVentaEntity compraVentaEntity = compraVentaLogic.getCompraVenta(ventaID);
+        if(compraVentaEntity == null)
+        {
+            throw new  WebApplicationException("El recurso /compraVentas/" + ventaID + " no existe.", 404);
+        }
+        CompraVentaDetailDTO detailDTO = new CompraVentaDetailDTO(compraVentaEntity);
+        return detailDTO;
     }
     
     /**
@@ -84,5 +120,24 @@ public class CompraVentaResourse
     public CompraVentaDTO updateCompraVenta(@PathParam("ventaID") Long ventaID, CompraVentaDTO compraVenta) 
     {
         return compraVenta;
+    }
+    
+    /**
+     * Convierte una lista de entidades a DTO
+     * 
+     * Este método convierte una lista de objetos CompraVentaEntity a una lista de 
+     * objetos CompraVentaDetailDTO (json).
+     * 
+     * @param entityList corresponde a una lista de compraventas de tipo Entity.
+     * @return la lista de compraVentas en forma DTO (json).
+     */
+    private List<CompraVentaDetailDTO> listEntity2DetailDTO(List<CompraVentaEntity> entityList)
+    {
+        List<CompraVentaDetailDTO> list = new ArrayList<>();
+        for(CompraVentaEntity entity : entityList)
+        {
+            list.add(new CompraVentaDetailDTO(entity));
+        }
+        return list;
     }
 }

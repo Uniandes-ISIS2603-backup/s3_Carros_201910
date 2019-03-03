@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.test.persistence;
 
-import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
-import co.edu.uniandes.csw.carros.persistence.CompraVentaPersistence;
+import co.edu.uniandes.csw.carros.entities.FacturaEntity;
+import co.edu.uniandes.csw.carros.persistence.FacturaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -14,25 +14,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Kevin hernán Castrillón Castañeda
+ * @author Kevin Hernán Castrillón Castañeda
  */
-@RunWith(Arquillian.class)
-public class CompraVentaPersistenceTest 
+public class FacturaPersistenceTest 
 {
     @Inject
-    private CompraVentaPersistence compraVentaPersistence;
+    private FacturaPersistence facturaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +37,7 @@ public class CompraVentaPersistenceTest
     @Inject
     UserTransaction utx;
     
-    private List<CompraVentaEntity> data = new ArrayList<>();
+    private List<FacturaEntity> data = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -50,8 +47,8 @@ public class CompraVentaPersistenceTest
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompraVentaEntity.class.getPackage())
-                .addPackage(CompraVentaPersistence.class.getPackage())
+                .addPackage(FacturaEntity.class.getPackage())
+                .addPackage(FacturaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -81,7 +78,7 @@ public class CompraVentaPersistenceTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from CompraVentaEntity").executeUpdate();
+        em.createQuery("delete from FacturaEntity").executeUpdate();
     }
 
     /**
@@ -92,7 +89,7 @@ public class CompraVentaPersistenceTest
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-            CompraVentaEntity entity = factory.manufacturePojo(CompraVentaEntity.class);
+            FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
 
@@ -101,31 +98,31 @@ public class CompraVentaPersistenceTest
     }
 
     /**
-     * Prueba para crear una CompraVenta.
+     * Prueba para crear una Factura.
      */
     @Test
-    public void createCompraVentaTest() {
+    public void createFacturaTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        CompraVentaEntity result = compraVentaPersistence.create(newEntity);
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        FacturaEntity result = facturaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        CompraVentaEntity entity = em.find(CompraVentaEntity.class, result.getId());
+        FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
     /**
-     * Prueba para consultar la lista de CompraVentas.
+     * Prueba para consultar la lista de Factura.
      */
     @Test
-    public void getCompraVentasTest() {
-        List<CompraVentaEntity> list = compraVentaPersistence.findAll();
+    public void getFacturasTest() {
+        List<FacturaEntity> list = facturaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (CompraVentaEntity ent : list) {
+        for (FacturaEntity ent : list) {
             boolean found = false;
-            for (CompraVentaEntity entity : data) {
+            for (FacturaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -135,31 +132,13 @@ public class CompraVentaPersistenceTest
     }
 
     /**
-     * Prueba para consultar una CompraVenta.
+     * Prueba para consultar una Factura.
      */
     @Test
-    public void getCompraVentaTest() {
-        CompraVentaEntity entity = data.get(0);
-        CompraVentaEntity newEntity = compraVentaPersistence.findByID(entity.getId());
+    public void getFacturaTest() {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity newEntity = facturaPersistence.findByID(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
-    }
-    
-     /**
-     * Prueba para actualizar una CompraVenta.
-     */
-    @Test
-    public void updateCompraVentaTest() {
-        CompraVentaEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        compraVentaPersistence.update(newEntity);
-
-        CompraVentaEntity resp = em.find(CompraVentaEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 }

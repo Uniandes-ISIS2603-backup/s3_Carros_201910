@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Kevin Hernán Castrillon Castañeda.
  */
-@Path("/compraVentas")
+@Path("/facturas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class FacturaResourse 

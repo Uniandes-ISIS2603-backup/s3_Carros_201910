@@ -27,7 +27,6 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     @Temporal(TemporalType.DATE)
     private Date fechaCompra;
     private String nombreVendedor; 
-    private String nombreVnededor; 
 
     @PodamExclude
     @ManyToOne()

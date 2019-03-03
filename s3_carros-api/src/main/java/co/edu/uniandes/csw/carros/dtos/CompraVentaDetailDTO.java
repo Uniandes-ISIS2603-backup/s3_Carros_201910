@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
+import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +27,79 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
      */
     private List<QuejasReclamosDTO> quejasReclamosEmpleado;
 
+    /**
+     * Constructor por defecto
+     */
+    public CompraVentaDetailDTO() {
+    }
+
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param compraVentaEntity La entidad de la compraVenta para transformar a DTO.
+     */
+    public CompraVentaDetailDTO(CompraVentaEntity compraVentaEntity) 
+    {
+        super(compraVentaEntity);
+        if (compraVentaEntity != null) 
+        {
+            if (compraVentaEntity.getQuejasReclamosCliente() != null) 
+            {
+                quejasReclamosCliente = new ArrayList<>();
+                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosCliente()) 
+                {
+//                    quejasReclamosCliente.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                }
+            }            
+            else
+            {
+                quejasReclamosCliente = new ArrayList<>();
+            }
+            if (compraVentaEntity.getQuejasReclamosEmpleado() != null) 
+            {
+                quejasReclamosEmpleado = new ArrayList<>();
+                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosEmpleado()) 
+                {
+//                    quejasReclamosEmpleado.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                }
+            }
+            else
+            {
+                quejasReclamosEmpleado = new ArrayList<>();
+            }
+        }
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return El DTO de la compraVenta para transformar a Entity
+     */
+    @Override
+    public CompraVentaEntity toEntity() 
+    {
+        CompraVentaEntity compraventaEntity = super.toEntity();
+        if (quejasReclamosCliente != null) 
+        {
+            List<QuejasReclamosEntity> quejasRelamosClienteEntity = new ArrayList<>();
+            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosCliente) 
+            {
+//                quejasRelamosClienteEntity.add(quejasReclamosDTO.toEntity());
+            }
+            compraventaEntity.setQuejasReclamosCliente(quejasRelamosClienteEntity);
+        }
+        if (quejasReclamosEmpleado != null) 
+        {
+            List<QuejasReclamosEntity> quejasRelamosEmpleadoEntity = new ArrayList<>();
+            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosEmpleado) 
+            {
+//                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
+            }
+            compraventaEntity.setQuejasReclamosEmpleado(quejasRelamosEmpleadoEntity);
+        }
+        return compraventaEntity;
+    }
+    
     /**
      * Retorna la lista de quejas del cliente.
      * @return the quejasReclamosCliente
