@@ -56,7 +56,46 @@ public class PuntoVentaPersistanceTest
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
     
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+        /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
+    private void clearData() 
+    {
+        em.createQuery("delete from PuntoVentaEntity").executeUpdate();
+    }
 
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
+    private void insertData() 
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) 
+        {
+            PuntoVentaEntity entity = factory.manufacturePojo(PuntoVentaEntity.class);
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+  
     
     @Test
     public void cratedPuntoVentaTest()
