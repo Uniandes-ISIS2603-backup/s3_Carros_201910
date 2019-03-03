@@ -28,17 +28,15 @@ public class EmpleadoLogic {
     
     public EmpleadoEntity createEmpleado(EmpleadoEntity nuevoEmpleado) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
-        EmpleadoEntity search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
-        if(search == null){
-            
+        List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
+        if(search.isEmpty()){
             persistence.create(nuevoEmpleado);
             LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
             return nuevoEmpleado;
         }
         else{
             throw new BusinessLogicException("El empleado con el correo ingresado ya existe");
-        }
-        
+        }      
     }
     
     public void deleteEmpleado(Long empleadoID){
@@ -48,15 +46,15 @@ public class EmpleadoLogic {
     }
     
     public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
-         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado);
+         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado.getId());
         String correo = empleado.getCorreo();
         EmpleadoEntity ee = persistence.findEmpleado(empleado.getId());
         if(ee.getCorreo().equals(correo)){
             persistence.updateEmpleado(empleado);
         }
         else{
-            EmpleadoEntity search = persistence.findEmpleadoPorCorreo(correo);
-            if(search == null){
+            List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(correo);
+            if(search.isEmpty()){
                 persistence.updateEmpleado(empleado);
             }
             else{

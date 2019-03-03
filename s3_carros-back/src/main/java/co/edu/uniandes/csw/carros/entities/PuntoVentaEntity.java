@@ -22,8 +22,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PuntoVentaEntity extends BaseEntity implements Serializable
 {
     
-   @Id 
-   private Long id;
    private String direccion;
    
    private String telefono;

@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 @Path("registrosCompra")
 @Produces(MediaType.APPLICATION_JSON)

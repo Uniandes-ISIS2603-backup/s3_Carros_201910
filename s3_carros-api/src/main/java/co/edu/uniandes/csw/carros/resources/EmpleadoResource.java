@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -41,9 +42,11 @@ public class EmpleadoResource {
     
     @POST
     public EmpleadoDTO createEmpleado(EmpleadoDTO empleado) throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "EmpleadoResource createEmpleado: input: {0}", empleado);
         EmpleadoEntity entity = empleado.toEntity();
-        empleadoLogic.createEmpleado(entity);
-        EmpleadoDTO empleadoDTO = new EmpleadoDTO(entity);
+        EmpleadoEntity empleadoEntity = empleadoLogic.createEmpleado(entity);
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO(empleadoEntity);
+        LOGGER.log(Level.INFO, "EmpleadoResource createEmleado: output: {0}", empleadoDTO);
         return empleadoDTO;
     }
     

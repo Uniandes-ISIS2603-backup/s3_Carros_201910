@@ -29,6 +29,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     @OneToMany(mappedBy = "empleado")
     private List<CompraVentaEntity> ventas = new ArrayList<CompraVentaEntity>();
     
+    @PodamExclude
     @ManyToOne
     private PuntoVentaEntity puntoVenta;
 
