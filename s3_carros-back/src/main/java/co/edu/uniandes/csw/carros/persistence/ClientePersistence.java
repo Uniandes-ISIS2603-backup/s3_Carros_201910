@@ -45,9 +45,9 @@ public class ClientePersistence {
         em.merge(cliente);
     }
     
-    public ClienteEntity findClientePorCorreo(String correo){
-        TypedQuery<ClienteEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", ClienteEntity.class);
+    public List<ClienteEntity> findClientePorCorreo(String correo){
+        TypedQuery<ClienteEntity> query = em.createQuery("Select u From ClienteEntity u where u.correo = :correo", ClienteEntity.class);
         query = query.setParameter("correo", correo);
-        return query.getSingleResult();
+        return query.getResultList();
     }
 }
