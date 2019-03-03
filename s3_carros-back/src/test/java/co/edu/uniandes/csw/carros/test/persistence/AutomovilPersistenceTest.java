@@ -117,6 +117,7 @@ public class AutomovilPersistenceTest {
         Assert.assertEquals(query.getResultList(),ap.finfAllAutomoviles());
     } 
     
+    @Test
     public void deleteAutomovilTest(){
         AutomovilEntity entity = data.get(1);
         ap.deleteAutomovil(entity.getId());

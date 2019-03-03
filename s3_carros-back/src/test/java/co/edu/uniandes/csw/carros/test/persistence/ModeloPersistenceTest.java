@@ -128,6 +128,16 @@ public class ModeloPersistenceTest {
         Assert.assertNull(search);
     }
     
+    @Test
+    public void updateModeloTest(){
+        ModeloEntity entity = data.get(0);
+        entity.setNombre("spark GT");
+        mp.updateMarca(entity);
+        ModeloEntity search = em.find(ModeloEntity.class, entity.getId());
+        Assert.assertEquals(search.getNombre(), "spark GT");
+               
+    }
+    
     
     
 }
