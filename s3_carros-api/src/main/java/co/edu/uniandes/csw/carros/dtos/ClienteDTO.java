@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
+
 /**
  *
  * @author Juan Pablo Patarroyo Duque
@@ -17,6 +19,10 @@ public class ClienteDTO {
     private String telefono;
     
     public ClienteDTO(){
+    }
+    
+    public ClienteDTO(ClienteEntity entity){
+        
     }
 
     /**
