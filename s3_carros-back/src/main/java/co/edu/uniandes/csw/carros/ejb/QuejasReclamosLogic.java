@@ -8,12 +8,10 @@ package co.edu.uniandes.csw.carros.ejb;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  *
