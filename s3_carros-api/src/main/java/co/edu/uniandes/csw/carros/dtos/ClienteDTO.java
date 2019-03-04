@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.carros.dtos;
 
 import java.io.Serializable;
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 
 /**
  *
@@ -19,6 +20,10 @@ public class ClienteDTO implements Serializable{
     private String telefono;
     
     public ClienteDTO(){
+    }
+    
+    public ClienteDTO(ClienteEntity entity){
+        
     }
 
     /**

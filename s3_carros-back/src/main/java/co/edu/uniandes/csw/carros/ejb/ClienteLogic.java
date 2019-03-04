@@ -26,8 +26,8 @@ public class ClienteLogic {
     
     public ClienteEntity createCliente(ClienteEntity nuevoCliente)throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
-        ClienteEntity search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
-        if(search == null){
+        List<ClienteEntity> search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
+        if(search.isEmpty()){
             persistence.create(nuevoCliente);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
             return nuevoCliente;
@@ -51,8 +51,8 @@ public class ClienteLogic {
             persistence.updateCliente(cliente);
         }
         else{
-            ClienteEntity search = persistence.findClientePorCorreo(correo);
-            if(search == null){
+            List<ClienteEntity> search = persistence.findClientePorCorreo(correo);
+            if(search.isEmpty()){
                 persistence.updateCliente(cliente);
             }
             else{

@@ -8,8 +8,10 @@ package co.edu.uniandes.csw.carros.ejb;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  *
@@ -21,22 +23,43 @@ public class QuejasReclamosLogic {
     @Inject
     private QuejasReclamosPersistence persistence;
     
+    private static final Logger LOGGER = Logger.getLogger(QuejasReclamosLogic.class.getName());
+    
     public QuejasReclamosEntity createQuejasReclamos(QuejasReclamosEntity queja) throws BusinessLogicException{
         
-        //validar regla de negocio
-        if (persistence.findByName(queja.getId()) != null){
-            throw new BusinessLogicException("Ya existe una queja/reclamo con ese id");
-        }
-        if (queja.isSolucionado()){
-            throw new BusinessLogicException("No se puede crear una queja con estado solucionado");
-        }
-        if (queja.getTipo() > 5 || queja.getTipo() < 0){
-            throw new BusinessLogicException("El tipo de queja en invalido");
-        }
-        if (queja.getTipo() == 5 && queja.getComentarios().isEmpty()){
-            throw new BusinessLogicException("Si la queja es de tipo OTRO el comentario no puede ser vacio");
+        if(persistence.findByName(queja.getCarroId())!= null)
+        {
+            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCarroId());
         }
         queja = persistence.create(queja);
-        return queja;
+        return queja; 
+        
+    }
+    
+    public List<QuejasReclamosEntity> getQuejasReclamos()
+    {
+        List<QuejasReclamosEntity> quejas = persistence.findAll();
+        return quejas;
+    }
+    
+    public QuejasReclamosEntity getQueja(Long casoId) throws BusinessLogicException
+    {
+        QuejasReclamosEntity entity = persistence.find(casoId);
+        if (casoId == null) {
+            throw new BusinessLogicException("No se encuentra queja con el Id");
+        }
+        return entity;
+    }
+    
+    
+    public QuejasReclamosEntity updateQuejasReclamos(Long casoId, QuejasReclamosEntity entity)    
+    {
+        QuejasReclamosEntity newEntity = persistence.update(entity);
+        return newEntity;
+    }
+    
+    public void deleteQuejasReclamos (Long casoId) throws BusinessLogicException 
+        {
+        persistence.delete(casoId);
     }
 }

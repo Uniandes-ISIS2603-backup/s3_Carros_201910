@@ -43,13 +43,13 @@ public class QuejasReclamosResource {
     }
     
     @PUT
-    @Path("{casoID: \\d+}")
-    public QuejasReclamosDTO updateQuejasReclamos(@PathParam("casoID") Long casoID, QuejasReclamosDTO queja){
+    @Path("{casoId: \\d+}")
+    public QuejasReclamosDTO updateQuejasReclamos(@PathParam("casoId") Long casoId, QuejasReclamosDTO queja){
         return queja;
     }
     
     @DELETE
-    @Path("{casoID: \\d+}")
-    public void deleteQuejasReclamos(@PathParam("casoID") Long casoID){     
+    @Path("{casoId: \\d+}")
+    public void deleteQuejasReclamos(@PathParam("casoId") Long casoID){     
     }
 }

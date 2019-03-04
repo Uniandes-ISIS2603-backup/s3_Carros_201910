@@ -36,8 +36,8 @@ public class PuntoVentaPersistence {
     
     public List<PuntoVentaEntity> findAll()
     {
-        LOGGER.log(Level.INFO, "Consultando toos los puntos de venta");
-        TypedQuery query = em.createQuery("select u from PuntoVentaEntity u", PuntoVentaEntity.class);
+        LOGGER.log(Level.INFO, "Consultando todos los puntos de venta");
+        TypedQuery<PuntoVentaEntity> query = em.createQuery("select u from PuntoVentaEntity u", PuntoVentaEntity.class);
         return  query.getResultList();
     }
     

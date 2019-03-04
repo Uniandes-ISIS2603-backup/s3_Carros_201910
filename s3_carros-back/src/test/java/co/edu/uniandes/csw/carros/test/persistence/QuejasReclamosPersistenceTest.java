@@ -70,12 +70,12 @@ public class QuejasReclamosPersistenceTest {
         }
     }
     
-    private void clearData(){
-      em.createQuery("delete from MarcaEntity").executeUpdate();
+    public void clearData(){
+      em.createQuery("delete from QuejasReclamosEntity").executeUpdate();
     }
     
     
-    public void insertData(){
+    private void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
       for(int i=0;i<3; i++){
             QuejasReclamosEntity entity = factory.manufacturePojo(QuejasReclamosEntity.class);
@@ -103,7 +103,7 @@ public class QuejasReclamosPersistenceTest {
     @Test
     public void findQuejasReclamosTest(){
         QuejasReclamosEntity entity = data.get(0);
-        QuejasReclamosEntity search = qrp.find(entity.getCarroId());
+        QuejasReclamosEntity search = qrp.find(entity.getId());
         
         Assert.assertNotNull(search);
         Assert.assertEquals(entity.getCarroId(), search.getCarroId());
@@ -117,7 +117,7 @@ public class QuejasReclamosPersistenceTest {
     @Test
     public void deleteQuejasReclamosTest(){
         QuejasReclamosEntity entity = data.get(1);
-        qrp.delete(entity.getCarroId());
+        qrp.delete(entity.getId());
         QuejasReclamosEntity search = em.find(QuejasReclamosEntity.class, entity.getId());
         Assert.assertNull(search);
     }

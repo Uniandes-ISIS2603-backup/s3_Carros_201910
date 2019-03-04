@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import java.io.Serializable;
 
 /**
@@ -46,6 +47,10 @@ public class QuejasReclamosDTO implements Serializable{
     private final static int MALA_ATENCION = 3;
     private final static int REEMBOLSO = 4;
 
+    public QuejasReclamosDTO(){
+        
+    }
+    
     /**
      * @return the casoId
      */
@@ -101,5 +106,22 @@ public class QuejasReclamosDTO implements Serializable{
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
+    
+    public QuejasReclamosEntity toEntity()
+    {
+       QuejasReclamosEntity entity = new QuejasReclamosEntity();
+       entity.setCarroId(this.casoId);
+       entity.setComentarios(this.comentarios);
+       entity.setTipo(this.tipoQueja);
+       entity.setSolucionado(this.solucionado);
+       return entity;
+    }
+    public QuejasReclamosDTO(QuejasReclamosEntity entity)
+ {
+       this.casoId = entity.getCarroId();
+       this.comentarios = entity.getComentarios();
+       this.tipoQueja = entity.getTipo();
+       this.solucionado = entity.isSolucionado();
+ }
             
 }

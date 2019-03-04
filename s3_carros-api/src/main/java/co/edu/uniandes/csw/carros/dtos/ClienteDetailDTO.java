@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.carros.dtos;
 
 import java.io.Serializable;
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     private List<CompraVentaDTO> listaCompras;
     
     public ClienteDetailDTO(){  
+    }
+    
+    public ClienteDetailDTO(ClienteEntity entity){
+        
     }
     
     public List<CompraVentaDTO> getListaCompras(){
