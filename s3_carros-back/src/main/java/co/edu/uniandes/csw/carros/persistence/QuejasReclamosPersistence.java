@@ -51,8 +51,8 @@ public class QuejasReclamosPersistence {
         return query.getResultList();
     }
     
-    public void update(QuejasReclamosEntity auto){
-        em.merge(auto);
+    public QuejasReclamosEntity update(QuejasReclamosEntity auto){
+        return em.merge(auto);
     }
     
     public void delete(Long casoId){

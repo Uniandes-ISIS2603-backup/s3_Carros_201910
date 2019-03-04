@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,7 +26,7 @@ public class QuejasReclamosEntity extends BaseEntity{
     private String comentarios;
     
     @PodamExclude
-    @ManyToOne()
+    @ManyToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
     
     public QuejasReclamosEntity(){

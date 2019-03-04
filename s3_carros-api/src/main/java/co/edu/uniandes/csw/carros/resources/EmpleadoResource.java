@@ -51,8 +51,15 @@ public class EmpleadoResource {
     }
     
     @GET
-    public List<EmpleadoDTO> getEmpleados(){
-        return new ArrayList<>();
+    public List<EmpleadoDTO> getEmpleados(){ 
+        LOGGER.info("EmpleadoResource getEmpleados: input: void");
+        List<EmpleadoDTO> listDTO = new ArrayList<>();
+        List<EmpleadoEntity> listEntity = empleadoLogic.getAllEmpleados();
+        for(int i=0; i<listEntity.size(); i++){
+            listDTO.add(new EmpleadoDTO(listEntity.get(i)));
+        }
+        LOGGER.log(Level.INFO, "EmpleadoResource getEmpleados: output: {0}", listDTO);
+        return listDTO;
     }
     
     @GET
