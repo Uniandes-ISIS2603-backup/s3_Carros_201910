@@ -108,4 +108,24 @@ public class QuejasReclamosLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getCarroId(), resultEntity.getCarroId());
     }
+    
+    @Test
+    public void updateQuejasReclamosTest()
+    {
+        QuejasReclamosEntity entity = data.get(0);
+        QuejasReclamosEntity pojoEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        pojoEntity.setId(entity.getId());
+        quejasReclamosLogic.updateQuejasReclamos(pojoEntity.getId(), pojoEntity);
+        QuejasReclamosEntity resp = em.find(QuejasReclamosEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getCarroId(), resp.getCarroId());
+    }
+    
+     @Test
+    public void deleteQuejasReclamosTest() throws BusinessLogicException {
+        QuejasReclamosEntity entity = data.get(1);
+        quejasReclamosLogic.deleteQuejasReclamos(entity.getId());
+        QuejasReclamosEntity deleted = em.find(QuejasReclamosEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 }
