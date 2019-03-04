@@ -32,6 +32,22 @@ public class AutomovilPersistence {
         return em.find(AutomovilEntity.class, autoId);
     }
     
+    public AutomovilEntity findById(Long idAuto){
+        TypedQuery<AutomovilEntity> query = em.createQuery("Select e From AutomovilEntity e where e.id = :idAuto", AutomovilEntity.class);
+        query= query.setParameter("idAuto", idAuto);
+        List<AutomovilEntity> mismoId = query.getResultList();
+        
+        AutomovilEntity result;
+        if(mismoId == null){
+            result = null;
+        } else if (mismoId.isEmpty()) {
+            result = null;
+        }else {
+            result = mismoId.get(0);
+        }
+        return result;
+    }
+    
     public List<AutomovilEntity> finfAllAutomoviles(){
         TypedQuery<AutomovilEntity> query = em.createQuery("select u from AutomovilEntity u", AutomovilEntity.class);
         return query.getResultList();
@@ -42,7 +58,7 @@ public class AutomovilPersistence {
         em.remove(entity);
     }
     
-    public void updateMarca(AutomovilEntity auto){
+    public void updateAutomovil(AutomovilEntity auto){
         em.merge(auto);
     }
     

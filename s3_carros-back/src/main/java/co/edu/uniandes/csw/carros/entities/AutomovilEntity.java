@@ -26,9 +26,13 @@ public class AutomovilEntity extends BaseEntity{
     @PodamExclude
     @OneToOne
     private RegistroCompraEntity registroCompra;
+    
+    @PodamExclude
+    @OneToOne
+    private CompraVentaEntity compraVenta;
            
     
-   public AutomovilEntity(){}
+  
     
     /**
      * disponibilidad del vehiculo dentro del 
@@ -265,6 +269,36 @@ public class AutomovilEntity extends BaseEntity{
     public void setModelo(ModeloEntity modelo) {
         this.modelo = modelo;
     }
+
+    /**
+     * @return the registroCompra
+     */
+    public RegistroCompraEntity getRegistroCompra() {
+        return registroCompra;
+    }
+
+    /**
+     * @param registroCompra the registroCompra to set
+     */
+    public void setRegistroCompra(RegistroCompraEntity registroCompra) {
+        this.registroCompra = registroCompra;
+    }
+
+    /**
+     * @return the compraVenta
+     */
+    public CompraVentaEntity getCompraVenta() {
+        return compraVenta;
+    }
+
+    /**
+     * @param compraVenta the compraVenta to set
+     */
+    public void setCompraVenta(CompraVentaEntity compraVenta) {
+        this.compraVenta = compraVenta;
+    }
+
+   
     
     
     
