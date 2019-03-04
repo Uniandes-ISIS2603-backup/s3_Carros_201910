@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.carros.ejb;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,23 +25,17 @@ public class QuejasReclamosLogic {
     @Inject
     private QuejasReclamosPersistence persistence;
     
+    private static final Logger LOGGER = Logger.getLogger(QuejasReclamosLogic.class.getName());
+    
     public QuejasReclamosEntity createQuejasReclamos(QuejasReclamosEntity queja) throws BusinessLogicException{
         
-        //validar regla de negocio
-        if (persistence.findByName(queja.getId()) != null){
-            throw new BusinessLogicException("Ya existe una queja/reclamo con ese id");
-        }
-        if (queja.isSolucionado()){
-            throw new BusinessLogicException("No se puede crear una queja con estado solucionado");
-        }
-        if (queja.getTipo() > 5 || queja.getTipo() < 0){
-            throw new BusinessLogicException("El tipo de queja en invalido");
-        }
-        if (queja.getTipo() == 5 && queja.getComentarios().isEmpty()){
-            throw new BusinessLogicException("Si la queja es de tipo OTRO el comentario no puede ser vacio");
+        if(persistence.findByName(queja.getCarroId())!= null)
+        {
+            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCarroId());
         }
         queja = persistence.create(queja);
-        return queja;
+        return queja; 
+        
     }
     
     public List<QuejasReclamosEntity> getQuejasReclamos()

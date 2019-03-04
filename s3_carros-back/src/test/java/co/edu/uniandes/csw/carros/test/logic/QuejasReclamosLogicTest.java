@@ -86,25 +86,6 @@ public class QuejasReclamosLogicTest {
     }
     
     @Test
-    public void createQuejasReclamosTest() throws BusinessLogicException{
-        QuejasReclamosEntity nuevaQueja = factory.manufacturePojo(QuejasReclamosEntity.class);
-        QuejasReclamosEntity result = quejasReclamosLogic.createQuejasReclamos(nuevaQueja);
-        Assert.assertNotNull(result);
-        QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
-        Assert.assertEquals(nuevaQueja.getCarroId(), entity.getCarroId());
-        Assert.assertEquals(nuevaQueja.getCarroId(), entity.getCarroId());
-    }
-    
-    @Test(expected = BusinessLogicException.class)
-    public void createQuejasReclamosConMismoId() throws BusinessLogicException 
-    {
-        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
-        newEntity.setCarroId(data.get(0).getCarroId());
-        quejasReclamosLogic.createQuejasReclamos(newEntity);
-    }
-    
-     
-    @Test
     public void getPuntosVentaTest() {
         List<QuejasReclamosEntity> list = quejasReclamosLogic.getQuejasReclamos();
         Assert.assertEquals(data.size(), list.size());
