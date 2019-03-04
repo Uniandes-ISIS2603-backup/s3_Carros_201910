@@ -42,23 +42,23 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     private FacturaEntity factura;
 
     @PodamExclude
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
     private EmpleadoEntity empleado;
     
     @PodamExclude
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
     private ClienteEntity cliente;
 
     @PodamExclude
     @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
     private List<QuejasReclamosEntity> quejasReclamosEmpleado = new ArrayList<QuejasReclamosEntity>();
     
-   @PodamExclude
+    @PodamExclude
     @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
     private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
     private AutomovilEntity automovilFacturado;
     
     @PodamExclude

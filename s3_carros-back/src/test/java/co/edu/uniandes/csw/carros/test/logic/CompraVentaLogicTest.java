@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
-import co.edu.uniandes.csw.carros.entities.FacturaEntity;
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.CompraVentaPersistence;
@@ -52,13 +51,13 @@ public class CompraVentaLogicTest
 
     private List<CompraVentaEntity> data = new ArrayList<>();
     
-    private List<AutomovilEntity> automovilData = new ArrayList();
+    private AutomovilEntity automovil = factory.manufacturePojo(AutomovilEntity.class);
     
-    private List<PuntoVentaEntity> puntoVentaData = new ArrayList();
+    private PuntoVentaEntity puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
     
-    private List<EmpleadoEntity> empleadoData = new ArrayList();
+    private EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
     
-    private List<ClienteEntity> clienteData = new ArrayList();
+    private ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -110,33 +109,22 @@ public class CompraVentaLogicTest
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {
-        for (int i = 0; i < 3; i++) {
-            PuntoVentaEntity puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
-            em.persist(puntoVenta);
-            puntoVentaData.add(puntoVenta);
-        }
-        for (int i = 0; i < 3; i++) {
-            EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
-            ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
-            AutomovilEntity automovil = factory.manufacturePojo(AutomovilEntity.class);
-            empleado.setPuntoVenta(puntoVentaData.get(i));
-            cliente.setPuntosVenta(new ArrayList<>());
-            em.persist(empleado);
-            empleadoData.add(empleado);
-            em.persist(cliente);
-            clienteData.add(cliente);
-            em.persist(automovil);
-            automovilData.add(automovil);
-        }
-        for (int i = 0; i < 3; i++) {
+    private void insertData() 
+    {
+        empleado.setPuntoVenta(puntoVenta);
+        cliente.setPuntosVenta(new ArrayList<>());
+        em.persist(empleado);
+        em.persist(cliente);
+        em.persist(automovil);
+        for (int i = 0; i < 3; i++) 
+        {
             CompraVentaEntity entity = factory.manufacturePojo(CompraVentaEntity.class);
-            entity.setPuntoVenta(puntoVentaData.get(i));
-            entity.setEmpleado(empleadoData.get(i));
-            entity.setCliente(clienteData.get(i));
-            entity.setAutomovilFacturado(automovilData.get(i));
-            em.persist(entity);
+            entity.setPuntoVenta(puntoVenta);
+            entity.setEmpleado(empleado);
+            entity.setCliente(cliente);
+            entity.setAutomovilFacturado(automovil);
             data.add(entity);
+            em.persist(entity);
         }
     }
 
@@ -149,10 +137,10 @@ public class CompraVentaLogicTest
     public void createCompraVentaTest() throws BusinessLogicException 
     {
         CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setAutomovilFacturado(automovilData.get(0));
+        newEntity.setPuntoVenta(puntoVenta);
+        newEntity.setEmpleado(empleado);
+        newEntity.setCliente(cliente);
+        newEntity.setAutomovilFacturado(automovil);
         CompraVentaEntity result = compraVentaLogic.createCompraVenta(newEntity);
         Assert.assertNotNull(result);
         CompraVentaEntity entity = em.find(CompraVentaEntity.class, result.getId());
@@ -173,9 +161,9 @@ public class CompraVentaLogicTest
         PuntoVentaEntity puntoVentaEntity = new PuntoVentaEntity();
         puntoVentaEntity.setId(Long.MIN_VALUE);
         newEntity.setPuntoVenta(puntoVentaEntity);
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setAutomovilFacturado(automovilData.get(0));
+        newEntity.setEmpleado(empleado);
+        newEntity.setCliente(cliente);
+        newEntity.setAutomovilFacturado(automovil);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
@@ -191,9 +179,9 @@ public class CompraVentaLogicTest
         ClienteEntity clienteEntity = new ClienteEntity();
         clienteEntity.setId(Long.MIN_VALUE);
         newEntity.setCliente(clienteEntity);
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
-        newEntity.setAutomovilFacturado(automovilData.get(0));
+        newEntity.setEmpleado(empleado);
+        newEntity.setPuntoVenta(puntoVenta);
+        newEntity.setAutomovilFacturado(automovil);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
@@ -209,9 +197,9 @@ public class CompraVentaLogicTest
         EmpleadoEntity empleadoEntity = new EmpleadoEntity();
         empleadoEntity.setId(Long.MIN_VALUE);
         newEntity.setEmpleado(empleadoEntity);
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setAutomovilFacturado(automovilData.get(0));
+        newEntity.setPuntoVenta(puntoVenta);
+        newEntity.setCliente(cliente);
+        newEntity.setAutomovilFacturado(automovil);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
@@ -227,24 +215,24 @@ public class CompraVentaLogicTest
         AutomovilEntity automovilEntity = new AutomovilEntity();
         automovilEntity.setId(Long.MIN_VALUE);
         newEntity.setAutomovilFacturado(automovilEntity);
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
+        newEntity.setEmpleado(empleado);
+        newEntity.setCliente(cliente);
+        newEntity.setPuntoVenta(puntoVenta);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
     /**
      * Prueba para crear una CompraVenta con PuntoVenta en null.
      *
-     * @throws BusinessLogicException
+     * @throws NullPointerException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createCompraVentaTestConNullPuntoVenta() throws BusinessLogicException 
+    @Test(expected = NullPointerException.class)
+    public void createCompraVentaTestConNullPuntoVenta() throws BusinessLogicException, NullPointerException
     {
         CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        newEntity.setAutomovilFacturado(automovilData.get(0));
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setCliente(clienteData.get(0));
+        newEntity.setAutomovilFacturado(automovil);
+        newEntity.setEmpleado(empleado);
+        newEntity.setCliente(cliente);
         newEntity.setPuntoVenta(null);
         compraVentaLogic.createCompraVenta(newEntity);
     }
@@ -252,48 +240,48 @@ public class CompraVentaLogicTest
     /**
      * Prueba para crear una CompraVenta con Empleado en null.
      *
-     * @throws BusinessLogicException
+     * @throws NullPointerException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createCompraVentaTestConNullEmpleado() throws BusinessLogicException 
+    @Test(expected = NullPointerException.class)
+    public void createCompraVentaTestConNullEmpleado() throws BusinessLogicException, NullPointerException
     {
         CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        newEntity.setAutomovilFacturado(automovilData.get(0));
+        newEntity.setAutomovilFacturado(automovil);
         newEntity.setEmpleado(null);
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
+        newEntity.setCliente(cliente);
+        newEntity.setPuntoVenta(puntoVenta);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
     /**
      * Prueba para crear una CompraVenta con Cliente en null.
      *
-     * @throws BusinessLogicException
+     * @throws NullPointerException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createCompraVentaTestConNullCliente() throws BusinessLogicException 
+    @Test(expected = NullPointerException.class)
+    public void createCompraVentaTestConNullCliente() throws BusinessLogicException, NullPointerException
     {
         CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        newEntity.setAutomovilFacturado(automovilData.get(0));
-        newEntity.setEmpleado(empleadoData.get(0));
+        newEntity.setAutomovilFacturado(automovil);
+        newEntity.setEmpleado(empleado);
         newEntity.setCliente(null);
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
+        newEntity.setPuntoVenta(puntoVenta);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
     /**
      * Prueba para crear una CompraVenta con Automovil en null.
      *
-     * @throws BusinessLogicException
+     * @throws NullPointerException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createCompraVentaTestConNullAutomovil() throws BusinessLogicException 
+    @Test(expected = NullPointerException.class)
+    public void createCompraVentaTestConNullAutomovil() throws BusinessLogicException, NullPointerException
     {
         CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
         newEntity.setAutomovilFacturado(null);
-        newEntity.setEmpleado(empleadoData.get(0));
-        newEntity.setCliente(clienteData.get(0));
-        newEntity.setPuntoVenta(puntoVentaData.get(0));
+        newEntity.setEmpleado(empleado);
+        newEntity.setCliente(cliente);
+        newEntity.setPuntoVenta(puntoVenta);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
@@ -328,13 +316,12 @@ public class CompraVentaLogicTest
         Assert.assertEquals(entity.getComentarios(), resultEntity.getComentarios());
     }
 
-    
-
     /**
      * Prueba para actualizar una CompraVenta
      */
     @Test
-    public void updateCompraVentaTest() {
+    public void updateCompraVentaTest()
+    {
         CompraVentaEntity entity = data.get(0);
         CompraVentaEntity pojoEntity = factory.manufacturePojo(CompraVentaEntity.class);
 

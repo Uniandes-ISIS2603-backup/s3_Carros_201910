@@ -47,30 +47,51 @@ public class CompraVentaLogic
      * @param compraVentaEntity La entidad que representa la compraVenta a
      * persistir.
      * @return La entiddad de la compraVenta luego de persistirla.
-     * @throws BusinessLogicException Si la compraVenta a persistir ya existe.
+     * @throws BusinessLogicException Si la compraVenta a persistir ya existe o si PuntoVenta, Cliente, Empleado o Automovil no existen en la base de datos.
+     *         NulPointeException Si PuntoVenta, Cliente, Empleado o Automovil son null.
      */
-    public CompraVentaEntity createCompraVenta(CompraVentaEntity compraVentaEntity) throws BusinessLogicException 
+    public CompraVentaEntity createCompraVenta(CompraVentaEntity compraVentaEntity) throws BusinessLogicException, NullPointerException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compraVenta");
         if (persistence.findByID(compraVentaEntity.getId()) != null) 
         {
             throw new BusinessLogicException("Ya existe una CompraVenta con el ID \"" + compraVentaEntity.getId() + "\"");
         }
-        if(compraVentaEntity.getPuntoVenta() == null || puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()) == null) 
+        if (compraVentaEntity == null) 
         {
-            throw new BusinessLogicException("El puntoVenta es inválido.");
+            throw new BusinessLogicException("La CompraVenta es null.");
         }
-        if(compraVentaEntity.getCliente() == null ||clientePersistence.findCliente(compraVentaEntity.getCliente().getId()) == null) 
+        if(compraVentaEntity.getPuntoVenta() == null) 
         {
-            throw new BusinessLogicException("El cliente es inválido.");
+            throw new NullPointerException("El puntoVenta es null.");
         }
-        if(compraVentaEntity.getEmpleado() == null || empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()) == null) 
+        if(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()) == null) 
         {
-            throw new BusinessLogicException("El empleado es inválido.");
+            throw new BusinessLogicException("El puntoVenta no existe en la base de datos.");
         }
-        if(compraVentaEntity.getAutomovilFacturado() == null || automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()) == null) 
+        if(compraVentaEntity.getCliente() == null) 
         {
-            throw new BusinessLogicException("El automovil es inválido.");
+            throw new NullPointerException("El cliente es null.");
+        }
+        if(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()) == null) 
+        {
+            throw new BusinessLogicException("El cliente no existe en la base de datos.");
+        }
+        if(compraVentaEntity.getEmpleado() == null) 
+        {
+            throw new NullPointerException("El empleado es null.");
+        }
+        if(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()) == null) 
+        {
+            throw new BusinessLogicException("El empleado no existe en la base de datos.");
+        }
+        if(compraVentaEntity.getAutomovilFacturado() == null) 
+        {
+            throw new NullPointerException("El automovil es null.");
+        }
+        if(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()) == null) 
+        {
+            throw new BusinessLogicException("El automovil no existe en la base de datos.");
         }
         persistence.create(compraVentaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compraVenta");

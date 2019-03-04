@@ -28,7 +28,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     private Date fecha;
     
     @PodamExclude
-    @OneToOne(fetch = LAZY)
+    @OneToOne
     private CompraVentaEntity compraVenta;
 
     /**

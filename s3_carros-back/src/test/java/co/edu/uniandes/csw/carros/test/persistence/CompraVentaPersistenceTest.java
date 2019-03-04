@@ -94,9 +94,7 @@ public class CompraVentaPersistenceTest
         for (int i = 0; i < 3; i++) {
 
             CompraVentaEntity entity = factory.manufacturePojo(CompraVentaEntity.class);
-
             em.persist(entity);
-
             data.add(entity);
         }
     }

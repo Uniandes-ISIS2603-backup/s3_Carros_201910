@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.carros.test.logic;
 
 import co.edu.uniandes.csw.carros.ejb.FacturaLogic;
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
+import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.carros.entities.FacturaEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.FacturaPersistence;
 import java.util.ArrayList;
@@ -49,6 +53,14 @@ public class FacturaLogicTest
     private List<FacturaEntity> data = new ArrayList<>();
 
     private List<CompraVentaEntity> compraVentaData = new ArrayList();
+    
+    private AutomovilEntity automovil = factory.manufacturePojo(AutomovilEntity.class);
+    
+    private PuntoVentaEntity puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
+    
+    private EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
+    
+    private ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -100,6 +112,10 @@ public class FacturaLogicTest
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             CompraVentaEntity compraVenta = factory.manufacturePojo(CompraVentaEntity.class);
+            compraVenta.setAutomovilFacturado(automovil);
+            compraVenta.setCliente(cliente);
+            compraVenta.setPuntoVenta(puntoVenta);
+            compraVenta.setEmpleado(empleado);
             em.persist(compraVenta);
             compraVentaData.add(compraVenta);
         }

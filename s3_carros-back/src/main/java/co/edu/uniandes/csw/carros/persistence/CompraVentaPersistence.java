@@ -22,7 +22,6 @@ import javax.persistence.TypedQuery;
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
-
 @Stateless
 public class CompraVentaPersistence 
 {
