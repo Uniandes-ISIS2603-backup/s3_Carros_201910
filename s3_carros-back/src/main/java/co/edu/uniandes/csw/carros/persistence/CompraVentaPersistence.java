@@ -17,6 +17,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+ * Clase que maneja la persistencia para CompraVenta. 
+ * Se conecta a través Entity Manager de javax.persistance con la base de datos SQL.
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
@@ -51,13 +53,7 @@ public class CompraVentaPersistence
      */
     public CompraVentaEntity findByID(Long id) {
         LOGGER.log(Level.INFO, "Consultando CompraVenta por id", id);
-        // Se crea un query para buscar una CompraVenta con el id que recibe el método como argumento. ":id" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From CompraVentaEntity e where e.id = :id", CompraVentaEntity.class);
-        // Se remplaza el placeholder ":id" con el valor del argumento 
-        query = query.setParameter("id", id);
-        // Se invoca el query se obtiene el resultado
-        CompraVentaEntity result = (CompraVentaEntity) query.getSingleResult();
-        
+        CompraVentaEntity result = em.find(CompraVentaEntity.class, id);
         LOGGER.log(Level.INFO, "Saliendo de consultar CompraVenta por id", id);
         return result;
     }
@@ -66,11 +62,10 @@ public class CompraVentaPersistence
      * Busca si hay CompraVentas con los ids que se envían de argumento
      *
      * @param ids: Lista de ids de compraVentas que se están buscando.
-     * @return Lista de CompraVentas, null si no existe ninguna.
+     * @return Lista de CompraVentas, lista vacia si no existe ninguna.
      */
     public List<CompraVentaEntity> findListByIDs(List<Long> ids) {
         LOGGER.log(Level.INFO, "Consultando lista CompraVenta por ids", ids);
-        // Se crea un query para buscar una CompraVenta con el id que recibe el método como argumento. ":id" es un placeholder que debe ser remplazado
         List<CompraVentaEntity> result = new ArrayList<>();        
         Iterator iterador = ids.iterator();
         while(iterador.hasNext())
@@ -82,10 +77,6 @@ public class CompraVentaPersistence
             }
         }
         LOGGER.log(Level.INFO, "Saliendo de consultar lista CompraVenta por id", ids);
-        if(result.isEmpty())
-        {
-            return null;
-        }
         return result;
     }
     
@@ -95,28 +86,19 @@ public class CompraVentaPersistence
      * @return una lista con todas las compraVentas que encuentre en la base de datos.
      */
     public List<CompraVentaEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todas las compraVentas");
-        // Se crea un query para buscar todas las compraVentas en la base de datos.
-        //"select u from CompraVentaEntity u" es como un "select * from CompraVentaEntity;" - "SELECT * FROM table_name" en SQL        
+        LOGGER.log(Level.INFO, "Consultando todas las compraVentas");        
         TypedQuery query = em.createQuery("select u from CompraVentaEntity u", CompraVentaEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de compraVentas.
         return query.getResultList();
     }
     
      /**
      * Actualiza una compraVenta.
      *
-     * @param compraVentaEntity: la editorial que viene con los nuevos cambios.
-     * Por ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
-     * update.
-     * @return una editorial con los cambios aplicados.
+     * @param compraVentaEntity: la compraVenta que viene con los nuevos cambios.
+     * @return una compraVenta con los cambios aplicados.
      */
     public CompraVentaEntity update(CompraVentaEntity compraVentaEntity) {
         LOGGER.log(Level.INFO, "Actualizando compraVenta con id = {0}", compraVentaEntity.getId());
-        /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
-        la editorial con los cambios, esto es similar a 
-        "UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
-         */
         LOGGER.log(Level.INFO, "Saliendo de actualizar la compraVenta con id = {0}", compraVentaEntity.getId());
         return em.merge(compraVentaEntity);
     }

@@ -16,6 +16,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+ * Clase que maneja la persistencia para Factura. 
+ * Se conecta a través Entity Manager de javax.persistance con la base de datos SQL.
  *
  * @author Kevin Hernán Castrillón Castañeda
  */
@@ -47,14 +49,8 @@ public class FacturaPersistence
      * @return Factura con el id del argumento, null si no existe ninguna.
      */
     public FacturaEntity findByID(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Factura por id", id);
-        // Se crea un query para buscar una Factura con el id que recibe el método como argumento. ":id" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From FacturaEntity e where e.id = :id", FacturaEntity.class);
-        // Se remplaza el placeholder ":id" con el valor del argumento 
-        query = query.setParameter("id", id);
-        // Se invoca el query se obtiene el resultado
-        FacturaEntity result = (FacturaEntity) query.getSingleResult();
-        
+        LOGGER.log(Level.INFO, "Consultando Factura por id", id);            
+        FacturaEntity result = em.find(FacturaEntity.class, id);        
         LOGGER.log(Level.INFO, "Saliendo de consultar Factura por id", id);
         return result;
     }
@@ -63,11 +59,10 @@ public class FacturaPersistence
      * Busca si hay Facturas con los ids que se envían de argumento
      *
      * @param ids: Lista de ids de factura que se están buscando.
-     * @return Lista de Facturas, null si no existe ninguna.
+     * @return Lista de Facturas, lista vacía si no existe ninguna.
      */
     public List<FacturaEntity> findListByIDs(List<Long> ids) {
         LOGGER.log(Level.INFO, "Consultando lista Factura por ids", ids);
-        // Se crea un query para buscar una Factura con el id que recibe el método como argumento. ":id" es un placeholder que debe ser remplazado
         List<FacturaEntity> result = new ArrayList<>();        
         Iterator iterador = ids.iterator();
         while(iterador.hasNext())
@@ -79,10 +74,6 @@ public class FacturaPersistence
             }
         }
         LOGGER.log(Level.INFO, "Saliendo de consultar lista Factura por id", ids);
-        if(result.isEmpty())
-        {
-            return null;
-        }
         return result;
     }
     
@@ -92,11 +83,8 @@ public class FacturaPersistence
      * @return una lista con todas las facturas que encuentre en la base de datos.
      */
     public List<FacturaEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todas las compraVentas");
-        // Se crea un query para buscar todas las facturas en la base de datos.
-        //"select u from FacturaEntity u" es como un "select * from CompraVentaEntity;" - "SELECT * FROM table_name" en SQL        
+        LOGGER.log(Level.INFO, "Consultando todas las compraVentas");       
         TypedQuery query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de compraVentas.
         return query.getResultList();
     }
 }

@@ -93,4 +93,18 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     public void setCompras(List<CompraVentaEntity> compras) {
         this.compras = compras;
     }
+
+    /**
+     * @return the puntosVenta
+     */
+    public List<PuntoVentaEntity> getPuntosVenta() {
+        return puntosVenta;
+    }
+
+    /**
+     * @param puntosVenta the puntosVenta to set
+     */
+    public void setPuntosVenta(List<PuntoVentaEntity> puntosVenta) {
+        this.puntosVenta = puntosVenta;
+    }
 }

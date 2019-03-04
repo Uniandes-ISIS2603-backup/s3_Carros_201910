@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.carros.ejb;
 
 import co.edu.uniandes.csw.carros.entities.FacturaEntity;
+import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.carros.persistence.CompraVentaPersistence;
 import co.edu.uniandes.csw.carros.persistence.FacturaPersistence;
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,6 +15,7 @@ import java.util.logging.Level;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de Factura.
  *
  * @author Kevin Hernán Castrillón Castañeda.
  */
@@ -21,31 +24,42 @@ public class FacturaLogic
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
 
     @Inject
-    private  FacturaPersistence persistence;
+    private  FacturaPersistence facturaPersistence;
+    
+    @Inject
+    private CompraVentaPersistence compraVentaPersistence;
 
     /**
-     * Se encarga de crear una Factura en la base de datos.
+     * Guardar una nueva factura
      *
-     * @param facturaEntity Objeto de FacturaEntity con los datos nuevos
-     * @return Objeto de FacturaEntity con los datos nuevos y su ID.
+     * @param facturaEntity La entidad de tipo factura de la nueva factura a persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException Si la factura ya existe en la persistencia 
+     * o si no existe la CompraVenta asociada en la presiistencia.
      */
-    public FacturaEntity createFactura(FacturaEntity facturaEntity) 
+    public FacturaEntity createFactura(FacturaEntity facturaEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la Factura");
-        FacturaEntity newFacturaEntity = persistence.create(facturaEntity);
+        if (facturaEntity.getCompraVenta() == null || compraVentaPersistence.findByID(facturaEntity.getCompraVenta().getId()) == null) {
+            throw new BusinessLogicException("La compraVenta es inválida");
+        }
+        if (facturaPersistence.findByID(facturaEntity.getId()) != null) {
+            throw new BusinessLogicException("El ID de la Factura ya existe");
+        }
+        facturaPersistence.create(facturaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la Factura");
-        return newFacturaEntity;
+        return facturaEntity;
     }
 
     /**
-     * Obtiene la lista de los registros de Factura.
+     * Devuelve todas las facturas que hay en la base de datos.
      *
-     * @return Colección de objetos de FacturaEntity.
+     * @return Lista de entidades de tipo factura.
      */
     public List<FacturaEntity> getFacturas() 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las Factura");
-        List<FacturaEntity> lista = persistence.findAll();
+        List<FacturaEntity> lista = facturaPersistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos las Factura");
         return lista;
     }
@@ -59,7 +73,7 @@ public class FacturaLogic
     public FacturaEntity getFactura(Long facturaId) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la Factura con id = {0}", facturaId);
-        FacturaEntity facturaEntity = persistence.findByID(facturaId);
+        FacturaEntity facturaEntity = facturaPersistence.findByID(facturaId);
         if (facturaEntity == null) {
             LOGGER.log(Level.SEVERE, "La Factura con el id = {0} no existe", facturaId);
         }

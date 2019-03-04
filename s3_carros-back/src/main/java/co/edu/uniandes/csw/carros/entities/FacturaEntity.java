@@ -15,7 +15,8 @@ import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa una factura en la persistencia y permite su serialización
+ * 
  * @author Kevin Hernán Castrillón Castañeda
  */
 @Entity
@@ -29,11 +30,6 @@ public class FacturaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
-
-    public FacturaEntity( )       
-    {
-        
-    }
 
     /**
      * @return the cuentaOrigen
@@ -76,7 +72,5 @@ public class FacturaEntity extends BaseEntity implements Serializable
     public void setCompraVenta(CompraVentaEntity compraVenta) {
         this.compraVenta = compraVenta;
     }
-    
-    
             
 }

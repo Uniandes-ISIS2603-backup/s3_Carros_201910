@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,12 +27,14 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Clase que implementa el recurso "compraVentas".
  *
  * @author Kevin Hernán Castrillón Castañeda
  */
 @Path("/compraVentas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RequestScoped
 public class CompraVentaResourse 
 {
     private final static Logger LOGGER = Logger.getLogger(CompraVentaResourse.class.getName());
@@ -39,7 +42,7 @@ public class CompraVentaResourse
     @Inject
     private CompraVentaLogic compraVentaLogic; 
     
-     /**
+    /**
      * Crea una nueva CompraVenta con la informacion que se recibe en el cuerpo de
      * la petición y se regresa un objeto identico con un id auto-generado por
      * la base de datos.
@@ -92,13 +95,14 @@ public class CompraVentaResourse
     @Path("{ventaID: \\d+}")
     public CompraVentaDetailDTO getCompraVenta( @PathParam("ventaID") Long ventaID ) throws WebApplicationException
     {
-        LOGGER.log(Level.INFO, "CompraVentaResurse getCompraVenta: imput: {0}", ventaID);
+        LOGGER.log(Level.INFO, "CompraVentaResourse getCompraVenta: imput: {0}", ventaID);
         CompraVentaEntity compraVentaEntity = compraVentaLogic.getCompraVenta(ventaID);
         if(compraVentaEntity == null)
         {
             throw new  WebApplicationException("El recurso /compraVentas/" + ventaID + " no existe.", 404);
         }
         CompraVentaDetailDTO detailDTO = new CompraVentaDetailDTO(compraVentaEntity);
+        LOGGER.log(Level.INFO, "CompraVentaResourse getCompraVenta: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -108,18 +112,25 @@ public class CompraVentaResourse
      *
      * @param ventaID Identificador de la compraVenta que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param compraVenta {@link CompraVentaDTO} La compraVenta que se desea
+     * @param compraVenta {@link CompraVentaDetailDTO} La compraVenta que se desea
      * guardar.
-     * @return JSON {@link CompraVentaDTO} - La compraVenta guardada.
-     //* @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     //* Error de lógica que se genera cuando no se encuentra la editorial a
-     //* actualizar.
+     * @return JSON {@link CompraVentaDetailDTO} - La compraVenta guardada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la compraVenta a
+     * actualizar.
      */
     @PUT
     @Path("{ventaID: \\d+}")
-    public CompraVentaDTO updateCompraVenta(@PathParam("ventaID") Long ventaID, CompraVentaDTO compraVenta) 
+    public CompraVentaDetailDTO updateCompraVenta(@PathParam("ventaID") Long ventaID, CompraVentaDetailDTO compraVenta) 
     {
-        return compraVenta;
+        LOGGER.log(Level.INFO, "CompraVentaResource updateCompraVenta: input: id:{0} , compraVenta: {1}", new Object[]{ventaID, compraVenta});
+        compraVenta.setVentaID(ventaID);
+        if (compraVentaLogic.getCompraVenta(ventaID) == null) {
+            throw new WebApplicationException("El recurso /compraVentas/" + ventaID + " no existe.", 404);
+        }
+        CompraVentaDetailDTO detailDTO = new CompraVentaDetailDTO(compraVentaLogic.updateCompraVenta(ventaID, compraVenta.toEntity()));
+        LOGGER.log(Level.INFO, "CompraVentaResource updateCompraVenta: output: {0}", detailDTO);
+        return detailDTO;
     }
     
     /**

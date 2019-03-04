@@ -14,18 +14,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ * Pruebas de persistencia de Factura.
  *
  * @author Kevin Hernán Castrillón Castañeda
  */
+@RunWith(Arquillian.class)
 public class FacturaPersistenceTest 
 {
     @Inject
@@ -111,6 +115,7 @@ public class FacturaPersistenceTest
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCuentaOrigen(), entity.getCuentaOrigen());
     }
 
     /**
@@ -140,5 +145,6 @@ public class FacturaPersistenceTest
         FacturaEntity newEntity = facturaPersistence.findByID(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getCuentaOrigen(), newEntity.getCuentaOrigen());
     }
 }

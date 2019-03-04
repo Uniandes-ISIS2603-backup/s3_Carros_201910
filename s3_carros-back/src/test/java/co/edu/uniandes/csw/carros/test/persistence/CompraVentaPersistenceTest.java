@@ -25,6 +25,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ * Pruebas de persistencia de CompraVenta.
  *
  * @author Kevin hernán Castrillón Castañeda
  */
@@ -114,6 +115,8 @@ public class CompraVentaPersistenceTest
         CompraVentaEntity entity = em.find(CompraVentaEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getComentarios(), entity.getComentarios());
+        Assert.assertEquals(newEntity.isPagado(), entity.isPagado());
     }
 
     /**

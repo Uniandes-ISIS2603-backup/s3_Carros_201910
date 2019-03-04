@@ -12,7 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que contiene una colección de representaciones básicas de QuejasReclamosDTO
+ * * Clase que extiende de {@link CompraVentaDTO} para manejar las relaciones entre las compraVentas JSON y otros DTOs. 
+ * Para conocer el contenido de la una CompraVenta vaya a la documentacion de {@link ComraVentaDTO}
+ *
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "ventaID": number,
+ *      "calificacionCompra": number,
+ *      "fecha": date,
+ *      "pagado": boolean,
+ *      "factura": {@link FacturaDTO},
+ *      "quejasReclamosCliente": [{@link QuejasReclamosDTO}],
+ *      "quejasReclamosEmpleado": [{@link QuejasReclamosDTO}]
+ *   }
  * @author Kevin Hernán Castrillón Castañeda
  */
 public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable

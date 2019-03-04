@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa una CompraVenta en la persistencia y permite su serialización.
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
@@ -64,11 +65,6 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private PuntoVentaEntity puntoVenta;
     
-    public CompraVentaEntity( )
-    {
-        
-    }
-
     /**
      * @return the calificacionCompra
      */
