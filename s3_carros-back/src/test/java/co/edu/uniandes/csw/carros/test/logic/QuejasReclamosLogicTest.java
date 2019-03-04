@@ -79,9 +79,9 @@ public class QuejasReclamosLogicTest {
     
     private void insertData(){
         for(int i=0; i<3; i++){
-            QuejasReclamosEntity empleado = factory.manufacturePojo(QuejasReclamosEntity.class);
-            em.persist(empleado);
-            data.add(empleado);
+            QuejasReclamosEntity queja = factory.manufacturePojo(QuejasReclamosEntity.class);
+            em.persist(queja);
+            data.add(queja);
         }
     }
     
@@ -92,7 +92,39 @@ public class QuejasReclamosLogicTest {
         Assert.assertNotNull(result);
         QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
         Assert.assertEquals(nuevaQueja.getCarroId(), entity.getCarroId());
+        Assert.assertEquals(nuevaQueja.getCarroId(), entity.getCarroId());
     }
     
+    @Test(expected = BusinessLogicException.class)
+    public void createQuejasReclamosConMismoId() throws BusinessLogicException 
+    {
+        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setCarroId(data.get(0).getCarroId());
+        quejasReclamosLogic.createQuejasReclamos(newEntity);
+    }
     
+     
+    @Test
+    public void getPuntosVentaTest() {
+        List<QuejasReclamosEntity> list = quejasReclamosLogic.getQuejasReclamos();
+        Assert.assertEquals(data.size(), list.size());
+        for(QuejasReclamosEntity entity : list) {
+            boolean found = false;
+            for (QuejasReclamosEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void getPuntoVentaTest() throws BusinessLogicException{
+        QuejasReclamosEntity entity = data.get(0);
+        QuejasReclamosEntity resultEntity = quejasReclamosLogic.getQueja(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getCarroId(), resultEntity.getCarroId());
+    }
 }
