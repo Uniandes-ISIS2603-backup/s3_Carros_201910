@@ -31,9 +31,9 @@ public class QuejasReclamosPersistence {
         return em.find(QuejasReclamosEntity.class, casoId);
     }
     
-    public QuejasReclamosEntity findByName(Long casoID){
-        TypedQuery<QuejasReclamosEntity> query = em.createQuery("select e From QuejasReclamosEntity e where e.name = :name", QuejasReclamosEntity.class);
-        query = query.setParameter("name", casoID);
+    public QuejasReclamosEntity findByName(Long casoId){
+        TypedQuery<QuejasReclamosEntity> query = em.createQuery("select e From QuejasReclamosEntity e where e.casoId = :casoId", QuejasReclamosEntity.class);
+        query = query.setParameter("casoId", casoId);
         List<QuejasReclamosEntity> sameName = query.getResultList();
         QuejasReclamosEntity result;
         if(sameName == null){

@@ -80,9 +80,32 @@ public class QuejasReclamosLogicTest {
     private void insertData(){
         for(int i=0; i<3; i++){
             QuejasReclamosEntity queja = factory.manufacturePojo(QuejasReclamosEntity.class);
+            Long j = new Long(i);
+            queja.setCarroId(j);
             em.persist(queja);
             data.add(queja);
         }
+    }
+    
+    @Test
+    public void createQuejasReclamosTest() throws BusinessLogicException 
+    {
+        QuejasReclamosEntity newEntity;
+        newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        QuejasReclamosEntity result = quejasReclamosLogic.createQuejasReclamos(newEntity);
+        Assert.assertNotNull(result);
+        QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCarroId(), entity.getCarroId());
+        
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createQuejasReclamosConMismoIdTest() throws BusinessLogicException 
+    {
+        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setCarroId(data.get(0).getCarroId());
+        quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
     @Test
