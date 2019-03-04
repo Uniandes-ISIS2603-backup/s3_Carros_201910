@@ -86,7 +86,7 @@ public class QuejasReclamosLogicTest {
     }
     
     @Test
-    public void getPuntosVentaTest() {
+    public void getQuejasReclamosTest() {
         List<QuejasReclamosEntity> list = quejasReclamosLogic.getQuejasReclamos();
         Assert.assertEquals(data.size(), list.size());
         for(QuejasReclamosEntity entity : list) {
@@ -101,7 +101,7 @@ public class QuejasReclamosLogicTest {
     }
     
     @Test
-    public void getPuntoVentaTest() throws BusinessLogicException{
+    public void getQuejaTest() throws BusinessLogicException{
         QuejasReclamosEntity entity = data.get(0);
         QuejasReclamosEntity resultEntity = quejasReclamosLogic.getQueja(entity.getId());
         Assert.assertNotNull(resultEntity);
@@ -128,4 +128,6 @@ public class QuejasReclamosLogicTest {
         QuejasReclamosEntity deleted = em.find(QuejasReclamosEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+    
 }
