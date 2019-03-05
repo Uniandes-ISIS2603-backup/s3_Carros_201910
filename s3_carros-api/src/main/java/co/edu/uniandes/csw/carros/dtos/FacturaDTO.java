@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.adapters.DateAdapter;
+import co.edu.uniandes.csw.carros.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -22,23 +25,24 @@ public class FacturaDTO extends CascaraDTO implements Serializable
     /**
      * Identificador único de la transacción asociada a la factura.
      */
-    private int facturaID;
+    private Long facturaID;
    
      /**
      * Número de la cuenta bancaria del cliente.
      */
-    private int cuentaOrigen;
+    private Long cuentaOrigen;
     
      /**
      * Fecha de realización de la factura.
      */
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
     /**
-     * Transacción asociada a la factura.
+     * Transacción relacionada con las factura.
      */
-    private CompraVentaDTO compraventa;
-    
+    private CompraVentaDTO compraVenta;
+
      /**
      * Constructor vacío de Factura.
      */
@@ -46,32 +50,72 @@ public class FacturaDTO extends CascaraDTO implements Serializable
     {
         
     }
-
+    
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param facturaEntity La entidad de factura.
+     */
+    public FacturaDTO(FacturaEntity facturaEntity) {
+        if (facturaEntity != null) 
+        {
+            this.facturaID = facturaEntity.getId();
+            this.cuentaOrigen = facturaEntity.getCuentaOrigen();
+            this.fecha = facturaEntity.getFecha();
+            if (facturaEntity.getCompraVenta()!= null) 
+            {
+                this.compraVenta = new CompraVentaDTO(facturaEntity.getCompraVenta());
+            } 
+            else 
+            {
+                this.compraVenta = null;
+            }
+        }
+    }
+    
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de la factura asociada.
+     */
+    public FacturaEntity toEntity() 
+    {
+        FacturaEntity facturaEntity = new FacturaEntity();
+        facturaEntity.setId(this.facturaID);
+        facturaEntity.setCuentaOrigen(this.cuentaOrigen);
+        facturaEntity.setFecha(this.fecha);
+        if(this.compraVenta != null)
+        {
+            facturaEntity.setCompraVenta(this.compraVenta.toEntity());
+        }
+        return facturaEntity;
+    }
+    
     /**
      * @return the facturaID
      */
-    public int getFacturaID() {
+    public Long getFacturaID() {
         return facturaID;
     }
 
     /**
      * @param facturaID the facturaID to set
      */
-    public void setFacturaID(int facturaID) {
+    public void setFacturaID(Long facturaID) {
         this.facturaID = facturaID;
     }
 
     /**
      * @return the cuentaOrigen
      */
-    public int getCuentaOrigen() {
+    public Long getCuentaOrigen() {
         return cuentaOrigen;
     }
 
     /**
      * @param cuentaOrigen the cuentaOrigen to set
      */
-    public void setCuentaOrigen(int cuentaOrigen) {
+    public void setCuentaOrigen(Long cuentaOrigen) {
         this.cuentaOrigen = cuentaOrigen;
     }
 
@@ -93,13 +137,13 @@ public class FacturaDTO extends CascaraDTO implements Serializable
      * @return the compraventa
      */
     public CompraVentaDTO getCompraventa() {
-        return compraventa;
+        return compraVenta;
     }
 
     /**
      * @param compraventa the compraventa to set
      */
     public void setCompraventa(CompraVentaDTO compraventa) {
-        this.compraventa = compraventa;
+        this.compraVenta = compraventa;
     }
 }

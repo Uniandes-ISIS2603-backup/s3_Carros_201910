@@ -8,13 +8,15 @@ package co.edu.uniandes.csw.carros.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa una factura en la persistencia y permite su serialización
+ * 
  * @author Kevin Hernán Castrillón Castañeda
  */
 @Entity
@@ -28,11 +30,6 @@ public class FacturaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToOne
     private CompraVentaEntity compraVenta;
-
-    public FacturaEntity( )       
-    {
-        
-    }
 
     /**
      * @return the cuentaOrigen
@@ -75,7 +72,5 @@ public class FacturaEntity extends BaseEntity implements Serializable
     public void setCompraVenta(CompraVentaEntity compraVenta) {
         this.compraVenta = compraVenta;
     }
-    
-    
             
 }

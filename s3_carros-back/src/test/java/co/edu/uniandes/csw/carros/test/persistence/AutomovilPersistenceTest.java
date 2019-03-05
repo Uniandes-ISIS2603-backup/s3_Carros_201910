@@ -129,7 +129,7 @@ public class AutomovilPersistenceTest {
     public void updateAutomovilTest(){
         AutomovilEntity entity = data.get(0);
         entity.setCuidadMatricula("tokio");
-        ap.updateMarca(entity);
+        ap.updateAutomovil(entity);
         AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
         Assert.assertEquals(search.getCuidadMatricula(), "tokio");
     }
