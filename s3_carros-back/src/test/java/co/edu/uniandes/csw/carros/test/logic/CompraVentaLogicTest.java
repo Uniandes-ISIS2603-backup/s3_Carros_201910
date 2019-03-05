@@ -51,13 +51,17 @@ public class CompraVentaLogicTest
 
     private List<CompraVentaEntity> data = new ArrayList<>();
     
-    private AutomovilEntity automovil = factory.manufacturePojo(AutomovilEntity.class);
+    @Inject
+    private AutomovilEntity automovil;
     
-    private PuntoVentaEntity puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
+    @Inject
+    private PuntoVentaEntity puntoVenta;
     
-    private EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
+    @Inject
+    private EmpleadoEntity empleado;
     
-    private ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
+    @Inject
+    private ClienteEntity cliente;
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -111,11 +115,20 @@ public class CompraVentaLogicTest
      */
     private void insertData() 
     {
+        ArrayList<PuntoVentaEntity> puntosVenta = new ArrayList<>();
+        automovil = factory.manufacturePojo(AutomovilEntity.class);
+        puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
+        empleado = factory.manufacturePojo(EmpleadoEntity.class);
+        cliente = factory.manufacturePojo(ClienteEntity.class);
+        puntosVenta.add(puntoVenta);
+        
         empleado.setPuntoVenta(puntoVenta);
-        cliente.setPuntosVenta(new ArrayList<>());
+        cliente.setPuntosVenta(puntosVenta);
+        
         em.persist(empleado);
         em.persist(cliente);
         em.persist(automovil);
+        em.persist(puntoVenta);
         for (int i = 0; i < 3; i++) 
         {
             CompraVentaEntity entity = factory.manufacturePojo(CompraVentaEntity.class);

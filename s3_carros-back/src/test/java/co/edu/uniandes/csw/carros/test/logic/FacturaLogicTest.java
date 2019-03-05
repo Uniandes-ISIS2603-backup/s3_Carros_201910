@@ -103,13 +103,24 @@ public class FacturaLogicTest
     private void clearData() {
         em.createQuery("delete from FacturaEntity").executeUpdate();
         em.createQuery("delete from CompraVentaEntity").executeUpdate();
+        em.createQuery("delete from PuntoVentaEntity").executeUpdate();
+        em.createQuery("delete from AutomovilEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {
+    private void insertData() 
+    {
+        empleado.setPuntoVenta(puntoVenta);
+        cliente.setPuntosVenta(new ArrayList<>());
+        em.persist(empleado);
+        em.persist(cliente);
+        em.persist(automovil);
+        em.persist(puntoVenta);
         for (int i = 0; i < 3; i++) {
             CompraVentaEntity compraVenta = factory.manufacturePojo(CompraVentaEntity.class);
             compraVenta.setAutomovilFacturado(automovil);
@@ -150,7 +161,7 @@ public class FacturaLogicTest
      * @throws BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void createFacturaTestConCompraVentaInexistente() throws BusinessLogicException 
+    public void createFacturaTestConCompraVentaInexistente() throws BusinessLogicException, NullPointerException
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
         CompraVentaEntity compraVentaEntity = new CompraVentaEntity();
@@ -164,8 +175,8 @@ public class FacturaLogicTest
      *
      * @throws BusinessLogicException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createFacturaTestConNullCompraVenta() throws BusinessLogicException 
+    @Test(expected = NullPointerException.class)
+    public void createFacturaTestConNullCompraVenta() throws BusinessLogicException, NullPointerException
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
         newEntity.setCompraVenta(null);

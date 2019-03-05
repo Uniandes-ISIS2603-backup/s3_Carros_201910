@@ -35,16 +35,17 @@ public class FacturaLogic
      * @param facturaEntity La entidad de tipo factura de la nueva factura a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException Si la factura ya existe en la persistencia 
-     * o si no existe la CompraVenta asociada en la presiistencia.
+     *         si no existe la CompraVenta asociada en la presiistencia.
+     *         NullPointerException si la CompraVenta es null.
      */
     public FacturaEntity createFactura(FacturaEntity facturaEntity) throws BusinessLogicException, NullPointerException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la Factura");
         if (facturaEntity.getCompraVenta() == null) {
-            throw new BusinessLogicException("La compraVenta es null.");
+            throw new NullPointerException("La compraVenta es null.");
         }
         if (compraVentaPersistence.findByID(facturaEntity.getCompraVenta().getId()) == null) {
-            throw new NullPointerException("La compraVenta no existe en la base de datos.");
+            throw new BusinessLogicException("La compraVenta no existe en la base de datos.");
         }
         if (facturaPersistence.findByID(facturaEntity.getId()) != null) {
             throw new BusinessLogicException("El ID de la Factura ya existe");
