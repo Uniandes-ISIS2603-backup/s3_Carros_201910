@@ -20,8 +20,7 @@ public class PuntoVentaDTO implements Serializable
  private String telefoo;
  
  private long id;
- 
- private List<RegistroCompraDTO> registros; 
+
  
 /**
  * 
@@ -71,33 +70,19 @@ public class PuntoVentaDTO implements Serializable
     public void setId(long id) {
         this.id = id;
     }
-
-    /**
-     * @return the registros
-     */
-    public List<RegistroCompraDTO> getRegistros() {
-        return registros;
-    }
-
-    /**
-     * @param registros the registros to set
-     */
-    public void setRegistros(List<RegistroCompraDTO> registros) {
-        this.registros = registros;
-    }
  
     public PuntoVentaEntity toEntity()
     {
-        PuntoVentaEntity entity = new PuntoVentaEntity();
+       PuntoVentaEntity entity = new PuntoVentaEntity();
        entity.setDireccion(this.dirreccion);
        entity.setTelefono(this.telefoo);
        entity.setId(this.id);
-        return entity;
+       return entity;
     }
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
       this.dirreccion = entity.getDireccion();
-        this.telefoo = entity.getTelefono();
-        this.id = entity.getId();
+      this.telefoo = entity.getTelefono();
+      this.id = entity.getId();
  }
 }
