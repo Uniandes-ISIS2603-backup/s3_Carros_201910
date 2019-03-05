@@ -52,15 +52,7 @@ public class FacturaLogicTest
 
     private List<FacturaEntity> data = new ArrayList<>();
 
-    private List<CompraVentaEntity> compraVentaData = new ArrayList();
-    
-    private AutomovilEntity automovil = factory.manufacturePojo(AutomovilEntity.class);
-    
-    private PuntoVentaEntity puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
-    
-    private EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
-    
-    private ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
+    private CompraVentaEntity compraVenta;
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -103,10 +95,6 @@ public class FacturaLogicTest
     private void clearData() {
         em.createQuery("delete from FacturaEntity").executeUpdate();
         em.createQuery("delete from CompraVentaEntity").executeUpdate();
-        em.createQuery("delete from PuntoVentaEntity").executeUpdate();
-        em.createQuery("delete from AutomovilEntity").executeUpdate();
-        em.createQuery("delete from ClienteEntity").executeUpdate();
-        em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
 
     /**
@@ -115,24 +103,14 @@ public class FacturaLogicTest
      */
     private void insertData() 
     {
-        empleado.setPuntoVenta(puntoVenta);
-        cliente.setPuntosVenta(new ArrayList<>());
-        em.persist(empleado);
-        em.persist(cliente);
-        em.persist(automovil);
-        em.persist(puntoVenta);
-        for (int i = 0; i < 3; i++) {
-            CompraVentaEntity compraVenta = factory.manufacturePojo(CompraVentaEntity.class);
-            compraVenta.setAutomovilFacturado(automovil);
-            compraVenta.setCliente(cliente);
-            compraVenta.setPuntoVenta(puntoVenta);
-            compraVenta.setEmpleado(empleado);
-            em.persist(compraVenta);
-            compraVentaData.add(compraVenta);
-        }
-        for (int i = 0; i < 3; i++) {
+        compraVenta = factory.manufacturePojo(CompraVentaEntity.class);
+        em.persist(compraVenta);
+        CompraVentaEntity compraVenta2 = factory.manufacturePojo(CompraVentaEntity.class);
+        em.persist(compraVenta2);
+        for (int i = 0; i < 3; i++) 
+        {
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
-            entity.setCompraVenta(compraVentaData.get(i));
+            entity.setCompraVenta(compraVenta2);
             em.persist(entity);
             data.add(entity);
         }
@@ -147,7 +125,7 @@ public class FacturaLogicTest
     public void createFacturaTest() throws BusinessLogicException 
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-        newEntity.setCompraVenta(compraVentaData.get(0));
+        newEntity.setCompraVenta(compraVenta);
         FacturaEntity result = facturaLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());

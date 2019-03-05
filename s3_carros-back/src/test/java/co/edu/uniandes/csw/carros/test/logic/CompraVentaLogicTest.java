@@ -50,17 +50,13 @@ public class CompraVentaLogicTest
     private UserTransaction utx;
 
     private List<CompraVentaEntity> data = new ArrayList<>();
-    
-    @Inject
+ 
     private AutomovilEntity automovil;
-    
-    @Inject
+ 
     private PuntoVentaEntity puntoVenta;
-    
-    @Inject
+
     private EmpleadoEntity empleado;
-    
-    @Inject
+
     private ClienteEntity cliente;
 
     /**
