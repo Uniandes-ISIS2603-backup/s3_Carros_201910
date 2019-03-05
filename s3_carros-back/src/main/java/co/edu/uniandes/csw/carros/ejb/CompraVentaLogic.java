@@ -87,7 +87,7 @@ public class CompraVentaLogic
         }
         if(compraVentaEntity.getAutomovilFacturado() == null) 
         {
-            throw new BusinessLogicException("El automovil es null.");
+            throw new NullPointerException("El automovil es null.");
         }
         if(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()) == null) 
         {

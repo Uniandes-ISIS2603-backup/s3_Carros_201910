@@ -6,12 +6,8 @@
 package co.edu.uniandes.csw.carros.test.logic;
 
 import co.edu.uniandes.csw.carros.ejb.FacturaLogic;
-import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
-import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
-import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.carros.entities.FacturaEntity;
-import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.FacturaPersistence;
 import java.util.ArrayList;
