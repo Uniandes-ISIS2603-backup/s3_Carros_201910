@@ -46,6 +46,7 @@ public class QuejasReclamosDTO implements Serializable{
     private final static int DEMORA_ENTREGA = 2;
     private final static int MALA_ATENCION = 3;
     private final static int REEMBOLSO = 4;
+    private final static int OTRO = 5;
 
     public QuejasReclamosDTO(){
         
