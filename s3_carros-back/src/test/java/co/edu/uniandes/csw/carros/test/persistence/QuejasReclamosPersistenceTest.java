@@ -79,6 +79,8 @@ public class QuejasReclamosPersistenceTest {
       PodamFactory factory = new PodamFactoryImpl();
       for(int i=0;i<3; i++){
             QuejasReclamosEntity entity = factory.manufacturePojo(QuejasReclamosEntity.class);
+            Long j = new Long(i);
+            entity.setCarroId(j);
             em.persist(entity);
             data.add(entity);
         }
@@ -129,5 +131,14 @@ public class QuejasReclamosPersistenceTest {
         qrp.update(entity);
         QuejasReclamosEntity search = em.find(QuejasReclamosEntity.class, entity.getId());
         Assert.assertEquals(search.isSolucionado(), true);
+    }
+    
+    @Test
+    public void findQuejasReclamosByIdTest() {
+        QuejasReclamosEntity entity = data.get(0);
+        Long id = qrp.findByName(entity.getCarroId()).getCarroId();   
+        TypedQuery<QuejasReclamosEntity> query = em.createQuery("Select u From QuejasReclamosEntity u where u.casoId = :casoId", QuejasReclamosEntity.class);
+        query = query.setParameter("casoId", id);
+        Assert.assertEquals(id, query.getSingleResult().getCarroId());
     }
 }

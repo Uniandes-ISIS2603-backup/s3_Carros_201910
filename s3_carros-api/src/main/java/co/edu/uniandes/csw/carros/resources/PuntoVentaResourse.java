@@ -41,7 +41,7 @@ public class PuntoVentaResourse
     @POST
     public PuntoVentaDTO createdPuntoVenta(PuntoVentaDTO puntoVenta) throws BusinessLogicException
     {
-        PuntoVentaDTO puntoVent = new PuntoVentaDTO (logica.createPuntoVenta(puntoVenta.toEntity()));
+        PuntoVentaDTO puntoVent = new PuntoVentaDTO(logica.createPuntoVenta(puntoVenta.toEntity()));
         return puntoVent;
     }
     

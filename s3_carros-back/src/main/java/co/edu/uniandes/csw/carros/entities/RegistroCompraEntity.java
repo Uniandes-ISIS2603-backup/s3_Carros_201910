@@ -20,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Daniel Lozano
  */
 @Entity
-public class RegistroCompraEntity extends BaseEntity implements Serializable
+public class RegistroCompraEntity extends BaseEntity implements Serializable 
 {
     private double precioComprado; 
    
@@ -28,7 +28,7 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     private Date fechaCompra;
     
     private String nombreVendedor; 
-    private String nombreVnededor; 
+   
 
     @PodamExclude
     @ManyToOne()
@@ -84,6 +84,20 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
      */
     public void setNombreVendedor(String nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
+    }
+
+    /**
+     * @return the automovil
+     */
+    public AutomovilEntity getAutomovil() {
+        return automovil;
+    }
+
+    /**
+     * @param automovil the automovil to set
+     */
+    public void setAutomovil(AutomovilEntity automovil) {
+        this.automovil = automovil;
     }
  
     

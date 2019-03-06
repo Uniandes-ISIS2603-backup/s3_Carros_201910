@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
+import co.edu.uniandes.csw.carros.entities.RegistroCompraEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,7 +22,7 @@ public class RegistroCompraDTO implements Serializable
     
     private String nombreVendedor; 
     
-    private int autoId; 
+    private AutomovilDTO auto; 
     
     private long compraId; 
 
@@ -31,6 +33,28 @@ public class RegistroCompraDTO implements Serializable
     {
         
     }
+    
+    public RegistroCompraEntity toEntity()
+    {
+       RegistroCompraEntity entity = new RegistroCompraEntity();
+       entity.setFechaCompra(this.getFechaCompra());
+       entity.setNombreVendedor(this.getNombreVendedor());
+       entity.setPrecioComprado(this.getPrecioAcordado());
+       entity.setId(this.getCompraId());
+       //AutomovilEntity nuevAuto = auto.toEntity();
+       //entity.setAutomovil(nuevAuto);
+       
+       return entity;
+    }
+    public RegistroCompraDTO(RegistroCompraEntity entity)
+ {
+      this.fechaCompra = entity.getFechaCompra();
+      this.nombreVendedor = entity.getNombreVendedor();
+      this.precioAcordado = entity.getPrecioComprado();
+      this.compraId = entity.getId();
+     //this.auto = new AutomovilDTO(entity.getAutomovil());
+      this.compraId = entity.getId();
+ }
     /**
      * @return the precioAcordado
      */
@@ -73,19 +97,6 @@ public class RegistroCompraDTO implements Serializable
         this.nombreVendedor = nombreVendedor;
     }
 
-    /**
-     * @return the autoId
-     */
-    public int getAutoId() {
-        return autoId;
-    }
-
-    /**
-     * @param autoId the autoId to set
-     */
-    public void setAutoId(int autoId) {
-        this.autoId = autoId;
-    }
 
     /**
      * @return the compraId
@@ -99,6 +110,20 @@ public class RegistroCompraDTO implements Serializable
      */
     public void setCompraId(long compraId) {
         this.compraId = compraId;
+    }
+
+    /**
+     * @return the auto
+     */
+    public AutomovilDTO getAuto() {
+        return auto;
+    }
+
+    /**
+     * @param auto the auto to set
+     */
+    public void setAuto(AutomovilDTO auto) {
+        this.auto = auto;
     }
     
     

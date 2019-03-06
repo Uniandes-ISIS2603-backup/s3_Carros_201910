@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Julio Ruiz
  */
 @Entity
-public class QuejasReclamosEntity extends BaseEntity{
+public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     
     private Long casoId;
     private boolean solucionado;
