@@ -54,7 +54,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * Calificación de la CompraVenta.
      */
-    private double calificacionCompra;
+    private Double calificacionCompra;
     
     /**
      * Fecha en la que se hizo la CompraVenta.
@@ -65,7 +65,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * Indica si la compraVenta ya fue pagada.
      */
-    private boolean pagado;
+    private Boolean pagado;
     
     /**
      * Factura asociada a la CompraVenta.
@@ -179,7 +179,6 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
         {
             compraVentaEntity.setFactura(this.factura.toEntity());
         }
-        
         if(this.puntoVenta != null)
         {
             compraVentaEntity.setPuntoVenta(this.puntoVenta.toEntity());
@@ -208,14 +207,14 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * @return the calificacionCompra
      */
-    public double getCalificacionCompra() {
+    public Double getCalificacionCompra() {
         return calificacionCompra;
     }
 
     /**
      * @param calificacionCompra the calificacionCompra to set
      */
-    public void setCalificacionCompra(double calificacionCompra) {
+    public void setCalificacionCompra(Double calificacionCompra) {
         this.calificacionCompra = calificacionCompra;
     }
 
@@ -250,14 +249,14 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * @return the pagado
      */
-    public boolean isPagado() {
+    public Boolean isPagado() {
         return pagado;
     }
 
     /**
      * @param pagado the pagado to set
      */
-    public void setPagado(boolean pagado) {
+    public void setPagado(Boolean pagado) {
         this.pagado = pagado;
     }
 

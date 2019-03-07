@@ -53,13 +53,9 @@ public class CompraVentaLogic
     public CompraVentaEntity createCompraVenta(CompraVentaEntity compraVentaEntity) throws BusinessLogicException, NullPointerException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compraVenta");
-        if (persistence.findByID(compraVentaEntity.getId()) != null) 
-        {
-            throw new BusinessLogicException("Ya existe una CompraVenta con el ID \"" + compraVentaEntity.getId() + "\"");
-        }
         if (compraVentaEntity == null) 
         {
-            throw new BusinessLogicException("La CompraVenta es null.");
+            throw new NullPointerException("La CompraVenta es null.");
         }
         if(compraVentaEntity.getPuntoVenta() == null) 
         {
