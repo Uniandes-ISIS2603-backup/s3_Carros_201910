@@ -56,7 +56,7 @@ public class FacturaPersistenceTest
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
+ 
     /**
      * Configuración inicial de la prueba.
      */

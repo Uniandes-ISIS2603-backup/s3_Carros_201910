@@ -31,8 +31,24 @@ public class QuejasReclamosLogic {
         {
             throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCarroId());
         }
+        if(queja.isSolucionado())
+        {
+            throw new BusinessLogicException("La queja no puede crearse ya solucionada");
+        }
+        if(queja.getTipo() < 0 || queja.getTipo() > 5)
+        {
+            throw new BusinessLogicException("EL tipo de la queja " + queja.getTipo()+ " no es valido");
+        }
+        if(queja.getTipo() == 5 && queja.getComentarios().isEmpty())
+        {
+            throw new BusinessLogicException("Si la queja es de tipo OTRO los comentarios no pueden ser vacio");
+        }
+       
         queja = persistence.create(queja);
         return queja; 
+        
+        
+        //reglas de negocio
         
     }
     

@@ -20,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Daniel Lozano
  */
 @Entity
-public class RegistroCompraEntity extends BaseEntity implements Serializable
+public class RegistroCompraEntity extends BaseEntity implements Serializable 
 {
     private double precioComprado; 
    

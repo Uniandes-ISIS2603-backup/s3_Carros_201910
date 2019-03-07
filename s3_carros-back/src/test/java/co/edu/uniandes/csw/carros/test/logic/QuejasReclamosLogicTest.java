@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.QuejasReclamosPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -82,6 +83,10 @@ public class QuejasReclamosLogicTest {
             QuejasReclamosEntity queja = factory.manufacturePojo(QuejasReclamosEntity.class);
             Long j = new Long(i);
             queja.setCarroId(j);
+            queja.setSolucionado(false);
+            int random = ThreadLocalRandom.current().nextInt(0, 6);
+            queja.setTipo(random);
+            queja.setComentarios(random == 5 && queja.getComentarios().isEmpty()? "sdfghjkl": queja.getComentarios());
             em.persist(queja);
             data.add(queja);
         }
@@ -92,6 +97,10 @@ public class QuejasReclamosLogicTest {
     {
         QuejasReclamosEntity newEntity;
         newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setSolucionado(false);
+        int random = ThreadLocalRandom.current().nextInt(0, 6);
+        newEntity.setTipo(random);
+        newEntity.setComentarios(random == 5 && newEntity.getComentarios().isEmpty()? "sdfghjkl": newEntity.getComentarios());
         QuejasReclamosEntity result = quejasReclamosLogic.createQuejasReclamos(newEntity);
         Assert.assertNotNull(result);
         QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
@@ -104,6 +113,32 @@ public class QuejasReclamosLogicTest {
     public void createQuejasReclamosConMismoIdTest() throws BusinessLogicException 
     {
         QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setSolucionado(false);
+        int random = ThreadLocalRandom.current().nextInt(0, 6);
+        newEntity.setTipo(random);
+        newEntity.setComentarios(random == 5 && newEntity.getComentarios().isEmpty()? "sdfghjkl": newEntity.getComentarios());
+        newEntity.setCarroId(data.get(0).getCarroId());
+        quejasReclamosLogic.createQuejasReclamos(newEntity);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createQuejasReclamosTipoInvalido() throws BusinessLogicException 
+    {
+        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setSolucionado(true);
+        int random = ThreadLocalRandom.current().nextInt(6, 100);
+        newEntity.setTipo(random);
+        newEntity.setCarroId(data.get(0).getCarroId());
+        quejasReclamosLogic.createQuejasReclamos(newEntity);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createQuejasReclamosTipoOtroSinComentarios() throws BusinessLogicException 
+    {
+        QuejasReclamosEntity newEntity = factory.manufacturePojo(QuejasReclamosEntity.class);
+        newEntity.setSolucionado(false);
+        newEntity.setTipo(5);
+        newEntity.setComentarios("");
         newEntity.setCarroId(data.get(0).getCarroId());
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
