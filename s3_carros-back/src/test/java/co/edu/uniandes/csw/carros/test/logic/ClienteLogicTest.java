@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.test.logic;
 
 import co.edu.uniandes.csw.carros.ejb.ClienteLogic;
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.ClientePersistence;
 import java.util.ArrayList;
@@ -45,6 +46,8 @@ public class ClienteLogicTest {
     private EntityManager em;
     
     private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
+    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
+    
     
     @Deployment
     public static JavaArchive createDeployment(){
@@ -75,9 +78,15 @@ public class ClienteLogicTest {
     
     private void clearData(){
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
+        em.createQuery("delete from PuntoVentaEntity").executeUpdate();
     }
     
     private void insertData(){
+        for(int i=0; i<2; i++){
+            PuntoVentaEntity entity = factory.manufacturePojo(PuntoVentaEntity.class);
+            em.persist(entity);
+            puntosVenta.add(entity);
+        }
         for(int i=0; i<3; i++){
             ClienteEntity empleado = factory.manufacturePojo(ClienteEntity.class);
             em.persist(empleado);
@@ -88,6 +97,7 @@ public class ClienteLogicTest {
     @Test
     public void createClienteTest() throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        nuevoCliente.setPuntosVenta(puntosVenta);
         ClienteEntity result = clienteLogic.createCliente(nuevoCliente);
         Assert.assertNotNull(result);
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
@@ -97,7 +107,15 @@ public class ClienteLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createClienteConMismoCorreoTest()throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        nuevoCliente.setPuntosVenta(puntosVenta);
         nuevoCliente.setCorreo(data.get(0).getCorreo());
+        clienteLogic.createCliente(nuevoCliente);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createClienteSinPuntoVenta() throws BusinessLogicException{
+        ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        nuevoCliente.setPuntosVenta(new ArrayList<>());
         clienteLogic.createCliente(nuevoCliente);
     }
     
