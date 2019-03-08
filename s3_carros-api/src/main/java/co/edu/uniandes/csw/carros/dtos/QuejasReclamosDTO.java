@@ -39,6 +39,11 @@ public class QuejasReclamosDTO implements Serializable{
     private String comentarios;
     
     /**
+     * compraVenta asociada a la queja
+     */
+    private CompraVentaDTO compraVenta;
+    
+    /**
      * los diferentes tipos de queja
      */
     private final static int ESTADO_AUTOMOVIL = 0;
@@ -124,5 +129,19 @@ public class QuejasReclamosDTO implements Serializable{
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
  }
+
+    /**
+     * @return the compraVenta
+     */
+    public CompraVentaDTO getCompraVenta() {
+        return compraVenta;
+    }
+
+    /**
+     * @param compraVenta the compraVenta to set
+     */
+    public void setCompraVenta(CompraVentaDTO compraVenta) {
+        this.compraVenta = compraVenta;
+    }
             
 }
