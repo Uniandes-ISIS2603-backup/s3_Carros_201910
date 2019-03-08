@@ -53,7 +53,6 @@ public class QuejasReclamosResource {
 }
     
     @GET
-    //@Path("{casoId: \\d+}")
     public List<QuejasReclamosDTO> getQuejasReclamos() {
         LOGGER.info("QuejasReclamosResource QuejasReclamosBooks: input: void");
         List<QuejasReclamosDTO> listaQuejasReclamos = listEntity2DetailDTO(quejasReclamosLogic.getQuejasReclamos());
