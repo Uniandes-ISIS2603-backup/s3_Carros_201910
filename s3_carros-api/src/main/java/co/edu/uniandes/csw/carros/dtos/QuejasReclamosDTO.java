@@ -116,7 +116,6 @@ public class QuejasReclamosDTO implements Serializable{
     public QuejasReclamosEntity toEntity()
     {
        QuejasReclamosEntity entity = new QuejasReclamosEntity();
-       entity.setCarroId(this.casoId);
        entity.setComentarios(this.comentarios);
        entity.setTipo(this.tipoQueja);
        entity.setSolucionado(this.solucionado);
@@ -124,7 +123,7 @@ public class QuejasReclamosDTO implements Serializable{
     }
     public QuejasReclamosDTO(QuejasReclamosEntity entity)
  {
-       this.casoId = entity.getCarroId();
+       this.casoId = entity.getId();
        this.comentarios = entity.getComentarios();
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
