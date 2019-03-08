@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,6 +34,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/empleados")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RequestScoped
 public class EmpleadoResource {
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoResource.class.getName());
@@ -51,12 +53,12 @@ public class EmpleadoResource {
     }
     
     @GET
-    public List<EmpleadoDTO> getEmpleados(){ 
+    public List<EmpleadoDetailDTO> getEmpleados(){ 
         LOGGER.info("EmpleadoResource getEmpleados: input: void");
-        List<EmpleadoDTO> listDTO = new ArrayList<>();
+        List<EmpleadoDetailDTO> listDTO = new ArrayList<>();
         List<EmpleadoEntity> listEntity = empleadoLogic.getAllEmpleados();
         for(int i=0; i<listEntity.size(); i++){
-            listDTO.add(new EmpleadoDTO(listEntity.get(i)));
+            listDTO.add(new EmpleadoDetailDTO(listEntity.get(i)));
         }
         LOGGER.log(Level.INFO, "EmpleadoResource getEmpleados: output: {0}", listDTO);
         return listDTO;
@@ -65,17 +67,28 @@ public class EmpleadoResource {
     @GET
     @Path("{empleadoID: \\d+}")
     public EmpleadoDetailDTO getEmpleado(@PathParam("empleadoID") Long empleadoID){
-        return null;
+        LOGGER.log(Level.INFO, "EmpleadoResource getEmpleado: input: {0}", empleadoID);
+        EmpleadoEntity empleadoEntity = empleadoLogic.getEmpleado(empleadoID);
+        EmpleadoDetailDTO empleadoDTO = new EmpleadoDetailDTO(empleadoEntity);
+         LOGGER.log(Level.INFO, "EmpleadoResource getEmpleado: output: {0}", empleadoDTO);
+        return empleadoDTO;
     }
     
     @PUT
     @Path("{empleadoID: \\d+}")
-    public EmpleadoDTO updateEmpleado(@PathParam("empleadoID") Long empleadoID, EmpleadoDTO empleado){
-        return empleado;
+    public EmpleadoDetailDTO updateEmpleado(@PathParam("empleadoID") Long empleadoID, EmpleadoDetailDTO empleado)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "EmpleadoResource updateEmpleado: input: id:{0} , empleado: {1}", new Object[]{empleadoID, empleado});
+        empleado.setEmpleadoID(empleadoID);
+        EmpleadoDetailDTO empleadoDto = new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(empleado.toEntity()));
+        LOGGER.log(Level.INFO, "EmpleadoResource updateEmpleado: output: {0}", empleadoDto);
+        return empleadoDto;
     }
     
     @DELETE
     @Path("{empleadoID: \\d+}")
-    public void deleteEmpleado(@PathParam("empleadoID") Long empleadoID){     
+    public void deleteEmpleado(@PathParam("empleadoID") Long empleadoID){   
+        LOGGER.log(Level.INFO, "EmpleadoResource deleteEmpleado: input: {0}", empleadoID);
+        empleadoLogic.deleteEmpleado(empleadoID);
+        LOGGER.info("EmpleadoResource deleteEmpleado: output: void");
     }
 }

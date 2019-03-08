@@ -22,7 +22,22 @@ public class ClienteDTO {
     }
     
     public ClienteDTO(ClienteEntity entity){
+        if(entity != null){
+            this.clienteID = entity.getId();
+            this.nombre = entity.getNombre();
+            this.correo = entity.getCorreo();
+            this.telefono = entity.getTelefono();
+        }
+    }
+    
+    public ClienteEntity toEntity(){
+        ClienteEntity entity = new ClienteEntity();
+        entity.setId(this.clienteID);
+        entity.setNombre(this.nombre);
+        entity.setCorreo(this.correo);
+        entity.setTelefono(this.telefono);
         
+        return entity;
     }
 
     /**

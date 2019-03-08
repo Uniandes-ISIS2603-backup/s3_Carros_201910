@@ -17,6 +17,7 @@ public class EmpleadoDTO implements Serializable{
     private String nombre;
     private Integer extension;
     private String correo;
+    private PuntoVentaDTO puntoVenta;
     
     public EmpleadoDTO(){
     }
@@ -27,6 +28,7 @@ public class EmpleadoDTO implements Serializable{
             this.nombre = entity.getNombre();
             this.extension = entity.getExtension();
             this.correo = entity.getCorreo();
+            this.puntoVenta = new PuntoVentaDTO(entity.getPuntoVenta());
         }
     }
     
@@ -93,7 +95,7 @@ public class EmpleadoDTO implements Serializable{
         entity.setCorreo(this.correo);
         entity.setExtension(this.extension);
         entity.setId(this.empleadoID);
-        
+        entity.setPuntoVenta(puntoVenta.toEntity());
         return entity;
     }
     

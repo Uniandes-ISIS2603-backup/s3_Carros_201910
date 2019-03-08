@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +22,27 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable{
     }
     
     public EmpleadoDetailDTO(EmpleadoEntity entity){
-        
+        super(entity);
+        if(entity != null){
+            if(entity.getVentas() != null){
+                listaVentas = new ArrayList<>();
+                for(CompraVentaEntity entityVenta : entity.getVentas()){
+                    listaVentas.add(new CompraVentaDTO(entityVenta));
+                }
+            }
+        }
+    }
+    
+    public EmpleadoEntity toEntity(){
+        EmpleadoEntity empleadoEntity = super.toEntity();
+        if(listaVentas != null){
+            List<CompraVentaEntity> ventasEntity = new ArrayList<>();
+            for(CompraVentaDTO dtoVenta : listaVentas){
+                ventasEntity.add(dtoVenta.toEntity());
+            }
+            empleadoEntity.setVentas(ventasEntity);
+        }
+        return empleadoEntity;
     }
     
     public List<CompraVentaDTO> getListaVentas(){
