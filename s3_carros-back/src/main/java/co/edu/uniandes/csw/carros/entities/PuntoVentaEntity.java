@@ -77,5 +77,75 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    /**
+     * @return the empleados
+     */
+    public List<EmpleadoEntity> getEmpleados() {
+        return empleados;
+    }
+
+    /**
+     * @param empleados the empleados to set
+     */
+    public void setEmpleados(List<EmpleadoEntity> empleados) {
+        this.empleados = empleados;
+    }
+
+    /**
+     * @return the clientes
+     */
+    public List<ClienteEntity> getClientes() {
+        return clientes;
+    }
+
+    /**
+     * @param clientes the clientes to set
+     */
+    public void setClientes(List<ClienteEntity> clientes) {
+        this.clientes = clientes;
+    }
+
+    /**
+     * @return the marcas
+     */
+    public List<MarcaEntity> getMarcas() {
+        return marcas;
+    }
+
+    /**
+     * @param marcas the marcas to set
+     */
+    public void setMarcas(List<MarcaEntity> marcas) {
+        this.marcas = marcas;
+    }
+
+    /**
+     * @return the compras
+     */
+    public List<RegistroCompraEntity> getCompras() {
+        return compras;
+    }
+
+    /**
+     * @param compras the compras to set
+     */
+    public void setCompras(List<RegistroCompraEntity> compras) {
+        this.compras = compras;
+    }
+
+    /**
+     * @return the ventas
+     */
+    public List<CompraVentaEntity> getVentas() {
+        return ventas;
+    }
+
+    /**
+     * @param ventas the ventas to set
+     */
+    public void setVentas(List<CompraVentaEntity> ventas) {
+        this.ventas = ventas;
+    }
    
 }

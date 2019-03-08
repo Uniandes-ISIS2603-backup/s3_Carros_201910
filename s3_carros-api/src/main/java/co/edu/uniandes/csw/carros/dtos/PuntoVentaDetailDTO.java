@@ -5,7 +5,14 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.ClienteEntity;
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
+import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.carros.entities.MarcaEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
+import co.edu.uniandes.csw.carros.entities.RegistroCompraEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +31,113 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
    
    private List<CompraVentaDTO> compraVentas;
 
+   public PuntoVentaDetailDTO()
+   {
+       
+   }
+   
+   public PuntoVentaDetailDTO(PuntoVentaEntity puntoVentaEntity)
+   {
+       super(puntoVentaEntity);
+       if(puntoVentaEntity != null)
+       {
+           if(puntoVentaEntity.getEmpleados()!=null)
+           {
+               empleados = new ArrayList<>();
+               for (EmpleadoEntity empleado : puntoVentaEntity.getEmpleados()) 
+               {
+                   empleados.add(new EmpleadoDTO(empleado));
+               }
+           }
+           if(puntoVentaEntity.getCompras() != null)
+           {
+               registrosCompra = new ArrayList<>();
+               for(RegistroCompraEntity compras : puntoVentaEntity.getCompras())
+               {
+                   registrosCompra.add(new RegistroCompraDTO(compras));
+               }
+           }
+           if(puntoVentaEntity.getMarcas() != null)
+           {
+               marcas = new ArrayList<>();
+               for (MarcaEntity marca : puntoVentaEntity.getMarcas())
+               {
+                //marcas.add(new MarcaDTO);
+               }
+           }
+           if(puntoVentaEntity.getClientes() != null)
+           {
+               clientes = new ArrayList<>();
+               for (ClienteEntity cliente : puntoVentaEntity.getClientes())
+               {
+                   clientes.add(new ClienteDTO(cliente));
+               }
+           }
+           
+           if(puntoVentaEntity.getVentas() != null)
+           {
+               for (CompraVentaEntity compraVenta : puntoVentaEntity.getVentas()) 
+               {
+                 compraVentas.add(new CompraVentaDTO(compraVenta));  
+               }
+               
+           }
+           
+           
+       }
+   }
+   public PuntoVentaEntity toEntity()
+   {
+       PuntoVentaEntity entity = new PuntoVentaEntity();
+       if(clientes != null)
+       {
+            List<ClienteEntity> clienteEntity = new ArrayList<>();
+            for(ClienteDTO dtoCliente : clientes)
+            {
+                clienteEntity.add(dtoCliente.toEntity());
+            }
+            entity.setClientes(clienteEntity);
+       }
+       if(compraVentas != null)
+       {
+           List<CompraVentaEntity> compraVentaEntity = new ArrayList<>();
+           for(CompraVentaDTO dtoCompraVenta: compraVentas)
+           {
+               compraVentaEntity.add(dtoCompraVenta.toEntity());
+           }
+           entity.setVentas(compraVentaEntity);
+
+       }
+       if(empleados != null)
+       {
+           List<EmpleadoEntity> empleadoEntity = new ArrayList<>();
+           for(EmpleadoDTO dtoEmpleado : empleados)
+           {
+               empleadoEntity.add(dtoEmpleado.toEntity());
+           }
+           entity.setEmpleados(empleadoEntity);
+       }
+       if(marcas != null)
+       {
+           List<MarcaEntity> marcasEntity = new ArrayList<>();
+           for (MarcaDTO marca : marcas) 
+           {
+               //(marcasEntity.add(marca.toEntity());
+           }
+           entity.setMarcas(marcasEntity);
+      }
+       if(registrosCompra != null)
+       {
+           List<RegistroCompraEntity> registroEntity = new ArrayList<>();
+           for(RegistroCompraDTO dtoRegistroCompra: registrosCompra)
+           {
+               registroEntity.add(dtoRegistroCompra.toEntity());
+           }
+           entity.setCompras(registroEntity);
+       }
+       return entity;
+        
+   }
     /**
      * @return the emplados
      */
