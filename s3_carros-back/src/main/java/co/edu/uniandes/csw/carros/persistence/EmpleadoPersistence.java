@@ -48,6 +48,6 @@ public class EmpleadoPersistence {
     public List<EmpleadoEntity> findEmpleadoPorCorreo(String correo){
         TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
         query = query.setParameter("correo", correo);
-        return query.getResultList();
+        return query.getResultList(); 
     }
 }

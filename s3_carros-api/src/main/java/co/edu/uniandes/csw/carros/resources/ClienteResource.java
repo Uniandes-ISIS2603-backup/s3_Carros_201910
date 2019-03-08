@@ -24,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -64,9 +65,12 @@ public class ClienteResource {
     
     @GET
     @Path("{clienteID: \\d+}")
-    public ClienteDetailDTO getCliente(@PathParam("clienteID") Long clienteID){
+    public ClienteDetailDTO getCliente(@PathParam("clienteID") Long clienteID) throws WebApplicationException{
         LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteID);
         ClienteEntity entity = clienteLogic.getCliente(clienteID);
+        if(entity == null){
+            throw new WebApplicationException("El recurso /clientes/" + clienteID + " no existe.", 404);
+        }
         ClienteDetailDTO clienteDto = new ClienteDetailDTO(entity);
         LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", clienteDto);
         return clienteDto;
@@ -77,6 +81,9 @@ public class ClienteResource {
     public ClienteDetailDTO updateCliente(@PathParam("clienteID") Long clienteID, ClienteDetailDTO cliente) throws BusinessLogicException{
        LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: id:{0} , cliente: {1}", new Object[]{clienteID, cliente});
        cliente.setClienteID(clienteID);
+       if(clienteLogic.getCliente(clienteID) == null){
+           throw new WebApplicationException("El recurso /clientes/" + clienteID + " no existe.", 404);
+       }
        ClienteEntity entity = clienteLogic.updateCliente(cliente.toEntity());
        ClienteDetailDTO clienteDto = new ClienteDetailDTO(entity);
        LOGGER.log(Level.INFO, "ClienteResource updateCliente: output: {0}", clienteDto);     
@@ -87,6 +94,9 @@ public class ClienteResource {
     @Path("{clienteID: \\d+}")
     public void deleteCliente(@PathParam("clienteID") Long clienteID){  
        LOGGER.log(Level.INFO, "ClienteResource deleteCliente: input: {0}", clienteID);
+        if(clienteLogic.getCliente(clienteID) == null){
+           throw new WebApplicationException("El recurso /clientes/" + clienteID + " no existe.", 404);
+       }
        clienteLogic.deleteCliente(clienteID);
        LOGGER.info("ClienteResource deleteCliente: output: void");      
     }

@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.carros.persistence.ClientePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Juan Pablo Patarroyo Duque 
  */
+@Stateless
 public class ClienteLogic {
     
     private static final Logger LOGGER = java.util.logging.Logger.getLogger(ClienteLogic.class.getName());
@@ -28,6 +30,9 @@ public class ClienteLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
         List<ClienteEntity> search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
         if(search.isEmpty()){
+            if(nuevoCliente.getPuntosVenta().isEmpty()){
+                throw new BusinessLogicException("!El cliente no tiene ningún punto de venta asociado¡");
+            }
             persistence.create(nuevoCliente);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
             return nuevoCliente;

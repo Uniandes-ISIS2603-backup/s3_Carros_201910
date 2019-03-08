@@ -30,6 +30,9 @@ public class EmpleadoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
         List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
         if(search.isEmpty()){
+            if(nuevoEmpleado.getPuntoVenta() == null){
+                throw new BusinessLogicException("!El empleado no tiene ningún punto de venta asociado¡");
+            }
             persistence.create(nuevoEmpleado);
             LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
             return nuevoEmpleado;

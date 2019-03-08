@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.test.logic;
 
 import co.edu.uniandes.csw.carros.ejb.EmpleadoLogic;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.EmpleadoPersistence;
 import java.util.ArrayList;
@@ -41,10 +42,12 @@ public class EmpleadoLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
     
-    @PersistenceContext
+    @PersistenceContext 
     private EntityManager em;
     
     private List<EmpleadoEntity> data = new ArrayList<EmpleadoEntity>();
+    
+    private PuntoVentaEntity puntoVenta;
     
     @Deployment
     public static JavaArchive createDeployment(){
@@ -75,11 +78,16 @@ public class EmpleadoLogicTest {
     
     private void clearData(){
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
+        em.createQuery("delete from PuntoVentaEntity").executeUpdate();
     }
     
     private void insertData(){
+        puntoVenta = factory.manufacturePojo(PuntoVentaEntity.class);
+        em.persist(puntoVenta);
+        
         for(int i=0; i<3; i++){
             EmpleadoEntity empleado = factory.manufacturePojo(EmpleadoEntity.class);
+            empleado.setPuntoVenta(puntoVenta);
             em.persist(empleado);
             data.add(empleado);
         }
@@ -88,6 +96,7 @@ public class EmpleadoLogicTest {
     @Test
     public void createEmpleadoTest() throws BusinessLogicException{
         EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
+        nuevoEmpleado.setPuntoVenta(puntoVenta);
         EmpleadoEntity result = empleadoLogic.createEmpleado(nuevoEmpleado);
         Assert.assertNotNull(result);
         EmpleadoEntity entity = em.find(EmpleadoEntity.class, result.getId());
@@ -97,7 +106,15 @@ public class EmpleadoLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createEmpleadoConMismoCorreoTest()throws BusinessLogicException{
         EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
+        nuevoEmpleado.setPuntoVenta(puntoVenta);
         nuevoEmpleado.setCorreo(data.get(0).getCorreo());
+        empleadoLogic.createEmpleado(nuevoEmpleado);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createEmpleadoSinPuntoDeVenta() throws NullPointerException, BusinessLogicException{
+        EmpleadoEntity nuevoEmpleado = factory.manufacturePojo(EmpleadoEntity.class);
+        nuevoEmpleado.setPuntoVenta(null);
         empleadoLogic.createEmpleado(nuevoEmpleado);
     }
     

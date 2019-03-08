@@ -24,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 
@@ -66,9 +67,12 @@ public class EmpleadoResource {
     
     @GET
     @Path("{empleadoID: \\d+}")
-    public EmpleadoDetailDTO getEmpleado(@PathParam("empleadoID") Long empleadoID){
+    public EmpleadoDetailDTO getEmpleado(@PathParam("empleadoID") Long empleadoID) throws WebApplicationException{
         LOGGER.log(Level.INFO, "EmpleadoResource getEmpleado: input: {0}", empleadoID);
         EmpleadoEntity empleadoEntity = empleadoLogic.getEmpleado(empleadoID);
+        if(empleadoEntity == null){
+            throw new WebApplicationException("El recurso /empleados/" + empleadoID + " no existe", 404);
+        }
         EmpleadoDetailDTO empleadoDTO = new EmpleadoDetailDTO(empleadoEntity);
          LOGGER.log(Level.INFO, "EmpleadoResource getEmpleado: output: {0}", empleadoDTO);
         return empleadoDTO;
@@ -79,6 +83,9 @@ public class EmpleadoResource {
     public EmpleadoDetailDTO updateEmpleado(@PathParam("empleadoID") Long empleadoID, EmpleadoDetailDTO empleado)throws BusinessLogicException{
         LOGGER.log(Level.INFO, "EmpleadoResource updateEmpleado: input: id:{0} , empleado: {1}", new Object[]{empleadoID, empleado});
         empleado.setEmpleadoID(empleadoID);
+        if(empleadoLogic.getEmpleado(empleadoID) == null){
+           throw new WebApplicationException("El recurso /empleados/" + empleadoID + " no existe.", 404);
+       }
         EmpleadoDetailDTO empleadoDto = new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(empleado.toEntity()));
         LOGGER.log(Level.INFO, "EmpleadoResource updateEmpleado: output: {0}", empleadoDto);
         return empleadoDto;
@@ -86,8 +93,11 @@ public class EmpleadoResource {
     
     @DELETE
     @Path("{empleadoID: \\d+}")
-    public void deleteEmpleado(@PathParam("empleadoID") Long empleadoID){   
+    public void deleteEmpleado(@PathParam("empleadoID") Long empleadoID)throws BusinessLogicException{   
         LOGGER.log(Level.INFO, "EmpleadoResource deleteEmpleado: input: {0}", empleadoID);
+        if(empleadoLogic.getEmpleado(empleadoID) == null){
+            throw new WebApplicationException("El recurso /empleados/" + empleadoID + " no existe", 404);
+        }
         empleadoLogic.deleteEmpleado(empleadoID);
         LOGGER.info("EmpleadoResource deleteEmpleado: output: void");
     }
