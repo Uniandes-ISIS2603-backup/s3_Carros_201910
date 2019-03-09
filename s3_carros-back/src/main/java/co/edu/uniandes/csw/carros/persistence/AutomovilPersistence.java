@@ -48,7 +48,7 @@ public class AutomovilPersistence {
         return result;
     }
     
-    public List<AutomovilEntity> finfAllAutomoviles(){
+    public List<AutomovilEntity> findAllAutomoviles(){
         TypedQuery<AutomovilEntity> query = em.createQuery("select u from AutomovilEntity u", AutomovilEntity.class);
         return query.getResultList();
     }
@@ -58,8 +58,8 @@ public class AutomovilPersistence {
         em.remove(entity);
     }
     
-    public void updateAutomovil(AutomovilEntity auto){
-        em.merge(auto);
+    public AutomovilEntity updateAutomovil(AutomovilEntity auto){
+        return em.merge(auto);
     }
     
     

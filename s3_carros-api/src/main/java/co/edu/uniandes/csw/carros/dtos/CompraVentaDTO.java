@@ -138,7 +138,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
             }
             if (compraVentaEntity.getAutomovilFacturado() != null)
             {
-//                this.automovilFacturado = new AutomovilDTO(compraVentaEntity.getAutomovilFacturado());
+                this.automovilFacturado = new AutomovilDTO(compraVentaEntity.getAutomovilFacturado());
             }
             else 
             {
@@ -185,7 +185,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
         }
         if (this.automovilFacturado != null) 
         {
-//            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
+            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
         }
         return compraVentaEntity;
     }

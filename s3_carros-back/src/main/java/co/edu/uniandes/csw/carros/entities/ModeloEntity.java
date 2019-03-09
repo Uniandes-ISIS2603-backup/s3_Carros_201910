@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Andres Forero
  */
 @Entity
-public class ModeloEntity extends BaseEntity
+public class ModeloEntity extends BaseEntity implements Serializable
 {
 
     /**

@@ -62,7 +62,7 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
                marcas = new ArrayList<>();
                for (MarcaEntity marca : puntoVentaEntity.getMarcas())
                {
-                //marcas.add(new MarcaDTO);
+                marcas.add(new MarcaDTO(marca));
                }
            }
            if(puntoVentaEntity.getClientes() != null)
@@ -122,7 +122,7 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
            List<MarcaEntity> marcasEntity = new ArrayList<>();
            for (MarcaDTO marca : marcas) 
            {
-               //(marcasEntity.add(marca.toEntity());
+               marcasEntity.add(marca.toEntity());
            }
            entity.setMarcas(marcasEntity);
       }
