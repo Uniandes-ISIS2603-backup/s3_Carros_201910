@@ -27,6 +27,12 @@ public class RegistroCompraPersistence
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
 
+    /**
+     * Método para persisitir el RegistroCompra en la base de datos.
+     *
+     * @param registroCompraEntity objeto RegistroCompra que se creará en la base de datos.
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
     public RegistroCompraEntity create(RegistroCompraEntity registroCompraEntity) 
     {
                 LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
@@ -35,6 +41,11 @@ public class RegistroCompraPersistence
         return registroCompraEntity;
     }
     
+    /**
+     * Devuelve todos los RegistrosCompra de la base de datos.
+     *
+     * @return una lista con todas los RegistrosCompra que encuentre en la base de datos.
+     */
     public List<RegistroCompraEntity> findAll()
     {
         LOGGER.log(Level.INFO, "Consultando todos los registros de compra");
@@ -43,6 +54,11 @@ public class RegistroCompraPersistence
         return query.getResultList();
     }
     
+    /**
+     * Método que devuelve un registroCompra con base en su id
+     * @param registroCompraId: id del registro
+     * @return 
+     */
     public RegistroCompraEntity find(Long registroCompraId)
     {
         LOGGER.log(Level.INFO, "Consultando registro compra con id={0}", registroCompraId);
@@ -50,6 +66,12 @@ public class RegistroCompraPersistence
         return em.find(RegistroCompraEntity.class, registroCompraId);
     }
     
+    /**
+     * Actualiza un RegistroCompra
+     *
+     * @param registroCompraEntity: la compra que viene con los nuevos cambios.
+     * @return una compra con los cambios aplicados.
+     */
     public RegistroCompraEntity update(RegistroCompraEntity registroCompraEntity)
     {
          LOGGER.log(Level.INFO, "Actualizando registro compra con id = {0}", registroCompraEntity.getId());
@@ -59,6 +81,10 @@ public class RegistroCompraPersistence
          
     }
     
+    /**
+     * Elimina una compra
+     * @param registroCompraId: id de la compra 
+     */
     public void delete(Long registroCompraId)
     {
          LOGGER.log(Level.INFO, "Borrando registro compra con id = {0}", registroCompraId);
@@ -69,6 +95,11 @@ public class RegistroCompraPersistence
          LOGGER.log(Level.INFO, "Saliendo de borrar el registro compra con id = {0}", registroCompraId);
     }
     
+    /**
+     * Devuelve un registroCompra por el nombre de un vendedor
+     * @param name : nombre del vendedor
+     * @return 
+     */
     public RegistroCompraEntity findByVendedorName(String name)
     {
         LOGGER.log(Level.INFO, "Consultando registro de compra por nombre ", name);

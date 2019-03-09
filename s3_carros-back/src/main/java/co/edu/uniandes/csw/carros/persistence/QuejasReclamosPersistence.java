@@ -33,6 +33,11 @@ public class QuejasReclamosPersistence {
         return quejasReclamosEntity;
     }
 
+    /**
+     * Devuelve una queja por su id
+     * @param casoId: id de la queja
+     * @return 
+     */
     public QuejasReclamosEntity find(Long casoId) {
         return em.find(QuejasReclamosEntity.class, casoId);
     }

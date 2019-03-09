@@ -29,6 +29,9 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     @ManyToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
     
+    /**
+     * Constructor de la clase por defecto
+     */
     public QuejasReclamosEntity(){
         
     }

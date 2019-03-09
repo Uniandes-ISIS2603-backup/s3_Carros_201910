@@ -39,6 +39,18 @@ public class RegistroCompraResourse
     @Inject
     private RegistroCompraLogic logica;
     
+    /**
+     * Crea un nuevo RegistroCompra con la informacion que se recibe en el cuerpo de
+     * la petición y se regresa un objeto identico con un id auto-generado por
+     * la base de datos.
+     *
+     * @param registroCompra {@link RegistroCompraDTO} - El registro que se desea
+     * guardar.
+     * @return JSON {@link RegistroCompraDTO} - El registro guardada con el atributo
+     * id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe el registro.
+     */
     @POST
     public RegistroCompraDTO createdRegistroCompra(RegistroCompraDTO registroCompra) throws BusinessLogicException
     {
@@ -53,6 +65,12 @@ public class RegistroCompraResourse
         return nuevoRegistroCompraDTO;
     }
     
+    /**
+     * Busca y retorna todos los RegistroCompra que existen en la aplicación.
+     * 
+     * @return JSONArray {@link RegistroCompraDTO} - Las RegistroCompras
+     * encontrados en la aplicacion. Si no hay ninguno ratorna una lista vacía..
+     */
     @GET
     public List<RegistroCompraDTO> getRegistrosCompra()
     {
@@ -62,7 +80,16 @@ public class RegistroCompraResourse
         return listaEditoriales;
     }
     
-     private List<RegistroCompraDTO> listEntity2DTO(List<RegistroCompraEntity> entityList) {
+    /**
+     * Convierte una lista de entidades a DTO
+     * 
+     * Este método convierte una lista de objetos RegistroCompraEntity a una lista de 
+     * objetos RegistroCompraDTO (json).
+     * 
+     * @param entityList corresponde a una lista de RegistroCompras de tipo Entity.
+     * @return la lista de RegistroCompras en forma DTO (json).
+     */ 
+    private List<RegistroCompraDTO> listEntity2DTO(List<RegistroCompraEntity> entityList) {
         List<RegistroCompraDTO> list = new ArrayList<>();
         for (RegistroCompraEntity entity : entityList) {
             list.add(new RegistroCompraDTO(entity));
@@ -70,6 +97,14 @@ public class RegistroCompraResourse
         return list;
     }
     
+    /**
+     * Busca el registro con el id asociado recibido en la URL y la devuelve.
+     * 
+     * @param compraID: Identificador del registro.
+     * @return JSON {@link RegistroCompraDTO} - El registro buscado 
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el registro.
+     */
     @GET
     @Path("{compraID: \\d+}")
     public RegistroCompraDTO getCliente(@PathParam("compraID") Long registroCompraID){
@@ -83,6 +118,19 @@ public class RegistroCompraResourse
         return DTO;
     }
    
+    /**
+     * Actualiza el RegistroCompra con el id recibido en la URL con la informacion
+     * que se recibe en el cuerpo de la petición.
+     *
+     * @param compraID Identificador del RegistroCompra que se desea
+     * actualizar. Este debe ser una cadena de dígitos.
+     * @param registroCompra {@link QuejasReclamosDTO} El registro que se desea
+     * guardar.
+     * @return JSON {@link RegistroCompraDTO} - El registro guardada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el RegistroCompra a
+     * actualizar.
+     */
     @PUT
     @Path("{compraID: \\d+}")
     public RegistroCompraDTO updateRegistroCompra(@PathParam("compraID") Long registroCompraID, RegistroCompraDTO registroCompra){
