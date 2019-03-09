@@ -41,8 +41,8 @@ public class ModeloPersistence{
         em.remove(entity);
     }
     
-    public void updateMarca(ModeloEntity modelo){
-        em.merge(modelo);
+    public ModeloEntity updateMarca(ModeloEntity modelo){
+        return em.merge(modelo);
     }
     
 }

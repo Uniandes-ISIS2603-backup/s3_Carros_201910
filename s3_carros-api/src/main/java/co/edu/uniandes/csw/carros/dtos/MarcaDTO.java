@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.MarcaEntity;
 import java.io.Serializable;
 
 /**
@@ -14,10 +15,29 @@ import java.io.Serializable;
 public class MarcaDTO implements Serializable{
     
     
+    
+    
     /**
      * constrictor vacio
      */
     public MarcaDTO(){}
+    
+    
+    public MarcaDTO(MarcaEntity marcaEntity){
+        if(marcaEntity != null){
+            this.idMarca = marcaEntity.getId();
+            this.nombreMarca = marcaEntity.getNombreMarca();          
+        }
+    }
+    
+    public MarcaEntity toEntity(){
+        MarcaEntity marca = new MarcaEntity();
+        marca.setId(this.idMarca);
+        marca.setNombreMarca(this.nombreMarca);             
+        return marca;
+    }
+    
+    
     
     /**
      * nombre de la marca de carros
@@ -56,6 +76,8 @@ public class MarcaDTO implements Serializable{
     public void setIdMarca(Long idMarca) {
         this.idMarca = idMarca;
     }
+
+    
     
     
 }
