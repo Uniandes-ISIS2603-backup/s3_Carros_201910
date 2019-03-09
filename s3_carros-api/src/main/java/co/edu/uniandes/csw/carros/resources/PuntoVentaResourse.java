@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Lozano
  */
 @Path("puntosdeVenta")
 @Produces(MediaType.APPLICATION_JSON)

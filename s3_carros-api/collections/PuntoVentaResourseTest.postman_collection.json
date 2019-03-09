@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "3f179a3d-d9b9-41c7-bf66-dbb20af9b453",
+		"name": "PuntoVentaResourseTest",
+		"description": "Punto Venta Resourse Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a75ef9ea-2d07-465f-8610-f495552fa4b2",
+						"exec": [
+							" tests[\"No genera error en el Get\"] = responseCode === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

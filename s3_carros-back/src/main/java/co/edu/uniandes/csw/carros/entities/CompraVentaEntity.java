@@ -58,7 +58,7 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
-    @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
+    @OneToOne
     private AutomovilEntity automovilFacturado;
     
     @PodamExclude
