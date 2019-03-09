@@ -31,31 +31,58 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
+ *Conjuto de test que prueban la logica del recuros punto de venta
  * @author Daniel Lozano
  */
 @RunWith(Arquillian.class)
 public class PuntoVentaLogicTest {
     
+    /**
+     * 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
-    
+    /**
+     * 
+     */
     @Inject
     private PuntoVentaLogic puntoVentaLogic;
     
+    /**
+     * 
+     */
     @PersistenceContext
     private EntityManager em; 
     
+    /**
+     * 
+     */
     @Inject
     private UserTransaction utx;
     
+    /**
+     * 
+     */
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
     
+    /**
+     * 
+     */
     private List<ClienteEntity> clienteData = new ArrayList();
     
+    /**
+     * 
+     */
     private List<EmpleadoEntity> empleadoData = new ArrayList(); 
     
+    /**
+     * 
+     */
     private List<RegistroCompraEntity> registroCompraData = new ArrayList();
     
+    /**
+     * 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -66,6 +93,9 @@ public class PuntoVentaLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Metodo a desarollar antes del resto de pruebas 
+     */
     @Before
     public void configTest() {
         try {
@@ -104,6 +134,10 @@ public class PuntoVentaLogicTest {
            
         }
     }
+    /**
+     * Prueba el metedo de crear un punto de venta
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createPuntoVentaTest() throws BusinessLogicException 
     {
@@ -116,6 +150,10 @@ public class PuntoVentaLogicTest {
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
     }
     
+    /**
+     * Prueba si al crear un punto de venta con la misma direccion lanza la exepcion
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createPuntoVentaConMismaDireccionTest() throws BusinessLogicException 
     {
@@ -124,7 +162,9 @@ public class PuntoVentaLogicTest {
         puntoVentaLogic.createPuntoVenta(newEntity);
     }
     
-     
+     /**
+      * Prueba si se reciben todos los puntos de venta
+      */
     @Test
     public void getPuntosVentaTest() {
         List<PuntoVentaEntity> list = puntoVentaLogic.getPuntosVenta();

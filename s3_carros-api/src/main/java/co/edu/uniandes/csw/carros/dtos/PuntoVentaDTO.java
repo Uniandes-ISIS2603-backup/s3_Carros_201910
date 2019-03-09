@@ -10,67 +10,80 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
+ *DTO del punto donde se venderan los autos
  * @author Daniel Lozano
  */
 public class PuntoVentaDTO implements Serializable
 {
+/**
+ * Direccion del punto de venta
+ */
  private String dirreccion; 
  
+ /**
+  * Telefono del punto de venta
+  */
  private String telefono;
  
+ /**
+  * id con el cual el programa identifica el punto de venta
+  */
  private long id;
 
  
 /**
- * 
+ * Constructor vacio por convencion
  */
  public PuntoVentaDTO()
  {
      
  }
-    /**
-     * @return the dirreccion
+    /**Devuelve la direccion del punto de venta
+     * @return the dirreccion del punto de venta
      */
     public String getDirreccion() {
         return dirreccion;
     }
 
-    /**
-     * @param dirreccion the dirreccion to set
+    /**Fija la direccion del punto de venta
+     * @param dirreccion the dirreccion to set nueva direccion del punto de venta
      */
     public void setDirreccion(String dirreccion) {
         this.dirreccion = dirreccion;
     }
 
-    /**
-     * @return the telefoo
+    /**Retorna el telefono del punto de venta
+     * @return the telefoo del punto de venta
      */
     public String getTelefono() {
         return telefono;
     }
 
-    /**
-     * @param telefoo the telefoo to set
+    /**Fija un nuevo telefono para el punto de venta
+     * @param telefoo the telefoo to set nuevo telefono del punto de venta
      */
     public void setTelefono(String telefoo) {
         this.telefono = telefoo;
     }
 
-    /**
-     * @return the id
+    /** Retona el id del punto de venta
+     * @return the id con el que se reconoce al punto de venta en el programa
      */
     public long getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
+    /** Fija el id del punto de venta con el cual se reconoce en el sistema
+     * @param id the id to set el nuevo id del punto de venta
      */
     public void setId(long id) {
         this.id = id;
     }
  
+    /**
+     * Metodo que convierte el Punto de venta en su calidad de DTO en un PuntoVentaEntity
+     * @return nuevo punto de venta entity.
+     */
     public PuntoVentaEntity toEntity()
     {
        PuntoVentaEntity entity = new PuntoVentaEntity();
@@ -79,6 +92,10 @@ public class PuntoVentaDTO implements Serializable
        entity.setId(this.id);
        return entity;
     }
+    /**
+     * Contructor del DTO que crea un nuevo punto de venta apartir de un entity
+     * @param entity para crear un puntoVentaDTO a parir de este
+     */
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
       this.dirreccion = entity.getDireccion();

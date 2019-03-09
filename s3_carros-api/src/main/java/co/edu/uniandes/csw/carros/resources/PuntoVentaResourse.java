@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
+ *Recurso del punto de venta 
  * @author Daniel Lozano
  */
 @Path("puntosdeVenta")
@@ -37,17 +37,22 @@ import javax.ws.rs.core.MediaType;
 @RequestScoped
 public class PuntoVentaResourse 
 {
-    
+    /**
+     * Constante de logger
+     */
     private static final Logger LOGGER = Logger.getLogger(PuntoVentaResourse.class.getName());
     
+    /**
+     * Asociacion con la logica del punto de venta
+     */
     @Inject
     private PuntoVentaLogic logica;
     
     /**
-     * 
-     * @param puntoVenta
-     * @return
-     * @throws BusinessLogicException 
+     * Metodo que crea un nuevo punto de venta
+     * @param puntoVenta a crear
+     * @return el punto de venra creado con su respectiva logica.
+     * @throws BusinessLogicException si no cu mple con las reglas de negocio
      */
     @POST
     public PuntoVentaDTO createdPuntoVenta(PuntoVentaDTO puntoVenta) throws BusinessLogicException
@@ -63,6 +68,10 @@ public class PuntoVentaResourse
         return nuevoPuntoVentaDTO; 
     }
     
+    /**
+     * Retorna todos los puntos de venta del sistema
+     * @return 
+     */
     @GET
     public List<PuntoVentaDetailDTO> getPuntosVenta()
     {
@@ -81,6 +90,13 @@ public class PuntoVentaResourse
         }
         return list;
     }
+    
+    /**
+     * Busca un punto de venta con un id dado
+     * @param puntoVentaID de un punto de venta a buscar
+     * @return punto de venta con un id que entra como parametro 
+     * @throws WebApplicationException  si el punto de venta no exite
+     */
     @GET
     @Path("{puntoVentaID: \\d+}")
     public PuntoVentaDTO getPuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws WebApplicationException 
@@ -95,6 +111,13 @@ public class PuntoVentaResourse
         return detailDTO;
     }
     
+    /**
+     * Actualiza la informacion de un punto de venta 
+     * @param puntoVentaID al cual se le va a actualizar la informacion
+     * @param puntoVenta con la infromacion a actualizar
+     * @return punto de venta con la informacion actualizada
+     * @throws WebApplicationException  si el punto de venta que se quiere actuaqlizar no existe
+     */
     @PUT
     @Path("{puntoVentaID: \\d+}")
     public PuntoVentaDTO updatePuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID, PuntoVentaDTO puntoVenta) throws WebApplicationException 
@@ -110,6 +133,11 @@ public class PuntoVentaResourse
        
     }
     
+    /**
+     * Elimina un punto de venta del sistema al cual corresponde el id
+     * @param puntoVentaID del cual se va a borrar el punto de venta
+     * @throws BusinessLogicException SU OCURRE un error al borar el punto de venta
+     */
     @DELETE
     @Path("{puntoVentaID: \\d+}")
     public void deleteúntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws BusinessLogicException

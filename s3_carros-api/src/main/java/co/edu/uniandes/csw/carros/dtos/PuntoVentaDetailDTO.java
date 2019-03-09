@@ -16,26 +16,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *Clase que maneja las listas de recursos relacionados con un punto de venta
  * @author Daniel Lozano
  */
 public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
 {
+    /**
+     * Lista de empleados de un punto de venta
+     */
    private List<EmpleadoDTO> empleados;
    
+   /**
+    * lista de clientes de un punto de venta
+    */
    private List<ClienteDTO> clientes; 
    
+   /**
+    * Lista de marcas de auto de un punto de venta
+    */
    private List<MarcaDTO> marcas;
    
+   /**
+    * Lista de comptas de autos realizadas por un punto de venta
+    */
    private List<RegistroCompraDTO> registrosCompra;
    
+   /**
+    * Lista de vents de autos realizadas por un punto de venta
+    */
    private List<CompraVentaDTO> compraVentas;
 
+   /**
+    * Constructor vacio por defecto de un DetailDTO
+    */
    public PuntoVentaDetailDTO()
    {
        
    }
-   
+   /**
+    * Constructor de un detail DTO aparir de una entidad
+    * @param puntoVentaEntity  entidad base para construtir el detailDTO
+    */
    public PuntoVentaDetailDTO(PuntoVentaEntity puntoVentaEntity)
    {
        super(puntoVentaEntity);
@@ -86,6 +107,11 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
            
        }
    }
+   
+   /**
+    * Metodo de convierte el objeto en una entidad
+    * @return entidad con las caracterisiticas ibtenidad aparit del detailDto
+    */
    public PuntoVentaEntity toEntity()
    {
        PuntoVentaEntity entity = new PuntoVentaEntity();
@@ -138,15 +164,15 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
        return entity;
         
    }
-    /**
-     * @return the emplados
+    /**Devuleve la lista de empleados del punto de venta
+     * @return the emplados pertenecientes al punto de venta
      */
     public List<EmpleadoDTO> getEmplados() {
         return empleados;
     }
 
-    /**
-     * @param emplados the emplados to set
+    /**Asgina los empleados al punto de venta.
+     * @param emplados the emplados to set del punto de venta
      */
     public void setEmplados(List<EmpleadoDTO> emplados) {
         this.empleados = emplados;
@@ -160,14 +186,14 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     {
        this.empleados.add(empleado);
     }
-    /**
+    /**Devuleve la lista de clienetes del punto de venta
      * @return the clientes
      */
     public List<ClienteDTO> getClientes() {
         return clientes;
     }
 
-    /**
+    /**Asgina los clientes al punto de venta.
      * @param clientes the clientes to set
      */
     public void setClientes(List<ClienteDTO> clientes) {
@@ -175,21 +201,21 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     }
 
     /**
-     * 
+     * Añade un cliente
      * @param clienteNuevo 
      */
     public void addCliente(ClienteDTO clienteNuevo)
     {
         this.clientes.add(clienteNuevo);
     }
-    /**
+    /**Devuleve la lista de marcas del punto de venta
      * @return the marcas
      */
     public List<MarcaDTO> getMarcas() {
         return marcas;
     }
 
-    /**
+    /**Asgina las marcas al punto de venta.
      * @param marcas the marcas to set
      */
     public void setMarcas(List<MarcaDTO> marcas) {
@@ -197,21 +223,21 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     }
 
     /**
-     * 
+     * Añade una marca
      * @param marcaNueva 
      */
     public void addMarca(MarcaDTO marcaNueva)
     {
         this.marcas.add(marcaNueva);
     }
-    /**
+    /**Devuleve la lista de registros compra del punto de venta
      * @return the registrosCompra
      */
     public List<RegistroCompraDTO> getRegistrosCompra() {
         return registrosCompra;
     }
 
-    /**
+    /**Asgina las compras al punto de venta.
      * @param registrosCompra the registrosCompra to set
      */
     public void setRegistrosCompra(List<RegistroCompraDTO> registrosCompra) {
@@ -219,28 +245,28 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     }
     
     /**
-     *  
+     *  Añade una compra
      * @param nuevaCompra 
      */
     public void addRegistroCompra(RegistroCompraDTO nuevaCompra)
     {
         this.registrosCompra.add(nuevaCompra);
     }
-    /**
+    /**Devuleve la lista de compras del punto de venta
      * @return the compraVentas
      */
     public List<CompraVentaDTO> getCompraVentas() {
         return compraVentas;
     }
 
-    /**
+    /**Asgina las ventas al punto de venta.
      * @param compraVentas the compraVentas to set
      */
     public void setCompraVentas(List<CompraVentaDTO> compraVentas) {
         this.compraVentas = compraVentas;
     }
    /**
-    * 
+    * Añade una venta
     * @param nuevaVenta 
     */
     public void adsCompraVenta(CompraVentaDTO nuevaVenta)
