@@ -19,9 +19,16 @@ public class EmpleadoDTO implements Serializable{
     private String correo;
     private PuntoVentaDTO puntoVenta;
     
+    /**
+     * Constructor por defecto
+     */
     public EmpleadoDTO(){
     }
     
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     */
     public EmpleadoDTO(EmpleadoEntity entity){
         if(entity != null){
             this.empleadoID = entity.getId();
@@ -89,6 +96,11 @@ public class EmpleadoDTO implements Serializable{
         this.correo = correo;
     }
     
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
     public EmpleadoEntity toEntity(){
         EmpleadoEntity entity = new EmpleadoEntity();
         entity.setNombre(this.nombre);
@@ -97,9 +109,5 @@ public class EmpleadoDTO implements Serializable{
         entity.setId(this.empleadoID);
         entity.setPuntoVenta(puntoVenta.toEntity());
         return entity;
-    }
-    
-    
-    
-    
+    }   
 }

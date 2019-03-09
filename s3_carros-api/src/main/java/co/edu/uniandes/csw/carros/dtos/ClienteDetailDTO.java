@@ -20,10 +20,15 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     private List<CompraVentaDTO> listaCompras;
     private List<PuntoVentaDTO> listaPuntosVentas;
     
-    public ClienteDetailDTO()
-    {  
+    /**
+     * Constructor por defecto
+     */
+    public ClienteDetailDTO(){  
     }
     
+     /**
+     * Constructor para transformar un Entity a un DTO
+     */
     public ClienteDetailDTO(ClienteEntity entity){
         super(entity);
         if(entity != null){
@@ -42,6 +47,9 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         }
     }
     
+    /**
+     * Transformar un DTO a un Entity
+     */
     public ClienteEntity toEntity(){
         ClienteEntity entity = super.toEntity();
         if(listaCompras != null){
@@ -61,18 +69,20 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         return entity;
     }
     
+    /**
+     * Devuelve la lista de las compras de un cliente.
+     */
     public List<CompraVentaDTO> getListaCompras(){
         return listaCompras;
     }
     
+     /**
+     * Modifica la lista de las compras de un cliente.
+     */
     public void setListaCompras(List<CompraVentaDTO> lista){
         this.listaCompras = lista;
     }
    
-    public void addCompra(CompraVentaDTO compra){
-        listaCompras.add(compra);
-    }
-
     /**
      * @return the listaPuntosVentas
      */

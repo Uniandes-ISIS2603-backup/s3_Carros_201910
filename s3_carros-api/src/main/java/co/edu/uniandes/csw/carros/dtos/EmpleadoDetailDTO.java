@@ -16,11 +16,18 @@ import java.util.List;
  * @author Juan Pablo Patarroyo Duque
  */
 public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable{
+    
     private List<CompraVentaDTO> listaVentas;
     
+    /**
+     * Constructor por defecto
+     */
     public EmpleadoDetailDTO(){    
     }
     
+     /**
+     * Constructor para transformar un Entity a un DTO
+     */
     public EmpleadoDetailDTO(EmpleadoEntity entity){
         super(entity);
         if(entity != null){
@@ -33,6 +40,9 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable{
         }
     }
     
+     /**
+     * Transformar un DTO a un Entity
+     */
     public EmpleadoEntity toEntity(){
         EmpleadoEntity empleadoEntity = super.toEntity();
         if(listaVentas != null){
@@ -45,16 +55,18 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable{
         return empleadoEntity;
     }
     
+     /**
+     * Devuelve la lista de las ventas del empleado.
+     */
     public List<CompraVentaDTO> getListaVentas(){
         return listaVentas;
     }
     
+     /**
+     * Modifica la lista de lasa ventas del empleado.
+     */
     public void setListaVentas(List<CompraVentaDTO> lista){
         this.listaVentas = lista;
-    }
-    
-    public void addVenta(CompraVentaDTO venta){
-        listaVentas.add(venta);
     }
     
     

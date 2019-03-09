@@ -24,8 +24,11 @@ public class ClienteLogic {
     private static final Logger LOGGER = java.util.logging.Logger.getLogger(ClienteLogic.class.getName());
     
     @Inject
-    private ClientePersistence persistence;
+    private ClientePersistence persistence; //atributo para acceder a la persistencia
     
+    /**
+     * Crea un cliente en la persistencia.
+     */
     public ClienteEntity createCliente(ClienteEntity nuevoCliente)throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
         List<ClienteEntity> search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
@@ -42,12 +45,19 @@ public class ClienteLogic {
         }
     }
     
+    /**
+     * Borrar un cliente
+     */
     public void deleteCliente(Long clienteID){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", clienteID);
         persistence.deleteCliente(clienteID);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el empleado con id = {0}", clienteID);
     }
     
+    /**
+     *
+     * Actualizar un cliente.
+     */
     public ClienteEntity updateCliente(ClienteEntity cliente)throws BusinessLogicException{
          LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", cliente.getId());
         String correo = cliente.getCorreo();
@@ -68,6 +78,11 @@ public class ClienteLogic {
         return cliente;
     }
      
+        
+    /**
+     *
+     * Obtener un cliente por medio de su id.
+     */
     public ClienteEntity getCliente(Long clienteID){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el empleado con id = {0}", clienteID);
         ClienteEntity cliente = persistence.findCliente(clienteID);
@@ -78,7 +93,9 @@ public class ClienteLogic {
         return cliente;
     }
     
-      
+    /**
+     * Obtener todos los clientes existentes en la base de datos.
+     */
     public List<ClienteEntity> getAllCliente(){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los clientes");
         List<ClienteEntity> lista = persistence.findAllClientes();

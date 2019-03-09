@@ -22,29 +22,49 @@ public class ClientePersistence {
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
     
+    /**
+     * Método para persisitir la entidad en la base de datos.
+     */
     public ClienteEntity create(ClienteEntity clienteEntity){
         em.persist(clienteEntity);
         return clienteEntity;
     }
     
+    /**
+     * Busca si hay algun cliente con el id que se envía de argumento
+     */
     public ClienteEntity findCliente(Long clienteID){
         return em.find(ClienteEntity.class, clienteID);
     }
-            
+    
+    /**
+     * Devuelve todas las editoriales de la base de datos.
+     */
     public List<ClienteEntity> findAllClientes(){
         TypedQuery<ClienteEntity> query = em.createQuery("Select u from ClienteEntity u", ClienteEntity.class);
         return query.getResultList();
     }
     
+    	
+    /**
+     *
+     * Borra un cliente de la base de datos recibiendo como argumento el id del cliente.
+     */
     public void deleteCliente(Long clienteID){
         ClienteEntity entity = findCliente(clienteID);
         em.remove(entity);
     }
     
+    /**
+     * Actualiza un cliente.
+     */
     public void updateCliente(ClienteEntity cliente){
         em.merge(cliente);
     }
     
+    /**
+     * Busca si hay algun cliente con el correo que se envía de argumento
+     */
     public List<ClienteEntity> findClientePorCorreo(String correo){
         TypedQuery<ClienteEntity> query = em.createQuery("Select u From ClienteEntity u where u.correo = :correo", ClienteEntity.class);
         query = query.setParameter("correo", correo);

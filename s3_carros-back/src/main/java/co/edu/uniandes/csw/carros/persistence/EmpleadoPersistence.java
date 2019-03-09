@@ -22,29 +22,49 @@ public class EmpleadoPersistence {
     @PersistenceContext(unitName = "carrosPU")
     protected EntityManager em;
     
+    /**
+     * Método para persisitir la entidad en la base de datos.
+     */
     public EmpleadoEntity create(EmpleadoEntity empleadoEntity){
         em.persist(empleadoEntity);
         return empleadoEntity;
     }
     
+       /**
+     * Busca si hay algun empleado con el id que se envía de argumento
+     */
     public EmpleadoEntity findEmpleado(Long empleadoID){
         return em.find(EmpleadoEntity.class, empleadoID);
     }
     
+    /**
+     * Devuelve todas las editoriales de la base de datos.
+     */
     public List<EmpleadoEntity> findAllEmpleados(){
         TypedQuery<EmpleadoEntity> query = em.createQuery("Select u from EmpleadoEntity u", EmpleadoEntity.class);
         return query.getResultList();
     }
     
+    /**
+     *
+     * Borra un empleado de la base de datos recibiendo como argumento el id del empleado.
+     */
     public void deleteEmpleado(Long empleadoID){
         EmpleadoEntity entity = em.find(EmpleadoEntity.class, empleadoID);
         em.remove(entity);
     }
     
+    /**
+     * Actualiza un empleado.
+     */
     public void updateEmpleado(EmpleadoEntity empleado){
         em.merge(empleado);
     }
     
+   
+    /**
+     * Busca si hay algun empleado con el correo que se envía de argumento
+     */
     public List<EmpleadoEntity> findEmpleadoPorCorreo(String correo){
         TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
         query = query.setParameter("correo", correo);

@@ -6,21 +6,29 @@
 package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author Juan Pablo Patarroyo Duque
  */
-public class ClienteDTO {
+public class ClienteDTO implements Serializable{
     
     private Long clienteID;
     private String nombre;
     private String correo;
     private String telefono;
     
+    /**
+     * Constructor por defecto
+     */
     public ClienteDTO(){
     }
     
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     */
     public ClienteDTO(ClienteEntity entity){
         if(entity != null){
             this.clienteID = entity.getId();
@@ -30,6 +38,11 @@ public class ClienteDTO {
         }
     }
     
+     /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
     public ClienteEntity toEntity(){
         ClienteEntity entity = new ClienteEntity();
         entity.setId(this.clienteID);

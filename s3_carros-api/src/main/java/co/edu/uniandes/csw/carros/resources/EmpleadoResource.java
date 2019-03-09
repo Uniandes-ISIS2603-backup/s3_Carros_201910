@@ -43,6 +43,11 @@ public class EmpleadoResource {
     @Inject
     private EmpleadoLogic empleadoLogic;
     
+    /**
+     * Crea un nuevo empleado con la informacion que se recibe en el cuerpo de
+     * la petición y se regresa un objeto identico con un id auto-generado por
+     * la base de datos.
+     */
     @POST
     public EmpleadoDTO createEmpleado(EmpleadoDTO empleado) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "EmpleadoResource createEmpleado: input: {0}", empleado);
@@ -53,6 +58,9 @@ public class EmpleadoResource {
         return empleadoDTO;
     }
     
+    /*
+    * Busca y devuelve todos los empleados que existen en la aplicacion.
+    */
     @GET
     public List<EmpleadoDetailDTO> getEmpleados(){ 
         LOGGER.info("EmpleadoResource getEmpleados: input: void");
@@ -65,6 +73,9 @@ public class EmpleadoResource {
         return listDTO;
     }
     
+    /*
+    * Busca el empleado con el id asociado recibido en la URL y la devuelve..
+    */
     @GET
     @Path("{empleadoID: \\d+}")
     public EmpleadoDetailDTO getEmpleado(@PathParam("empleadoID") Long empleadoID) throws WebApplicationException{
@@ -78,6 +89,9 @@ public class EmpleadoResource {
         return empleadoDTO;
     }
     
+    /*Actualiza el empleado con el id recibido en la URL con la informacion
+     * que se recibe en el cuerpo de la petición.
+     */
     @PUT
     @Path("{empleadoID: \\d+}")
     public EmpleadoDetailDTO updateEmpleado(@PathParam("empleadoID") Long empleadoID, EmpleadoDetailDTO empleado)throws BusinessLogicException{
@@ -91,6 +105,9 @@ public class EmpleadoResource {
         return empleadoDto;
     }
     
+    /*
+    *Borra el empleado con el id asociado recibido en la URL.
+    */
     @DELETE
     @Path("{empleadoID: \\d+}")
     public void deleteEmpleado(@PathParam("empleadoID") Long empleadoID)throws BusinessLogicException{   

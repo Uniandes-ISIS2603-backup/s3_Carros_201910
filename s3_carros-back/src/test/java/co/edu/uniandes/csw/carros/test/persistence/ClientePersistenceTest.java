@@ -43,6 +43,11 @@ public class ClientePersistenceTest {
     
     private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
   
+     /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -52,6 +57,9 @@ public class ClientePersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
         try{
@@ -70,10 +78,17 @@ public class ClientePersistenceTest {
         }
     }
     
+        /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
    private void clearData(){
        em.createQuery("delete from ClienteEntity").executeUpdate();
    }
     
+       /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
    private void insertData(){
        PodamFactory factory = new PodamFactoryImpl();
        for(int i=0; i<3; i++){
@@ -83,6 +98,10 @@ public class ClientePersistenceTest {
        }
    }
    
+   
+    /**
+     * Prueba para crear un Cliente.
+     */
    @Test
    public void createClienteTest(){
        PodamFactory factory = new PodamFactoryImpl();
@@ -95,6 +114,9 @@ public class ClientePersistenceTest {
        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
    }
    
+       /**
+     * Prueba para consultar unCliente.
+     */
    @Test
     public void findClienteTest(){
         
@@ -105,12 +127,18 @@ public class ClientePersistenceTest {
         Assert.assertEquals(entity.getNombre(), search.getNombre());
     }
     
+              /**
+     * Prueba para consultar la lista de Clientes.
+     */
     @Test
     public void findAllClientesTest(){
         TypedQuery<ClienteEntity> query = em.createQuery("Select u from ClienteEntity u", ClienteEntity.class);
         Assert.assertEquals(query.getResultList(), cp.findAllClientes());
     }
     
+        /**
+     * Prueba para eliminar un Cliente.
+     */
     @Test
     public void deleteCliente(){
         ClienteEntity entity = data.get(1);
@@ -119,6 +147,9 @@ public class ClientePersistenceTest {
         Assert.assertNull(search);
     }
     
+        /**
+     * Prueba para actualizar un Cliente.
+     */
     @Test
     public void updateClienteTest(){
         ClienteEntity entity = data.get(0);
@@ -128,6 +159,9 @@ public class ClientePersistenceTest {
         Assert.assertEquals(search.getNombre(),"Juan Osorio" );
     }
     
+      /**
+     * Prueba para consultar un Cliente por correo.
+     */
     @Test
     public void finEmpleadoPorCorreoTest(){
         ClienteEntity entity = data.get(0);
