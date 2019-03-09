@@ -44,7 +44,6 @@ public class QuejasReclamosResource {
     private QuejasReclamosLogic quejasReclamosLogic;
     
     @POST
-    @Path("{casoId: \\d+}")
     public QuejasReclamosDTO createQuejasReclamos(QuejasReclamosDTO queja) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "QuejasReclamosResource createQuejasReclamos: input: {0}", queja);
         QuejasReclamosDTO nuevoQuejasReclamosDTO = new QuejasReclamosDTO(quejasReclamosLogic.createQuejasReclamos(queja.toEntity()));
@@ -84,7 +83,7 @@ public class QuejasReclamosResource {
         QuejasReclamosDTO DTO = new QuejasReclamosDTO(quejasReclamosLogic.updateQuejasReclamos(casoId, queja.toEntity()));
         LOGGER.log(Level.INFO, "QuejasReclamosResource updateQuejasReclamos: output: {0}", DTO);
         return DTO;
-}
+    }
     
     @DELETE
     @Path("{casoId: \\d+}")

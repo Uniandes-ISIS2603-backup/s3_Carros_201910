@@ -61,7 +61,7 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
                 quejasReclamosCliente = new ArrayList<>();
                 for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosCliente()) 
                 {
-//                    quejasReclamosCliente.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                    quejasReclamosCliente.add(new QuejasReclamosDTO(quejasReclamosEntity));
                 }
             }            
             else
@@ -73,7 +73,7 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
                 quejasReclamosEmpleado = new ArrayList<>();
                 for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosEmpleado()) 
                 {
-//                    quejasReclamosEmpleado.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                    quejasReclamosEmpleado.add(new QuejasReclamosDTO(quejasReclamosEntity));
                 }
             }
             else
@@ -97,7 +97,7 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
             List<QuejasReclamosEntity> quejasRelamosClienteEntity = new ArrayList<>();
             for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosCliente) 
             {
-//                quejasRelamosClienteEntity.add(quejasReclamosDTO.toEntity());
+                quejasRelamosClienteEntity.add(quejasReclamosDTO.toEntity());
             }
             compraventaEntity.setQuejasReclamosCliente(quejasRelamosClienteEntity);
         }
@@ -106,7 +106,7 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
             List<QuejasReclamosEntity> quejasRelamosEmpleadoEntity = new ArrayList<>();
             for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosEmpleado) 
             {
-//                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
+                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
             }
             compraventaEntity.setQuejasReclamosEmpleado(quejasRelamosEmpleadoEntity);
         }
