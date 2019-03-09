@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -30,7 +31,7 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "automovilFacturado", fetch = LAZY)
     private CompraVentaEntity compraVenta;
            
     
