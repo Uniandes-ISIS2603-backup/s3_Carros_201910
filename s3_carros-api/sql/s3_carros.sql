@@ -1,10 +1,13 @@
 delete from CLIENTEENTITY_PUNTOVENTAENTITY;
 delete from MARCAENTITY_PUNTOVENTAENTITY;
-delete from ClienteEntity;
-delete from CompraVentaEntity;
-delete from EmpleadoEntity;
-delete from FacturaEntity;
 delete from QuejasReclamosEntity;
+delete from FacturaEntity;
+delete from CompraVentaEntity;
+delete from ClienteEntity;
+delete from EmpleadoEntity;
+delete from AUTOMOVILENTITY;
+delete from MODELOENTITY;
+delete from MARCAENTITY;
 delete from RegistroCompraEntity;
 delete from PuntoVentaEntity;
 
@@ -30,5 +33,15 @@ INSERT INTO MARCAENTITY(ID) values (1);
 INSERT INTO MODELOENTITY(ID,MARCA_ID) VALUES (1,1);
 
 insert into AUTOMOVILENTITY(ID,MODELO_ID,REGISTROCOMPRA_ID) values (1,1,1);
+insert into AUTOMOVILENTITY(ID,MODELO_ID,REGISTROCOMPRA_ID) values (2,1,2);
 
-INSERT INTO COMPRAVENTAENTITY(ID,CLIENTE_ID,EMPLEADO_ID,PUNTOVENTA_ID) values (1,1,1,1);
+
+insert into COMPRAVENTAENTITY(ID,CLIENTE_ID,EMPLEADO_ID,PUNTOVENTA_ID,AUTOMOVILFACTURADO_ID) VALUES (1,1,1,1,1);
+insert into COMPRAVENTAENTITY(ID,CLIENTE_ID,EMPLEADO_ID,PUNTOVENTA_ID,AUTOMOVILFACTURADO_ID) VALUES (2,2,2,2,2);
+
+SELECT * FROM PUNTOVENTAENTITY;
+
+
+
+
+
