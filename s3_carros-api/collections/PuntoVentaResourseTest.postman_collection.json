@@ -1,20 +1,251 @@
 {
 	"info": {
-		"_postman_id": "3f179a3d-d9b9-41c7-bf66-dbb20af9b453",
+		"_postman_id": "e2ff6e51-1505-468b-8c99-71bf207d43ea",
 		"name": "PuntoVentaResourseTest",
-		"description": "Punto Venta Resourse Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+			"name": "Crear Punto Venta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "a75ef9ea-2d07-465f-8610-f495552fa4b2",
+						"id": "dc1bbd29-d561-4b01-b8e7-ca2980c16193",
 						"exec": [
-							" tests[\"No genera error en el Get\"] = responseCode === 200;"
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dirreccion\":\"ajaqch\", \"telefono\": \"32165\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear punto Venta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d35d7732-7f3b-4a8d-bee6-51f2b2574852",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_h\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"dirreccion\":\"ajappa\", \"telefono\": \"3103212080\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un punto de venta con la misma direccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "765fe8bc-e91e-4fa2-b4ea-6f0e6ca374b4",
+						"exec": [
+							"tests[\"No crea con la misma direccion\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Punto de venta con la direccion\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"dirreccion\":\"ajappa\", \"telefono\": \"20938\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un punto de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "377eb029-6d38-4d52-bb51-b2051fad1cfd",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direccion\": \"Punto venta con nueva direccion\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_carros-api/api/puntosdeVenta/{{new_id_h}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_h}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un punto de venta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43b1ce49-c8d9-471a-b795-6d1f63c14242",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /puntoVenta/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Editorial con nuevo nombre\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los puntos de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10201b4b-e992-42c9-be7c-e601c1c550e2",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"puntoVenta count\"] = data.length > 1;"
 						],
 						"type": "text/javascript"
 					}
@@ -25,14 +256,7 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -48,6 +272,161 @@
 						"s3_carros-api",
 						"api",
 						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un punto de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df23470d-e218-4d63-9440-15f14a319f07",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un punto de venta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23d1f175-8c6c-40b6-8e6e-2ea11b20b0e7",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /puntoVenta/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un punto de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c19b61d6-7424-4d78-9d12-3c39ac4973a6",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un punto de venta 2 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3ef373b-926d-4827-b32a-97635bcaeb35",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/{{new_id_h}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_h}}"
 					]
 				}
 			},
