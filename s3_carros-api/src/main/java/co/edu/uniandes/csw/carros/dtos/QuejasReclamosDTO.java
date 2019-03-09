@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import java.io.Serializable;
 
@@ -119,6 +120,9 @@ public class QuejasReclamosDTO implements Serializable{
        entity.setComentarios(this.comentarios);
        entity.setTipo(this.tipoQueja);
        entity.setSolucionado(this.solucionado);
+       if(this.compraVenta != null){
+           entity.setCompraVenta(this.compraVenta.toEntity());
+       }
        return entity;
     }
     public QuejasReclamosDTO(QuejasReclamosEntity entity)
@@ -127,6 +131,9 @@ public class QuejasReclamosDTO implements Serializable{
        this.comentarios = entity.getComentarios();
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
+       if(entity.getCompraVenta() != null){
+           this.compraVenta = new CompraVentaDTO(entity.getCompraVenta());
+       }
  }
 
     /**
