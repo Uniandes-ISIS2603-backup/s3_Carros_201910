@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -15,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Andres Forero
  */
 @Entity
-public class AutomovilEntity extends BaseEntity{
+public class AutomovilEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
@@ -26,6 +27,7 @@ public class AutomovilEntity extends BaseEntity{
     @PodamExclude
     @OneToOne
     private RegistroCompraEntity registroCompra;
+    
     
     @PodamExclude
     @OneToOne
@@ -76,7 +78,7 @@ public class AutomovilEntity extends BaseEntity{
      * solo placas nacionales
      * "AAA-000"
      */
-    private String matrcula;
+    private String matricula;
     
     /**
      * cuidad de registro de la matricula
@@ -204,14 +206,14 @@ public class AutomovilEntity extends BaseEntity{
      * @return the matrcula
      */
     public String getMatrcula() {
-        return matrcula;
+        return matricula;
     }
 
     /**
      * @param matrcula the matrcula to set
      */
     public void setMatrcula(String matrcula) {
-        this.matrcula = matrcula;
+        this.matricula = matrcula;
     }
 
     /**

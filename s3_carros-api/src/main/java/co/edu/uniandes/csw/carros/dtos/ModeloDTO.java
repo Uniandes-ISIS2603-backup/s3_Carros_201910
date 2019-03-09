@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.ModeloEntity;
 import java.io.Serializable;
 
 /**
@@ -14,10 +15,22 @@ import java.io.Serializable;
 public class ModeloDTO implements Serializable{
     
     
+    private MarcaDTO marca;
+    
+    
+    
+    
+    
     /**
      * id del modelo
      */
     private Long modeloID;
+    
+    
+    /**
+     * nombre del modelo
+     */
+    private String nombre;
     
     /**
      * numerop puertas del automovil con este modelo
@@ -79,6 +92,50 @@ public class ModeloDTO implements Serializable{
      */
     public ModeloDTO(){}
     
+    
+    public ModeloDTO(ModeloEntity modelo){
+        if(modelo != null){
+            this.airBag = modelo.isAirBag();
+            this.aireAc = modelo.isAireAc();
+            this.asientos = modelo.getAsientos();
+            this.cilindraje = modelo.getCilindraje();
+            this.combustible = modelo.getCombustible();
+            this.direccion = modelo.getDireccion();
+            this.frenosABS = modelo.isFrenosABS();
+            this.modeloID = modelo.getId();
+            this.numeroPuertas = modelo.getNumeroPuertas();
+            this.traccion = modelo.getTraccion();
+            this.transmision = modelo.getTransmision();
+            this.vidrios = modelo.getVidrios();
+            this.nombre = modelo.getNombre();
+            if(modelo.getMarca() != null){
+                //TODO this.marca = new MarcaDTO(modelo.getMarca());
+            }else{
+                this.marca = null;
+            }            
+        }        
+    }
+    
+    public ModeloEntity toEntity(){
+        ModeloEntity modelo = new ModeloEntity();
+        modelo.setAirBag(this.airBag);
+        modelo.setAireAc(this.aireAc);
+        modelo.setAsientos(this.asientos);
+        modelo.setCilindraje(this.cilindraje);
+        modelo.setCombustible(this.combustible);
+        modelo.setDireccion(this.direccion);
+        modelo.setFrenosABS(this.frenosABS);
+        modelo.setId(this.modeloID);        
+        modelo.setNombre(this.nombre);
+        modelo.setNumeroPuertas(this.numeroPuertas);
+        modelo.setTraccion(this.traccion);
+        modelo.setTransmision(this.transmision);
+        modelo.setVidrios(this.vidrios);
+        if(this.marca != null){
+            modelo.setMarca(this.marca.toEntity());
+        }
+        return modelo;        
+    }
     
     
     /**
@@ -247,6 +304,34 @@ public class ModeloDTO implements Serializable{
      */
     public void setModeloID(Long modeloID) {
         this.modeloID = modeloID;
+    }
+
+    /**
+     * @return the marca
+     */
+    public MarcaDTO getMarca() {
+        return marca;
+    }
+
+    /**
+     * @param marca the marca to set
+     */
+    public void setMarca(MarcaDTO marca) {
+        this.marca = marca;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
