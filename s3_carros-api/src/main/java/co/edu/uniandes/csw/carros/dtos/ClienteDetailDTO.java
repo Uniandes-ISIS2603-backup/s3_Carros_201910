@@ -20,7 +20,8 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     private List<CompraVentaDTO> listaCompras;
     private List<PuntoVentaDTO> listaPuntosVentas;
     
-    public ClienteDetailDTO(){  
+    public ClienteDetailDTO()
+    {  
     }
     
     public ClienteDetailDTO(ClienteEntity entity){
