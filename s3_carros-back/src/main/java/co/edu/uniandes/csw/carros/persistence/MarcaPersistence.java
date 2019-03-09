@@ -44,8 +44,8 @@ public class MarcaPersistence {
         em.remove(entity);
     }
     
-    public void updateMarca(MarcaEntity marca){
-        em.merge(marca);
+    public MarcaEntity updateMarca(MarcaEntity marca){
+        return em.merge(marca);
     }
     
 }

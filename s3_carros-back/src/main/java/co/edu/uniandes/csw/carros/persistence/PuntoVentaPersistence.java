@@ -15,17 +15,28 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ *Persistencia de un recurso punto de venta
  * @author Daniel Lozano
  */
 @Stateless
 public class PuntoVentaPersistence {
     
+    /**
+     * 
+     */
     private static final Logger LOGGER = Logger.getLogger(PuntoVentaPersistence.class.getName());
-    @PersistenceContext(unitName = "carrosPU")
     
+    /**
+     * Entity manager
+     */
+    @PersistenceContext(unitName = "carrosPU")     
     protected EntityManager em;  
     
+    /**
+     * Crea un nuevo punto de venta a persistir en la base de datos
+     * @param puntoVentaEntity el punto de venta a crear
+     * @return  el nuevo punto de c¿venta creado en la BD
+     */
     public PuntoVentaEntity create(PuntoVentaEntity puntoVentaEntity)
     {
         LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
@@ -34,6 +45,10 @@ public class PuntoVentaPersistence {
         return puntoVentaEntity;
     }
     
+    /**
+     * Retorna una lista con todos los puntos de venta de la base de datos
+     * @return 
+     */
     public List<PuntoVentaEntity> findAll()
     {
         LOGGER.log(Level.INFO, "Consultando todos los puntos de venta");
@@ -41,12 +56,23 @@ public class PuntoVentaPersistence {
         return  query.getResultList();
     }
     
+    
+    /**
+     * Retorna un punto de venta en la vase de datos con un id que entra por parametros
+     * @param puntoVentaID del punto de venta a buscar
+     * @return el punto de venta requerido
+     */
     public PuntoVentaEntity find(Long puntoVentaID)
     {
         LOGGER.log(Level.INFO, "Consultando punto de venta  con id={0}", puntoVentaID);
         return em.find(PuntoVentaEntity.class, puntoVentaID);
     }
     
+    /**
+     * Actualiza el punto de venta que entra por parametro 
+     * @param puntoVentaEntity a actializar
+     * @return el punto de venta actualizado
+     */
     public PuntoVentaEntity update(PuntoVentaEntity puntoVentaEntity)
     {
          LOGGER.log(Level.INFO, "Actualizando punto de venta con id = {0}", puntoVentaEntity.getId());
@@ -55,6 +81,10 @@ public class PuntoVentaPersistence {
         return em.merge(puntoVentaEntity); 
     }
     
+    /**
+     * Elimina un punto de venta de la BD
+     * @param puntoVentaId del punto de venta a eliminar
+     */
     public void delete(Long puntoVentaId)
     {
         LOGGER.log(Level.INFO, "Borrando de punto de venta con id = {0}", puntoVentaId);
@@ -65,6 +95,11 @@ public class PuntoVentaPersistence {
         LOGGER.log(Level.INFO, "Saliendo de borrar el punto de venta con id = {0}", puntoVentaId);
     }
     
+    /**
+     * Busca un punto de venta por medio de la direccion
+     * @param direccion del punto de venta abuscar 
+     * @return el punto de venta encontrado
+     */
     public PuntoVentaEntity findByDireccion(String direccion)
     {
         LOGGER.log(Level.INFO, "Consultando punto de venta por direccion ", direccion);

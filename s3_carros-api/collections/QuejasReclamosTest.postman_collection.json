@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "e17fe713-92d4-4f3c-8bf7-e3f30992f4e7",
+		"name": "QuejasReclamosTest",
+		"description": "Quejas Reclamos Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_carros-api/api/quejasReclamos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91533b17-4b27-478c-b94c-e225b29b9e84",
+						"exec": [
+							"tests[\"no genera error el get\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/quejasReclamos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"quejasReclamos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

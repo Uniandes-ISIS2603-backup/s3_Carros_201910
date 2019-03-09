@@ -22,14 +22,20 @@ import javax.inject.Inject;
 public class EmpleadoLogic {
     
     @Inject
-    private EmpleadoPersistence persistence;
+    private EmpleadoPersistence persistence; //atributo para acceder a la persistencia
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
     
+    /**
+     * Crea un empleado en la persistencia.
+     */
     public EmpleadoEntity createEmpleado(EmpleadoEntity nuevoEmpleado) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
         List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
         if(search.isEmpty()){
+            if(nuevoEmpleado.getPuntoVenta() == null){
+                throw new BusinessLogicException("!El empleado no tiene ningún punto de venta asociado¡");
+            }
             persistence.create(nuevoEmpleado);
             LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
             return nuevoEmpleado;
@@ -39,12 +45,19 @@ public class EmpleadoLogic {
         }      
     }
     
+    /**
+     * Borrar un empleado
+     */
     public void deleteEmpleado(Long empleadoID){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el empleado con id = {0}", empleadoID);
         persistence.deleteEmpleado(empleadoID);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el empleado con id = {0}", empleadoID);
     }
     
+    /**
+     *
+     * Actualizar un empleado.
+     */
     public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
          LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado.getId());
         String correo = empleado.getCorreo();
@@ -65,6 +78,10 @@ public class EmpleadoLogic {
         return empleado;
     }
     
+    /**
+     *
+     * Obtener un empleado por medio de su id.
+     */
     public EmpleadoEntity getEmpleado(Long empleadoID){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el empleado con id = {0}", empleadoID);
         EmpleadoEntity empleado = persistence.findEmpleado(empleadoID);
@@ -75,6 +92,9 @@ public class EmpleadoLogic {
         return empleado;
     }
     
+     /**
+     * Obtener todas los empleados existentes en la base de datos.
+     */
     public List<EmpleadoEntity> getAllEmpleados(){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los empleados");
         List<EmpleadoEntity> lista = persistence.findAllEmpleados();

@@ -42,6 +42,11 @@ UserTransaction utx;
 
 private List<RegistroCompraEntity> data = new ArrayList<RegistroCompraEntity>();
 
+/**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
 @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -51,6 +56,9 @@ private List<RegistroCompraEntity> data = new ArrayList<RegistroCompraEntity>();
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
 
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {

@@ -40,7 +40,9 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     private AutomovilEntity automovil;
     
             
-     
+    /**
+     * Constructor por defecto de la clase
+     */ 
     public RegistroCompraEntity()
     {
         

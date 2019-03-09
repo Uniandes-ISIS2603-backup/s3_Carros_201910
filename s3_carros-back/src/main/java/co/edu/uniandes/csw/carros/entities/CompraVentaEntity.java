@@ -28,14 +28,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class CompraVentaEntity extends BaseEntity implements Serializable
 {
-    private double calificacionCompra;
+    private Double calificacionCompra;
     
     private String comentarios;
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    private boolean pagado;
+    private Boolean pagado;
     
     @PodamExclude
     @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
@@ -58,7 +58,7 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
-    @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
+    @OneToOne
     private AutomovilEntity automovilFacturado;
     
     @PodamExclude
@@ -68,14 +68,14 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     /**
      * @return the calificacionCompra
      */
-    public double getCalificacionCompra() {
+    public Double getCalificacionCompra() {
         return calificacionCompra;
     }
 
     /**
      * @param calificacionCompra the calificacionCompra to set
      */
-    public void setCalificacionCompra(double calificacionCompra) {
+    public void setCalificacionCompra(Double calificacionCompra) {
         this.calificacionCompra = calificacionCompra;
     }
 
@@ -180,14 +180,14 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     /**
      * @return the pagado
      */
-    public boolean isPagado() {
+    public Boolean isPagado() {
         return pagado;
     }
 
     /**
      * @param pagado the pagado to set
      */
-    public void setPagado(boolean pagado) {
+    public void setPagado(Boolean pagado) {
         this.pagado = pagado;
     }
 
@@ -217,6 +217,5 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
      */
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
-    }
-    
+    } 
 }

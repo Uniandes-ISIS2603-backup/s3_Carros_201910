@@ -29,6 +29,9 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     @ManyToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
     
+    /**
+     * Constructor de la clase por defecto
+     */
     public QuejasReclamosEntity(){
         
     }
@@ -86,5 +89,19 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
      */
     public void setCarroId(Long carroId) {
         this.casoId = carroId;
+    }
+
+    /**
+     * @return the compraVenta
+     */
+    public CompraVentaEntity getCompraVenta() {
+        return compraVenta;
+    }
+
+    /**
+     * @param compraVenta the compraVenta to set
+     */
+    public void setCompraVenta(CompraVentaEntity compraVenta) {
+        this.compraVenta = compraVenta;
     }
 }

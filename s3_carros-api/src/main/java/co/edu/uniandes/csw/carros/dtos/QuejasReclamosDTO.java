@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import java.io.Serializable;
 
@@ -39,6 +40,11 @@ public class QuejasReclamosDTO implements Serializable{
     private String comentarios;
     
     /**
+     * compraVenta asociada a la queja
+     */
+    private CompraVentaDTO compraVenta;
+    
+    /**
      * los diferentes tipos de queja
      */
     private final static int ESTADO_AUTOMOVIL = 0;
@@ -46,7 +52,11 @@ public class QuejasReclamosDTO implements Serializable{
     private final static int DEMORA_ENTREGA = 2;
     private final static int MALA_ATENCION = 3;
     private final static int REEMBOLSO = 4;
+    private final static int OTRO = 5;
 
+    /**
+     * Constructor por defecto del DTO
+     */
     public QuejasReclamosDTO(){
         
     }
@@ -107,21 +117,52 @@ public class QuejasReclamosDTO implements Serializable{
         this.comentarios = comentarios;
     }
     
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de la queja asociada.
+     */
     public QuejasReclamosEntity toEntity()
     {
        QuejasReclamosEntity entity = new QuejasReclamosEntity();
-       entity.setCarroId(this.casoId);
        entity.setComentarios(this.comentarios);
        entity.setTipo(this.tipoQueja);
        entity.setSolucionado(this.solucionado);
+       if(this.compraVenta != null){
+           entity.setCompraVenta(this.compraVenta.toEntity());
+       }
        return entity;
     }
+    
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param entity La entidad de compraVenta
+     */
     public QuejasReclamosDTO(QuejasReclamosEntity entity)
  {
-       this.casoId = entity.getCarroId();
+       this.casoId = entity.getId();
        this.comentarios = entity.getComentarios();
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
+       if(entity.getCompraVenta() != null){
+
+           this.compraVenta = new CompraVentaDTO(entity.getCompraVenta());
+       }
  }
+
+    /**
+     * @return the compraVenta
+     */
+    public CompraVentaDTO getCompraVenta() {
+        return compraVenta;
+    }
+
+    /**
+     * @param compraVenta the compraVenta to set
+     */
+    public void setCompraVenta(CompraVentaDTO compraVenta) {
+        this.compraVenta = compraVenta;
+    }
             
 }

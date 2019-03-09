@@ -46,6 +46,11 @@ public class RegistroCompraLogicTest
     
     private List<RegistroCompraEntity> data = new ArrayList<RegistroCompraEntity>();
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -56,6 +61,9 @@ public class RegistroCompraLogicTest
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {
@@ -95,6 +103,10 @@ public class RegistroCompraLogicTest
         }
     }
     
+    /**
+     * Prueba para crear un RegistroCompra.
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createRegistroCompraTest() throws BusinessLogicException 
     {
@@ -108,7 +120,10 @@ public class RegistroCompraLogicTest
     }
    
     
-   @Test
+   /**
+    * Prueba para obtener un RegistroCompra
+    */
+    @Test
     public void getRegistrosCompraTest() {
         List<RegistroCompraEntity> list = registroCompraLogic.getRegistrosCompra();
         Assert.assertEquals(data.size(), list.size());

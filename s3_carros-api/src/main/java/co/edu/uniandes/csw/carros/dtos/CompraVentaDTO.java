@@ -39,13 +39,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                     "fecha": "2018-08-20T00:00:00-07:00"
  *                 }
  *   }
- *
  * </pre>
  *
  * @author Kevin Hernan Castrillon Castañeda
  */
 public class CompraVentaDTO extends CascaraDTO implements Serializable
-{
+{ 
     /**
      * Identificador único de la transacción.
      */
@@ -54,7 +53,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * Calificación de la CompraVenta.
      */
-    private double calificacionCompra;
+    private Double calificacionCompra;
     
     /**
      * Fecha en la que se hizo la CompraVenta.
@@ -65,7 +64,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * Indica si la compraVenta ya fue pagada.
      */
-    private boolean pagado;
+    private Boolean pagado;
     
     /**
      * Factura asociada a la CompraVenta.
@@ -130,7 +129,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
             }
             if (compraVentaEntity.getCliente() != null)
             {
-//                this.cliente = new ClienteDTO(compraVentaEntity.getCliente());
+                this.cliente = new ClienteDTO(compraVentaEntity.getCliente());
             }
             else 
             {
@@ -138,7 +137,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
             }
             if (compraVentaEntity.getAutomovilFacturado() != null)
             {
-//                this.automovilFacturado = new AutomovilDTO(compraVentaEntity.getAutomovilFacturado());
+                this.automovilFacturado = new AutomovilDTO(compraVentaEntity.getAutomovilFacturado());
             }
             else 
             {
@@ -179,14 +178,13 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
         {
             compraVentaEntity.setFactura(this.factura.toEntity());
         }
-        
         if(this.puntoVenta != null)
         {
             compraVentaEntity.setPuntoVenta(this.puntoVenta.toEntity());
         }
         if (this.automovilFacturado != null) 
         {
-//            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
+            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
         }
         return compraVentaEntity;
     }
@@ -208,14 +206,14 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * @return the calificacionCompra
      */
-    public double getCalificacionCompra() {
+    public Double getCalificacionCompra() {
         return calificacionCompra;
     }
 
     /**
      * @param calificacionCompra the calificacionCompra to set
      */
-    public void setCalificacionCompra(double calificacionCompra) {
+    public void setCalificacionCompra(Double calificacionCompra) {
         this.calificacionCompra = calificacionCompra;
     }
 
@@ -250,14 +248,14 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
     /**
      * @return the pagado
      */
-    public boolean isPagado() {
+    public Boolean isPagado() {
         return pagado;
     }
 
     /**
      * @param pagado the pagado to set
      */
-    public void setPagado(boolean pagado) {
+    public void setPagado(Boolean pagado) {
         this.pagado = pagado;
     }
 

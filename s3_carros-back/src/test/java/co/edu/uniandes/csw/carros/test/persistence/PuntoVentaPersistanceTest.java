@@ -27,22 +27,33 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
  
 /**
- *
+ *Prueba si las entidades de persisten efectivamente
  * @author Daniel Lozano
  */
 @RunWith(Arquillian.class)    
 public class PuntoVentaPersistanceTest 
 {
+    /**
+     * 
+     */
     @Inject
     private PuntoVentaPersistence pvp;
     
+    /**
+     * 
+     */
     @PersistenceContext  
     private EntityManager em;  
     
+    /**
+     * 
+     */
     @Inject
     UserTransaction utx;
     
-    
+    /**
+     * Lista con entidades de punto de venta
+     */
     private List<PuntoVentaEntity> data = new ArrayList<PuntoVentaEntity>();
    
 
@@ -56,6 +67,9 @@ public class PuntoVentaPersistanceTest
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
    }
     
+    /**
+     * Meotdo a ejecutar antes de los test
+     */
     @Before
     public void configTest() {
         try {
@@ -96,7 +110,9 @@ public class PuntoVentaPersistanceTest
         }
     }
   
-    
+    /**
+     * Prueba que se cree efectivamente un punto de venta
+     */
     @Test
     public void cratedPuntoVentaTest()
     {
@@ -113,6 +129,9 @@ public class PuntoVentaPersistanceTest
        
     }
     
+    /**
+     * Prueba que se cogan todos los puntos de venta 
+     */
     @Test
     public void getPuntosVentaTest()
     {
@@ -132,6 +151,9 @@ public class PuntoVentaPersistanceTest
         }
     }
     
+    /**
+     * Purba de que se encuentre efectivemtne un punto de venta
+     */
     @Test
     public void getPuntoVentaTest() {
         PuntoVentaEntity entity = data.get(0);
@@ -141,6 +163,9 @@ public class PuntoVentaPersistanceTest
         Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
+    /**
+     * Prueba que se elimene efectivamente un punto de venta
+     */
     @Test
     public void deletePuntosTest() {
         PuntoVentaEntity entity = data.get(0);
@@ -149,6 +174,9 @@ public class PuntoVentaPersistanceTest
         Assert.assertNull(deleted);
     }
     
+    /**
+     * Prueba de que se actualice efectivmetne el punto de venta
+     */
     @Test
     public void updatePuntoVentaTest() {
         PuntoVentaEntity entity = data.get(0);
@@ -164,6 +192,9 @@ public class PuntoVentaPersistanceTest
         Assert.assertEquals(newEntity.getDireccion(), resp.getDireccion());
     }
 
+    /**
+     * Prueba de que se ecuentre efectiavemte un punto de venta por su direccion
+     */
     @Test
     public void findPuntoVentaByDireccionTest() {
         PuntoVentaEntity entity = data.get(0);

@@ -43,6 +43,11 @@ public class QuejasReclamosPersistenceTest {
     
     private List<QuejasReclamosEntity> data = new ArrayList<>();
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -52,6 +57,9 @@ public class QuejasReclamosPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
         try{
@@ -70,11 +78,17 @@ public class QuejasReclamosPersistenceTest {
         }
     }
     
+    /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     public void clearData(){
       em.createQuery("delete from QuejasReclamosEntity").executeUpdate();
     }
     
-    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
     private void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
       for(int i=0;i<3; i++){
@@ -86,6 +100,9 @@ public class QuejasReclamosPersistenceTest {
         }
     }
 
+    /**
+     * Prueba para crear una instancia de unaqueja
+     */
     @Test
     public void createQuejasReclamosTest() {
         
@@ -102,6 +119,9 @@ public class QuejasReclamosPersistenceTest {
         
     }
     
+    /**
+     * Prueba para consultar una instancia de una queja
+     */
     @Test
     public void findQuejasReclamosTest(){
         QuejasReclamosEntity entity = data.get(0);
@@ -110,12 +130,19 @@ public class QuejasReclamosPersistenceTest {
         Assert.assertNotNull(search);
         Assert.assertEquals(entity.getCarroId(), search.getCarroId());
     }
+    
+    /**
+     * Prueba para consultar todas las instancias de quejas
+     */
     @Test
     public void findALLQuejasReclamosTest(){
         TypedQuery<QuejasReclamosEntity> query = em.createQuery("Select u from QuejasReclamosEntity u",QuejasReclamosEntity.class);
         Assert.assertEquals(query.getResultList(), qrp.findAll());
     }
     
+    /**
+     * Prueba para eliminar una instancia de una queja
+     */
     @Test
     public void deleteQuejasReclamosTest(){
         QuejasReclamosEntity entity = data.get(1);
@@ -124,6 +151,9 @@ public class QuejasReclamosPersistenceTest {
         Assert.assertNull(search);
     }
     
+    /**
+     * Prueba para actualizar una instancia de una queja
+     */
     @Test
     public void updateQuejasReclamosTest(){
         QuejasReclamosEntity entity = data.get(0);
@@ -133,6 +163,9 @@ public class QuejasReclamosPersistenceTest {
         Assert.assertEquals(search.isSolucionado(), true);
     }
     
+    /**
+     * Prueba para encontrar una instancia de una queja con su casoId
+     */
     @Test
     public void findQuejasReclamosByIdTest() {
         QuejasReclamosEntity entity = data.get(0);

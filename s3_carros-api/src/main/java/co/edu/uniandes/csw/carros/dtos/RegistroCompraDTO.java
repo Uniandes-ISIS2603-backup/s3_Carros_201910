@@ -16,24 +16,40 @@ import java.util.Date;
  */
 public class RegistroCompraDTO implements Serializable
 {
+    /**
+     * El precio que se acordó a pagar
+     */
     private double precioAcordado; 
     
+    /**
+     * La fecha de la compra
+     */
     private Date fechaCompra; 
     
+    /**
+     * El nombre dle vendendor
+     */
     private String nombreVendedor; 
     
+    /**
+     * El automovil asociado
+     */
     private AutomovilDTO auto; 
     
     private long compraId; 
 
     /**
-     * 
+     * Constructor por defecto de la clase
      */
     public RegistroCompraDTO()
     {
         
     }
     
+    /**
+     * Método que transforma un DTO a una entidad
+     * @return 
+     */
     public RegistroCompraEntity toEntity()
     {
        RegistroCompraEntity entity = new RegistroCompraEntity();
@@ -46,13 +62,18 @@ public class RegistroCompraDTO implements Serializable
        
        return entity;
     }
+    
+    /**
+     * Constructor de la clase
+     * @param entity: Entidad de la cual se sacan los atributos de la clase
+     */
     public RegistroCompraDTO(RegistroCompraEntity entity)
  {
       this.fechaCompra = entity.getFechaCompra();
       this.nombreVendedor = entity.getNombreVendedor();
       this.precioAcordado = entity.getPrecioComprado();
       this.compraId = entity.getId();
-     //this.auto = new AutomovilDTO(entity.getAutomovil());
+      this.auto = new AutomovilDTO(entity.getAutomovil());
       this.compraId = entity.getId();
  }
     /**
