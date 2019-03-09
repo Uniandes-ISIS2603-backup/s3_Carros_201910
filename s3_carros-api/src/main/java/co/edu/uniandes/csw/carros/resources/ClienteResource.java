@@ -42,6 +42,11 @@ public class ClienteResource {
     @Inject
     private ClienteLogic clienteLogic;
     
+    /**
+     * Crea un nuevo cliente con la informacion que se recibe en el cuerpo de
+     * la petición y se regresa un objeto identico con un id auto-generado por
+     * la base de datos.
+     */
     @POST
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ClienteResource createCliente: input: {0}", cliente);
@@ -51,6 +56,9 @@ public class ClienteResource {
         return clienteDto;
     }
     
+    /*
+    * Busca y devuelve todos los clientes que existen en la aplicacion.
+    */
     @GET
     public List<ClienteDetailDTO> getClientes(){
         LOGGER.info("ClienteResource getClientes: input: void");
@@ -63,6 +71,9 @@ public class ClienteResource {
         return listaDTO;
     }
     
+    /*
+    * Busca el cliente con el id asociado recibido en la URL y la devuelve..
+    */
     @GET
     @Path("{clienteID: \\d+}")
     public ClienteDetailDTO getCliente(@PathParam("clienteID") Long clienteID) throws WebApplicationException{
@@ -76,6 +87,9 @@ public class ClienteResource {
         return clienteDto;
     }
     
+    /*Actualiza el cliente con el id recibido en la URL con la informacion
+     * que se recibe en el cuerpo de la petición.
+     */
     @PUT
     @Path("{clienteID: \\d+}")
     public ClienteDetailDTO updateCliente(@PathParam("clienteID") Long clienteID, ClienteDetailDTO cliente) throws BusinessLogicException{
@@ -90,6 +104,9 @@ public class ClienteResource {
         return clienteDto;
     }
     
+      /*
+    *Borra el cliente con el id asociado recibido en la URL.
+    */
     @DELETE
     @Path("{clienteID: \\d+}")
     public void deleteCliente(@PathParam("clienteID") Long clienteID){  

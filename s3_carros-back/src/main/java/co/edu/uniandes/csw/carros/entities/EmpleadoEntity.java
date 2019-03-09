@@ -32,9 +32,9 @@ public class EmpleadoEntity extends BaseEntity implements Serializable  {
     @ManyToOne
     private PuntoVentaEntity puntoVenta;
 
-    public EmpleadoEntity(){
-        
+    public EmpleadoEntity(){      
     }
+    
     /**
      * @return the nombre
      */

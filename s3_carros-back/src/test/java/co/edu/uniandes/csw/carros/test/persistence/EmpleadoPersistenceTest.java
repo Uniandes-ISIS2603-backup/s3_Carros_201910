@@ -43,6 +43,11 @@ public class EmpleadoPersistenceTest {
    
     private List<EmpleadoEntity> data = new ArrayList<>();
     
+     /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
@@ -52,6 +57,9 @@ public class EmpleadoPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
         try{
@@ -70,10 +78,17 @@ public class EmpleadoPersistenceTest {
         }
     }
     
+        /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     private void clearData(){
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
     
+        /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
     private void insertData(){
         PodamFactory factory = new PodamFactoryImpl();
         for(int i=0;i<3; i++){
@@ -83,7 +98,9 @@ public class EmpleadoPersistenceTest {
         }
     }
     
-    
+    /**
+     * Prueba para crear un Empleado.
+     */
     @Test
     public void createEmpleadoTest(){
         
@@ -97,6 +114,10 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
     
+
+        /**
+     * Prueba para consultar un Empleado.
+     */
     @Test
     public void findEmpleadoTest(){
         
@@ -107,6 +128,9 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(entity.getNombre(), search.getNombre());
     }     
     
+            /**
+     * Prueba para consultar la lista de Empleados.
+     */
     @Test
     public void findAllEmpleadosTest(){
       
@@ -114,6 +138,9 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(query.getResultList(), ep.findAllEmpleados());
     }
     
+        /**
+     * Prueba para eliminar una Empleado.
+     */
     @Test
     public void deleteEmpleadoTest(){
         EmpleadoEntity entity = data.get(1);
@@ -122,6 +149,9 @@ public class EmpleadoPersistenceTest {
         Assert.assertNull(search);
     }
     
+        /**
+     * Prueba para actualizar un Empleado.
+     */
     @Test
     public void updateEmpleadoTest(){
         EmpleadoEntity entity = data.get(0);
@@ -131,6 +161,10 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(search.getNombre(),"Carlos Moreno" );
     }
 
+    
+    /**
+     * Prueba para consultar un Empleado por correo.
+     */
     @Test
     public void finEmpleadoPorCorreoTest(){
         EmpleadoEntity entity = data.get(0);

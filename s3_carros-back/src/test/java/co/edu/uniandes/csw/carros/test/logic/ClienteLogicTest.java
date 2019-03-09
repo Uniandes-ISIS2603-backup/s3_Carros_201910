@@ -49,6 +49,11 @@ public class ClienteLogicTest {
     private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
     
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
@@ -59,6 +64,9 @@ public class ClienteLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+        /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
         try{
@@ -76,11 +84,19 @@ public class ClienteLogicTest {
         }
     }
     
+        /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     private void clearData(){
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
         em.createQuery("delete from PuntoVentaEntity").executeUpdate();
     }
     
+    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
     private void insertData(){
         for(int i=0; i<2; i++){
             PuntoVentaEntity entity = factory.manufacturePojo(PuntoVentaEntity.class);
@@ -94,6 +110,12 @@ public class ClienteLogicTest {
         }
     }
     
+        
+       /**
+     * Prueba para crear un Cliente.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
     @Test
     public void createClienteTest() throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
@@ -104,6 +126,12 @@ public class ClienteLogicTest {
         Assert.assertEquals(nuevoCliente.getId(), entity.getId());
     }
     
+            /**
+     * Prueba para crear un Cliente con el mismo correo de un Cliente que ya
+     * existe.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
     @Test(expected = BusinessLogicException.class)
     public void createClienteConMismoCorreoTest()throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
@@ -112,6 +140,11 @@ public class ClienteLogicTest {
         clienteLogic.createCliente(nuevoCliente);
     }
     
+    /**
+     * Prueba para crear un Cliente sin un punto de venta.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
     @Test(expected = BusinessLogicException.class)
     public void createClienteSinPuntoVenta() throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
@@ -119,6 +152,9 @@ public class ClienteLogicTest {
         clienteLogic.createCliente(nuevoCliente);
     }
     
+       /**
+     * Prueba para actualizar un Cliente.
+     */
     @Test
     public void updateClienteTest() throws BusinessLogicException{
         ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
@@ -129,6 +165,9 @@ public class ClienteLogicTest {
         Assert.assertEquals(search.getCorreo(), cliente.getCorreo());
     }
     
+    /**
+     * Prueba para actualizar un Cliente con un correo que ya aparece en la base de datos.
+     */
     @Test(expected = BusinessLogicException.class)
     public void updateClienteConMismoCorreoTest() throws BusinessLogicException{
         ClienteEntity cliente = data.get(0);
@@ -136,8 +175,11 @@ public class ClienteLogicTest {
         clienteLogic.updateCliente(cliente);
     }
     
+     /**
+     * Prueba para eliminar un Cliente.
+     */
     @Test
-    public void deleteEmpleadoTest(){
+    public void deleteClienteTest(){
         ClienteEntity cliente = data.get(0);
         clienteLogic.deleteCliente(cliente.getId());
         ClienteEntity deleted = em.find(ClienteEntity.class, cliente.getId());
