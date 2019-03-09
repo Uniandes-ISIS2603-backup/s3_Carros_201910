@@ -17,7 +17,7 @@ public class PuntoVentaDTO implements Serializable
 {
  private String dirreccion; 
  
- private String telefoo;
+ private String telefono;
  
  private long id;
 
@@ -46,15 +46,15 @@ public class PuntoVentaDTO implements Serializable
     /**
      * @return the telefoo
      */
-    public String getTelefoo() {
-        return telefoo;
+    public String getTelefono() {
+        return telefono;
     }
 
     /**
      * @param telefoo the telefoo to set
      */
-    public void setTelefoo(String telefoo) {
-        this.telefoo = telefoo;
+    public void setTelefono(String telefoo) {
+        this.telefono = telefoo;
     }
 
     /**
@@ -75,14 +75,14 @@ public class PuntoVentaDTO implements Serializable
     {
        PuntoVentaEntity entity = new PuntoVentaEntity();
        entity.setDireccion(this.dirreccion);
-       entity.setTelefono(this.telefoo);
+       entity.setTelefono(this.telefono);
        entity.setId(this.id);
        return entity;
     }
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
       this.dirreccion = entity.getDireccion();
-      this.telefoo = entity.getTelefono();
+      this.telefono = entity.getTelefono();
       this.id = entity.getId();
  }
 }
