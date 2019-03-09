@@ -145,7 +145,99 @@
 			"response": []
 		},
 		{
-			"name": "Buscar todas las compraVentas",
+			"name": "Crear una Marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un Modelo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las compraVentas",
 			"event": [
 				{
 					"listen": "test",
