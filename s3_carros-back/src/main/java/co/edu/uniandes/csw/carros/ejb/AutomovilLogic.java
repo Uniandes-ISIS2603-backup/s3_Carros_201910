@@ -90,10 +90,10 @@ public class AutomovilLogic {
         LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", autoID);
     }
     
-    public AutomovilEntity updateAutomovil(AutomovilEntity auto)throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", auto.getId());
+    public AutomovilEntity updateAutomovil(Long autoID, AutomovilEntity auto)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", auto.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
         return newEntity;
     }
 }
