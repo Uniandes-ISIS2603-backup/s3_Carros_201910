@@ -54,6 +54,9 @@ public class QuejasReclamosDTO implements Serializable{
     private final static int REEMBOLSO = 4;
     private final static int OTRO = 5;
 
+    /**
+     * Constructor por defecto del DTO
+     */
     public QuejasReclamosDTO(){
         
     }
@@ -114,6 +117,11 @@ public class QuejasReclamosDTO implements Serializable{
         this.comentarios = comentarios;
     }
     
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de la queja asociada.
+     */
     public QuejasReclamosEntity toEntity()
     {
        QuejasReclamosEntity entity = new QuejasReclamosEntity();
@@ -125,6 +133,12 @@ public class QuejasReclamosDTO implements Serializable{
        }
        return entity;
     }
+    
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param entity La entidad de compraVenta
+     */
     public QuejasReclamosDTO(QuejasReclamosEntity entity)
  {
        this.casoId = entity.getId();
@@ -132,6 +146,7 @@ public class QuejasReclamosDTO implements Serializable{
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
        if(entity.getCompraVenta() != null){
+
            this.compraVenta = new CompraVentaDTO(entity.getCompraVenta());
        }
  }

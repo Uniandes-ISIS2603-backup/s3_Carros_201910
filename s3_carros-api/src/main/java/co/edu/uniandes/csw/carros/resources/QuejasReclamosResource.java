@@ -43,6 +43,18 @@ public class QuejasReclamosResource {
     @Inject
     private QuejasReclamosLogic quejasReclamosLogic;
     
+    /**
+     * Crea una nueva Queja con la informacion que se recibe en el cuerpo de
+     * la petición y se regresa un objeto identico con un id auto-generado por
+     * la base de datos.
+     *
+     * @param queja {@link QuejasReclamosDTO} - La queja que se desea
+     * guardar.
+     * @return JSON {@link QuejasReclamosDTO} - La queja guardada con el atributo
+     * id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe la compraventa.
+     */
     @POST
     public QuejasReclamosDTO createQuejasReclamos(QuejasReclamosDTO queja) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "QuejasReclamosResource createQuejasReclamos: input: {0}", queja);
@@ -50,7 +62,12 @@ public class QuejasReclamosResource {
         LOGGER.log(Level.INFO, "QuejasReclamosResource createQuejasReclamos: output: {0}", nuevoQuejasReclamosDTO);
         return nuevoQuejasReclamosDTO;
 }
-    
+    /**
+     * Busca y retorna todas las quejas que existen en la aplicación.
+     * 
+     * @return JSONArray {@link QuejasReclamosDTO} - Las quejas
+     * encontradas en la aplicacion. Si no hay ninguna ratorna una lista vacía..
+     */
     @GET
     public List<QuejasReclamosDTO> getQuejasReclamos() {
         LOGGER.info("QuejasReclamosResource QuejasReclamosBooks: input: void");
@@ -58,7 +75,14 @@ public class QuejasReclamosResource {
         LOGGER.log(Level.INFO, "QuejasReclamosResource getBooks: output: {0}", listaQuejasReclamos);
         return listaQuejasReclamos;
 }
-    
+    /**
+     * Busca la queja con el id asociado recibido en la URL y la devuelve.
+     * 
+     * @param casoID: Identificador de la queja.
+     * @return JSON {@link QuejasReclamosDTO} - La queja buscada. 
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la queja.
+     */
     @GET
     @Path("{casoId: \\d+}")
     public QuejasReclamosDTO getQueja(@PathParam("casoId") Long casoId) throws BusinessLogicException {
@@ -72,6 +96,19 @@ public class QuejasReclamosResource {
         return quejaDTO;
 }
     
+    /**
+     * Actualiza la queja con el id recibido en la URL con la informacion
+     * que se recibe en el cuerpo de la petición.
+     *
+     * @param casoId Identificador de la queja que se desea
+     * actualizar. Este debe ser una cadena de dígitos.
+     * @param queja {@link QuejasReclamosDTO} La queja que se desea
+     * guardar.
+     * @return JSON {@link QuejasReclamosDTO} - La queja guardada.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la queja a
+     * actualizar.
+     */
     @PUT
     @Path("{casoId: \\d+}")
     public QuejasReclamosDTO updateQuejasReclamos(@PathParam("casoId") Long casoId, QuejasReclamosDTO queja) throws BusinessLogicException {
@@ -85,6 +122,13 @@ public class QuejasReclamosResource {
         return DTO;
     }
     
+    
+    /**
+     * Elimina una queja con el ID recibido en la URL con la información
+     * que recibe el cuerpo de petición
+     * @param QuejasReclamosId : Identificador de la queja
+     * @throws BusinessLogicException si no existe la queja con el Id
+     */
     @DELETE
     @Path("{casoId: \\d+}")
     public void deleteQuejasReclamos(@PathParam("casoId") Long QuejasReclamosId) throws BusinessLogicException {
@@ -97,6 +141,15 @@ public class QuejasReclamosResource {
         LOGGER.info("BookResource deleteBook: output: void");
 }
 
+    /**
+     * Convierte una lista de entidades a DTO
+     * 
+     * Este método convierte una lista de objetos QuejasReclamosEntity a una lista de 
+     * objetos QuejasReclamosDTO (json).
+     * 
+     * @param entityList corresponde a una lista de quejas de tipo Entity.
+     * @return la lista de quejas en forma DTO (json).
+     */
     private List<QuejasReclamosDTO> listEntity2DetailDTO(List<QuejasReclamosEntity> entityList) {
         List<QuejasReclamosDTO> list = new ArrayList<>();
         for (QuejasReclamosEntity entity : entityList) {

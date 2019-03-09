@@ -47,6 +47,11 @@ public class QuejasReclamosLogicTest {
     
     private List<QuejasReclamosEntity> data = new ArrayList<QuejasReclamosEntity>();
     
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
@@ -57,6 +62,9 @@ public class QuejasReclamosLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
         try{
@@ -74,10 +82,17 @@ public class QuejasReclamosLogicTest {
         }
     }
     
+    /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     private void clearData(){
         em.createQuery("delete from QuejasReclamosEntity").executeUpdate();
     }
     
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
     private void insertData(){
         for(int i=0; i<3; i++){
             QuejasReclamosEntity queja = factory.manufacturePojo(QuejasReclamosEntity.class);
@@ -92,6 +107,10 @@ public class QuejasReclamosLogicTest {
         }
     }
     
+    /**
+     * Prueba para crear una queja
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createQuejasReclamosTest() throws BusinessLogicException 
     {
@@ -109,6 +128,10 @@ public class QuejasReclamosLogicTest {
         
     }
     
+    /**
+     * Prueba para comprobar que no se crea una queja con id repetido
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createQuejasReclamosConMismoIdTest() throws BusinessLogicException 
     {
@@ -121,6 +144,10 @@ public class QuejasReclamosLogicTest {
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
+    /**
+     * Prueba para comprobar que no se crea una queja con tipo invalido
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createQuejasReclamosTipoInvalido() throws BusinessLogicException 
     {
@@ -132,6 +159,10 @@ public class QuejasReclamosLogicTest {
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
+    /**
+     * Prueba para comprobar que no se puede crear una queja de tipo OTRO que tenga comentario vacio
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createQuejasReclamosTipoOtroSinComentarios() throws BusinessLogicException 
     {
@@ -143,6 +174,9 @@ public class QuejasReclamosLogicTest {
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
+    /**
+     * Prueba para consultar la lista de quejas
+     */
     @Test
     public void getQuejasReclamosTest() {
         List<QuejasReclamosEntity> list = quejasReclamosLogic.getQuejasReclamos();
@@ -158,6 +192,10 @@ public class QuejasReclamosLogicTest {
         }
     }
     
+    /**
+     * Prueba para consultar una queja con base en su id
+     * @throws BusinessLogicException 
+     */
     @Test
     public void getQuejaTest() throws BusinessLogicException{
         QuejasReclamosEntity entity = data.get(0);
@@ -167,6 +205,9 @@ public class QuejasReclamosLogicTest {
         Assert.assertEquals(entity.getCarroId(), resultEntity.getCarroId());
     }
     
+    /**
+     * Prueba para actualizar una queja
+     */
     @Test
     public void updateQuejasReclamosTest()
     {
@@ -179,7 +220,11 @@ public class QuejasReclamosLogicTest {
         Assert.assertEquals(pojoEntity.getCarroId(), resp.getCarroId());
     }
     
-     @Test
+    /**
+     * Prueba para eliminar una queja
+     * @throws BusinessLogicException 
+     */
+    @Test
     public void deleteQuejasReclamosTest() throws BusinessLogicException {
         QuejasReclamosEntity entity = data.get(1);
         quejasReclamosLogic.deleteQuejasReclamos(entity.getId());
