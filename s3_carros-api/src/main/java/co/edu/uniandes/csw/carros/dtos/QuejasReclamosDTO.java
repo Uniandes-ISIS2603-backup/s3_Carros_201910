@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.QuejasReclamosEntity;
 import java.io.Serializable;
 
@@ -37,6 +38,11 @@ public class QuejasReclamosDTO implements Serializable{
      * opcional
      */
     private String comentarios;
+    
+    /**
+     * compraVenta asociada a la queja
+     */
+    private CompraVentaDTO compraVenta;
     
     /**
      * los diferentes tipos de queja
@@ -111,18 +117,37 @@ public class QuejasReclamosDTO implements Serializable{
     public QuejasReclamosEntity toEntity()
     {
        QuejasReclamosEntity entity = new QuejasReclamosEntity();
-       entity.setCarroId(this.casoId);
        entity.setComentarios(this.comentarios);
        entity.setTipo(this.tipoQueja);
        entity.setSolucionado(this.solucionado);
+       if(this.compraVenta != null){
+           entity.setCompraVenta(this.compraVenta.toEntity());
+       }
        return entity;
     }
     public QuejasReclamosDTO(QuejasReclamosEntity entity)
  {
-       this.casoId = entity.getCarroId();
+       this.casoId = entity.getId();
        this.comentarios = entity.getComentarios();
        this.tipoQueja = entity.getTipo();
        this.solucionado = entity.isSolucionado();
+       if(entity.getCompraVenta() != null){
+           this.compraVenta = new CompraVentaDTO(entity.getCompraVenta());
+       }
  }
+
+    /**
+     * @return the compraVenta
+     */
+    public CompraVentaDTO getCompraVenta() {
+        return compraVenta;
+    }
+
+    /**
+     * @param compraVenta the compraVenta to set
+     */
+    public void setCompraVenta(CompraVentaDTO compraVenta) {
+        this.compraVenta = compraVenta;
+    }
             
 }

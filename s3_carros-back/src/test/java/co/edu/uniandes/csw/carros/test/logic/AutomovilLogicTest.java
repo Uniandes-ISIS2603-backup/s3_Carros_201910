@@ -16,7 +16,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
-
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -44,6 +43,7 @@ public class AutomovilLogicTest {
     UserTransaction utx;
     
 
+    
     private List<AutomovilEntity> data = new ArrayList<>();
     
     
@@ -86,6 +86,7 @@ public class AutomovilLogicTest {
     
     public void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
+      
       for(int i=0;i<3; i++){
             AutomovilEntity entity = factory.manufacturePojo(AutomovilEntity.class);
             em.persist(entity);
@@ -97,7 +98,7 @@ public class AutomovilLogicTest {
     @Test
     public void createAutomovilTest() throws BusinessLogicException{
         PodamFactory factory = new PodamFactoryImpl();
-        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);        
         AutomovilEntity result = autoLogic.createAutomovil(newEntity);
         Assert.assertNotNull(result);
         AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());

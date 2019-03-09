@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.carros.dtos;
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,16 @@ import java.io.Serializable;
  * @author Andres Forero
  */
 public class AutomovilDTO  implements Serializable{
+    
+    
+    private RegistroCompraDTO registroCompra;
+    
+    
+    private CompraVentaDTO compraventa;
+    
+    
+    private ModeloDTO modelo;
+    
     
     /**
      * identificador unico de un automovil dentro del 
@@ -60,7 +71,7 @@ public class AutomovilDTO  implements Serializable{
      * solo placas nacionales
      * "AAA-000"
      */
-    private String matrcula;
+    private String matricula;
     
     /**
      * cuidad de registro de la matricula
@@ -86,6 +97,61 @@ public class AutomovilDTO  implements Serializable{
     public AutomovilDTO(){}
     
 
+    public AutomovilDTO(AutomovilEntity autoEntity){
+        if(autoEntity != null){
+            this.anio = autoEntity.getAnio();
+            this.autoId = autoEntity.getId();
+            this.color = autoEntity.getColor();
+            this.cuidadMatricula = autoEntity.getCuidadMatricula();
+            this.disponible = autoEntity.getDisponible();
+            this.idChasis = autoEntity.getIdChasis();
+            this.matricula = autoEntity.getMatrcula();
+            this.precioVenta = autoEntity.getPrecioVenta();
+            this.puntoVentaID = autoEntity.getPuntoVentaID();
+            this.recorrido = autoEntity.getRecorrido();
+            this.referencia = autoEntity.getReferencia();
+            this.tipo = autoEntity.getTipo();
+            if(autoEntity.getCompraVenta() != null){
+                this.compraventa = new CompraVentaDTO(autoEntity.getCompraVenta());
+            }else{
+                this.compraventa = null;
+            }
+            if(autoEntity.getRegistroCompra() != null){
+                this.registroCompra = new RegistroCompraDTO(autoEntity.getRegistroCompra());
+            }else{
+                this.registroCompra = null;
+            }
+            if(autoEntity.getModelo() != null){
+                this.modelo = new ModeloDTO(autoEntity.getModelo());
+            }else{
+                this.modelo = null;
+            }
+        }
+    }
+    
+    
+    public AutomovilEntity toEntity(){
+        AutomovilEntity auto = new AutomovilEntity();
+        auto.setAnio(this.anio);
+        auto.setId(this.autoId);
+        auto.setColor(this.color);
+        auto.setCuidadMatricula(this.cuidadMatricula);
+        auto.setDisponible(this.disponible);
+        auto.setIdChasis(this.idChasis);
+        auto.setMatrcula(this.matricula);
+        auto.setPrecioVenta(this.precioVenta);
+        auto.setPuntoVentaID(this.puntoVentaID);
+        auto.setRecorrido(this.recorrido);
+        auto.setReferencia(this.referencia);
+        auto.setTipo(this.tipo);
+        auto.setCompraVenta(this.compraventa.toEntity());
+        if(this.registroCompra != null){
+            auto.setRegistroCompra(this.registroCompra.toEntity());
+        }
+        
+        return auto;
+        
+    }
     /**
      * @return the autoId
      */
@@ -202,14 +268,14 @@ public class AutomovilDTO  implements Serializable{
      * @return the matrcula
      */
     public String getMatrcula() {
-        return matrcula;
+        return matricula;
     }
 
     /**
      * @param matrcula the matrcula to set
      */
     public void setMatrcula(String matrcula) {
-        this.matrcula = matrcula;
+        this.matricula = matrcula;
     }
 
     /**
@@ -252,6 +318,48 @@ public class AutomovilDTO  implements Serializable{
      */
     public void setPuntoVentaID(Integer puntoVentaID) {
         this.puntoVentaID = puntoVentaID;
+    }
+
+    /**
+     * @return the registroCompra
+     */
+    public RegistroCompraDTO getRegistroCompra() {
+        return registroCompra;
+    }
+
+    /**
+     * @param registroCompra the registroCompra to set
+     */
+    public void setRegistroCompra(RegistroCompraDTO registroCompra) {
+        this.registroCompra = registroCompra;
+    }
+
+    /**
+     * @return the compraventa
+     */
+    public CompraVentaDTO getCompraventa() {
+        return compraventa;
+    }
+
+    /**
+     * @param compraventa the compraventa to set
+     */
+    public void setCompraventa(CompraVentaDTO compraventa) {
+        this.compraventa = compraventa;
+    }
+
+    /**
+     * @return the modelo
+     */
+    public ModeloDTO getModelo() {
+        return modelo;
+    }
+
+    /**
+     * @param modelo the modelo to set
+     */
+    public void setModelo(ModeloDTO modelo) {
+        this.modelo = modelo;
     }
     
     

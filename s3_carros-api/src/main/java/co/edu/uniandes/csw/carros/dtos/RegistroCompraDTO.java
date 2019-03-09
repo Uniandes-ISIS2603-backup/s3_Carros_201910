@@ -52,7 +52,7 @@ public class RegistroCompraDTO implements Serializable
       this.nombreVendedor = entity.getNombreVendedor();
       this.precioAcordado = entity.getPrecioComprado();
       this.compraId = entity.getId();
-     //this.auto = new AutomovilDTO(entity.getAutomovil());
+      this.auto = new AutomovilDTO(entity.getAutomovil());
       this.compraId = entity.getId();
  }
     /**

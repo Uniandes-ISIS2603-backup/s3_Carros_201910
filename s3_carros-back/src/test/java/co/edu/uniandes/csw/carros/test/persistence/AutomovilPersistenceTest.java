@@ -114,7 +114,7 @@ public class AutomovilPersistenceTest {
     @Test
     public void findAllAutomovilesTest(){
         TypedQuery<AutomovilEntity> query = em.createQuery("Select u from AutomovilEntity u", AutomovilEntity.class);
-        Assert.assertEquals(query.getResultList(),ap.finfAllAutomoviles());
+        Assert.assertEquals(query.getResultList(),ap.findAllAutomoviles());
     } 
     
     @Test

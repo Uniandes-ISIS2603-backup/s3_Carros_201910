@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.MarcaEntity;
+import co.edu.uniandes.csw.carros.entities.ModeloEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,13 +22,56 @@ public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     /**
      * constructor vacio
      */
-    public MarcaDetailDTO(){}
+    public MarcaDetailDTO(){
+        super();
+    }
     
     /**
      * lista de modelos  asociados a esta marca
      */
     private List<ModeloDTO> listaModelo;
+    
+    
+    private List<PuntoVentaDTO> listaPuntosVenta;
 
+    
+    public MarcaDetailDTO(MarcaEntity marca){
+        super(marca);
+        if(marca != null){
+            listaModelo = new ArrayList<>();
+            for(ModeloEntity modelo : marca.getModelos()){
+                listaModelo.add(new ModeloDTO(modelo));
+            }
+            listaPuntosVenta = new ArrayList<>();
+            for(PuntoVentaEntity punto : marca.getPuntosVenta()){
+                listaPuntosVenta.add(new PuntoVentaDTO(punto));
+            }
+        }
+    }
+    
+    
+    public MarcaEntity toEntity(){
+        MarcaEntity marcaEntidad = super.toEntity();
+        if(listaModelo != null){
+            List<ModeloEntity> modelosEntidad = new ArrayList<>();
+            for(ModeloDTO dtoModelo : listaModelo){
+                modelosEntidad.add(dtoModelo.toEntity());
+            }
+            marcaEntidad.setModelos(modelosEntidad);
+        }
+        
+        if(listaPuntosVenta != null){
+            List<PuntoVentaEntity> puntosEntidad = new ArrayList<>();
+            for(PuntoVentaDTO dtoPunto: listaPuntosVenta){
+                puntosEntidad.add(dtoPunto.toEntity());
+            }
+            marcaEntidad.setPuntosVenta(puntosEntidad);
+        }
+        
+        return marcaEntidad;
+    }
+    
+    
     /**
      * @return the listaModelo
      */
@@ -40,6 +87,20 @@ public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     }
 
     public void addModelo(ModeloDTO modelo){
-        this.listaModelo.add(modelo);
+        this.getListaModelo().add(modelo);
     }    
+
+    /**
+     * @return the listaPuntosVenta
+     */
+    public List<PuntoVentaDTO> getListaPuntosVenta() {
+        return listaPuntosVenta;
+    }
+
+    /**
+     * @param listaPuntosVenta the listaPuntosVenta to set
+     */
+    public void setListaPuntosVenta(List<PuntoVentaDTO> listaPuntosVenta) {
+        this.listaPuntosVenta = listaPuntosVenta;
+    }
 }
