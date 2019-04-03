@@ -23,6 +23,13 @@ public class AutomovilDTO  implements Serializable{
     private ModeloDTO modelo;
     
     
+    private MarcaDTO marca;
+    
+    
+    
+    
+    
+    
     /**
      * identificador unico de un automovil dentro del 
      * concesionario
@@ -126,6 +133,10 @@ public class AutomovilDTO  implements Serializable{
             }else{
                 this.modelo = null;
             }
+            if(autoEntity.getMarca() != null){
+                this.marca = new MarcaDTO(autoEntity.getMarca());
+            }
+            
         }
     }
     
@@ -145,9 +156,12 @@ public class AutomovilDTO  implements Serializable{
         auto.setReferencia(this.referencia);
         auto.setTipo(this.tipo);
         auto.setCompraVenta(this.compraventa.toEntity());
+        auto.setMarca(this.marca.toEntity());
+        auto.setModelo(this.modelo.toEntity());
         if(this.registroCompra != null){
             auto.setRegistroCompra(this.registroCompra.toEntity());
         }
+        
         
         return auto;
         
@@ -361,13 +375,18 @@ public class AutomovilDTO  implements Serializable{
     public void setModelo(ModeloDTO modelo) {
         this.modelo = modelo;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    /**
+     * @return the marca
+     */
+    public MarcaDTO getMarca() {
+        return marca;
+    }
+
+    /**
+     * @param marca the marca to set
+     */
+    public void setMarca(MarcaDTO marca) {
+        this.marca = marca;
+    }    
 }

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
@@ -32,9 +33,9 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
    private List<ClienteDTO> clientes; 
    
    /**
-    * Lista de marcas de auto de un punto de venta
+    * Lista de Automoviles de auto de un punto de venta
     */
-   private List<MarcaDTO> marcas;
+   private List<AutomovilDTO> autos;
    
    /**
     * Lista de comptas de autos realizadas por un punto de venta
@@ -78,12 +79,12 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
                    registrosCompra.add(new RegistroCompraDTO(compras));
                }
            }
-           if(puntoVentaEntity.getMarcas() != null)
+           if(puntoVentaEntity.getAutomoviles() != null)
            {
-               marcas = new ArrayList<>();
-               for (MarcaEntity marca : puntoVentaEntity.getMarcas())
+               autos = new ArrayList<>();
+               for (AutomovilEntity auto : puntoVentaEntity.getAutomoviles())
                {
-                marcas.add(new MarcaDTO(marca));
+                autos.add(new AutomovilDTO(auto));
                }
            }
            if(puntoVentaEntity.getClientes() != null)
@@ -143,14 +144,14 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
            }
            entity.setEmpleados(empleadoEntity);
        }
-       if(marcas != null)
+       if(autos != null)
        {
-           List<MarcaEntity> marcasEntity = new ArrayList<>();
-           for (MarcaDTO marca : marcas) 
+           List<AutomovilEntity> autosEntity = new ArrayList<>();
+           for (AutomovilDTO auto : autos) 
            {
-               marcasEntity.add(marca.toEntity());
+               autosEntity.add(auto.toEntity());
            }
-           entity.setMarcas(marcasEntity);
+           entity.setAutomoviles(autosEntity);
       }
        if(registrosCompra != null)
        {
@@ -208,27 +209,27 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     {
         this.clientes.add(clienteNuevo);
     }
-    /**Devuleve la lista de marcas del punto de venta
+    /**Devuleve la lista de Automoviles del punto de venta
      * @return the marcas
      */
-    public List<MarcaDTO> getMarcas() {
-        return marcas;
+    public List<AutomovilDTO> getAutos() {
+        return autos;
     }
 
-    /**Asgina las marcas al punto de venta.
-     * @param marcas the marcas to set
+    /**Asgina automoviles al punto de venta.
+     * @param autos the marcas to set
      */
-    public void setMarcas(List<MarcaDTO> marcas) {
-        this.marcas = marcas;
+    public void setAutos(List<AutomovilDTO> autos) {
+        this.autos = autos;
     }
 
     /**
-     * Añade una marca
+     * Añade un nuevo automovil
      * @param marcaNueva 
      */
-    public void addMarca(MarcaDTO marcaNueva)
+    public void addAutomovil(AutomovilDTO autoNuevo)
     {
-        this.marcas.add(marcaNueva);
+        this.autos.add(autoNuevo);
     }
     /**Devuleve la lista de registros compra del punto de venta
      * @return the registrosCompra

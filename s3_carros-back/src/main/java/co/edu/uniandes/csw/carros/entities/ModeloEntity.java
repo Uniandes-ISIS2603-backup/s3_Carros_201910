@@ -8,9 +8,8 @@ package co.edu.uniandes.csw.carros.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,43 +19,10 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ModeloEntity extends BaseEntity implements Serializable
-{
-
-    /**
-     * @return the marca
-     */
-    public MarcaEntity getMarca() {
-        return marca;
-    }
-
-    /**
-     * @param marca the marca to set
-     */
-    public void setMarca(MarcaEntity marca) {
-        this.marca = marca;
-    }
-
-    /**
-     * @return the automoviles
-     */
-    public List<AutomovilEntity> getAutomoviles() {
-        return automoviles;
-    }
-
-    /**
-     * @param automoviles the automoviles to set
-     */
-    public void setAutomoviles(List<AutomovilEntity> automoviles) {
-        this.automoviles = automoviles;
-    }
+{ 
     
     @PodamExclude
-    @ManyToOne
-    private MarcaEntity marca;
-    
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "modelo", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "modelo", orphanRemoval =  true, fetch = FetchType.LAZY)
     private List<AutomovilEntity> automoviles = new ArrayList<>();
     
     
@@ -292,6 +258,20 @@ public class ModeloEntity extends BaseEntity implements Serializable
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the automoviles
+     */
+    public List<AutomovilEntity> getAutomoviles() {
+        return automoviles;
+    }
+
+    /**
+     * @param automoviles the automoviles to set
+     */
+    public void setAutomoviles(List<AutomovilEntity> automoviles) {
+        this.automoviles = automoviles;
     }
     
 }

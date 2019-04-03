@@ -60,7 +60,5 @@ public class AutomovilPersistence {
     
     public AutomovilEntity updateAutomovil(AutomovilEntity auto){
         return em.merge(auto);
-    }
-    
-    
+    }    
 }

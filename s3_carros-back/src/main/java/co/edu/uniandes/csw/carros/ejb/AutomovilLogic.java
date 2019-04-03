@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.carros.ejb;
 import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.AutomovilPersistence;
+import co.edu.uniandes.csw.carros.persistence.MarcaPersistence;
 import co.edu.uniandes.csw.carros.persistence.ModeloPersistence;
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import co.edu.uniandes.csw.carros.persistence.RegistroCompraPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,15 +28,19 @@ public class AutomovilLogic {
     private static final Logger LOGGER = Logger.getLogger(PuntoVentaLogic.class.getName());
     
     @Inject
-    private AutomovilPersistence autoPersistece;
-    
+    private AutomovilPersistence autoPersistece;    
     
     @Inject
-    private RegistroCompraPersistence registroPesistence;
-    
+    private RegistroCompraPersistence registroPesistence;    
     
     @Inject
     private ModeloPersistence modeloPersistence;
+    
+    @Inject
+    private MarcaPersistence marcaPersistence;
+    
+    @Inject
+    private PuntoVentaPersistence puntoVentaPersistence;
     
     
     
@@ -42,6 +48,7 @@ public class AutomovilLogic {
     Regla de negocio: no puede haber dos automoviles con el mismo id en toda la base de datos
     */
     public AutomovilEntity createAutomovil(AutomovilEntity automovil) throws BusinessLogicException{
+               
         
         if(autoPersistece.findById(automovil.getId()) != null){
             throw new BusinessLogicException("Ya existe un automovil con el id: " + automovil.getIdChasis());
@@ -52,6 +59,18 @@ public class AutomovilLogic {
         if(modeloPersistence.findModelo(automovil.getModelo().getId())== null){
               throw new BusinessLogicException("El modelo no existe en la base de datos");           
         }
+        if(automovil.getMarca() == null){
+            throw new BusinessLogicException("la marca es null");
+        }
+        if(marcaPersistence.findMarca(automovil.getMarca().getId()) == null){
+            throw new BusinessLogicException("la marca no existe en la base de datos");
+        }
+        if(automovil.getPuntoventa() == null){
+            throw new BusinessLogicException("el punto de venta es null");
+        }
+        if(puntoVentaPersistence.find(automovil.getPuntoventa().getId()) == null){
+            throw new BusinessLogicException("el punto de venta no existe en la base de datos");
+        }        
         if(automovil.getRegistroCompra() == null){
             throw new BusinessLogicException("el registro compra es null");
         }
@@ -75,25 +94,25 @@ public class AutomovilLogic {
     }
     
     public AutomovilEntity getAutomovil(Long autoID){
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el  con el id = {0}", autoID);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el  con el id = ", autoID);
         AutomovilEntity entity = autoPersistece.findAutomovil(autoID);
         if(entity == null){
-            LOGGER.log(Level.SEVERE, "El automovil con el id = {0} no existe", autoID);
+            LOGGER.log(Level.SEVERE, "El automovil con ese id no existe", autoID);
         }
-         LOGGER.log(Level.INFO, "Termina proceso de consultar el modelo con  id = {0}", autoID);
+         LOGGER.log(Level.INFO, "Termina proceso de consultar el modelo con  id: }", autoID);
         return entity;     
     }
     
     public void deleteAutomovil(Long autoID){
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id = {0}", autoID);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id = ", autoID);
         autoPersistece.deleteAutomovil(autoID);
-        LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", autoID);
+        LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = ", autoID);
     }
     
     public AutomovilEntity updateAutomovil(Long autoID, AutomovilEntity auto)throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = ", autoID);
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = ", autoID);
         return newEntity;
     }
 }

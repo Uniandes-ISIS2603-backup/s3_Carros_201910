@@ -7,7 +7,10 @@ package co.edu.uniandes.csw.carros.test.logic;
 
 import co.edu.uniandes.csw.carros.ejb.AutomovilLogic;
 import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
+import co.edu.uniandes.csw.carros.entities.MarcaEntity;
 import co.edu.uniandes.csw.carros.entities.ModeloEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
+import co.edu.uniandes.csw.carros.entities.RegistroCompraEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.AutomovilPersistence;
 import java.util.ArrayList;
@@ -49,6 +52,12 @@ public class AutomovilLogicTest {
     
     private ModeloEntity modelo;
     
+    private MarcaEntity marca;
+    
+    private PuntoVentaEntity punto;
+    
+    private RegistroCompraEntity registro;
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -88,10 +97,16 @@ public class AutomovilLogicTest {
     public void insertData(){
       PodamFactory factory = new PodamFactoryImpl();
       modelo = factory.manufacturePojo(ModeloEntity.class);
+      marca = factory.manufacturePojo(MarcaEntity.class);
+      punto = factory.manufacturePojo(PuntoVentaEntity.class);
+      registro = factory.manufacturePojo(RegistroCompraEntity.class);
       em.persist(modelo);
       for(int i=0;i<3; i++){
             AutomovilEntity entity = factory.manufacturePojo(AutomovilEntity.class);
             entity.setModelo(modelo);
+            entity.setMarca(marca);
+            entity.setPuntoventa(punto);
+            entity.setRegistroCompra(registro);
             em.persist(entity);
             data.add(entity);
         }

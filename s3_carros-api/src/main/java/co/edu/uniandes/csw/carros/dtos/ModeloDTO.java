@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.ModeloEntity;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -15,9 +16,7 @@ import java.io.Serializable;
 public class ModeloDTO implements Serializable{
     
     
-    private MarcaDTO marca;
-    
-    
+   
     
     
     
@@ -107,12 +106,7 @@ public class ModeloDTO implements Serializable{
             this.traccion = modelo.getTraccion();
             this.transmision = modelo.getTransmision();
             this.vidrios = modelo.getVidrios();
-            this.nombre = modelo.getNombre();
-            if(modelo.getMarca() != null){
-                //TODO this.marca = new MarcaDTO(modelo.getMarca());
-            }else{
-                this.marca = null;
-            }            
+            this.nombre = modelo.getNombre();                     
         }        
     }
     
@@ -131,9 +125,6 @@ public class ModeloDTO implements Serializable{
         modelo.setTraccion(this.traccion);
         modelo.setTransmision(this.transmision);
         modelo.setVidrios(this.vidrios);
-        if(this.marca != null){
-            modelo.setMarca(this.marca.toEntity());
-        }
         return modelo;        
     }
     
@@ -306,19 +297,7 @@ public class ModeloDTO implements Serializable{
         this.modeloID = modeloID;
     }
 
-    /**
-     * @return the marca
-     */
-    public MarcaDTO getMarca() {
-        return marca;
-    }
-
-    /**
-     * @param marca the marca to set
-     */
-    public void setMarca(MarcaDTO marca) {
-        this.marca = marca;
-    }
+    
 
     /**
      * @return the nombre

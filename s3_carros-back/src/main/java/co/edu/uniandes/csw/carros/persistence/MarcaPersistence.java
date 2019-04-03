@@ -39,6 +39,12 @@ public class MarcaPersistence {
         return query.getResultList();
     }
     
+    public MarcaEntity findByName(String nombreMarca){
+        TypedQuery<MarcaEntity> query = em.createQuery("select u from MarcaEntity u where u.nombreMarca = :nombre", MarcaEntity.class);
+        query.setParameter("nombre", nombreMarca );
+        return query.getSingleResult();
+    }
+    
     public void deleteMarca(Long marcaID){
         MarcaEntity entity = em.find(MarcaEntity.class, marcaID);
         em.remove(entity);

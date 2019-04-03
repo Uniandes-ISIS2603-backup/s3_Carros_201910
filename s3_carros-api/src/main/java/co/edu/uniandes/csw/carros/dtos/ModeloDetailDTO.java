@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.entities.ModeloEntity;
-import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +23,7 @@ public class ModeloDetailDTO extends ModeloDTO{
         super();
     }
     
-    private List<AutomovilDTO> listaAutos;
-    
-    
-    
+    private List<AutomovilDTO> listaAutos;  
     
     
     

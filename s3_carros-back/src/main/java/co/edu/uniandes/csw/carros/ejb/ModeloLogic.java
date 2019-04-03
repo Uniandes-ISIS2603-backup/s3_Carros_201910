@@ -25,23 +25,14 @@ public class ModeloLogic {
     
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
     
-    
-    @Inject
-    private MarcaPersistence marcaPersistence;
-    
+     
     
     @Inject
     private ModeloPersistence modeloPeristence;
     
     public ModeloEntity createModelo(ModeloEntity modelo) throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO, "Inicia proceso de creación del Modelo");
-        if(modelo.getMarca() == null){
-            throw new NullPointerException("La Marca es null");
-        }
-        if(marcaPersistence.findMarca(modelo.getMarca().getId()) == null){
-            throw new BusinessLogicException("La marca no existe en la base de datos");
-        }
+        
         if(modeloPeristence.findModelo(modelo.getId()) != null){
             throw new BusinessLogicException("ya existe un modelo con el id: " + modelo.getId());
         }

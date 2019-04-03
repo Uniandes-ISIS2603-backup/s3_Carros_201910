@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -46,11 +45,11 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
    private List<ClienteEntity> clientes;
    
    /**
-    * Lista de marcas de un punto de venta
+    * Lista de automoviles de un punto de venta
     */
    @PodamExclude
-   @ManyToMany( mappedBy = "puntosVenta", fetch = LAZY)
-   private List<MarcaEntity> marcas; 
+   @OneToMany( mappedBy = "puntoVenta", fetch = LAZY)
+   private List<AutomovilEntity> automoviles; 
    
    /**
     * Lista de compras de un punto de venta
@@ -130,19 +129,7 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
         this.clientes = clientes;
     }
 
-    /**La lista de marcas e un punto de venta 
-     * @return the marcas
-     */
-    public List<MarcaEntity> getMarcas() {
-        return marcas;
-    }
-
-    /**Asigna la lista de marcas de un punto de venta 
-     * @param marcas the marcas to set
-     */
-    public void setMarcas(List<MarcaEntity> marcas) {
-        this.marcas = marcas;
-    }
+    
 
     /**La lista de compras de un punto de venta 
      * @return the compras
@@ -170,6 +157,20 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
      */
     public void setVentas(List<CompraVentaEntity> ventas) {
         this.ventas = ventas;
+    }
+
+    /**
+     * @return the automoviles
+     */
+    public List<AutomovilEntity> getAutomoviles() {
+        return automoviles;
+    }
+
+    /**
+     * @param automoviles the automoviles to set
+     */
+    public void setAutomoviles(List<AutomovilEntity> automoviles) {
+        this.automoviles = automoviles;
     }
    
 }

@@ -5,9 +5,8 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.entities.MarcaEntity;
-import co.edu.uniandes.csw.carros.entities.ModeloEntity;
-import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,78 +28,52 @@ public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     /**
      * lista de modelos  asociados a esta marca
      */
-    private List<ModeloDTO> listaModelo;
+    private List<AutomovilDTO> listaAutomoviles;
     
     
-    private List<PuntoVentaDTO> listaPuntosVenta;
+    
 
     
     public MarcaDetailDTO(MarcaEntity marca){
         super(marca);
         if(marca != null){
-            listaModelo = new ArrayList<>();
-            for(ModeloEntity modelo : marca.getModelos()){
-                listaModelo.add(new ModeloDTO(modelo));
-            }
-            listaPuntosVenta = new ArrayList<>();
-            for(PuntoVentaEntity punto : marca.getPuntosVenta()){
-                listaPuntosVenta.add(new PuntoVentaDTO(punto));
-            }
+            listaAutomoviles = new ArrayList<>();
+            for(AutomovilEntity auto : marca.getAutomoviles()){
+                listaAutomoviles.add(new AutomovilDTO(auto));
+            }           
         }
     }
     
     
     public MarcaEntity toEntity(){
         MarcaEntity marcaEntidad = super.toEntity();
-        if(listaModelo != null){
-            List<ModeloEntity> modelosEntidad = new ArrayList<>();
-            for(ModeloDTO dtoModelo : listaModelo){
-                modelosEntidad.add(dtoModelo.toEntity());
+        if(listaAutomoviles != null){
+            List<AutomovilEntity> automoviles= new ArrayList<>();
+            for(AutomovilDTO dtoAuto : listaAutomoviles){
+                automoviles.add(dtoAuto.toEntity());
             }
-            marcaEntidad.setModelos(modelosEntidad);
-        }
-        
-        if(listaPuntosVenta != null){
-            List<PuntoVentaEntity> puntosEntidad = new ArrayList<>();
-            for(PuntoVentaDTO dtoPunto: listaPuntosVenta){
-                puntosEntidad.add(dtoPunto.toEntity());
-            }
-            marcaEntidad.setPuntosVenta(puntosEntidad);
-        }
-        
+            marcaEntidad.setAutomoviles(automoviles);
+        }       
         return marcaEntidad;
     }
     
     
     /**
-     * @return the listaModelo
+     * @return the listaAutomoviles
      */
-    public List<ModeloDTO> getListaModelo() {
-        return listaModelo;
+    public List<AutomovilDTO> getListaAutomoviles() {
+        return listaAutomoviles;
     }
 
     /**
-     * @param listaModelo the listaModelo to set
+     * @param listaAutomoviles the listaModelo to set
      */
-    public void setListaModelo(List<ModeloDTO> listaModelo) {
-        this.listaModelo = listaModelo;
+    public void setListaAutomoviles(List<AutomovilDTO> listaAutos) {
+        this.listaAutomoviles = listaAutos;
     }
 
-    public void addModelo(ModeloDTO modelo){
-        this.getListaModelo().add(modelo);
-    }    
-
-    /**
-     * @return the listaPuntosVenta
-     */
-    public List<PuntoVentaDTO> getListaPuntosVenta() {
-        return listaPuntosVenta;
+    public void addAutomovil(AutomovilDTO auto){
+        this.listaAutomoviles.add(auto);
     }
-
-    /**
-     * @param listaPuntosVenta the listaPuntosVenta to set
-     */
-    public void setListaPuntosVenta(List<PuntoVentaDTO> listaPuntosVenta) {
-        this.listaPuntosVenta = listaPuntosVenta;
-    }
+    
 }

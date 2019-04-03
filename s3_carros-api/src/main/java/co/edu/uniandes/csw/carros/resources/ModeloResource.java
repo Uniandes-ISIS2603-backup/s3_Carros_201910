@@ -97,12 +97,12 @@ public class ModeloResource {
     @Path("{modeloID: \\d+}")
     public void deleteModelo(@PathParam("modeloID") Long modeloID) throws BusinessLogicException
     {
-       LOGGER.log(Level.INFO, "PuntoVentaResourse deletePuntoVenta: input: {0}", modeloID);
+       LOGGER.log(Level.INFO, "ModeloResource deleteModelo: input: {0}", modeloID);
         if (logicModelo.getModelo(modeloID) == null) {
             throw new WebApplicationException("El recurso /modelos/" + modeloID + " no existe.", 404);
         }
         logicModelo.deleteModelo(modeloID);
-        LOGGER.info("PuntoVentaResourse deletePuntoVenta: output: void"); 
+        LOGGER.info("ModeloResource deleteModelo: output: void"); 
     }
     
     

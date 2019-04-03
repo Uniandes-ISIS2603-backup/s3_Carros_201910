@@ -8,9 +8,8 @@ package co.edu.uniandes.csw.carros.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,49 +19,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity     
 public class MarcaEntity extends BaseEntity implements Serializable{    
-
-    /**
-     * @return the puntosVenta
-     */
-    public List<PuntoVentaEntity> getPuntosVenta() {
-        return puntosVenta;
-    }
-
-    /**
-     * @param puntosVenta the puntosVenta to set
-     */
-    public void setPuntosVenta(List<PuntoVentaEntity> puntosVenta) {
-        this.puntosVenta = puntosVenta;
-    }
-
-    /**
-     * @return the modelos
-     */
-    public List<ModeloEntity> getModelos() {
-        return modelos;
-    }
-
-    /**
-     * @param modelos the modelos to set
-     */
-    public void setModelos(List<ModeloEntity> modelos) {
-        this.modelos = modelos;
-    }
-    
+  
     @PodamExclude                                 
-    @ManyToMany
-    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
-    
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<ModeloEntity> modelos = new ArrayList<>();
-    
+    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<AutomovilEntity> automoviles = new ArrayList<>();
        
-    
-   
-    
-    
     /**
      * nombre de la marca
      */
@@ -82,6 +43,20 @@ public class MarcaEntity extends BaseEntity implements Serializable{
      */
     public void setNombreMarca(String nombreMarca) {
         this.nombreMarca = nombreMarca;
+    }
+
+    /**
+     * @return the automoviles
+     */
+    public List<AutomovilEntity> getAutomoviles() {
+        return automoviles;
+    }
+
+    /**
+     * @param automoviles the automoviles to set
+     */
+    public void setAutomoviles(List<AutomovilEntity> automoviles) {
+        this.automoviles = automoviles;
     }
     
     

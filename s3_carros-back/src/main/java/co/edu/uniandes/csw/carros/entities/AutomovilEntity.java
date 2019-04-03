@@ -21,17 +21,25 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(optional = false)
+    private PuntoVentaEntity puntoVenta;
+    
+    @PodamExclude
+    @ManyToOne(optional = false)
     private ModeloEntity modelo;
+    
+    @PodamExclude
+    @ManyToOne(optional = false)
+    private MarcaEntity marca;
    
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(optional = false)
     private RegistroCompraEntity registroCompra;
     
     
     @PodamExclude
-    @OneToOne(mappedBy = "automovilFacturado", fetch = LAZY)
+    @OneToOne(mappedBy = "automovilFacturado", fetch = LAZY, optional = true)
     private CompraVentaEntity compraVenta;
            
     
@@ -299,12 +307,33 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
      */
     public void setCompraVenta(CompraVentaEntity compraVenta) {
         this.compraVenta = compraVenta;
+    }    
+
+    /**
+     * @return the marca
+     */
+    public MarcaEntity getMarca() {
+        return marca;
     }
 
-   
-    
-    
-    
-    
-    
+    /**
+     * @param marca the marca to set
+     */
+    public void setMarca(MarcaEntity marca) {
+        this.marca = marca;
+    }
+
+    /**
+     * @return the puntoventa
+     */
+    public PuntoVentaEntity getPuntoventa() {
+        return puntoVenta;
+    }
+
+    /**
+     * @param puntoventa the puntoventa to set
+     */
+    public void setPuntoventa(PuntoVentaEntity puntoventa) {
+        this.puntoVenta = puntoventa;
+    }
 }
