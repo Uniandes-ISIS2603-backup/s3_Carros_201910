@@ -41,14 +41,14 @@ public class PuntoVentaDTO implements Serializable
     /**Devuelve la direccion del punto de venta
      * @return the dirreccion del punto de venta
      */
-    public String getDirreccion() {
+    public String getDireccion() {
         return direccion;
     }
 
     /**Fija la direccion del punto de venta
-     * @param dirreccion the dirreccion to set nueva direccion del punto de venta
+     * @param direccion the direccion to set nueva direccion del punto de venta
      */
-    public void setDirreccion(String dirreccion) {
+    public void setDireccion(String dirreccion) {
         this.direccion = dirreccion;
     }
 
