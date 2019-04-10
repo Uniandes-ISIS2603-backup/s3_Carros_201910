@@ -77,7 +77,7 @@ public class PuntoVentaResourse
     {
         LOGGER.info("PuntoVentaResourse getPuntoVenta: input: void");
         List<PuntoVentaDetailDTO> listaPuntoVenta = listEntity2DetailDTO(logica.getPuntosVenta());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaPuntoVenta);
+        LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta: output: {0}", listaPuntoVenta);
         return listaPuntoVenta;
     }
     /**

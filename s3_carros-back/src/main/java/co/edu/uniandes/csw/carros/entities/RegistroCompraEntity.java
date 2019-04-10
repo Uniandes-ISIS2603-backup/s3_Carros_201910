@@ -101,6 +101,20 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     public void setAutomovil(AutomovilEntity automovil) {
         this.automovil = automovil;
     }
+
+    /**
+     * @return the puntoVenta
+     */
+    public PuntoVentaEntity getPuntoVenta() {
+        return puntoVenta;
+    }
+
+    /**
+     * @param puntoVenta the puntoVenta to set
+     */
+    public void setPuntoVenta(PuntoVentaEntity puntoVenta) {
+        this.puntoVenta = puntoVenta;
+    }
  
     
     

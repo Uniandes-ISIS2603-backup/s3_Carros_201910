@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.dtos;
 
+import java.io.Serializable;
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
 import java.io.Serializable;
 

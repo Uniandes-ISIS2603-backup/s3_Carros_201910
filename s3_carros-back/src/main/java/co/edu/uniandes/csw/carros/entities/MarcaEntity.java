@@ -34,7 +34,11 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     public void setPuntosVenta(List<PuntoVentaEntity> puntosVenta) {
         this.puntosVenta = puntosVenta;
     }
-
+       
+    public void addPuntoVenta(PuntoVentaEntity nuevoPuntoVenta)
+    {
+        this.puntosVenta.add(nuevoPuntoVenta);
+    }
     /**
      * @return the modelos
      */

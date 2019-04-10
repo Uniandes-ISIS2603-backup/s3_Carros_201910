@@ -18,7 +18,7 @@ public class PuntoVentaDTO implements Serializable
 /**
  * Direccion del punto de venta
  */
- private String dirreccion; 
+ private String direccion; 
  
  /**
   * Telefono del punto de venta
@@ -41,15 +41,15 @@ public class PuntoVentaDTO implements Serializable
     /**Devuelve la direccion del punto de venta
      * @return the dirreccion del punto de venta
      */
-    public String getDirreccion() {
-        return dirreccion;
+    public String getDireccion() {
+        return direccion;
     }
 
     /**Fija la direccion del punto de venta
-     * @param dirreccion the dirreccion to set nueva direccion del punto de venta
+     * @param direccion the direccion to set nueva direccion del punto de venta
      */
-    public void setDirreccion(String dirreccion) {
-        this.dirreccion = dirreccion;
+    public void setDireccion(String dirreccion) {
+        this.direccion = dirreccion;
     }
 
     /**Retorna el telefono del punto de venta
@@ -87,7 +87,7 @@ public class PuntoVentaDTO implements Serializable
     public PuntoVentaEntity toEntity()
     {
        PuntoVentaEntity entity = new PuntoVentaEntity();
-       entity.setDireccion(this.dirreccion);
+       entity.setDireccion(this.direccion);
        entity.setTelefono(this.telefono);
        entity.setId(this.id);
        return entity;
@@ -98,7 +98,7 @@ public class PuntoVentaDTO implements Serializable
      */
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
-      this.dirreccion = entity.getDireccion();
+      this.direccion = entity.getDireccion();
       this.telefono = entity.getTelefono();
       this.id = entity.getId();
  }

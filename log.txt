@@ -1,0 +1,124 @@
+13a0dbd ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 23:51:49 2019 -0500 :Merge branch 'desarrollo'
+85e1142 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 23:51:30 2019 -0500 :Colecciones postman realizadas
+333f511 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 23:48:09 2019 -0500 :.
+fc62651 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 22:46:04 2019 -0500 :Merge branch 'desarrollo'
+3fd962d ; Andres Forero ; Andres Forero; Fri Mar 8 22:02:43 2019 -0500 :completados recursos Automovil, Modelo, Marca
+807d230 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 22:01:55 2019 -0500 :DOC
+31a8276 ; Julio ; Julio; Fri Mar 8 22:01:35 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+299a758 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 22:01:11 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+9048e5d ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 22:00:43 2019 -0500 :postman empleado
+8307dcf ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 22:00:05 2019 -0500 :finalv2 :smile:
+abc6aeb ; Julio ; Julio; Fri Mar 8 21:59:42 2019 -0500 :documentacion registroCompra
+076fd59 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 21:58:27 2019 -0500 :final
+0cc665c ; Julio ; Julio; Fri Mar 8 21:36:55 2019 -0500 :documentación
+d9f01f9 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 20:27:34 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+713af05 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 20:10:04 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+2142358 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 20:09:58 2019 -0500 :hagalnle
+96e2195 ; Andres Forero ; Andres Forero; Fri Mar 8 19:52:26 2019 -0500 :cambio de mapeo Automovil - CompraVenta
+9016f27 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 19:50:49 2019 -0500 :arreglo
+a17d545 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 19:31:07 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+3064158 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 19:30:34 2019 -0500 :.
+23f5314 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 19:29:37 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+87979c0 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Fri Mar 8 19:28:20 2019 -0500 :avance postman
+b97231e ; Julio ; Julio; Fri Mar 8 19:17:42 2019 -0500 :.
+68c07eb ; Julio ; Julio; Fri Mar 8 19:17:22 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+1338e83 ; Andres Forero ; Andres Forero; Fri Mar 8 19:15:25 2019 -0500 :Completado conexion API_Logica: Automovil, Modelo, Marca
+96765ad ; Julio ; Julio; Fri Mar 8 18:48:50 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+c1062cf ; Julio ; Julio; Fri Mar 8 18:48:45 2019 -0500 :dto
+54bd4ef ; Julio ; Julio; Fri Mar 8 18:48:18 2019 -0500 :dto
+7b8fae3 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 18:42:31 2019 -0500 :cliente empleado logic
+df821c3 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 17:19:55 2019 -0500 :Resouse completos
+37f9168 ; Julio ; Julio; Fri Mar 8 16:57:35 2019 -0500 :compraVentaDTO
+96aae94 ; Daniel Lozano ; Daniel Lozano; Fri Mar 8 15:39:43 2019 -0500 :corregida conexion logic -api
+85f533d ; Julio ; Julio; Fri Mar 8 15:00:33 2019 -0500 :correcion path
+82907d0 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 8 14:49:24 2019 -0500 :Resource cliente y empleado
+b9ca656 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Thu Mar 7 09:56:21 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+c8fdb38 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Thu Mar 7 09:56:09 2019 -0500 :Pequeñas correcciones.
+9a9b0e0 ; Julio Ruiz ; Julio Ruiz; Wed Mar 6 18:46:18 2019 -0500 :Test extra lógica, conexión API Logic
+c9ed233 ; Daniel Lozano ; Daniel Lozano; Tue Mar 5 21:34:34 2019 -0500 :Merge branch 'desarrollo'
+1cf4f73 ; Daniel Lozano ; Daniel Lozano; Tue Mar 5 21:34:00 2019 -0500 :Pruebas listas para master funcionando 100/100
+f7c9f7c ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Tue Mar 5 16:42:08 2019 -0500 :Todo perfecto :smile:
+817b900 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Tue Mar 5 16:25:04 2019 -0500 :FacturaLogicTest Bien :)
+7efbd9f ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Tue Mar 5 16:06:09 2019 -0500 :>:c
+ac353a9 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Tue Mar 5 15:58:56 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+168da4f ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Tue Mar 5 15:58:01 2019 -0500 :AAAAAAAAAAAAAA
+f930662 ; Daniel Lozano ; Daniel Lozano; Tue Mar 5 15:55:39 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+7483e1c ; Daniel Lozano ; Daniel Lozano; Tue Mar 5 15:54:42 2019 -0500 :;)
+95ebbd2 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Mar 4 12:09:25 2019 -0500 :Arreglos tests Logic
+a8b305f ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Mar 4 11:36:34 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+91bb23f ; Andres Forero ; Andres Forero; Mon Mar 4 11:33:57 2019 -0500 :Maped faltante en Automovil y constructores sobrantes en los Entitites
+b29eb29 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Mar 4 11:12:10 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+5cfc04c ; Julio Ruiz ; Julio Ruiz; Mon Mar 4 09:06:18 2019 -0500 :findByName
+5b02284 ; Daniel Lozano ; Daniel Lozano; Mon Mar 4 06:43:28 2019 -0500 :Merge branch 'desarrollo'
+ae785a7 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sun Mar 3 23:27:01 2019 -0500 :ImplementacionCompeta
+31e764a ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sun Mar 3 21:51:10 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+5c047fa ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 21:15:33 2019 -0500 :arreglo error import
+63abdad ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 21:06:08 2019 -0500 :.
+edc9e18 ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 20:52:57 2019 -0500 :Update/Delete en QuejasReclamosLogicTest
+32b342d ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 20:33:52 2019 -0500 :logictest
+4c4513b ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 19:09:32 2019 -0500 :QuejasReclamosPersistence corregido
+ba24c3b ; Daniel Lozano ; Daniel Lozano; Sun Mar 3 18:34:20 2019 -0500 :Update PuntoVentaPersistanceTest.java
+e8b256f ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Sun Mar 3 18:25:19 2019 -0500 :constructor en los dtos
+83dc80b ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sun Mar 3 17:19:30 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+7168c36 ; Julio Ruiz ; Julio Ruiz; Sun Mar 3 17:11:07 2019 -0500 :metodos DTO faltantes, algunas correciones
+45c1419 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sun Mar 3 16:41:29 2019 -0500 :Merge branch 'desarrollo' of https://github.com/Uniandes-isis2603/s3_Carros_201910 into desarrollo
+867a9ff ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sun Mar 3 16:37:09 2019 -0500 :Integración lógica API
+95a2092 ; Daniel Lozano ; Daniel Lozano; Sun Mar 3 16:15:02 2019 -0500 :PuntoVentaLogic y RegistroCompraLogic terminados juntos con sus respectivos test
+4fd17ce ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Sun Mar 3 16:02:36 2019 -0500 :clienteLogic y empleadoLogic terminados
+9a3e9db ; Andres Forero ; Andres Forero; Sun Mar 3 12:51:07 2019 -0500 :Arreglados metodos test faltantes en Modelo y Automovil
+73dff06 ; Daniel Lozano ; Daniel Lozano; Sat Mar 2 17:21:12 2019 -0500 :el proyecto se despliega exitosa mente
+fb17459 ; Daniel Lozano ; Daniel Lozano; Sat Mar 2 16:36:31 2019 -0500 :Merge branch 'desarrollo'
+b3ba304 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Fri Mar 1 16:37:05 2019 -0500 :avance
+23770f4 ; Daniel Lozano ; Daniel Lozano; Fri Mar 1 16:17:21 2019 -0500 :arreglos
+570c6a5 ; Daniel Lozano ; Daniel Lozano; Fri Mar 1 14:52:48 2019 -0500 :coreccion
+539673b ; Andres Forero ; Andres Forero; Thu Feb 28 19:00:29 2019 -0500 :relacion y mapeo para Modelo, Marca , Automovil y sus dependencias con otras clases
+d4040d0 ; Julio Ruiz ; Julio Ruiz; Thu Feb 28 13:49:21 2019 -0500 :mappedBy
+4c52c6c ; Julio Ruiz ; Julio Ruiz; Thu Feb 28 11:37:02 2019 -0500 :QuejasReclamos
+c5db290 ; Andres Forero ; Andres Forero; Wed Feb 27 16:42:47 2019 -0500 :Corregido modelo DTOs
+3230d61 ; Daniel Lozano ; Daniel Lozano; Wed Feb 27 15:46:49 2019 -0500 :mappedBy puntoVenta
+91bf59c ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Wed Feb 27 15:38:18 2019 -0500 :arreglo mappedBy cliente
+eb3731d ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Wed Feb 27 15:29:54 2019 -0500 :arreglo mappedby empleado
+13a172f ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Wed Feb 27 15:22:04 2019 -0500 :Comentado
+d4becfa ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Wed Feb 27 15:18:27 2019 -0500 :Arreglos
+48c00c2 ; Daniel Lozano ; Daniel Lozano; Wed Feb 27 15:17:02 2019 -0500 :Punto venta logic arreglado
+6ed2c26 ; Daniel Lozano ; Daniel Lozano; Wed Feb 27 14:20:17 2019 -0500 :nueva rama
+19544c6 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Wed Feb 27 14:13:50 2019 -0500 :arreglo dto cliente
+9fd0b66 ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 10:58:28 2019 -0500 :arquillian
+a21778b ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Mon Feb 25 10:54:09 2019 -0500 :Merge branch 'master' of https://github.com/Uniandes-isis2603/s3_Carros_201910
+253d56e ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Mon Feb 25 10:53:54 2019 -0500 :merge
+f6536f3 ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 10:50:58 2019 -0500 :Merge branch 'master' of https://github.com/Uniandes-isis2603/s3_Carros_201910
+909470f ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 10:45:59 2019 -0500 :merge
+5c1faad ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Feb 25 10:44:58 2019 -0500 :Arrego final
+9472da2 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Feb 25 10:30:47 2019 -0500 :Arreglo repositorio
+193fdc2 ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 09:55:28 2019 -0500 :aprobado
+2149a17 ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 09:54:36 2019 -0500 :corregido
+89e5ebb ; Daniel Lozano ; Daniel Lozano; Mon Feb 25 09:33:28 2019 -0500 :Daniel Lozano
+50253cd ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Feb 25 09:31:50 2019 -0500 :Resourses y Tests
+93ddc29 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sat Feb 23 17:45:51 2019 -0500 :Revert "Actualizaciones DTOs y  Resourses"
+776afaa ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sat Feb 23 17:45:26 2019 -0500 :Revert "Merge origin/master"
+2bfa0f5 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sat Feb 23 17:40:46 2019 -0500 :Merge origin/master
+52b2448 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Sat Feb 23 17:39:19 2019 -0500 :Actualizaciones DTOs y  Resourses
+51ba6e3 ; Andres Forero ; Andres Forero; Sat Feb 23 14:19:53 2019 -0500 :entity y prueba de persistencia para Automovil completado
+d361076 ; Andres Forero ; Andres Forero; Sat Feb 23 13:36:26 2019 -0500 :entity y prueba de persistencia para Automovil completado (error local con Aequiliam Servlet para las pruebas: razon desconocida)
+e9c8f53 ; Andres Forero ; Andres Forero; Sat Feb 23 11:07:22 2019 -0500 :entity y prueba de persistencia para Marca completado
+898fde8 ; Daniel Lozano ; Daniel Lozano; Fri Feb 22 21:22:54 2019 -0500 :Persistencia
+c0ba9b9 ; Julio Ruiz ; Julio Ruiz; Fri Feb 22 07:09:13 2019 -0500 :Merge branch 'master' of https://github.com/Uniandes-isis2603/s3_Carros_201910
+5331cee ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Thu Feb 21 10:42:05 2019 -0500 :adición método update a Empleado y Cliente
+2167675 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Thu Feb 21 10:10:25 2019 -0500 :Persistence empleado y ciente
+43e68db ; Daniel Lozano ; Daniel Lozano; Thu Feb 21 09:40:15 2019 -0500 :Daniel Lozano
+862aad9 ; estudiante ; estudiante; Tue Feb 19 14:53:01 2019 -0500 :QuejasReclamos
+ea00d46 ; Andres Forero ; Andres Forero; Mon Feb 18 13:42:39 2019 -0500 :entity y prueba de persistencia para Marca
+2be955c ; Daniel ; Daniel; Mon Feb 18 10:17:55 2019 -0500 :Merge origin/master
+5493e09 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Feb 18 10:15:12 2019 -0500 :DTOs y Percistences
+2f5c8ed ; Daniel ; Daniel; Mon Feb 18 10:15:01 2019 -0500 :"Punto de venta y Registro Compra"
+6a685f8 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Wed Feb 13 11:57:42 2019 -0500 :implementación de EmpleadoResource y ClienteResource
+015b6c2 ; Juan Pablo Patarroyo ; Juan Pablo Patarroyo; Tue Feb 12 09:20:32 2019 -0500 :Implementación DTO empleado y cliente
+9ca1fd2 ; Kevin Hernán Castrillón Castañeda ; Kevin Hernán Castrillón Castañeda; Mon Feb 11 12:08:43 2019 -0500 :
+5e476d9 ; Andres Forero ; Andres Forero; Sun Feb 10 23:11:54 2019 -0500 :implementacion de Modelo y delos DTO Automovil y Marca
+546f193 ; AndresVaron ; AndresVaron; Wed Feb 6 21:44:16 2019 -0500 :Cascara
+29a9093 ; Camilo Andres Salinas Martinez ; Camilo Andres Salinas Martinez; Wed Feb 6 16:39:06 2019 -0500 :Revert "Creando Cascara Proyecto"
+5d4ed75 ; estudiante ; estudiante; Wed Feb 6 16:34:02 2019 -0500 :Creando Cascara Proyecto
+9be2c10 ; AndresVaron ; AndresVaron; Mon Feb 4 15:22:34 2019 -0500 :Arreglo .git
+d2af544 ; AndresVaron ; AndresVaron; Fri Feb 1 08:04:52 2019 -0500 :.Bat y .Jar generador de la Cascara.
+3e23c47 ; AndresVaron ; AndresVaron; Thu Jan 31 08:21:17 2019 -0500 :Cascara
+80e4984 ; af.varon ; af.varon; Thu Jul 5 08:28:52 2018 -0500 :Probando V1
