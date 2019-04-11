@@ -81,11 +81,5 @@ public class MarcaLogic {
         MarcaEntity newEntity = marcaPersistence.updateMarca(marca);
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la marca con id = {0}", marca.getId());
         return newEntity; 
-    }
-    
-    
-    
-    
-    
-    
+    }   
 }

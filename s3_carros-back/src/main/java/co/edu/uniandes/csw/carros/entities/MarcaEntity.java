@@ -65,6 +65,10 @@ public class MarcaEntity extends BaseEntity implements Serializable{
        
     
    
+    /**
+     * ruta de la imagen de la marca 
+     */
+    private String imagen_marca;
     
     
     /**
@@ -86,6 +90,20 @@ public class MarcaEntity extends BaseEntity implements Serializable{
      */
     public void setNombreMarca(String nombreMarca) {
         this.nombreMarca = nombreMarca;
+    }
+
+    /**
+     * @return the imagen_marca
+     */
+    public String getImagen_marca() {
+        return imagen_marca;
+    }
+
+    /**
+     * @param imagen_marca the imagen_marca to set
+     */
+    public void setImagen_marca(String imagen_marca) {
+        this.imagen_marca = imagen_marca;
     }
     
     

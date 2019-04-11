@@ -35,7 +35,10 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     private CompraVentaEntity compraVenta;
            
     
-  
+    /**
+     * ruta de la imagen del auto
+     */
+    private String imagen_auto;
     
     /**
      * disponibilidad del vehiculo dentro del 
@@ -301,10 +304,17 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
         this.compraVenta = compraVenta;
     }
 
-   
-    
-    
-    
-    
-    
+    /**
+     * @return the image_route
+     */
+    public String getImagen_auto() {
+        return imagen_auto;
+    }
+
+    /**
+     * @param image_route the image_route to set
+     */
+    public void setImagen_auto(String image_route) {
+        this.imagen_auto = image_route;
+    }    
 }

@@ -26,17 +26,24 @@ public class MarcaDTO implements Serializable{
     public MarcaDTO(MarcaEntity marcaEntity){
         if(marcaEntity != null){
             this.idMarca = marcaEntity.getId();
-            this.nombreMarca = marcaEntity.getNombreMarca();          
+            this.nombreMarca = marcaEntity.getNombreMarca();
+            this.imagen_marca = marcaEntity.getImagen_marca();
         }
     }
     
     public MarcaEntity toEntity(){
         MarcaEntity marca = new MarcaEntity();
         marca.setId(this.idMarca);
-        marca.setNombreMarca(this.nombreMarca);             
+        marca.setNombreMarca(this.nombreMarca);
+        marca.setImagen_marca(this.imagen_marca);
         return marca;
     }
     
+    
+    /**
+     * ruta de la imagen de la marca
+     */
+    private String imagen_marca;
     
     
     /**
@@ -75,6 +82,20 @@ public class MarcaDTO implements Serializable{
      */
     public void setIdMarca(Long idMarca) {
         this.idMarca = idMarca;
+    }
+
+    /**
+     * @return the imagen_marca
+     */
+    public String getImagen_marca() {
+        return imagen_marca;
+    }
+
+    /**
+     * @param imagen_marca the imagen_marca to set
+     */
+    public void setImagen_marca(String imagen_marca) {
+        this.imagen_marca = imagen_marca;
     }
 
     

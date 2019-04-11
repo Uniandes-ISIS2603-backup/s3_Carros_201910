@@ -23,6 +23,9 @@ public class AutomovilDTO  implements Serializable{
     private ModeloDTO modelo;
     
     
+    
+    private String imagen_auto;
+    
     /**
      * identificador unico de un automovil dentro del 
      * concesionario
@@ -101,6 +104,7 @@ public class AutomovilDTO  implements Serializable{
         if(autoEntity != null){
             this.anio = autoEntity.getAnio();
             this.autoId = autoEntity.getId();
+            this.imagen_auto = autoEntity.getImagen_auto();
             this.color = autoEntity.getColor();
             this.cuidadMatricula = autoEntity.getCuidadMatricula();
             this.disponible = autoEntity.getDisponible();
@@ -134,6 +138,7 @@ public class AutomovilDTO  implements Serializable{
         AutomovilEntity auto = new AutomovilEntity();
         auto.setAnio(this.anio);
         auto.setId(this.autoId);
+        auto.setImagen_auto(this.imagen_auto);
         auto.setColor(this.color);
         auto.setCuidadMatricula(this.cuidadMatricula);
         auto.setDisponible(this.disponible);
@@ -361,12 +366,20 @@ public class AutomovilDTO  implements Serializable{
     public void setModelo(ModeloDTO modelo) {
         this.modelo = modelo;
     }
-    
-    
-    
-    
-    
-    
+
+    /**
+     * @return the imagen_auto
+     */
+    public String getImagen_auto() {
+        return imagen_auto;
+    }
+
+    /**
+     * @param imagen_auto the imagen_auto to set
+     */
+    public void setImagen_auto(String imagen_auto) {
+        this.imagen_auto = imagen_auto;
+    }    
     
     
     
