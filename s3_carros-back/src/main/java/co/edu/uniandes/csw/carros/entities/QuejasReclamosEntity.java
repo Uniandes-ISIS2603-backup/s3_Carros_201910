@@ -26,7 +26,7 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     private String comentarios;
     
     @PodamExclude
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
     private CompraVentaEntity compraVenta;
     
     /**

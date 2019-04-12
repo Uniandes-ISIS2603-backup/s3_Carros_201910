@@ -33,9 +33,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
-public class FacturaResourse 
+public class FacturaResource 
 {
-    private final static Logger LOGGER = Logger.getLogger(FacturaResourse.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
     
     @Inject
     private FacturaLogic facturaLogic;

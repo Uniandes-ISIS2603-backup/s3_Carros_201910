@@ -11,8 +11,8 @@ delete from MARCAENTITY;
 delete from RegistroCompraEntity;
 delete from PuntoVentaEntity;
 
-insert into PuntoVentaEntity (id, direccion, telefono) values (1, 'Calle 10 #26-18', '3508484');
-insert into PuntoVentaEntity (id, direccion, telefono) values (2, 'Calle 15 #30-18', '3508686');
+insert into PUNTOVENTAENTITY (id, direccion, telefono) values (1, 'Calle 10 #26-18', '3508484');
+insert into PUNTOVENTAENTITY (id, direccion, telefono) values (2, 'Calle 15 #30-18', '3508686');
 
 insert into ClienteEntity (id, nombre, correo, telefono) values (1, 'Camilo Perez', 'cp@mail.com', '3124548978');
 insert into ClienteEntity (id, nombre, correo, telefono) values (2, 'Carla Espitia', 'ce@mail.com', '3124568168');
@@ -48,10 +48,3 @@ insert into FACTURAENTITY(ID,CUENTAORIGEN,FECHA,COMPRAVENTA_ID) VALUES (1,254100
 insert into FACTURAENTITY(ID,CUENTAORIGEN,FECHA,COMPRAVENTA_ID) VALUES (2,652300048523,'2018-06-20',1);
 insert into FACTURAENTITY(ID,CUENTAORIGEN,FECHA,COMPRAVENTA_ID) VALUES (3,978500049511,'2018-07-18',1);
 insert into FACTURAENTITY(ID,CUENTAORIGEN,FECHA,COMPRAVENTA_ID) VALUES (4,325400043645,'2018-06-24',1);
-
-SELECT * FROM COMPRAVENTAENTITY;
-
-
-
-
-

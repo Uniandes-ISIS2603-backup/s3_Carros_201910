@@ -16,29 +16,21 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * cliente y el servidor.
  *"
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * 
  * <pre>
+ * 
  *   {
  *      "ventaID": number,
  *      "calificacionCompra": number,
  *      "fecha": date,
  *      "pagado": boolean,
  *      "factura": {@link FacturaDTO}
+ *      "automovilFacturado": {@link AutomovilFacturadoDTO}
+ *      "cliente": {@link ClienteDTO}
+ *      "empleado": {@link EmpleadoDTO}
+ *      "puntoVenta": {@link PuntoVentaDTO}
  *   }
- * </pre> Por ejemplo una compraVenta se representa asi:<br>
- *
- * <pre>
- *
- *   {
- *      "ventaID": 13579,
- *      "calificacionCompra": "4.5",
- *      "fecha": "2018-08-20T00:00:00-05:00",
- *      "pagado": "true",
- *      "factura": {
- *                     "transaccionId": 13579,
- *                     "cuentaOrigen": 147852369,
- *                     "fecha": "2018-08-20T00:00:00-07:00"
- *                 }
- *   }
+ * 
  * </pre>
  *
  * @author Kevin Hernan Castrillon Castañeda
@@ -168,7 +160,7 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
         compraVentaEntity.setPagado(this.pagado);
         if(this.cliente != null)
         {
-//            compraVentaEntity.setCliente(this.cliente.toEntity);
+            compraVentaEntity.setCliente(this.cliente.toEntity());
         }
         if(this.empleado != null)
         {
