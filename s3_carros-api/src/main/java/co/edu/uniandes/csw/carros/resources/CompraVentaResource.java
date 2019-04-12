@@ -35,9 +35,9 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
-public class CompraVentaResourse 
+public class CompraVentaResource 
 {
-    private final static Logger LOGGER = Logger.getLogger(CompraVentaResourse.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(CompraVentaResource.class.getName());
     
     @Inject
     private CompraVentaLogic compraVentaLogic; 
@@ -131,6 +131,28 @@ public class CompraVentaResourse
         CompraVentaDetailDTO detailDTO = new CompraVentaDetailDTO(compraVentaLogic.updateCompraVenta(ventaID, compraVenta.toEntity()));
         LOGGER.log(Level.INFO, "CompraVentaResource updateCompraVenta: output: {0}", detailDTO);
         return detailDTO;
+    }
+    
+    /**
+     * Conexión con el servicio de quejas para una compraVenta.
+     * {@link CompraVentaQuejasResource}
+     *
+     * Este método conecta la ruta de /compraVentas con las rutas de /quejasReclamos que
+     * dependen de la editorial, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los libros de una editorial.
+     *
+     * @param compraVentaId El ID de la compraVenta con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de quejas para esta compraVenta en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la compraVenta.
+     */
+    @Path("{ventaID: \\d+}/quejasReclamos")
+    public Class<CompraVentaQuejasResource> getCompraVentaQuejasResource(@PathParam("ventaID") Long compraVentaId) {
+        if (compraVentaLogic.getCompraVenta(compraVentaId) == null) {
+            throw new WebApplicationException("El recurso /compraVentas/" + compraVentaId + " no existe.", 404);
+        }
+        return CompraVentaQuejasResource.class;
     }
     
     /**
