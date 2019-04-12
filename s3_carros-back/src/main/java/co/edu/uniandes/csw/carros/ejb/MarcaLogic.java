@@ -33,18 +33,7 @@ public class MarcaLogic {
     
     public MarcaEntity createMarca(MarcaEntity marcaEntity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la Marca");
-        if(marcaEntity.getPuntosVenta() == null){
-            throw new NullPointerException("los puntos de venta son nulos para este modelo");
-        }
-        for(int i = 0; i <= marcaEntity.getPuntosVenta().size(); i++ ){
-            if(puntoVentapersistence.find(marcaEntity.getPuntosVenta().get(i).getId())== null){
-                throw new BusinessLogicException("No existe el punto de venta con id " + marcaEntity.getPuntosVenta().get(i).getId() + " en la base de datos");
-            }
-        }
-        if(marcaPersistence.findMarca(marcaEntity.getId()) != null){
-            throw new BusinessLogicException("Ya existe una marca con el id " + marcaEntity.getId());
-        }
-        
+        //TODO: Hacer una regla de negocio que pregunte que no hay una marca con el mismo nombre
         marcaPersistence.create(marcaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la Marca");
         return marcaEntity; 

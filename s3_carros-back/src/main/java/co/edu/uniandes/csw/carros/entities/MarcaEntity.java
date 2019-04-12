@@ -21,7 +21,45 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity     
 public class MarcaEntity extends BaseEntity implements Serializable{    
 
+/**
+     * nombre de la marca
+     */
+    private String nombreMarca;
+    
+    private String imagen;
+    
+    private String descripcion;
+    
+    
+    @PodamExclude                                 
+    @ManyToMany
+    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ModeloEntity> modelos = new ArrayList<>();
+       
+
+    
+    
+
     /**
+     * @return the nombreMarca
+     */
+    public String getNombreMarca() {
+        return nombreMarca;
+    }
+
+    /**
+     * @param nombreMarca the nombreMarca to set
+     */
+    public void setNombreMarca(String nombreMarca) {
+        this.nombreMarca = nombreMarca;
+    }
+    
+    
+        /**
      * @return the puntosVenta
      */
     public List<PuntoVentaEntity> getPuntosVenta() {
@@ -71,25 +109,37 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     private String imagen_marca;
     
     
-    /**
-     * nombre de la marca
-     */
-    private String nombreMarca;
-    
-    
-
-    /**
-     * @return the nombreMarca
-     */
-    public String getNombreMarca() {
-        return nombreMarca;
+    public void addModelo(ModeloEntity modelo)
+    {
+        this.modelos.add(modelo);
     }
 
     /**
-     * @param nombreMarca the nombreMarca to set
+     * @return the imagen
      */
-    public void setNombreMarca(String nombreMarca) {
-        this.nombreMarca = nombreMarca;
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     /**

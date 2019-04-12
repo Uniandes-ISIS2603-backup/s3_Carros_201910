@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.carros.dtos.*;
 import co.edu.uniandes.csw.carros.ejb.MarcaLogic;
 import co.edu.uniandes.csw.carros.entities.MarcaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -52,6 +54,24 @@ public class MarcaResource {
         return nuevaMarcaoDTO;
     }   
     
+    @GET
+    public List<MarcaDetailDTO> getMarcas()
+    {
+        LOGGER.info("MarcaResourse getMarcas: input: void");
+        List<MarcaDetailDTO> listaMarcas = listEntity2DetailDTO(logicMarca.getMarcas());
+        LOGGER.log(Level.INFO, "MarcaResourse getMarcas: output: {0}", listaMarcas);
+        return listaMarcas;
+    }
+    
+   private List<MarcaDetailDTO> listEntity2DetailDTO(List<MarcaEntity> entityList)
+   {
+        List<MarcaDetailDTO> list = new ArrayList<>();
+        for (MarcaEntity entity : entityList) {
+            list.add(new MarcaDetailDTO(entity));
+        }
+        return list;
+    }
+    
     
     @GET
     @Path("{marcaID: \\d+}")
@@ -66,9 +86,11 @@ public class MarcaResource {
         return detailDTO;
     }
     
+    
+    
     @PUT
-    @Path("{idMarca: \\d+}")
-    public MarcaDTO updateModelo(@PathParam("idMarca") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
+    @Path("{marcaID: \\d+}")
+    public MarcaDTO updateModelo(@PathParam("marcaID") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ModeloResource UpdateModelo: input: id:{0} , modelo: {1}", new Object[]{marcaID, marca});
         marca.setIdMarca(marcaID);
         if (logicMarca.getMarca(marcaID) == null) {
@@ -80,7 +102,7 @@ public class MarcaResource {
     }
     
     @DELETE
-    @Path("{idMarca: \\d+}")
+    @Path("{marcaID: \\d+}")
     public void deleteMarca(@PathParam("idMarca") Long marcaID) throws BusinessLogicException
     {
        LOGGER.log(Level.INFO, "PuntoVentaResourse deletePuntoVenta: input: {0}", marcaID);

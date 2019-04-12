@@ -35,9 +35,9 @@ public class QuejasReclamosLogic {
      */
     public QuejasReclamosEntity createQuejasReclamos(QuejasReclamosEntity queja) throws BusinessLogicException{
         
-        if(persistence.findByName(queja.getCarroId())!= null)
+        if(persistence.findByName(queja.getCasoId())!= null)
         {
-            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCarroId());
+            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCasoId());
         }
         if(queja.isSolucionado())
         {
@@ -77,11 +77,11 @@ public class QuejasReclamosLogic {
      * @param casoId Identificador de la instancia a consultar
      * @return la queja solicitada por medio de su ID.
      */
-    public QuejasReclamosEntity getQueja(Long casoId) throws BusinessLogicException
+    public QuejasReclamosEntity getQueja(Long casoId)
     {
         QuejasReclamosEntity entity = persistence.find(casoId);
         if (casoId == null) {
-            throw new BusinessLogicException("No se encuentra queja con el Id");
+//            throw new BusinessLogicException("No se encuentra queja con el Id");
         }
         return entity;
     }

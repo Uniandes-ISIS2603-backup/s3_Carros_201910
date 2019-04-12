@@ -78,7 +78,7 @@ public class QuejasReclamosResource {
     /**
      * Busca la queja con el id asociado recibido en la URL y la devuelve.
      * 
-     * @param casoID: Identificador de la queja.
+     * @param casoId: Identificador de la queja.
      * @return JSON {@link QuejasReclamosDTO} - La queja buscada. 
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la queja.
