@@ -80,15 +80,15 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     /**
      * @return the carroId
      */
-    public Long getCarroId() {
+    public Long getCasoId() {
         return casoId;
     }
 
     /**
-     * @param carroId the carroId to set
+     * @param casoId the carroId to set
      */
-    public void setCarroId(Long carroId) {
-        this.casoId = carroId;
+    public void setCasoId(Long casoId) {
+        this.casoId = casoId;
     }
 
     /**

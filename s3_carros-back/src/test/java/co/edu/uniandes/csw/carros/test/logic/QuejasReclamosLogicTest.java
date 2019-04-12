@@ -97,7 +97,7 @@ public class QuejasReclamosLogicTest {
         for(int i=0; i<3; i++){
             QuejasReclamosEntity queja = factory.manufacturePojo(QuejasReclamosEntity.class);
             Long j = new Long(i);
-            queja.setCarroId(j);
+            queja.setCasoId(j);
             queja.setSolucionado(false);
             int random = ThreadLocalRandom.current().nextInt(0, 6);
             queja.setTipo(random);
@@ -124,7 +124,7 @@ public class QuejasReclamosLogicTest {
         Assert.assertNotNull(result);
         QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getCarroId(), entity.getCarroId());
+        Assert.assertEquals(newEntity.getCasoId(), entity.getCasoId());
         
     }
     
@@ -140,7 +140,7 @@ public class QuejasReclamosLogicTest {
         int random = ThreadLocalRandom.current().nextInt(0, 6);
         newEntity.setTipo(random);
         newEntity.setComentarios(random == 5 && newEntity.getComentarios().isEmpty()? "sdfghjkl": newEntity.getComentarios());
-        newEntity.setCarroId(data.get(0).getCarroId());
+        newEntity.setCasoId(data.get(0).getCasoId());
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
@@ -155,7 +155,7 @@ public class QuejasReclamosLogicTest {
         newEntity.setSolucionado(true);
         int random = ThreadLocalRandom.current().nextInt(6, 100);
         newEntity.setTipo(random);
-        newEntity.setCarroId(data.get(0).getCarroId());
+        newEntity.setCasoId(data.get(0).getCasoId());
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
@@ -170,7 +170,7 @@ public class QuejasReclamosLogicTest {
         newEntity.setSolucionado(false);
         newEntity.setTipo(5);
         newEntity.setComentarios("");
-        newEntity.setCarroId(data.get(0).getCarroId());
+        newEntity.setCasoId(data.get(0).getCasoId());
         quejasReclamosLogic.createQuejasReclamos(newEntity);
     }
     
@@ -202,7 +202,7 @@ public class QuejasReclamosLogicTest {
         QuejasReclamosEntity resultEntity = quejasReclamosLogic.getQueja(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getCarroId(), resultEntity.getCarroId());
+        Assert.assertEquals(entity.getCasoId(), resultEntity.getCasoId());
     }
     
     /**
@@ -217,7 +217,7 @@ public class QuejasReclamosLogicTest {
         quejasReclamosLogic.updateQuejasReclamos(pojoEntity.getId(), pojoEntity);
         QuejasReclamosEntity resp = em.find(QuejasReclamosEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getCarroId(), resp.getCarroId());
+        Assert.assertEquals(pojoEntity.getCasoId(), resp.getCasoId());
     }
     
     /**

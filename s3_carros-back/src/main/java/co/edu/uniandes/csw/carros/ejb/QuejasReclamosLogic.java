@@ -35,9 +35,9 @@ public class QuejasReclamosLogic {
      */
     public QuejasReclamosEntity createQuejasReclamos(QuejasReclamosEntity queja) throws BusinessLogicException{
         
-        if(persistence.findByName(queja.getCarroId())!= null)
+        if(persistence.findByName(queja.getCasoId())!= null)
         {
-            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCarroId());
+            throw new BusinessLogicException("Ya existe una queja con el id:  "+ queja.getCasoId());
         }
         if(queja.isSolucionado())
         {
