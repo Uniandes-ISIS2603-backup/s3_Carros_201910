@@ -130,5 +130,5 @@ public class CompraVentaQuejasResource
             list.add(dto.toEntity());
         }
         return list;
-    }
+    } 
 }
