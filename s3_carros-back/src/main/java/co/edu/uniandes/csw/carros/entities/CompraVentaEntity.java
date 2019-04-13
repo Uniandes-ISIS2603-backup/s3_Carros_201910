@@ -38,7 +38,7 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     private Boolean pagado;
     
     @PodamExclude
-    @OneToOne(mappedBy = "compraVenta", fetch = LAZY)
+    @OneToOne(mappedBy = "compraVenta", fetch = LAZY) 
     private FacturaEntity factura;
 
     @PodamExclude
