@@ -40,7 +40,8 @@ public class CompraVentaQuejasLogic
      * queja.
      * @return La queja creada.
      */
-    public QuejasReclamosEntity addQueja(Long quejaId, Long compraVentaId) {
+    public QuejasReclamosEntity addQueja(Long quejaId, Long compraVentaId) 
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una queja a la compraVenta con id = {0}", compraVentaId);
         CompraVentaEntity compraVentaEntity = compraVentaPersistence.findByID(compraVentaId);
         QuejasReclamosEntity quejaEntity = quejaPersistence.find(quejaId);
