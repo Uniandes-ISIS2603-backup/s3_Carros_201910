@@ -89,15 +89,10 @@ public class CompraVentaLogic
         {
             throw new BusinessLogicException("El automovil no existe en la base de datos.");
         }
-        
-        compraVentaEntity.setPuntoVenta(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()));
-        compraVentaEntity.setCliente(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()));
-        compraVentaEntity.setEmpleado(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()));
-        compraVentaEntity.setAutomovilFacturado(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()));
-        
         persistence.create(compraVentaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compraVenta");
         return compraVentaEntity;
+        
     }
 
     /**

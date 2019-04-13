@@ -13,8 +13,6 @@ import java.io.Serializable;
  * @author Juan Pablo Patarroyo Duque
  */
 public class EmpleadoDTO implements Serializable{
-
-    
     private Long empleadoID;
     private String nombre;
     private Integer extension;
@@ -73,14 +71,14 @@ public class EmpleadoDTO implements Serializable{
     /**
      * @return the extension
      */
-    public Integer getExtension() {
+    public int getExtension() {
         return extension;
     }
 
     /**
      * @param extension the extension to set
      */
-    public void setExtension(Integer extension) {
+    public void setExtension(int extension) {
         this.extension = extension;
     }
 
@@ -99,20 +97,6 @@ public class EmpleadoDTO implements Serializable{
     }
     
     /**
-     * @return the puntoVenta
-     */
-    public PuntoVentaDTO getPuntoVenta() {
-        return puntoVenta;
-    }
-
-    /**
-     * @param puntoVenta the puntoVenta to set
-     */
-    public void setPuntoVenta(PuntoVentaDTO puntoVenta) {
-        this.puntoVenta = puntoVenta;
-    }
-    
-    /**
      * Convertir DTO a Entity
      *
      * @return Un Entity con los valores del DTO
@@ -123,7 +107,7 @@ public class EmpleadoDTO implements Serializable{
         entity.setCorreo(this.correo);
         entity.setExtension(this.extension);
         entity.setId(this.empleadoID);
-        entity.setPuntoVenta(getPuntoVenta().toEntity());
+        entity.setPuntoVenta(puntoVenta.toEntity());
         return entity;
     }   
 }

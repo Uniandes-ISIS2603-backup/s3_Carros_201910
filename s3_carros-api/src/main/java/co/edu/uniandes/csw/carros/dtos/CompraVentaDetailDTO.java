@@ -16,21 +16,16 @@ import java.util.List;
  * Para conocer el contenido de la una CompraVenta vaya a la documentacion de {@link ComraVentaDTO}
  *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
- * 
  * <pre>
- * 
  *   {
  *      "ventaID": number,
  *      "calificacionCompra": number,
  *      "fecha": date,
  *      "pagado": boolean,
  *      "factura": {@link FacturaDTO},
-      "quejasReclamos": [{@link QuejasReclamosDTO}],
+ *      "quejasReclamosCliente": [{@link QuejasReclamosDTO}],
  *      "quejasReclamosEmpleado": [{@link QuejasReclamosDTO}]
  *   }
- * 
- * </pre>
- * 
  * @author Kevin Hernán Castrillón Castañeda
  */
 public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
@@ -38,19 +33,17 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
     /**
      * Lista de quejas y reclamos del cliente.
      */
-    private List<QuejasReclamosDTO> quejasReclamos;
+    private List<QuejasReclamosDTO> quejasReclamosCliente;
     
     /**
      * Lista de quejas y reclamos del empleado.
      */
-//    private List<QuejasReclamosDTO> quejasReclamosEmpleado;
+    private List<QuejasReclamosDTO> quejasReclamosEmpleado;
 
     /**
      * Constructor por defecto
      */
-    public CompraVentaDetailDTO() 
-    {
-        super();
+    public CompraVentaDetailDTO() {
     }
 
     /**
@@ -63,30 +56,30 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
         super(compraVentaEntity);
         if (compraVentaEntity != null) 
         {
-            if (compraVentaEntity.getQuejasReclamos() != null) 
+            if (compraVentaEntity.getQuejasReclamosCliente() != null) 
             {
-                quejasReclamos = new ArrayList<>();
-                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamos()) 
+                quejasReclamosCliente = new ArrayList<>();
+                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosCliente()) 
                 {
-                    quejasReclamos.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                    quejasReclamosCliente.add(new QuejasReclamosDTO(quejasReclamosEntity));
                 }
             }            
             else
             {
-                quejasReclamos = new ArrayList<>();
+                quejasReclamosCliente = new ArrayList<>();
             }
-//            if (compraVentaEntity.getQuejasReclamosEmpleado() != null) 
-//            {
-//                quejasReclamosEmpleado = new ArrayList<>();
-//                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosEmpleado()) 
-//                {
-//                    quejasReclamosEmpleado.add(new QuejasReclamosDTO(quejasReclamosEntity));
-//                }
-//            }
-//            else
-//            {
-//                quejasReclamosEmpleado = new ArrayList<>();
-//            }
+            if (compraVentaEntity.getQuejasReclamosEmpleado() != null) 
+            {
+                quejasReclamosEmpleado = new ArrayList<>();
+                for(QuejasReclamosEntity quejasReclamosEntity : compraVentaEntity.getQuejasReclamosEmpleado()) 
+                {
+                    quejasReclamosEmpleado.add(new QuejasReclamosDTO(quejasReclamosEntity));
+                }
+            }
+            else
+            {
+                quejasReclamosEmpleado = new ArrayList<>();
+            }
         }
     }
 
@@ -99,78 +92,78 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
     public CompraVentaEntity toEntity() 
     {
         CompraVentaEntity compraventaEntity = super.toEntity();
-        if (quejasReclamos != null) 
+        if (quejasReclamosCliente != null) 
         {
-            List<QuejasReclamosEntity> quejasRelamosEntity = new ArrayList<>();
-            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamos) 
+            List<QuejasReclamosEntity> quejasRelamosClienteEntity = new ArrayList<>();
+            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosCliente) 
             {
-                quejasRelamosEntity.add(quejasReclamosDTO.toEntity());
+                quejasRelamosClienteEntity.add(quejasReclamosDTO.toEntity());
             }
-            compraventaEntity.setQuejasReclamos(quejasRelamosEntity);
+            compraventaEntity.setQuejasReclamosCliente(quejasRelamosClienteEntity);
         }
-//        if (quejasReclamosEmpleado != null) 
-//        {
-//            List<QuejasReclamosEntity> quejasRelamosEmpleadoEntity = new ArrayList<>();
-//            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosEmpleado) 
-//            {
-//                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
-//            }
-//            compraventaEntity.setQuejasReclamosEmpleado(quejasRelamosEmpleadoEntity);
-//        }
+        if (quejasReclamosEmpleado != null) 
+        {
+            List<QuejasReclamosEntity> quejasRelamosEmpleadoEntity = new ArrayList<>();
+            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosEmpleado) 
+            {
+                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
+            }
+            compraventaEntity.setQuejasReclamosEmpleado(quejasRelamosEmpleadoEntity);
+        }
         return compraventaEntity;
     }
     
     /**
      * Retorna la lista de quejas del cliente.
-     * @return the quejasReclamos
+     * @return the quejasReclamosCliente
      */
-    public List<QuejasReclamosDTO> getQuejasReclamos() 
+    public List<QuejasReclamosDTO> getQuejasReclamosCliente() 
     {
-        return quejasReclamos;
+        return quejasReclamosCliente;
     }
 
     /**
      * Asigna una lista de quejas del cliente.
-     * @param quejasReclamos the quejasReclamos set
+     * @param quejasReclamosCliente the quejasReclamosCliente set
      */
-    public void setQuejasReclamos(List<QuejasReclamosDTO> quejasReclamos) 
+    public void setQuejasReclamosCliente(List<QuejasReclamosDTO> quejasReclamosCliente) 
     {
-        this.quejasReclamos = quejasReclamos;
+        this.quejasReclamosCliente = quejasReclamosCliente;
     }
     
     /**
      * Agrega una nueva queja a la lista de quejas del cliente
      * @param queja: Es la queja que se va a agregar a la lista de quejas de empleado.
      */
-//    public void addQuejaCliente(QuejasReclamosDTO queja)
-//    {
-//        this.quejasReclamos.add(queja);
-//    }
+    public void addQuejaCliente(QuejasReclamosDTO queja)
+    {
+        this.quejasReclamosCliente.add(queja);
+    }
     
     /**
      * Retorna la lista de quejas del empleado.
      * @return the quejasReclamosEmpleado
      */
-//    public List<QuejasReclamosDTO> getQuejasReclamosEmpleado() 
-//    {
-//        return quejasReclamosEmpleado;
-//    }
+    public List<QuejasReclamosDTO> getQuejasReclamosEmpleado() 
+    {
+        return quejasReclamosEmpleado;
+    }
 
     /**
      * Asigna una lista de quejas del empleado.
      * @param quejasReclamosEmpleado the quejasReclamosEmpleado set
      */
-//    public void setQuejasReclamosEmpleado(List<QuejasReclamosDTO> quejasReclamosEmpleado) 
-//    {
-//        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
-//    }
+    public void setQuejasReclamosEmpleado(List<QuejasReclamosDTO> quejasReclamosEmpleado) 
+    {
+        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
+    }
     
     /**
      * Agrega una nueva queja a la lista de quejas del empleado
      * @param queja: Es la queja que se va a agregar a la lista de quejas de empleado.
      */
-//    public void addQuejaEmpleado(QuejasReclamosDTO queja)
-//    {
-//        this.quejasReclamosEmpleado.add(queja);
-//    }
+    public void addQuejaEmpleado(QuejasReclamosDTO queja)
+    {
+        this.quejasReclamosEmpleado.add(queja);
+    }
 }

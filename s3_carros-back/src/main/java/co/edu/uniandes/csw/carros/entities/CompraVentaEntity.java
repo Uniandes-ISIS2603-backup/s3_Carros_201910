@@ -51,11 +51,11 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
 
     @PodamExclude
     @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
-    private List<QuejasReclamosEntity> quejasReclamos = new ArrayList<QuejasReclamosEntity>();
+    private List<QuejasReclamosEntity> quejasReclamosEmpleado = new ArrayList<QuejasReclamosEntity>();
     
-//    @PodamExclude
-//    @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
-//    private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
+    private List<QuejasReclamosEntity> quejasReclamosCliente = new ArrayList<QuejasReclamosEntity>();
     
     @PodamExclude
     @OneToOne
@@ -108,32 +108,32 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     }
 
     /**
-     * @return the quejasReclamos
+     * @return the quejasReclamosEmpleado
      */
-    public List<QuejasReclamosEntity> getQuejasReclamos() {
-        return quejasReclamos;
+    public List<QuejasReclamosEntity> getQuejasReclamosEmpleado() {
+        return quejasReclamosEmpleado;
     }
 
     /**
-     * @param quejasReclamos the quejasReclamos to set
+     * @param quejasReclamosEmpleado the quejasReclamosEmpleado to set
      */
-    public void setQuejasReclamos(List<QuejasReclamosEntity> quejasReclamos) {
-        this.quejasReclamos = quejasReclamos;
+    public void setQuejasReclamosEmpleado(List<QuejasReclamosEntity> quejasReclamosEmpleado) {
+        this.quejasReclamosEmpleado = quejasReclamosEmpleado;
     }
 
     /**
      * @return the quejasReclamosCliente
      */
-//    public List<QuejasReclamosEntity> getQuejasReclamosCliente() {
-//        return quejasReclamosCliente;
-//    }
+    public List<QuejasReclamosEntity> getQuejasReclamosCliente() {
+        return quejasReclamosCliente;
+    }
 
     /**
      * @param quejasReclamosCliente the quejasReclamosCliente to set
      */
-//    public void setQuejasReclamosCliente(List<QuejasReclamosEntity> quejasReclamosCliente) {
-//        this.quejasReclamosCliente = quejasReclamosCliente;
-//    }
+    public void setQuejasReclamosCliente(List<QuejasReclamosEntity> quejasReclamosCliente) {
+        this.quejasReclamosCliente = quejasReclamosCliente;
+    }
 
     /**
      * @return the automovilFacturado

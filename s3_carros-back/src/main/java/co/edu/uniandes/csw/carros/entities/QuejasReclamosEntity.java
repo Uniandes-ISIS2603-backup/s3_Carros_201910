@@ -26,7 +26,7 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     private String comentarios;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     private CompraVentaEntity compraVenta;
     
     /**
@@ -80,15 +80,15 @@ public class QuejasReclamosEntity extends BaseEntity implements Serializable{
     /**
      * @return the carroId
      */
-    public Long getCasoId() {
+    public Long getCarroId() {
         return casoId;
     }
 
     /**
-     * @param casoId the carroId to set
+     * @param carroId the carroId to set
      */
-    public void setCasoId(Long casoId) {
-        this.casoId = casoId;
+    public void setCarroId(Long carroId) {
+        this.casoId = carroId;
     }
 
     /**

@@ -51,7 +51,7 @@ public class CompraVentaPersistence
      * @return CompraVenta con el id del argumento, null si no existe ninguna.
      */
     public CompraVentaEntity findByID(Long id) {
-        LOGGER.log(Level.INFO, "Consultando CompraVenta con id", id);
+        LOGGER.log(Level.INFO, "Consultando CompraVenta por id", id);
         CompraVentaEntity result = em.find(CompraVentaEntity.class, id);
         LOGGER.log(Level.INFO, "Saliendo de consultar CompraVenta por id", id);
         return result;

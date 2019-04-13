@@ -103,8 +103,4 @@ public class MarcaDetailDTO extends MarcaDTO implements Serializable{
     public void setListaPuntosVenta(List<PuntoVentaDTO> listaPuntosVenta) {
         this.listaPuntosVenta = listaPuntosVenta;
     }
-    
-       public void addPuntoVenta(PuntoVentaDTO puntoVenta){
-        this.getListaPuntosVenta().add(puntoVenta);
-    }   
 }

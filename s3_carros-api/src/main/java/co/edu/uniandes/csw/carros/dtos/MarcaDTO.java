@@ -26,18 +26,16 @@ public class MarcaDTO implements Serializable{
     public MarcaDTO(MarcaEntity marcaEntity){
         if(marcaEntity != null){
             this.idMarca = marcaEntity.getId();
-            this.nombreMarca = marcaEntity.getNombreMarca();        
-            this.imagen = marcaEntity.getImagen();
-            this.descripcion= marcaEntity.getDescripcion();
+            this.nombreMarca = marcaEntity.getNombreMarca();
+            this.imagen_marca = marcaEntity.getImagen_marca();
         }
     }
     
     public MarcaEntity toEntity(){
         MarcaEntity marca = new MarcaEntity();
         marca.setId(this.idMarca);
-        marca.setNombreMarca(this.nombreMarca);  
-        marca.setImagen(this.imagen);
-        marca.setDescripcion(this.descripcion);
+        marca.setNombreMarca(this.nombreMarca);
+        marca.setImagen_marca(this.imagen_marca);
         return marca;
     }
     
@@ -57,12 +55,6 @@ public class MarcaDTO implements Serializable{
      * id de la marca dentro del concecionario
      */
     private Long idMarca;
-    
-    private String imagen;
-    
-    private String descripcion; 
-    
-    
 
     /**
      * @return the nombreMarca
@@ -93,31 +85,17 @@ public class MarcaDTO implements Serializable{
     }
 
     /**
-     * @return the imagen
+     * @return the imagen_marca
      */
-    public String getImagen() {
-        return imagen;
+    public String getImagen_marca() {
+        return imagen_marca;
     }
 
     /**
-     * @param imagen the imagen to set
+     * @param imagen_marca the imagen_marca to set
      */
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    /**
-     * @return the descripcion
-     */
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setImagen_marca(String imagen_marca) {
+        this.imagen_marca = imagen_marca;
     }
 
     

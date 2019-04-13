@@ -94,7 +94,7 @@ public class QuejasReclamosPersistenceTest {
       for(int i=0;i<3; i++){
             QuejasReclamosEntity entity = factory.manufacturePojo(QuejasReclamosEntity.class);
             Long j = new Long(i);
-            entity.setCasoId(j);
+            entity.setCarroId(j);
             em.persist(entity);
             data.add(entity);
         }
@@ -115,7 +115,7 @@ public class QuejasReclamosPersistenceTest {
         
         QuejasReclamosEntity entity = em.find(QuejasReclamosEntity.class, qre.getId());
         
-        Assert.assertEquals(newEntity.getCasoId(), entity.getCasoId());
+        Assert.assertEquals(newEntity.getCarroId(), entity.getCarroId());
         
     }
     
@@ -128,7 +128,7 @@ public class QuejasReclamosPersistenceTest {
         QuejasReclamosEntity search = qrp.find(entity.getId());
         
         Assert.assertNotNull(search);
-        Assert.assertEquals(entity.getCasoId(), search.getCasoId());
+        Assert.assertEquals(entity.getCarroId(), search.getCarroId());
     }
     
     /**
@@ -169,9 +169,9 @@ public class QuejasReclamosPersistenceTest {
     @Test
     public void findQuejasReclamosByIdTest() {
         QuejasReclamosEntity entity = data.get(0);
-        Long id = qrp.findByName(entity.getCasoId()).getCasoId();   
+        Long id = qrp.findByName(entity.getCarroId()).getCarroId();   
         TypedQuery<QuejasReclamosEntity> query = em.createQuery("Select u From QuejasReclamosEntity u where u.casoId = :casoId", QuejasReclamosEntity.class);
         query = query.setParameter("casoId", id);
-        Assert.assertEquals(id, query.getSingleResult().getCasoId());
+        Assert.assertEquals(id, query.getSingleResult().getCarroId());
     }
 }

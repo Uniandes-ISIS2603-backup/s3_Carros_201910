@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.carros.ejb;
 
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
-import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.EmpleadoPersistence;
-import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +22,7 @@ import javax.inject.Inject;
 public class EmpleadoLogic {
     
     @Inject
-    private EmpleadoPersistence persistence; //atributo para acceder a la persistencia empleado
-    
-    @Inject 
-    private PuntoVentaPersistence persPuntoVenta; //atributo para acceder a la persistencia punto de venta
+    private EmpleadoPersistence persistence; //atributo para acceder a la persistencia
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
     
@@ -39,18 +34,11 @@ public class EmpleadoLogic {
         List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
         if(search.isEmpty()){
             if(nuevoEmpleado.getPuntoVenta() == null){
-                throw new BusinessLogicException("¡El empleado no tiene ningún punto de venta asociado!");
+                throw new BusinessLogicException("!El empleado no tiene ningún punto de venta asociado¡");
             }
-            else{
-                PuntoVentaEntity pVenta = persPuntoVenta.find(nuevoEmpleado.getPuntoVenta().getId());
-                if(pVenta == null){
-                    throw new BusinessLogicException("¡El punto de venta asignado al empleado no existe!");
-                }
-                nuevoEmpleado.setPuntoVenta(pVenta);
-                persistence.create(nuevoEmpleado);
-                LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
-                return nuevoEmpleado;
-            }           
+            persistence.create(nuevoEmpleado);
+            LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
+            return nuevoEmpleado;
         }
         else{
             throw new BusinessLogicException("El empleado con el correo ingresado ya existe");
@@ -73,20 +61,19 @@ public class EmpleadoLogic {
     public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
          LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado.getId());
         String correo = empleado.getCorreo();
-        List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(correo);
-        if(search.isEmpty() || search.get(0).getId() == empleado.getId()){
-            PuntoVentaEntity pVenta = persPuntoVenta.find(empleado.getPuntoVenta().getId());
-            if(pVenta != null){
+        EmpleadoEntity ee = persistence.findEmpleado(empleado.getId());
+        if(ee.getCorreo().equals(correo)){
+            persistence.updateEmpleado(empleado);
+        }
+        else{
+            List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(correo);
+            if(search.isEmpty()){
                 persistence.updateEmpleado(empleado);
             }
             else{
-                throw new BusinessLogicException("El punto de venta asignado no existe");
-            }              
+                throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
+            }
         }
-        else{
-            throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
-        }
-        
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", empleado);
         return empleado;
     }
