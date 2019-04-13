@@ -51,7 +51,7 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
 
     @PodamExclude
     @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
-    private List<QuejasReclamosEntity> quejasReclamos = new ArrayList<QuejasReclamosEntity>();
+    private List<QuejasReclamosEntity> quejasReclamos = new ArrayList<QuejasReclamosEntity>(); 
     
 //    @PodamExclude
 //    @OneToMany(mappedBy = "compraVenta", fetch = LAZY)
