@@ -28,7 +28,7 @@ public class PuntoVentaDTO implements Serializable
  /**
   * id con el cual el programa identifica el punto de venta
   */
- private long id;
+ private Long id;
 
  
 /**
@@ -69,14 +69,14 @@ public class PuntoVentaDTO implements Serializable
     /** Retona el id del punto de venta
      * @return the id con el que se reconoce al punto de venta en el programa
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     /** Fija el id del punto de venta con el cual se reconoce en el sistema
      * @param id the id to set el nuevo id del punto de venta
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
  
