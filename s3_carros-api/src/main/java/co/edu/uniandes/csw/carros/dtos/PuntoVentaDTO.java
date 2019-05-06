@@ -15,7 +15,11 @@ import java.util.List;
  */
 public class PuntoVentaDTO implements Serializable
 {
-/**
+ 
+ /**
+  * id con el cual el programa identifica el punto de venta
+  */
+ private Long id;/**
  * Direccion del punto de venta
  */
  private String direccion; 
@@ -25,10 +29,14 @@ public class PuntoVentaDTO implements Serializable
   */
  private String telefono;
  
- /**
-  * id con el cual el programa identifica el punto de venta
-  */
- private Long id;
+ private String nombre; 
+ 
+ private Double latitud; 
+ 
+ private Double longitud;
+ 
+ private List<String> rutaFotos;
+
 
  
 /**
@@ -89,7 +97,12 @@ public class PuntoVentaDTO implements Serializable
        PuntoVentaEntity entity = new PuntoVentaEntity();
        entity.setDireccion(this.direccion);
        entity.setTelefono(this.telefono);
-       entity.setId(this.id);
+       entity.setId(this.getId());
+       entity.setNombre(this.nombre);
+       entity.setLatitud(this.latitud);
+       entity.setLongitud(this.longitud);
+       entity.setRutaFotos(this.rutaFotos);
+       
        return entity;
     }
     /**
@@ -101,5 +114,70 @@ public class PuntoVentaDTO implements Serializable
       this.direccion = entity.getDireccion();
       this.telefono = entity.getTelefono();
       this.id = entity.getId();
+      this.nombre = entity.getNombre();
+      this.latitud = entity.getLatitud();
+      this.longitud = entity.getLongitud();
+      this.rutaFotos = entity.getRutaFotos();
  }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the latitud
+     */
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    /**
+     * @param latitud the latitud to set
+     */
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    /**
+     * @return the longitud
+     */
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    /**
+     * @param longitud the longitud to set
+     */
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
+    /**
+     * @return the rutaFotos
+     */
+    public List<String> getRutaFotos() {
+        return rutaFotos;
+    }
+
+    /**
+     * @param rutaFotos the rutaFotos to set
+     */
+    public void setRutaFotos(List<String> rutaFotos) {
+        this.rutaFotos = rutaFotos;
+    }
+    
+    public void addRutaFotos(String rutaFoto)
+    {
+        this.rutaFotos.add(rutaFoto);
+    }
 }
