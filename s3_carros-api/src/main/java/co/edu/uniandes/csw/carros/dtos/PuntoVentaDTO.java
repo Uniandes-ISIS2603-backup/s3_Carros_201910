@@ -35,7 +35,7 @@ public class PuntoVentaDTO implements Serializable
  
  private Double longitud;
  
- private List<String> rutaFotos;
+ private String rutaFotos;
 
 
  
@@ -165,19 +165,16 @@ public class PuntoVentaDTO implements Serializable
     /**
      * @return the rutaFotos
      */
-    public List<String> getRutaFotos() {
+    public String getRutaFotos() {
         return rutaFotos;
     }
 
     /**
      * @param rutaFotos the rutaFotos to set
      */
-    public void setRutaFotos(List<String> rutaFotos) {
+    public void setRutaFotos(String rutaFotos) {
         this.rutaFotos = rutaFotos;
     }
     
-    public void addRutaFotos(String rutaFoto)
-    {
-        this.rutaFotos.add(rutaFoto);
-    }
+    
 }

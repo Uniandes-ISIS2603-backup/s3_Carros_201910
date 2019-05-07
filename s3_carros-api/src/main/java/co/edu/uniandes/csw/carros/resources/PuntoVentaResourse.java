@@ -149,4 +149,60 @@ public class PuntoVentaResourse
         logica.deletePuntoVenta(puntoVentaID);
         LOGGER.info("PuntoVentaResourse deletePuntoVenta: output: void");
     }
+    
+    /**
+     *
+     * @param puntoVentaID
+     * @return
+     */
+    @Path("{puntoVentaID: \\d+}/empleados")
+    public Class<PuntoVentaEmpleadoResource> getPuntoVentaEmpleadoResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaEmpleadoResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/clientes")
+    public Class<PuntoVentaClienteResource> getPuntoVentaClienteResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaClienteResource.class;
+    }
+    
+    @Path("{puntoVentaID: \\d+}/ventas")
+    public Class<PuntoVentaCompraVentaResource> getPuntoVentaCompraVentaResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaCompraVentaResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/marcas")
+    public Class<PuntoVentaMarcasResource> getPuntoVentaMarcaResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaMarcasResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/compras")
+    public Class<PuntoVentaRegistrosCompraResource> getPuntoVentaRegistrosCompraResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaRegistrosCompraResource.class;
+    }
+    
 }
