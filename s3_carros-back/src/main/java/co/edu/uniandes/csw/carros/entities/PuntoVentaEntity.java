@@ -31,6 +31,14 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     */
    private String telefono;
    
+    private String nombre; 
+ 
+ private Double latitud; 
+ 
+ private Double longitud;
+ 
+ private String rutaFotos;
+   
    /**
     * LISTA DE EMPLEADOS DE UN PUNTO DE VENTA 
     */
@@ -171,5 +179,64 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     public void setVentas(List<CompraVentaEntity> ventas) {
         this.ventas = ventas;
     }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the latitud
+     */
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    /**
+     * @param latitud the latitud to set
+     */
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    /**
+     * @return the longitud
+     */
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    /**
+     * @param longitud the longitud to set
+     */
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
+    /**
+     * @return the rutaFotos
+     */
+    public String getRutaFotos() {
+        return rutaFotos;
+    }
+
+    /**
+     * @param rutaFotos the rutaFotos to set
+     */
+    public void setRutaFotos(String rutaFotos) {
+        this.rutaFotos = rutaFotos;
+    }
+    
+    
+            
    
 }

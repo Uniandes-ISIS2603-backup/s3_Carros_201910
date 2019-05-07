@@ -17,7 +17,7 @@ public class AutomovilDTO  implements Serializable{
     private RegistroCompraDTO registroCompra;
     
     
-    private CompraVentaDTO compraventa;
+
     
     
     private ModeloDTO modelo;
@@ -115,11 +115,7 @@ public class AutomovilDTO  implements Serializable{
             this.recorrido = autoEntity.getRecorrido();
             this.referencia = autoEntity.getReferencia();
             this.tipo = autoEntity.getTipo();
-            if(autoEntity.getCompraVenta() != null){
-                this.compraventa = new CompraVentaDTO(autoEntity.getCompraVenta());
-            }else{
-                this.compraventa = null;
-            }
+          
             if(autoEntity.getRegistroCompra() != null){
                 this.registroCompra = new RegistroCompraDTO(autoEntity.getRegistroCompra());
             }else{
@@ -149,7 +145,7 @@ public class AutomovilDTO  implements Serializable{
         auto.setRecorrido(this.recorrido);
         auto.setReferencia(this.referencia);
         auto.setTipo(this.tipo);
-        auto.setCompraVenta(this.compraventa.toEntity());
+       
         if(this.registroCompra != null){
             auto.setRegistroCompra(this.registroCompra.toEntity());
         }
@@ -339,19 +335,7 @@ public class AutomovilDTO  implements Serializable{
         this.registroCompra = registroCompra;
     }
 
-    /**
-     * @return the compraventa
-     */
-    public CompraVentaDTO getCompraventa() {
-        return compraventa;
-    }
-
-    /**
-     * @param compraventa the compraventa to set
-     */
-    public void setCompraventa(CompraVentaDTO compraventa) {
-        this.compraventa = compraventa;
-    }
+  
 
     /**
      * @return the modelo

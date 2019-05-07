@@ -53,19 +53,25 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
      */
     public ClienteEntity toEntity(){
         ClienteEntity entity = super.toEntity();
-        if(listaCompras != null){
+        if(listaCompras != null || !listaCompras.isEmpty()){
             List<CompraVentaEntity> comprasEntity = new ArrayList<>();
             for(CompraVentaDTO compraDto : listaCompras){
                 comprasEntity.add(compraDto.toEntity());
             }
             entity.setCompras(comprasEntity);
         }
-        if(listaPuntosVentas != null){
+        else{
+            entity.setCompras(new ArrayList<>());
+        }
+        if(listaPuntosVentas != null || !listaCompras.isEmpty()){
             List<PuntoVentaEntity> puntosEntity = new ArrayList<>();
             for(PuntoVentaDTO punto : listaPuntosVentas){
                 puntosEntity.add(punto.toEntity());
             }
             entity.setPuntosVenta(puntosEntity);
+        }
+        else{
+            entity.setPuntosVenta(new ArrayList<>());
         }
         return entity;
     }

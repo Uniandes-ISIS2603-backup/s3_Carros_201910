@@ -34,7 +34,7 @@ public class RegistroCompraDTO implements Serializable
     /**
      * El automovil asociado
      */
-    private AutomovilDTO auto; 
+   
     
     private long compraId; 
 
@@ -73,7 +73,7 @@ public class RegistroCompraDTO implements Serializable
       this.nombreVendedor = entity.getNombreVendedor();
       this.precioAcordado = entity.getPrecioComprado();
       this.compraId = entity.getId();
-      this.auto = new AutomovilDTO(entity.getAutomovil());
+//      this.auto = new AutomovilDTO(entity.getAutomovil());
       this.compraId = entity.getId();
  }
     /**
@@ -136,16 +136,16 @@ public class RegistroCompraDTO implements Serializable
     /**
      * @return the auto
      */
-    public AutomovilDTO getAuto() {
-        return auto;
-    }
+   // public AutomovilDTO getAuto() {
+     //   return auto;
+    //}
 
     /**
      * @param auto the auto to set
      */
-    public void setAuto(AutomovilDTO auto) {
-        this.auto = auto;
-    }
+    //public void setAuto(AutomovilDTO auto) {
+      //  this.auto = auto;
+    //}
     
     
 }
