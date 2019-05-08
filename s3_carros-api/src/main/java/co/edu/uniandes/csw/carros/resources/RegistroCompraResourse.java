@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Daniel Lozano
  */
-@Path("registrosCompra")
+@Path("/registrosCompra")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped

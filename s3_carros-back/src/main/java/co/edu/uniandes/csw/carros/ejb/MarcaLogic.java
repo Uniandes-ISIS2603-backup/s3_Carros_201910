@@ -25,18 +25,26 @@ public class MarcaLogic {
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
     
     @Inject
-    private PuntoVentaPersistence puntoVentapersistence;
+    private MarcaPersistence persistence;
     
     @Inject
     private MarcaPersistence marcaPersistence;
     
     
     public MarcaEntity createMarca(MarcaEntity marcaEntity) throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de la Marca");
-        //TODO: Hacer una regla de negocio que pregunte que no hay una marca con el mismo nombre
-        marcaPersistence.create(marcaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la Marca");
-        return marcaEntity; 
+        if(marcaEntity.getId() == null)
+        {
+            throw  new BusinessLogicException("EL id es error");
+        }
+        else
+        {
+        if(persistence.findByNombreMarca(marcaEntity.getNombreMarca())!= null)
+        {
+            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion:  "+ marcaEntity.getNombreMarca());
+        }
+        }
+        marcaEntity = persistence.create(marcaEntity);
+        return marcaEntity;
     }
     
     
@@ -59,13 +67,13 @@ public class MarcaLogic {
     }
     
     
-    public void deleteMarca(Long marcaId){
+    public void deleteMarca(Long marcaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id = {0}", marcaId);
         marcaPersistence.deleteMarca(marcaId);
         LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", marcaId);
     }
     
-    public MarcaEntity updateMarca(MarcaEntity marca) throws BusinessLogicException{
+    public MarcaEntity updateMarca(MarcaEntity marca){
        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la marca con id = {0}", marca.getId());
         MarcaEntity newEntity = marcaPersistence.updateMarca(marca);
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la marca con id = {0}", marca.getId());

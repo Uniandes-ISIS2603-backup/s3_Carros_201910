@@ -37,12 +37,6 @@ public class RegistroCompraLogic
      */
     public RegistroCompraEntity createRegistroCompra(RegistroCompraEntity compra)  throws BusinessLogicException 
     {
-        Date fecha = new Date();
-        
-        if(compra.getFechaCompra().after(fecha))
-        {
-            throw new BusinessLogicException("La fecha de registrar la compra esta despues de la fecha actual");
-         }
         compra = persistence.create(compra);
         return compra;
     }

@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.carros.persistence;
 
 import co.edu.uniandes.csw.carros.entities.MarcaEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -46,6 +48,25 @@ public class MarcaPersistence {
     
     public MarcaEntity updateMarca(MarcaEntity marca){
         return em.merge(marca);
+    }
+    
+    public MarcaEntity findByNombreMarca(String nombre)
+    {
+        TypedQuery query = em.createQuery("Select e From MarcaEntity e where e.nombreMarca = :nombreMarca", MarcaEntity.class);
+        
+        query = query.setParameter("nombreMarca", nombre);
+        
+        List<MarcaEntity> sameNombre = query.getResultList();
+        MarcaEntity result;
+        
+        if (sameNombre == null) {
+            result = null;
+        } else if (sameNombre.isEmpty()) {
+            result = null;
+        } else {
+            result = sameNombre.get(0);
+        }
+        return result;
     }
     
 }
