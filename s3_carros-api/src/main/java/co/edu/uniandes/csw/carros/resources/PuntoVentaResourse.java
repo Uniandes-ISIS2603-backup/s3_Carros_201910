@@ -76,14 +76,17 @@ public class PuntoVentaResourse
     public List<PuntoVentaDetailDTO> getPuntosVenta()
     {
         LOGGER.info("PuntoVentaResourse getPuntoVenta: input: void");
-        List<PuntoVentaDetailDTO> listaPuntoVenta = listEntity2DetailDTO(logica.getPuntosVenta());
-        LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta: output: {0}", listaPuntoVenta);
+        List<PuntoVentaDetailDTO> convertirlista = listEntity2DetailDTO(logica.getPuntosVenta());
+        LOGGER.info("PuntoVentaResourse getPuntoVenta conviertiendo la lista: input: void");
+        List<PuntoVentaDetailDTO> listaPuntoVenta = convertirlista;
+        LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta saliando AJA: output: {0}", listaPuntoVenta);
         return listaPuntoVenta;
     }
     /**
      * Convierte una lista de entidades a DTO.
      */
     private List<PuntoVentaDetailDTO> listEntity2DetailDTO(List<PuntoVentaEntity> entityList) {
+        LOGGER.info("PuntoVentaResourse en metodo convertir: input: void");
         List<PuntoVentaDetailDTO> list = new ArrayList<>();
         for (PuntoVentaEntity entity : entityList) {
             list.add(new PuntoVentaDetailDTO(entity));
@@ -99,7 +102,7 @@ public class PuntoVentaResourse
      */
     @GET
     @Path("{puntoVentaID: \\d+}")
-    public PuntoVentaDTO getPuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws WebApplicationException 
+    public PuntoVentaDetailDTO getPuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws WebApplicationException 
     {
         LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta: input: {0}", puntoVentaID);
         PuntoVentaEntity puntoVentaEntity = logica.getPuntoVenta(puntoVentaID);
@@ -149,4 +152,60 @@ public class PuntoVentaResourse
         logica.deletePuntoVenta(puntoVentaID);
         LOGGER.info("PuntoVentaResourse deletePuntoVenta: output: void");
     }
+    
+    /**
+     *
+     * @param puntoVentaID
+     * @return
+     */
+    @Path("{puntoVentaID: \\d+}/empleados")
+    public Class<PuntoVentaEmpleadoResource> getPuntoVentaEmpleadoResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaEmpleadoResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/clientes")
+    public Class<PuntoVentaClienteResource> getPuntoVentaClienteResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaClienteResource.class;
+    }
+    
+    @Path("{puntoVentaID: \\d+}/ventas")
+    public Class<PuntoVentaCompraVentaResource> getPuntoVentaCompraVentaResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaCompraVentaResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/marcas")
+    public Class<PuntoVentaMarcasResource> getPuntoVentaMarcaResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaMarcasResource.class;
+    }
+    
+     @Path("{puntoVentaID: \\d+}/compras")
+    public Class<PuntoVentaRegistrosCompraResource> getPuntoVentaRegistrosCompraResource(@PathParam("puntoVentaID") Long puntoVentaID)
+    {
+        if(logica.getPuntoVenta(puntoVentaID) == null)
+        {
+            throw new WebApplicationException("El recurso /puntoVenta/"+ puntoVentaID+ "no existe", 404);
+        }
+        return PuntoVentaRegistrosCompraResource.class;
+    }
+    
 }

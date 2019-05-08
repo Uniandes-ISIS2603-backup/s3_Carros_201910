@@ -45,4 +45,23 @@ public class ModeloPersistence{
         return em.merge(modelo);
     }
     
+    public ModeloEntity findByNombre(String nombre)
+    {
+        TypedQuery query = em.createQuery("Select e From ModeloEntity e where e.nombre = :nombre", ModeloEntity.class);
+        
+        query = query.setParameter("nombre", nombre);
+        
+        List<ModeloEntity> sameNombre = query.getResultList();
+        ModeloEntity result;
+        
+        if (sameNombre == null) {
+            result = null;
+        } else if (sameNombre.isEmpty()) {
+            result = null;
+        } else {
+            result = sameNombre.get(0);
+        }
+        return result;
+    }
+    
 }

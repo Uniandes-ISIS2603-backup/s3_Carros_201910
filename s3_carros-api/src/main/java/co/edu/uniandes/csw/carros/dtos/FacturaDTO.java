@@ -38,10 +38,7 @@ public class FacturaDTO extends CascaraDTO implements Serializable
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
-    /**
-     * Transacción relacionada con las factura.
-     */
-    private CompraVentaDTO compraVenta;
+
 
      /**
      * Constructor vacío de Factura.
@@ -62,14 +59,7 @@ public class FacturaDTO extends CascaraDTO implements Serializable
             this.facturaID = facturaEntity.getId();
             this.cuentaOrigen = facturaEntity.getCuentaOrigen();
             this.fecha = facturaEntity.getFecha();
-            if (facturaEntity.getCompraVenta()!= null) 
-            {
-                this.compraVenta = new CompraVentaDTO(facturaEntity.getCompraVenta());
-            } 
-            else 
-            {
-                this.compraVenta = null;
-            }
+            
         }
     }
     
@@ -84,10 +74,7 @@ public class FacturaDTO extends CascaraDTO implements Serializable
         facturaEntity.setId(this.facturaID);
         facturaEntity.setCuentaOrigen(this.cuentaOrigen);
         facturaEntity.setFecha(this.fecha);
-        if(this.compraVenta != null)
-        {
-            facturaEntity.setCompraVenta(this.compraVenta.toEntity());
-        }
+       
         return facturaEntity;
     }
     
@@ -133,17 +120,5 @@ public class FacturaDTO extends CascaraDTO implements Serializable
         this.fecha = fecha;
     }
 
-    /**
-     * @return the compraventa
-     */
-    public CompraVentaDTO getCompraventa() {
-        return compraVenta;
-    }
-
-    /**
-     * @param compraventa the compraventa to set
-     */
-    public void setCompraventa(CompraVentaDTO compraventa) {
-        this.compraVenta = compraventa;
-    }
+   
 }

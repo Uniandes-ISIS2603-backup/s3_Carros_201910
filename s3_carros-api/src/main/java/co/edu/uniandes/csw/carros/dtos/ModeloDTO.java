@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class ModeloDTO implements Serializable{
     
-    
+    //TODO para que esta declarando este atributo
     private MarcaDTO marca;
     
     
