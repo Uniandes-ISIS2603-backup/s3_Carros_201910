@@ -76,14 +76,17 @@ public class PuntoVentaResourse
     public List<PuntoVentaDetailDTO> getPuntosVenta()
     {
         LOGGER.info("PuntoVentaResourse getPuntoVenta: input: void");
-        List<PuntoVentaDetailDTO> listaPuntoVenta = listEntity2DetailDTO(logica.getPuntosVenta());
-        LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta: output: {0}", listaPuntoVenta);
+        List<PuntoVentaDetailDTO> convertirlista = listEntity2DetailDTO(logica.getPuntosVenta());
+        LOGGER.info("PuntoVentaResourse getPuntoVenta conviertiendo la lista: input: void");
+        List<PuntoVentaDetailDTO> listaPuntoVenta = convertirlista;
+        LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta saliando AJA: output: {0}", listaPuntoVenta);
         return listaPuntoVenta;
     }
     /**
      * Convierte una lista de entidades a DTO.
      */
     private List<PuntoVentaDetailDTO> listEntity2DetailDTO(List<PuntoVentaEntity> entityList) {
+        LOGGER.info("PuntoVentaResourse en metodo convertir: input: void");
         List<PuntoVentaDetailDTO> list = new ArrayList<>();
         for (PuntoVentaEntity entity : entityList) {
             list.add(new PuntoVentaDetailDTO(entity));
@@ -99,7 +102,7 @@ public class PuntoVentaResourse
      */
     @GET
     @Path("{puntoVentaID: \\d+}")
-    public PuntoVentaDTO getPuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws WebApplicationException 
+    public PuntoVentaDetailDTO getPuntoVenta(@PathParam("puntoVentaID") Long puntoVentaID) throws WebApplicationException 
     {
         LOGGER.log(Level.INFO, "PuntoVentaResourse getPuntoVenta: input: {0}", puntoVentaID);
         PuntoVentaEntity puntoVentaEntity = logica.getPuntoVenta(puntoVentaID);

@@ -95,14 +95,14 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
                }
            }
            
-           if(puntoVentaEntity.getVentas() != null)
-           {
-               for (CompraVentaEntity compraVenta : puntoVentaEntity.getVentas()) 
-               {
-                 compraVentas.add(new CompraVentaDTO(compraVenta));  
-               }
+           //if(puntoVentaEntity.getVentas() != null)
+           //{
+              // for (CompraVentaEntity compraVenta : puntoVentaEntity.getVentas()) 
+               //{
+                // compraVentas.add(new CompraVentaDTO(compraVenta));  
+               //}
                
-           }
+           //}
            
            
        }
