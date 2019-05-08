@@ -112,4 +112,8 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     {
         this.puntosVenta.add(nuevoPuntoVenta);
     }
+    
+    public void addCompra(CompraVentaEntity compra){
+        this.compras.add(compra);
+    }
 }
