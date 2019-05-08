@@ -85,7 +85,7 @@ public class MarcaLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData(){
-        em.createQuery("delete from QuejasReclamosEntity").executeUpdate();
+        em.createQuery("delete from MarcaEntity").executeUpdate();
     }
     
     /**

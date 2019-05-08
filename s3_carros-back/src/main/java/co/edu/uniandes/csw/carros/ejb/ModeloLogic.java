@@ -27,7 +27,7 @@ public class ModeloLogic {
     
     
     @Inject
-    private MarcaPersistence marcaPersistence;
+    private ModeloPersistence marcaPersistence;
     
     
     @Inject
@@ -36,15 +36,13 @@ public class ModeloLogic {
     public ModeloEntity createModelo(ModeloEntity modelo) throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia proceso de creación del Modelo");
-        if(modelo.getMarca() == null){
-            throw new NullPointerException("La Marca es null");
-        }
-        if(marcaPersistence.findMarca(modelo.getMarca().getId()) == null){
-            throw new BusinessLogicException("La marca no existe en la base de datos");
-        }
         if(modeloPeristence.findModelo(modelo.getId()) != null){
             throw new BusinessLogicException("ya existe un modelo con el id: " + modelo.getId());
         }
+        if(modeloPeristence.findByNombre(modelo.getNombre()) != null){
+            throw new BusinessLogicException("ya existe un modelo con el nombre: " + modelo.getNombre());
+        }
+        
         modeloPeristence.createModelo(modelo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del Modelo");
         return modelo;
@@ -67,13 +65,13 @@ public class ModeloLogic {
         return entity;  
     }
     
-    public void deleteModelo(Long modeloID){
+    public void deleteModelo(Long modeloID) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id ", modeloID);
         modeloPeristence.deleteModelo(modeloID);
         LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id ", modeloID);
     }
     
-    public ModeloEntity updateModelo(ModeloEntity modelo) throws BusinessLogicException{
+    public ModeloEntity updateModelo(ModeloEntity modelo){
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el mdoelo con id ", modelo.getId());
         ModeloEntity newEntity = modeloPeristence.updateMarca(modelo);
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el modelo con id", modelo.getId());
