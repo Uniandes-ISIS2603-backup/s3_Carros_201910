@@ -69,5 +69,9 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable{
         this.listaVentas = lista;
     }
     
+    public void addVenta(CompraVentaDTO venta){
+        this.listaVentas.add(venta);
+    }
+    
     
 }

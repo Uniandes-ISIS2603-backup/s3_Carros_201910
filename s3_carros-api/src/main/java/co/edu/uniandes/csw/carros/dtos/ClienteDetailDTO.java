@@ -103,4 +103,12 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     public void setListaPuntosVentas(List<PuntoVentaDTO> listaPuntosVentas) {
         this.listaPuntosVentas = listaPuntosVentas;
     }
+    
+    public void addPuntoVenta(PuntoVentaDTO pv){
+        this.listaPuntosVentas.add(pv);
+    }
+    
+    public void addCompra(CompraVentaDTO c){
+        this.listaCompras.add(c);
+    }
 }

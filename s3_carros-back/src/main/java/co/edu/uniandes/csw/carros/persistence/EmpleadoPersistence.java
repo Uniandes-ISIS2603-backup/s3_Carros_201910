@@ -65,9 +65,20 @@ public class EmpleadoPersistence {
     /**
      * Busca si hay algun empleado con el correo que se envía de argumento
      */
-    public List<EmpleadoEntity> findEmpleadoPorCorreo(String correo){
+    public EmpleadoEntity findEmpleadoPorCorreo(String correo){
         TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
         query = query.setParameter("correo", correo);
-        return query.getResultList(); 
+        List<EmpleadoEntity> lista = query.getResultList(); 
+        EmpleadoEntity empleado;
+        if(lista == null){
+            empleado = null;
+        }
+        else if(lista.isEmpty()){
+            empleado = null;
+        }
+        else{
+            empleado = lista.get(0);
+        }
+        return empleado;
     }
 }
