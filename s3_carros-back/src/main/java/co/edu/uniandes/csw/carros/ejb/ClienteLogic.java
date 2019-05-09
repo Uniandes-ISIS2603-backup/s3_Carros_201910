@@ -31,14 +31,11 @@ public class ClienteLogic {
      */
     public ClienteEntity createCliente(ClienteEntity nuevoCliente)throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
-        List<ClienteEntity> search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
-        if(search.isEmpty()){
-            if(nuevoCliente.getPuntosVenta().isEmpty()){
-                throw new BusinessLogicException("!El cliente no tiene ningún punto de venta asociado¡");
-            }
-            persistence.create(nuevoCliente);
+        ClienteEntity search = persistence.findClientePorCorreo(nuevoCliente.getCorreo());
+        if(search == null){
+            ClienteEntity cliente = persistence.create(nuevoCliente);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
-            return nuevoCliente;
+            return cliente;            
         }
         else{
             throw new BusinessLogicException("Ya hay un cliente con el mismo correo, por favor utilice otro");
@@ -59,10 +56,18 @@ public class ClienteLogic {
      * Actualizar un cliente.
      */
     public ClienteEntity updateCliente(ClienteEntity cliente)throws BusinessLogicException{
-         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", cliente.getId());
-        String correo = cliente.getCorreo();
-        ClienteEntity ee = persistence.findCliente(cliente.getId());
-        if(ee.getCorreo().equals(correo)){
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", cliente.getId());
+        ClienteEntity search = persistence.findClientePorCorreo(cliente.getCorreo());
+        if(search == null || search.getId() == cliente.getId()){
+            List<PuntoVentaEntity> puntos = cliente.getPuntosVenta();
+            if(puntos != null){
+                for(int i=0; i<puntos.size(); i++){
+                    PuntoVentaEntity pVenta = persPuntoVenta.find(puntos.get(i).getId());
+                    if(pVenta == null){
+                        throw new BusinessLogicException("El punto de venta con id " + puntos.get(i).getId() + " no existe.");
+                    }
+                }
+            }
             persistence.updateCliente(cliente);
         }
         else{

@@ -117,5 +117,15 @@ public class ModeloResource {
         return list;
     }
     
+    @Path("{modeloID: \\d+}/automoviles")
+    public Class<ModeloAutomovilesResource> getModeloAutomovilesResource(@PathParam("modeloID") Long modeloID)
+    {
+        if(logicModelo.getModelo(modeloID) == null)
+        {
+            throw new WebApplicationException("El recurso /modelos/"+ modeloID+ "no existe", 404);
+        }
+        return ModeloAutomovilesResource.class;
+    }
+    
     
 }

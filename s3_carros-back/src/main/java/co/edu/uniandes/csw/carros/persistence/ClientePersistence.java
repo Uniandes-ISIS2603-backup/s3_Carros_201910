@@ -65,9 +65,20 @@ public class ClientePersistence {
     /**
      * Busca si hay algun cliente con el correo que se envía de argumento
      */
-    public List<ClienteEntity> findClientePorCorreo(String correo){
+    public ClienteEntity findClientePorCorreo(String correo){
         TypedQuery<ClienteEntity> query = em.createQuery("Select u From ClienteEntity u where u.correo = :correo", ClienteEntity.class);
         query = query.setParameter("correo", correo);
-        return query.getResultList();
+        List<ClienteEntity> mismoCorreo = query.getResultList();
+        ClienteEntity cliente;
+        if(mismoCorreo == null){
+            cliente = null;
+        }
+        else if(mismoCorreo.isEmpty()){
+            cliente = null;
+        }
+        else{
+            cliente = mismoCorreo.get(0);
+        }
+        return cliente;
     }
 }

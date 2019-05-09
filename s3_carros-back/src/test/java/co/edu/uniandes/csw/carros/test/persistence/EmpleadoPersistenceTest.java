@@ -168,7 +168,7 @@ public class EmpleadoPersistenceTest {
     @Test
     public void finEmpleadoPorCorreoTest(){
         EmpleadoEntity entity = data.get(0);
-        String correo = ep.findEmpleadoPorCorreo(entity.getCorreo()).get(0).getCorreo();   
+        String correo = ep.findEmpleadoPorCorreo(entity.getCorreo()).getCorreo();   
         TypedQuery<EmpleadoEntity> query = em.createQuery("Select u From EmpleadoEntity u where u.correo = :correo", EmpleadoEntity.class);
         query = query.setParameter("correo", correo);
         Assert.assertEquals(correo, query.getSingleResult().getCorreo());

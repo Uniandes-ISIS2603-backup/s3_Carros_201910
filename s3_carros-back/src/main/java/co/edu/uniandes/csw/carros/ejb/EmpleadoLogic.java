@@ -31,8 +31,8 @@ public class EmpleadoLogic {
      */
     public EmpleadoEntity createEmpleado(EmpleadoEntity nuevoEmpleado) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
-        List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
-        if(search.isEmpty()){
+        EmpleadoEntity search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
+        if(search == null){
             if(nuevoEmpleado.getPuntoVenta() == null){
                 throw new BusinessLogicException("!El empleado no tiene ningún punto de venta asociado¡");
             }
@@ -61,13 +61,10 @@ public class EmpleadoLogic {
     public EmpleadoEntity updateEmpleado(EmpleadoEntity empleado)throws BusinessLogicException{
          LOGGER.log(Level.INFO, "Inicia proceso de actualizar el empleado con id = {0}", empleado.getId());
         String correo = empleado.getCorreo();
-        EmpleadoEntity ee = persistence.findEmpleado(empleado.getId());
-        if(ee.getCorreo().equals(correo)){
-            persistence.updateEmpleado(empleado);
-        }
-        else{
-            List<EmpleadoEntity> search = persistence.findEmpleadoPorCorreo(correo);
-            if(search.isEmpty()){
+        EmpleadoEntity search = persistence.findEmpleadoPorCorreo(correo);
+        if(search == null || search.getId()==empleado.getId()){
+            PuntoVentaEntity pVenta = persPuntoVenta.find(empleado.getPuntoVenta().getId());
+            if(pVenta != null){
                 persistence.updateEmpleado(empleado);
             }
             else{

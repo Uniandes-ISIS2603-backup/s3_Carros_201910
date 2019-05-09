@@ -39,7 +39,7 @@ public class PuntoVentaPersistence {
      */
     public PuntoVentaEntity create(PuntoVentaEntity puntoVentaEntity)
     {
-        LOGGER.log(Level.INFO, "Creando un nuevo punto de venta");
+        LOGGER.log(Level.INFO, "Creando un nuevo punto de venta ");
         em.persist(puntoVentaEntity);
         LOGGER.log(Level.INFO, "Saliendo de  crear un nuevo punto de venta");
         return puntoVentaEntity;
@@ -51,7 +51,7 @@ public class PuntoVentaPersistence {
      */
     public List<PuntoVentaEntity> findAll()
     {
-        LOGGER.log(Level.INFO, "Consultando todos los puntos de venta");
+        LOGGER.log(Level.INFO, "Consultando todos los puntos de venta persistencia");
         TypedQuery<PuntoVentaEntity> query = em.createQuery("select u from PuntoVentaEntity u", PuntoVentaEntity.class);
         return  query.getResultList();
     }
