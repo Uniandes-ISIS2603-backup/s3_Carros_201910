@@ -145,12 +145,12 @@ public class ClienteLogicTest {
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createClienteSinPuntoVenta() throws BusinessLogicException{
-        ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
-        nuevoCliente.setPuntosVenta(new ArrayList<>());
-        clienteLogic.createCliente(nuevoCliente);
-    }
+   // @Test(expected = BusinessLogicException.class)
+ //   public void createClienteSinPuntoVenta() throws BusinessLogicException{
+        //ClienteEntity nuevoCliente = factory.manufacturePojo(ClienteEntity.class);
+        //nuevoCliente.setPuntosVenta(new ArrayList<>());
+      //  clienteLogic.createCliente(nuevoCliente);
+    //}
     
        /**
      * Prueba para actualizar un Cliente.
