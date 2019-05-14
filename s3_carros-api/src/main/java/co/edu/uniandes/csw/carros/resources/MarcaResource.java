@@ -114,13 +114,13 @@ public class MarcaResource {
     }
     
     @Path("{marcaID: \\d+}/modelos")
-    public Class<PuntoVentaEmpleadoResource> getMarcaModelosResource(@PathParam("marcaID") Long marcaID)
+    public Class<MarcaModelosResource> getMarcaModelosResource(@PathParam("marcaID") Long marcaID)
     {
         if(logicMarca.getMarca(marcaID) == null)
         {
             throw new WebApplicationException("El recurso /marcas/"+ marcaID+ "no existe", 404);
         }
-        return PuntoVentaEmpleadoResource.class;
+        return MarcaModelosResource.class;
     }
     
     

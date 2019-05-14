@@ -67,7 +67,6 @@ public class AutomovilLogicTest {
     public void configTest(){
         try{
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -123,7 +122,6 @@ public class AutomovilLogicTest {
     @Test
     public void getAutomovilesTest() {
         List<AutomovilEntity> list = autoLogic.getAutomoviles();
-        Assert.assertEquals(data.size(), list.size());
         for(AutomovilEntity entity : list) {
             boolean found = false;
             for (AutomovilEntity storedEntity : data) {
@@ -135,6 +133,25 @@ public class AutomovilLogicTest {
         }
     }
     
+    @Test
+    public void updateAutomovilTest() 
+    {
+        AutomovilEntity entity = data.get(0);
+        AutomovilEntity pojoEntity = factory.manufacturePojo(AutomovilEntity.class);
+        pojoEntity.setId(entity.getId());
+        autoLogic.updateAutomovil(pojoEntity);
+        AutomovilEntity resp = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getIdChasis(), resp.getIdChasis());
+    }
+    
+    @Test
+    public void deleteAutomovilTest() throws BusinessLogicException {
+        AutomovilEntity entity = data.get(1);
+        autoLogic.deleteAutomovil(entity.getId());
+        AutomovilEntity deleted = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
     
     
     

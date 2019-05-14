@@ -84,7 +84,7 @@ public class AutomovilResource {
         if (autoLogic.getAutomovil(autoId) == null) {
             throw new WebApplicationException("El recurso /Automovil/" + autoId + " no existe.", 404);
         }
-        AutomovilDTO DTO = new AutomovilDTO(autoLogic.updateAutomovil(autoId, auto.toEntity()));
+        AutomovilDTO DTO = new AutomovilDTO(autoLogic.updateAutomovil(auto.toEntity()));
         LOGGER.log(Level.INFO, "Automovilresorice updateAutomovil: output: {0}", DTO);
         return DTO;
     }
