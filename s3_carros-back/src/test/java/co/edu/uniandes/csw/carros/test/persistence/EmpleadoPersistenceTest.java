@@ -158,7 +158,7 @@ public class EmpleadoPersistenceTest {
         entity.setNombre("Carlos Moreno");
         ep.updateEmpleado(entity);
         EmpleadoEntity search = em.find(EmpleadoEntity.class, entity.getId());
-        Assert.assertEquals(search.getNombre(),"Carlos Moreno" );
+        Assert.assertEquals("Carlos Moreno", search.getNombre() );
     }
 
     

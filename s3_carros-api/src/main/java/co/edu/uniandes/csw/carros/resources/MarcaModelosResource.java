@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.carros.resources;
 import co.edu.uniandes.csw.carros.dtos.ModeloDTO;
+import co.edu.uniandes.csw.carros.dtos.ModeloDetailDTO;
 import co.edu.uniandes.csw.carros.ejb.ModeloLogic;
 import co.edu.uniandes.csw.carros.ejb.MarcaModelosLogic;
 import co.edu.uniandes.csw.carros.entities.ModeloEntity;
@@ -50,25 +51,25 @@ public class MarcaModelosResource {
     }
     
     @GET
-    public List<ModeloDTO> getModelos(@PathParam("marcaID") Long marcaID) {
-        List<ModeloDTO> listaModeloDTOs = modelosListEntity2DTO(MarcaModelosLogic.getModelos(marcaID));
+    public List<ModeloDetailDTO> getModelos(@PathParam("marcaID") Long marcaID) {
+        List<ModeloDetailDTO> listaModeloDTOs = modelosListEntity2DTO(MarcaModelosLogic.getModelos(marcaID));
         return listaModeloDTOs;
     }
     
     @GET
     @Path("{modeloID: \\d+}")
-    public ModeloDTO getModelo(@PathParam("marcaID") Long marcaID, @PathParam("modeloId") Long modeloID) throws BusinessLogicException {
+    public ModeloDetailDTO getModelo(@PathParam("marcaID") Long marcaID, @PathParam("modeloId") Long modeloID) throws BusinessLogicException {
         if (modeloLogic.getModelo(modeloID) == null) {
             throw new WebApplicationException("El recurso /marcas/" + marcaID + "/modelos/" + modeloID + " no existe.", 404);
         }
-        ModeloDTO modeloDTO = new ModeloDTO(MarcaModelosLogic.getModelo(marcaID, modeloID));
+        ModeloDetailDTO modeloDTO = new ModeloDetailDTO(MarcaModelosLogic.getModelo(marcaID, modeloID));
         return modeloDTO;
     }
     
-    private List<ModeloDTO> modelosListEntity2DTO(List<ModeloEntity> entityList) {
-        List<ModeloDTO> list = new ArrayList();
+    private List<ModeloDetailDTO> modelosListEntity2DTO(List<ModeloEntity> entityList) {
+        List<ModeloDetailDTO> list = new ArrayList();
         for (ModeloEntity entity : entityList) {
-            list.add(new ModeloDTO(entity));
+            list.add(new ModeloDetailDTO(entity));
         }
         return list;
     }
