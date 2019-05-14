@@ -32,9 +32,9 @@ public class AutomovilPersistence {
         return em.find(AutomovilEntity.class, autoId);
     }
     
-    public AutomovilEntity findById(Long idAuto){
-        TypedQuery<AutomovilEntity> query = em.createQuery("Select e From AutomovilEntity e where e.id = :idAuto", AutomovilEntity.class);
-        query= query.setParameter("idAuto", idAuto);
+    public AutomovilEntity findByIdChasis(Integer idChasis){
+        TypedQuery<AutomovilEntity> query = em.createQuery("Select e From AutomovilEntity e where e.idChasis = :idChasis", AutomovilEntity.class);
+        query= query.setParameter("idChasis", idChasis);
         List<AutomovilEntity> mismoId = query.getResultList();
         
         AutomovilEntity result;

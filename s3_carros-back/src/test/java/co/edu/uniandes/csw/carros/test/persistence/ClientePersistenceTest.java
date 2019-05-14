@@ -156,7 +156,7 @@ public class ClientePersistenceTest {
         entity.setNombre("Juan Osorio");
         cp.updateCliente(entity);
         ClienteEntity search = em.find(ClienteEntity.class, entity.getId());
-        Assert.assertEquals(search.getNombre(),"Juan Osorio" );
+        Assert.assertEquals("Juan Osorio", search.getNombre());
     }
     
       /**
