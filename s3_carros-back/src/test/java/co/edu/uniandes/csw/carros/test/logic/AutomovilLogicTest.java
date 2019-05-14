@@ -35,6 +35,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class AutomovilLogicTest {
     
+    private PodamFactory factory = new PodamFactoryImpl();
+    
     @Inject
     private AutomovilLogic autoLogic;
     
@@ -99,6 +101,24 @@ public class AutomovilLogicTest {
             data.add(entity);
         }
     }
+    @Test
+    public void createAutomovilTest() throws BusinessLogicException{
+        
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class); 
+        AutomovilEntity result = autoLogic.createAutomovil(newEntity);
+        Assert.assertNotNull(result);
+        AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
+    }
+    
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createAutomovilMismoID() throws BusinessLogicException
+    {
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+        newEntity.setIdChasis(data.get(0).getIdChasis());
+        autoLogic.createAutomovil(newEntity);
+    }
     
     @Test
     public void getAutomovilesTest() {
@@ -115,24 +135,10 @@ public class AutomovilLogicTest {
         }
     }
     
-    @Test
-    public void createAutomovilTest() throws BusinessLogicException{
-        PodamFactory factory = new PodamFactoryImpl();
-        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class); 
-        AutomovilEntity result = autoLogic.createAutomovil(newEntity);
-        Assert.assertNotNull(result);
-        AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
-    }
     
-    @Test(expected = BusinessLogicException.class)
-    public void createAutomovilMismoID() throws BusinessLogicException{
-        PodamFactory factory = new PodamFactoryImpl();
-        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
-        newEntity.setIdChasis(data.get(0).getIdChasis());
-        autoLogic.createAutomovil(newEntity);
-
-    }
+    
+    
+    
     
     
 }
