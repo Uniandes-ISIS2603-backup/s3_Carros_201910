@@ -38,7 +38,6 @@ public class RegistroCompraEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToOne(mappedBy = "registroCompra", fetch = FetchType.LAZY)
     private AutomovilEntity automovil;
-    
             
     /**
      * Constructor por defecto de la clase

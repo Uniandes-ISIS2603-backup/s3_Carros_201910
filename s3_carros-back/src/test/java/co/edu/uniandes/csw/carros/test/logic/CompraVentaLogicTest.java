@@ -190,24 +190,6 @@ public class CompraVentaLogicTest
     }
     
     /**
-     * Prueba para crear una CompraVenta con un Empleado que no existe.
-     *
-     * @throws BusinessLogicException
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void createCompraVentaTestConEmpleadoInexistente() throws BusinessLogicException 
-    {
-        CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        EmpleadoEntity empleadoEntity = new EmpleadoEntity();
-        empleadoEntity.setId(Long.MIN_VALUE);
-        newEntity.setEmpleado(empleadoEntity);
-        newEntity.setPuntoVenta(puntoVenta);
-        newEntity.setCliente(cliente);
-        newEntity.setAutomovilFacturado(automovil);
-        compraVentaLogic.createCompraVenta(newEntity);
-    }
-    
-    /**
      * Prueba para crear una CompraVenta con un Automovil que no existe.
      *
      * @throws BusinessLogicException
@@ -250,22 +232,6 @@ public class CompraVentaLogicTest
         newEntity.setEmpleado(empleado);
         newEntity.setCliente(cliente);
         newEntity.setPuntoVenta(null);
-        compraVentaLogic.createCompraVenta(newEntity);
-    }
-    
-    /**
-     * Prueba para crear una CompraVenta con Empleado en null.
-     *
-     * @throws NullPointerException
-     */
-    @Test(expected = NullPointerException.class)
-    public void createCompraVentaTestConNullEmpleado() throws BusinessLogicException, NullPointerException
-    {
-        CompraVentaEntity newEntity = factory.manufacturePojo(CompraVentaEntity.class);
-        newEntity.setAutomovilFacturado(automovil);
-        newEntity.setEmpleado(null);
-        newEntity.setCliente(cliente);
-        newEntity.setPuntoVenta(puntoVenta);
         compraVentaLogic.createCompraVenta(newEntity);
     }
     

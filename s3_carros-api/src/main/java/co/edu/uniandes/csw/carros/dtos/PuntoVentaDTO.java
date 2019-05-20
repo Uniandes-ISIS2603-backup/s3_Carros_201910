@@ -19,7 +19,9 @@ public class PuntoVentaDTO implements Serializable
  /**
   * id con el cual el programa identifica el punto de venta
   */
- private Long id;/**
+ private Long id;
+ 
+ /**
  * Direccion del punto de venta
  */
  private String direccion; 
@@ -36,8 +38,6 @@ public class PuntoVentaDTO implements Serializable
  private Double longitud;
  
  private String rutaFotos;
-
-
  
 /**
  * Constructor vacio por convencion

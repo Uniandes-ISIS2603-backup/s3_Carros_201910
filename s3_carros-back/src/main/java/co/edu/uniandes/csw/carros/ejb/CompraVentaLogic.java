@@ -73,14 +73,6 @@ public class CompraVentaLogic
         {
             throw new BusinessLogicException("El cliente no existe en la base de datos.");
         }
-        if(compraVentaEntity.getEmpleado() == null) 
-        {
-            throw new NullPointerException("El empleado es null.");
-        }
-        if(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()) == null) 
-        {
-            throw new BusinessLogicException("El empleado no existe en la base de datos.");
-        }
         if(compraVentaEntity.getAutomovilFacturado() == null) 
         {
             throw new NullPointerException("El automovil es null.");
