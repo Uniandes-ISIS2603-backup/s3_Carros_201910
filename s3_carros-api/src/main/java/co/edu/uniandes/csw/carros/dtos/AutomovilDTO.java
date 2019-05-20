@@ -16,12 +16,7 @@ public class AutomovilDTO  implements Serializable{
     
     private RegistroCompraDTO registroCompra;
     
-    
-
-    
-    
     private ModeloDTO modelo;
-    
     
     /**
      * identificador unico de un automovil dentro del 
@@ -329,9 +324,7 @@ public class AutomovilDTO  implements Serializable{
     public void setRegistroCompra(RegistroCompraDTO registroCompra) {
         this.registroCompra = registroCompra;
     }
-
-  
-
+    
     /**
      * @return the modelo
      */
@@ -345,13 +338,4 @@ public class AutomovilDTO  implements Serializable{
     public void setModelo(ModeloDTO modelo) {
         this.modelo = modelo;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

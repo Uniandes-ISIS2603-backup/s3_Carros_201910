@@ -94,17 +94,14 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
                    clientes.add(new ClienteDTO(cliente));
                }
            }
-           
-           //if(puntoVentaEntity.getVentas() != null)
-           //{
-              // for (CompraVentaEntity compraVenta : puntoVentaEntity.getVentas()) 
-               //{
-                // compraVentas.add(new CompraVentaDTO(compraVenta));  
-               //}
-               
-           //}
-           
-           
+           if(puntoVentaEntity.getVentas() != null)
+           {
+              compraVentas = new ArrayList<>();           
+              for (CompraVentaEntity compraVenta : puntoVentaEntity.getVentas()) 
+               {
+                    compraVentas.add(new CompraVentaDTO(compraVenta));  
+               }
+           }
        }
    }
    
@@ -112,9 +109,10 @@ public class PuntoVentaDetailDTO extends PuntoVentaDTO implements Serializable
     * Metodo de convierte el objeto en una entidad
     * @return entidad con las caracterisiticas ibtenidad aparit del detailDto
     */
+   @Override
    public PuntoVentaEntity toEntity()
    {
-       PuntoVentaEntity entity = new PuntoVentaEntity();
+       PuntoVentaEntity entity = super.toEntity();
        if(clientes != null)
        {
             List<ClienteEntity> clienteEntity = new ArrayList<>();

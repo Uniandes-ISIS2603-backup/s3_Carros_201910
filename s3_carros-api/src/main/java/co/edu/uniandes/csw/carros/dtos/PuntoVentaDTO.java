@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *DTO del punto donde se venderan los autos
@@ -111,13 +110,16 @@ public class PuntoVentaDTO implements Serializable
      */
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
-      this.direccion = entity.getDireccion();
-      this.telefono = entity.getTelefono();
-      this.id = entity.getId();
-      this.nombre = entity.getNombre();
-      this.latitud = entity.getLatitud();
-      this.longitud = entity.getLongitud();
-      this.rutaFotos = entity.getRutaFotos();
+     if(entity != null)
+     {
+        this.direccion = entity.getDireccion();
+        this.telefono = entity.getTelefono();
+        this.id = entity.getId();
+        this.nombre = entity.getNombre();
+        this.latitud = entity.getLatitud();
+        this.longitud = entity.getLongitud();
+        this.rutaFotos = entity.getRutaFotos();
+     }
  }
 
     /**

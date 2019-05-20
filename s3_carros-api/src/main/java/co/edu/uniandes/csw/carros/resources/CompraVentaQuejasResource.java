@@ -26,6 +26,7 @@ import javax.ws.rs.WebApplicationException;
  * 
  * @author Kevin Hernán Castrillón Castañeda
  */
+@Path("compraVentas/{ventaID: \\d+}/quejasReclamos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CompraVentaQuejasResource 
