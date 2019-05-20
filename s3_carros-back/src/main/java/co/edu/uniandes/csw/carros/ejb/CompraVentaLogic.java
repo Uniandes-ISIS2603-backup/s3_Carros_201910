@@ -16,12 +16,14 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.inject.Inject;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 
 /**
  * Clase que implementa la conexion con la persistencia para la entidad de CompraVenta.
  *
  * @author Kevin Hernán Castrillón Castañeda.
  */
+@Stateless
 public class CompraVentaLogic 
 {
     private static final Logger LOGGER = Logger.getLogger(CompraVentaLogic.class.getName());
