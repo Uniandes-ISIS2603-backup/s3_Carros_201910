@@ -98,7 +98,6 @@ public class AutomovilDTO  implements Serializable{
         if(autoEntity != null){
             this.anio = autoEntity.getAnio();
             this.autoId = autoEntity.getId();
-            this.imagen_auto = autoEntity.getImagen_auto();
             this.color = autoEntity.getColor();
             this.cuidadMatricula = autoEntity.getCuidadMatricula();
             this.disponible = autoEntity.getDisponible();
@@ -129,7 +128,6 @@ public class AutomovilDTO  implements Serializable{
         AutomovilEntity auto = new AutomovilEntity();
         auto.setAnio(this.anio);
         auto.setId(this.autoId);
-        auto.setImagen_auto(this.imagen_auto);
         auto.setColor(this.color);
         auto.setCuidadMatricula(this.cuidadMatricula);
         auto.setDisponible(this.disponible);

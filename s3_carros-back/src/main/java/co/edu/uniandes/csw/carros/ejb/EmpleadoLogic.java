@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.carros.ejb;
 
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.EmpleadoPersistence;
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +25,9 @@ public class EmpleadoLogic {
     
     @Inject
     private EmpleadoPersistence persistence; //atributo para acceder a la persistencia
+    
+    @Inject 
+    private PuntoVentaPersistence persPuntoVenta;
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
     

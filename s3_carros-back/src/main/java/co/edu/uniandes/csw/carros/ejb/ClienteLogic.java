@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.carros.ejb;
 
 import co.edu.uniandes.csw.carros.entities.ClienteEntity;
+import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.ClientePersistence;
+import co.edu.uniandes.csw.carros.persistence.PuntoVentaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,9 @@ public class ClienteLogic {
     
     @Inject
     private ClientePersistence persistence; //atributo para acceder a la persistencia
+    
+    @Inject 
+    private PuntoVentaPersistence persPuntoVenta;
     
     /**
      * Crea un cliente en la persistencia.
@@ -70,15 +75,15 @@ public class ClienteLogic {
             }
             persistence.updateCliente(cliente);
         }
-        else{
-            List<ClienteEntity> search = persistence.findClientePorCorreo(correo);
-            if(search.isEmpty()){
-                persistence.updateCliente(cliente);
-            }
-            else{
-                throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
-            }
-        }
+        //else{
+        //    List<ClienteEntity> search = persistence.findClientePorCorreo(correo);
+        //    if(search.isEmpty()){
+        //        persistence.updateCliente(cliente);
+        //    }
+        //    else{
+        //       throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
+        //    }
+        //}
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", cliente.getId());
         return cliente;
     }

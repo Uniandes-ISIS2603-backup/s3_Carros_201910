@@ -94,20 +94,6 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the imagen_marca
-     */
-    public String getImagen_marca() {
-        return imagen_marca;
-    }
-
-    /**
-     * @param imagen_marca the imagen_marca to set
-     */
-    public void setImagen_marca(String imagen_marca) {
-        this.imagen_marca = imagen_marca;
-    }
-
-    /**
      * @return the logo
      */
     public String getLogo() {
@@ -119,5 +105,33 @@ public class MarcaEntity extends BaseEntity implements Serializable{
      */
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
