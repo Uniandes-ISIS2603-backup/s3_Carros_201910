@@ -98,6 +98,8 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
      */
     private Integer puntoVentaID;
     
+    private String imagen;
+    
     
     
 
@@ -299,6 +301,20 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
      */
     public void setCompraVenta(CompraVentaEntity compraVenta) {
         this.compraVenta = compraVenta;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
    
