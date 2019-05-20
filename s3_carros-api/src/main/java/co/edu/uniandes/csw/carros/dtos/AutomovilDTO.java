@@ -108,6 +108,7 @@ public class AutomovilDTO  implements Serializable{
             this.recorrido = autoEntity.getRecorrido();
             this.referencia = autoEntity.getReferencia();
             this.tipo = autoEntity.getTipo();
+            this.imagen = autoEntity.getImagen();
           
             if(autoEntity.getRegistroCompra() != null){
                 this.registroCompra = new RegistroCompraDTO(autoEntity.getRegistroCompra());
@@ -137,6 +138,7 @@ public class AutomovilDTO  implements Serializable{
         auto.setRecorrido(this.recorrido);
         auto.setReferencia(this.referencia);
         auto.setTipo(this.tipo);
+        auto.setImagen(this.imagen);
        
         if(this.registroCompra != null){
             auto.setRegistroCompra(this.registroCompra.toEntity());
