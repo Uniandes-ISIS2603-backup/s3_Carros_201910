@@ -90,6 +90,8 @@ public class AutomovilDTO  implements Serializable{
      */
     private Integer puntoVentaID;
     
+    private String imagen;
+    
     
     /**
      * constructor vacio
@@ -344,6 +346,14 @@ public class AutomovilDTO  implements Serializable{
      */
     public void setModelo(ModeloDTO modelo) {
         this.modelo = modelo;
+    }
+    
+    public String getImagen(){
+        return imagen;
+    }
+    
+    public void setImagen(String imagen){
+        this.imagen = imagen;
     }
     
     
