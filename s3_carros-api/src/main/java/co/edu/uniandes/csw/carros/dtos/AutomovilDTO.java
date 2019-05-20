@@ -16,15 +16,7 @@ public class AutomovilDTO  implements Serializable{
     
     private RegistroCompraDTO registroCompra;
     
-    
-
-    
-    
     private ModeloDTO modelo;
-    
-    
-    
-    private String imagen_auto;
     
     /**
      * identificador unico de un automovil dentro del 
@@ -93,6 +85,8 @@ public class AutomovilDTO  implements Serializable{
      */
     private Integer puntoVentaID;
     
+    private String imagen;
+    
     
     /**
      * constructor vacio
@@ -115,6 +109,7 @@ public class AutomovilDTO  implements Serializable{
             this.recorrido = autoEntity.getRecorrido();
             this.referencia = autoEntity.getReferencia();
             this.tipo = autoEntity.getTipo();
+            this.imagen = autoEntity.getImagen();
           
             if(autoEntity.getRegistroCompra() != null){
                 this.registroCompra = new RegistroCompraDTO(autoEntity.getRegistroCompra());
@@ -145,6 +140,7 @@ public class AutomovilDTO  implements Serializable{
         auto.setRecorrido(this.recorrido);
         auto.setReferencia(this.referencia);
         auto.setTipo(this.tipo);
+        auto.setImagen(this.imagen);
        
         if(this.registroCompra != null){
             auto.setRegistroCompra(this.registroCompra.toEntity());
@@ -334,9 +330,7 @@ public class AutomovilDTO  implements Serializable{
     public void setRegistroCompra(RegistroCompraDTO registroCompra) {
         this.registroCompra = registroCompra;
     }
-
-  
-
+    
     /**
      * @return the modelo
      */
@@ -352,19 +346,16 @@ public class AutomovilDTO  implements Serializable{
     }
 
     /**
-     * @return the imagen_auto
+     * @return the imagen
      */
-    public String getImagen_auto() {
-        return imagen_auto;
+    public String getImagen() {
+        return imagen;
     }
 
     /**
-     * @param imagen_auto the imagen_auto to set
+     * @param imagen the imagen to set
      */
-    public void setImagen_auto(String imagen_auto) {
-        this.imagen_auto = imagen_auto;
-    }    
-    
-    
-    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }

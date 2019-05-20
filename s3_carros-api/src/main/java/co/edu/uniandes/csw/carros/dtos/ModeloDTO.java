@@ -16,21 +16,21 @@ public class ModeloDTO implements Serializable{
     
     //TODO para que esta declarando este atributo
     private MarcaDTO marca;
-    
-    
-    
-    
-    
+
     /**
      * id del modelo
      */
     private Long modeloID;
-    
-    
+
     /**
      * nombre del modelo
      */
     private String nombre;
+    
+    /**
+     * Imagen del modelo
+     */
+    private String imagen;
     
     /**
      * numerop puertas del automovil con este modelo
@@ -108,8 +108,9 @@ public class ModeloDTO implements Serializable{
             this.transmision = modelo.getTransmision();
             this.vidrios = modelo.getVidrios();
             this.nombre = modelo.getNombre();
+            this.imagen = modelo.getImagen();
             if(modelo.getMarca() != null){
-                //TODO this.marca = new MarcaDTO(modelo.getMarca());
+                this.marca = new MarcaDTO(modelo.getMarca());
             }else{
                 this.marca = null;
             }            
@@ -131,6 +132,7 @@ public class ModeloDTO implements Serializable{
         modelo.setTraccion(this.traccion);
         modelo.setTransmision(this.transmision);
         modelo.setVidrios(this.vidrios);
+        modelo.setImagen(this.imagen);
         if(this.marca != null){
             modelo.setMarca(this.marca.toEntity());
         }
@@ -332,6 +334,20 @@ public class ModeloDTO implements Serializable{
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     

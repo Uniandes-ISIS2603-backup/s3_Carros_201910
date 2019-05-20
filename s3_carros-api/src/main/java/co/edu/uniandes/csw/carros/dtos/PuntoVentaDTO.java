@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *DTO del punto donde se venderan los autos
@@ -19,7 +18,9 @@ public class PuntoVentaDTO implements Serializable
  /**
   * id con el cual el programa identifica el punto de venta
   */
- private Long id;/**
+ private Long id;
+ 
+ /**
  * Direccion del punto de venta
  */
  private String direccion; 
@@ -36,8 +37,6 @@ public class PuntoVentaDTO implements Serializable
  private Double longitud;
  
  private String rutaFotos;
-
-
  
 /**
  * Constructor vacio por convencion
@@ -111,13 +110,16 @@ public class PuntoVentaDTO implements Serializable
      */
  public PuntoVentaDTO(PuntoVentaEntity entity)
  {
-      this.direccion = entity.getDireccion();
-      this.telefono = entity.getTelefono();
-      this.id = entity.getId();
-      this.nombre = entity.getNombre();
-      this.latitud = entity.getLatitud();
-      this.longitud = entity.getLongitud();
-      this.rutaFotos = entity.getRutaFotos();
+     if(entity != null)
+     {
+        this.direccion = entity.getDireccion();
+        this.telefono = entity.getTelefono();
+        this.id = entity.getId();
+        this.nombre = entity.getNombre();
+        this.latitud = entity.getLatitud();
+        this.longitud = entity.getLongitud();
+        this.rutaFotos = entity.getRutaFotos();
+     }
  }
 
     /**

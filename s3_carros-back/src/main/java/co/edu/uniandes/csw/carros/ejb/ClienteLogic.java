@@ -60,7 +60,7 @@ public class ClienteLogic {
         ClienteEntity search = persistence.findClientePorCorreo(cliente.getCorreo());
         if(search == null || search.getId() == cliente.getId()){
             List<PuntoVentaEntity> puntos = cliente.getPuntosVenta();
-            if(puntos != null){
+            if(puntos != null || !puntos.isEmpty()){
                 for(int i=0; i<puntos.size(); i++){
                     PuntoVentaEntity pVenta = persPuntoVenta.find(puntos.get(i).getId());
                     if(pVenta == null){
@@ -89,12 +89,12 @@ public class ClienteLogic {
      * Obtener un cliente por medio de su id.
      */
     public ClienteEntity getCliente(Long clienteID){
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el empleado con id = {0}", clienteID);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con id = {0}", clienteID);
         ClienteEntity cliente = persistence.findCliente(clienteID);
         if(cliente == null){
-            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", clienteID);
+            LOGGER.log(Level.SEVERE, "El cliente con el id = {0} no existe", clienteID);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el empleado con id = {0}", clienteID);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con id = {0}", clienteID);
         return cliente;
     }
     

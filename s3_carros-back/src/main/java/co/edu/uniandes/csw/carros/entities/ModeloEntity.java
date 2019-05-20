@@ -66,6 +66,10 @@ public class ModeloEntity extends BaseEntity implements Serializable
     */
     private String nombre;
     
+    /**
+     * Imagen del modelo.
+     */
+    private String imagen;
     
     /**
      * numerop puertas del automovil con este modelo
@@ -292,6 +296,20 @@ public class ModeloEntity extends BaseEntity implements Serializable
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
 }

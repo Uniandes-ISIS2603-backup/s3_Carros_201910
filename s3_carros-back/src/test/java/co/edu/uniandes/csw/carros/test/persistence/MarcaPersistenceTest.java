@@ -129,7 +129,7 @@ public class MarcaPersistenceTest {
         entity.setNombreMarca("concord");
         mp.updateMarca(entity);
         MarcaEntity search = em.find(MarcaEntity.class, entity.getId());
-        Assert.assertEquals(search.getNombreMarca(), "concord");
+        Assert.assertEquals("concord", search.getNombreMarca());
     }
     
     

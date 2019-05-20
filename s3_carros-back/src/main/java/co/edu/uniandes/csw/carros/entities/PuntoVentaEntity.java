@@ -31,13 +31,13 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     */
    private String telefono;
    
-    private String nombre; 
+   private String nombre; 
  
- private Double latitud; 
+   private Double latitud; 
  
- private Double longitud;
+   private Double longitud;
  
- private String rutaFotos;
+   private String rutaFotos;
    
    /**
     * LISTA DE EMPLEADOS DE UN PUNTO DE VENTA 
@@ -90,7 +90,7 @@ public class PuntoVentaEntity extends BaseEntity implements Serializable
     }
 
     /**Asigna la direccion de un punto de venta
-     * @param dirreccion the dirreccion to set
+     * @param direccion the dirreccion to set
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;

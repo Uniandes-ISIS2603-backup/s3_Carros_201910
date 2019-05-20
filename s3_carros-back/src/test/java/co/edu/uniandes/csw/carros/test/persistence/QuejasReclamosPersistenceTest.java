@@ -160,7 +160,7 @@ public class QuejasReclamosPersistenceTest {
         entity.setSolucionado(true);
         qrp.update(entity);
         QuejasReclamosEntity search = em.find(QuejasReclamosEntity.class, entity.getId());
-        Assert.assertEquals(search.isSolucionado(), true);
+        Assert.assertEquals(true, search.isSolucionado());
     }
     
     /**

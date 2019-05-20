@@ -55,24 +55,24 @@ public class MarcaResource {
     
     @GET
     @Path("{marcaID: \\d+}")
-    public MarcaDTO getMarca(@PathParam("marcaID") Long MarcaId) throws WebApplicationException{
+    public MarcaDetailDTO getMarca(@PathParam("marcaID") Long MarcaId) throws WebApplicationException{
         LOGGER.log(Level.INFO, "Modeloresorurce getModelo: input: {0}", MarcaId);
         MarcaEntity marcaEntity = logicMarca.getMarca(MarcaId);
         if (marcaEntity == null) {
             throw new WebApplicationException("El recurso /marca/" + MarcaId + " no existe.", 404);
         }
-        MarcaDTO detailDTO = new MarcaDetailDTO(marcaEntity);
+        MarcaDetailDTO detailDTO = new MarcaDetailDTO(marcaEntity);
         LOGGER.log(Level.INFO, "ModeloResource getModelo: output: {0}", detailDTO);
         return detailDTO;
     }
     
     @PUT
-    @Path("{idMarca: \\d+}")
-    public MarcaDTO updateModelo(@PathParam("idMarca") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
+    @Path("{marcaID: \\d+}")
+    public MarcaDetailDTO updateModelo(@PathParam("marcaID") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ModeloResource UpdateModelo: input: id:{0} , modelo: {1}", new Object[]{marcaID, marca});
         marca.setIdMarca(marcaID);
         if (logicMarca.getMarca(marcaID) == null) {
-            throw new WebApplicationException("El recurso /modelos/" + marcaID + " no existe.", 404);
+            throw new WebApplicationException("El recurso /marcas/" + marcaID + " no existe.", 404);
         }
         MarcaDetailDTO detailDTO = new MarcaDetailDTO(logicMarca.updateMarca(marca.toEntity()));
         LOGGER.log(Level.INFO, "ModeloResource updateModelo: output: {0}", detailDTO);
@@ -92,13 +92,13 @@ public class MarcaResource {
     }
     
     @Path("{marcaID: \\d+}/modelos")
-    public Class<PuntoVentaEmpleadoResource> getMarcaModelosResource(@PathParam("marcaID") Long marcaID)
+    public Class<MarcaModelosResource> getMarcaModelosResource(@PathParam("marcaID") Long marcaID)
     {
         if(logicMarca.getMarca(marcaID) == null)
         {
             throw new WebApplicationException("El recurso /marcas/"+ marcaID+ "no existe", 404);
         }
-        return PuntoVentaEmpleadoResource.class;
+        return MarcaModelosResource.class;
     }
     
     

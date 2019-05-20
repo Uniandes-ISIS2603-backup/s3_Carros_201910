@@ -131,7 +131,7 @@ public class AutomovilPersistenceTest {
         entity.setCuidadMatricula("tokio");
         ap.updateAutomovil(entity);
         AutomovilEntity search = em.find(AutomovilEntity.class, entity.getId());
-        Assert.assertEquals(search.getCuidadMatricula(), "tokio");
+        Assert.assertEquals("tokio", search.getCuidadMatricula());
     }
    
     

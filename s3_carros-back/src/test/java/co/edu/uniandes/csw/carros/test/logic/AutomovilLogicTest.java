@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.carros.test.logic;
 import co.edu.uniandes.csw.carros.ejb.AutomovilLogic;
 import co.edu.uniandes.csw.carros.entities.AutomovilEntity;
 import co.edu.uniandes.csw.carros.entities.ModeloEntity;
+import co.edu.uniandes.csw.carros.entities.RegistroCompraEntity;
 import co.edu.uniandes.csw.carros.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.carros.persistence.AutomovilPersistence;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class AutomovilLogicTest {
+    
+    private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
     private AutomovilLogic autoLogic;
@@ -64,7 +67,6 @@ public class AutomovilLogicTest {
     public void configTest(){
         try{
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -91,31 +93,69 @@ public class AutomovilLogicTest {
       em.persist(modelo);
       for(int i=0;i<3; i++){
             AutomovilEntity entity = factory.manufacturePojo(AutomovilEntity.class);
+            RegistroCompraEntity reg = factory.manufacturePojo(RegistroCompraEntity.class);
             entity.setModelo(modelo);
+            entity.setRegistroCompra(reg);
             em.persist(entity);
             data.add(entity);
         }
     }
+    @Test
+    public void createAutomovilTest() throws BusinessLogicException{
+        
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class); 
+        AutomovilEntity result = autoLogic.createAutomovil(newEntity);
+        Assert.assertNotNull(result);
+        AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
+    }
     
-    
-    //@Test
-    //public void createAutomovilTest() throws BusinessLogicException{
-    //    PodamFactory factory = new PodamFactoryImpl();
-    //    AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);        
-    //    AutomovilEntity result = autoLogic.createAutomovil(newEntity);
-    //    Assert.assertNotNull(result);
-    //    AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
-    //    Assert.assertEquals(newEntity.getIdChasis(), entity.getIdChasis());
-    //}
     
     @Test(expected = BusinessLogicException.class)
-    public void createAutomovilMismoID() throws BusinessLogicException{
-        PodamFactory factory = new PodamFactoryImpl();
+    public void createAutomovilMismoID() throws BusinessLogicException
+    {
         AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
-        newEntity.setId(data.get(0).getId());
+        newEntity.setIdChasis(data.get(0).getIdChasis());
         autoLogic.createAutomovil(newEntity);
-
     }
+    
+    @Test
+    public void getAutomovilesTest() {
+        List<AutomovilEntity> list = autoLogic.getAutomoviles();
+        for(AutomovilEntity entity : list) {
+            boolean found = false;
+            for (AutomovilEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void updateAutomovilTest() 
+    {
+        AutomovilEntity entity = data.get(0);
+        AutomovilEntity pojoEntity = factory.manufacturePojo(AutomovilEntity.class);
+        pojoEntity.setId(entity.getId());
+        autoLogic.updateAutomovil(pojoEntity);
+        AutomovilEntity resp = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getIdChasis(), resp.getIdChasis());
+    }
+    
+    @Test
+    public void deleteAutomovilTest() throws BusinessLogicException {
+        AutomovilEntity entity = data.get(1);
+        autoLogic.deleteAutomovil(entity.getId());
+        AutomovilEntity deleted = em.find(AutomovilEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    
+    
+    
     
     
 }

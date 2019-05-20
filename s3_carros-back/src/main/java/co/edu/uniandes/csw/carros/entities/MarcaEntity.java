@@ -21,6 +21,27 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity     
 public class MarcaEntity extends BaseEntity implements Serializable{    
 
+/**
+     * nombre de la marca
+     */
+    private String nombreMarca;
+    
+    private String imagen;
+    
+    private String logo;
+    
+    private String descripcion;
+    
+    
+    @PodamExclude                                 
+    @ManyToMany
+    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ModeloEntity> modelos = new ArrayList<>();
+     
     /**
      * @return the puntosVenta
      */
@@ -37,7 +58,7 @@ public class MarcaEntity extends BaseEntity implements Serializable{
        
     public void addPuntoVenta(PuntoVentaEntity nuevoPuntoVenta)
     {
-        this.puntosVenta.add(nuevoPuntoVenta);
+        this.getPuntosVenta().add(nuevoPuntoVenta);
     }
     /**
      * @return the modelos
@@ -53,30 +74,10 @@ public class MarcaEntity extends BaseEntity implements Serializable{
         this.modelos = modelos;
     }
     
-    @PodamExclude                                 
-    @ManyToMany
-    private List<PuntoVentaEntity> puntosVenta = new ArrayList<>();
-    
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<ModeloEntity> modelos = new ArrayList<>();
-    
-       
-    
-   
-    /**
-     * ruta de la imagen de la marca 
-     */
-    private String imagen_marca;
-    
-    
-    /**
-     * nombre de la marca
-     */
-    private String nombreMarca;
-    
-    
+    public void addModelo(ModeloEntity modelo)
+    {
+        this.getModelos().add(modelo);
+    }
 
     /**
      * @return the nombreMarca
@@ -105,7 +106,18 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     public void setImagen_marca(String imagen_marca) {
         this.imagen_marca = imagen_marca;
     }
-    
-    
-    
+
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 }

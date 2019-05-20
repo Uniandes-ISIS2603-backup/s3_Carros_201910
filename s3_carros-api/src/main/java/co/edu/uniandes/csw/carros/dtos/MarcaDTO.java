@@ -14,9 +14,6 @@ import java.io.Serializable;
  */
 public class MarcaDTO implements Serializable{
     
-    
-    
-    
     /**
      * constrictor vacio
      */
@@ -26,25 +23,22 @@ public class MarcaDTO implements Serializable{
     public MarcaDTO(MarcaEntity marcaEntity){
         if(marcaEntity != null){
             this.idMarca = marcaEntity.getId();
-            this.nombreMarca = marcaEntity.getNombreMarca();
-            this.imagen_marca = marcaEntity.getImagen_marca();
+            this.nombreMarca = marcaEntity.getNombreMarca();        
+            this.imagen = marcaEntity.getImagen();
+            this.descripcion= marcaEntity.getDescripcion();
+            this.logo = marcaEntity.getLogo();
         }
     }
     
     public MarcaEntity toEntity(){
         MarcaEntity marca = new MarcaEntity();
-        marca.setId(this.idMarca);
-        marca.setNombreMarca(this.nombreMarca);
-        marca.setImagen_marca(this.imagen_marca);
+        marca.setId(this.getIdMarca());
+        marca.setNombreMarca(this.getNombreMarca());  
+        marca.setImagen(this.getImagen());
+        marca.setDescripcion(this.getDescripcion());
+        marca.setLogo(this.getLogo());
         return marca;
     }
-    
-    
-    /**
-     * ruta de la imagen de la marca
-     */
-    private String imagen_marca;
-    
     
     /**
      * nombre de la marca de carros
@@ -55,6 +49,14 @@ public class MarcaDTO implements Serializable{
      * id de la marca dentro del concecionario
      */
     private Long idMarca;
+    
+    private String imagen;
+    
+    private String logo;
+    
+    private String descripcion; 
+    
+    
 
     /**
      * @return the nombreMarca
@@ -98,7 +100,18 @@ public class MarcaDTO implements Serializable{
         this.imagen_marca = imagen_marca;
     }
 
-    
-    
-    
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
 }

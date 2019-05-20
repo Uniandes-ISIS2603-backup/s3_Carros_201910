@@ -134,7 +134,7 @@ public class ModeloPersistenceTest {
         entity.setNombre("spark GT");
         mp.updateMarca(entity);
         ModeloEntity search = em.find(ModeloEntity.class, entity.getId());
-        Assert.assertEquals(search.getNombre(), "spark GT");
+        Assert.assertEquals("spark GT", search.getNombre());
                
     }
     

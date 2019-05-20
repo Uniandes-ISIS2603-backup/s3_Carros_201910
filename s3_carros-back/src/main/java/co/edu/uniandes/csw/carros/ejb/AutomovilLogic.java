@@ -29,12 +29,7 @@ public class AutomovilLogic {
     private AutomovilPersistence autoPersistece;
     
     
-    @Inject
-    private RegistroCompraPersistence registroPesistence;
     
-    
-    @Inject
-    private ModeloPersistence modeloPersistence;
     
     
     
@@ -43,22 +38,9 @@ public class AutomovilLogic {
     */
     public AutomovilEntity createAutomovil(AutomovilEntity automovil) throws BusinessLogicException{
         
-        if(autoPersistece.findById(automovil.getId()) != null){
+        if(autoPersistece.findByIdChasis(automovil.getIdChasis()) != null){
             throw new BusinessLogicException("Ya existe un automovil con el id: " + automovil.getIdChasis());
         }
-        if(automovil.getModelo() == null){
-            throw new BusinessLogicException("el modelo es null");
-        }        
-        if(modeloPersistence.findModelo(automovil.getModelo().getId())== null){
-              throw new BusinessLogicException("El modelo no existe en la base de datos");           
-        }
-        if(automovil.getRegistroCompra() == null){
-            throw new BusinessLogicException("el registro compra es null");
-        }
-        if(registroPesistence.find(automovil.getRegistroCompra().getId()) == null ){
-            throw new BusinessLogicException("el registro no existe en la base de datos");
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de creación del automovil");
         autoPersistece.create(automovil);
         return automovil;
     }
@@ -90,10 +72,10 @@ public class AutomovilLogic {
         LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", autoID);
     }
     
-    public AutomovilEntity updateAutomovil(Long autoID, AutomovilEntity auto)throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
+    public AutomovilEntity updateAutomovil(AutomovilEntity auto){
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el auto con id = {0}", autoID);
         return newEntity;
     }
+    
+    
 }

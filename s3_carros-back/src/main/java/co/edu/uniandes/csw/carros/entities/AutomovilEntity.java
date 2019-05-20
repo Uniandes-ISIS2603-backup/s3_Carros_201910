@@ -101,6 +101,8 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
      */
     private Integer puntoVentaID;
     
+    private String imagen;
+    
     
     
 
@@ -305,16 +307,23 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the image_route
+     * @return the imagen
      */
-    public String getImagen_auto() {
-        return imagen_auto;
+    public String getImagen() {
+        return imagen;
     }
 
     /**
-     * @param image_route the image_route to set
+     * @param imagen the imagen to set
      */
-    public void setImagen_auto(String image_route) {
-        this.imagen_auto = image_route;
-    }    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+   
+    
+    
+    
+    
+    
 }

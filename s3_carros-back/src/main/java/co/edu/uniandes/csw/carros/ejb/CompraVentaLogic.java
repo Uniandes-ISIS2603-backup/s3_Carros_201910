@@ -16,12 +16,14 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.inject.Inject;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 
 /**
  * Clase que implementa la conexion con la persistencia para la entidad de CompraVenta.
  *
  * @author Kevin Hernán Castrillón Castañeda.
  */
+@Stateless
 public class CompraVentaLogic 
 {
     private static final Logger LOGGER = Logger.getLogger(CompraVentaLogic.class.getName());
@@ -46,7 +48,7 @@ public class CompraVentaLogic
      *
      * @param compraVentaEntity La entidad que representa la compraVenta a
      * persistir.
-     * @return La entiddad de la compraVenta luego de persistirla.
+     * @return La entidad de la compraVenta luego de persistirla.
      * @throws BusinessLogicException Si la compraVenta a persistir ya existe o si PuntoVenta, Cliente, Empleado o Automovil no existen en la base de datos.
      *         NulPointeException Si PuntoVenta, Cliente, Empleado o Automovil son null.
      */
@@ -73,14 +75,6 @@ public class CompraVentaLogic
         {
             throw new BusinessLogicException("El cliente no existe en la base de datos.");
         }
-        if(compraVentaEntity.getEmpleado() == null) 
-        {
-            throw new NullPointerException("El empleado es null.");
-        }
-        if(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()) == null) 
-        {
-            throw new BusinessLogicException("El empleado no existe en la base de datos.");
-        }
         if(compraVentaEntity.getAutomovilFacturado() == null) 
         {
             throw new NullPointerException("El automovil es null.");
@@ -89,10 +83,15 @@ public class CompraVentaLogic
         {
             throw new BusinessLogicException("El automovil no existe en la base de datos.");
         }
-        persistence.create(compraVentaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la compraVenta");
-        return compraVentaEntity;
         
+        compraVentaEntity.setPuntoVenta(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()));
+        compraVentaEntity.setCliente(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()));
+        compraVentaEntity.setEmpleado(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()));
+        compraVentaEntity.setAutomovilFacturado(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()));
+        
+        CompraVentaEntity compra = persistence.create(compraVentaEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación de la compraVenta");
+        return compra;
     }
 
     /**
