@@ -30,7 +30,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToOne
     private CompraVentaEntity compraVenta;
-
+    
     /**
      * @return the cuentaOrigen
      */

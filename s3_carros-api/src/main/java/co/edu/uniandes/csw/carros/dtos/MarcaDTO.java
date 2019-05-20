@@ -14,9 +14,6 @@ import java.io.Serializable;
  */
 public class MarcaDTO implements Serializable{
     
-    
-    
-    
     /**
      * constrictor vacio
      */
@@ -29,19 +26,19 @@ public class MarcaDTO implements Serializable{
             this.nombreMarca = marcaEntity.getNombreMarca();        
             this.imagen = marcaEntity.getImagen();
             this.descripcion= marcaEntity.getDescripcion();
+            this.logo = marcaEntity.getLogo();
         }
     }
     
     public MarcaEntity toEntity(){
         MarcaEntity marca = new MarcaEntity();
-        marca.setId(this.idMarca);
-        marca.setNombreMarca(this.nombreMarca);  
-        marca.setImagen(this.imagen);
-        marca.setDescripcion(this.descripcion);
+        marca.setId(this.getIdMarca());
+        marca.setNombreMarca(this.getNombreMarca());  
+        marca.setImagen(this.getImagen());
+        marca.setDescripcion(this.getDescripcion());
+        marca.setLogo(this.getLogo());
         return marca;
     }
-    
-    
     
     /**
      * nombre de la marca de carros
@@ -54,6 +51,8 @@ public class MarcaDTO implements Serializable{
     private Long idMarca;
     
     private String imagen;
+    
+    private String logo;
     
     private String descripcion; 
     
@@ -115,7 +114,18 @@ public class MarcaDTO implements Serializable{
         this.descripcion = descripcion;
     }
 
-    
-    
-    
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
 }

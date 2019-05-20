@@ -28,6 +28,8 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     
     private String imagen;
     
+    private String logo;
+    
     private String descripcion;
     
     
@@ -75,7 +77,7 @@ public class MarcaEntity extends BaseEntity implements Serializable{
        
     public void addPuntoVenta(PuntoVentaEntity nuevoPuntoVenta)
     {
-        this.puntosVenta.add(nuevoPuntoVenta);
+        this.getPuntosVenta().add(nuevoPuntoVenta);
     }
     /**
      * @return the modelos
@@ -93,7 +95,7 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     
     public void addModelo(ModeloEntity modelo)
     {
-        this.modelos.add(modelo);
+        this.getModelos().add(modelo);
     }
 
     /**
@@ -122,5 +124,19 @@ public class MarcaEntity extends BaseEntity implements Serializable{
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

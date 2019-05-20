@@ -75,13 +75,13 @@ public class MarcaResource {
     
     @GET
     @Path("{marcaID: \\d+}")
-    public MarcaDTO getMarca(@PathParam("marcaID") Long MarcaId) throws WebApplicationException{
+    public MarcaDetailDTO getMarca(@PathParam("marcaID") Long MarcaId) throws WebApplicationException{
         LOGGER.log(Level.INFO, "Modeloresorurce getModelo: input: {0}", MarcaId);
         MarcaEntity marcaEntity = logicMarca.getMarca(MarcaId);
         if (marcaEntity == null) {
             throw new WebApplicationException("El recurso /marca/" + MarcaId + " no existe.", 404);
         }
-        MarcaDTO detailDTO = new MarcaDetailDTO(marcaEntity);
+        MarcaDetailDTO detailDTO = new MarcaDetailDTO(marcaEntity);
         LOGGER.log(Level.INFO, "ModeloResource getModelo: output: {0}", detailDTO);
         return detailDTO;
     }

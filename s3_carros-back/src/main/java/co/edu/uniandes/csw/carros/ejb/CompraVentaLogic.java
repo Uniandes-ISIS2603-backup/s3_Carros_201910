@@ -46,7 +46,7 @@ public class CompraVentaLogic
      *
      * @param compraVentaEntity La entidad que representa la compraVenta a
      * persistir.
-     * @return La entiddad de la compraVenta luego de persistirla.
+     * @return La entidad de la compraVenta luego de persistirla.
      * @throws BusinessLogicException Si la compraVenta a persistir ya existe o si PuntoVenta, Cliente, Empleado o Automovil no existen en la base de datos.
      *         NulPointeException Si PuntoVenta, Cliente, Empleado o Automovil son null.
      */
@@ -87,9 +87,9 @@ public class CompraVentaLogic
         compraVentaEntity.setEmpleado(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()));
         compraVentaEntity.setAutomovilFacturado(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()));
         
-        persistence.create(compraVentaEntity);
+        CompraVentaEntity compra = persistence.create(compraVentaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la compraVenta");
-        return compraVentaEntity;
+        return compra;
     }
 
     /**
