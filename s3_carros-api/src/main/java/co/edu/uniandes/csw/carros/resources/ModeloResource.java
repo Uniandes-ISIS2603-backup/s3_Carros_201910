@@ -58,9 +58,9 @@ public class ModeloResource {
     }
     
     @GET
-    public List<ModeloDTO> getModelos(){
+    public List<ModeloDetailDTO> getModelos(){
        LOGGER.info("ModeloResource getModelos: input: void");
-       List<ModeloDTO> listaModelos = listEntity2DetailDTO(logicModelo.getModelos());
+       List<ModeloDetailDTO> listaModelos = listEntity2DetailDTO(logicModelo.getModelos());
        LOGGER.log(Level.INFO, "modeloresoruce getModelos: output: {0}", listaModelos);
        return listaModelos; 
     }
@@ -68,20 +68,20 @@ public class ModeloResource {
     
     @GET 
     @Path("{modeloID: \\d+}")
-    public ModeloDTO getModelo(@PathParam("modeloID") Long modeloID) throws  WebApplicationException{
+    public ModeloDetailDTO getModelo(@PathParam("modeloID") Long modeloID) throws  WebApplicationException{
         LOGGER.log(Level.INFO, "Modeloresorurce getModelo: input: {0}", modeloID);
         ModeloEntity modeloEntity = logicModelo.getModelo(modeloID);
         if (modeloEntity == null) {
             throw new WebApplicationException("El recurso /modelos/" + modeloID + " no existe.", 404);
         }
-        ModeloDTO detailDTO = new ModeloDetailDTO(modeloEntity);
+        ModeloDetailDTO detailDTO = new ModeloDetailDTO(modeloEntity);
         LOGGER.log(Level.INFO, "ModeloResource getModelo: output: {0}", detailDTO);
         return detailDTO;
     }
     
     @PUT
     @Path("{modeloID: \\d+}")
-    public ModeloDTO updateModelo(@PathParam("modeloID") Long modeloID, ModeloDTO modelo )throws BusinessLogicException{
+    public ModeloDetailDTO updateModelo(@PathParam("modeloID") Long modeloID, ModeloDTO modelo )throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ModeloResource UpdateModelo: input: id:{0} , modelo: {1}", new Object[]{modeloID, modelo});
         modelo.setModeloID(modeloID);
         if (logicModelo.getModelo(modeloID) == null) {
@@ -91,7 +91,6 @@ public class ModeloResource {
         LOGGER.log(Level.INFO, "ModeloResource updateModelo: output: {0}", detailDTO);
         return detailDTO;
     }
-    
     
     @DELETE
     @Path("{modeloID: \\d+}")
@@ -109,10 +108,10 @@ public class ModeloResource {
     
     
     
-    private List<ModeloDTO> listEntity2DetailDTO(List<ModeloEntity> entityList){
-        List<ModeloDTO> list = new ArrayList<>();
+    private List<ModeloDetailDTO> listEntity2DetailDTO(List<ModeloEntity> entityList){
+        List<ModeloDetailDTO> list = new ArrayList<>();
         for (ModeloEntity entity : entityList) {
-            list.add(new ModeloDTO(entity));
+            list.add(new ModeloDetailDTO(entity));
         }
         return list;
     }

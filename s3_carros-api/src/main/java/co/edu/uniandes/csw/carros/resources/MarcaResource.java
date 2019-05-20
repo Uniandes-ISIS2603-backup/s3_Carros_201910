@@ -90,11 +90,11 @@ public class MarcaResource {
     
     @PUT
     @Path("{marcaID: \\d+}")
-    public MarcaDTO updateModelo(@PathParam("marcaID") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
+    public MarcaDetailDTO updateModelo(@PathParam("marcaID") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ModeloResource UpdateModelo: input: id:{0} , modelo: {1}", new Object[]{marcaID, marca});
         marca.setIdMarca(marcaID);
         if (logicMarca.getMarca(marcaID) == null) {
-            throw new WebApplicationException("El recurso /modelos/" + marcaID + " no existe.", 404);
+            throw new WebApplicationException("El recurso /marcas/" + marcaID + " no existe.", 404);
         }
         MarcaDetailDTO detailDTO = new MarcaDetailDTO(logicMarca.updateMarca(marca.toEntity()));
         LOGGER.log(Level.INFO, "ModeloResource updateModelo: output: {0}", detailDTO);

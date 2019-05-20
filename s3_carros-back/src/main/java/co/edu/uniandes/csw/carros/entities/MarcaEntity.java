@@ -41,11 +41,7 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany(mappedBy = "marca", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ModeloEntity> modelos = new ArrayList<>();
-       
-
-    
-    
-
+     
     /**
      * @return the nombreMarca
      */
