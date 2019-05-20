@@ -98,8 +98,6 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
      */
     private Integer puntoVentaID;
     
-    private String imagen;
-    
     
     
 
