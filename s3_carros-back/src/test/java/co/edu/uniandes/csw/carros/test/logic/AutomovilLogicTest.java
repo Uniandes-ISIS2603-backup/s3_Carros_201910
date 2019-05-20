@@ -40,11 +40,11 @@ public class AutomovilLogicTest {
     @Inject
     private AutomovilLogic autoLogic;
     
-    @PersistenceContext
-    private EntityManager em;
-    
     @Inject
     UserTransaction utx;
+    
+    @PersistenceContext
+    private EntityManager em;
     
 
     
@@ -145,13 +145,7 @@ public class AutomovilLogicTest {
         Assert.assertEquals(pojoEntity.getIdChasis(), resp.getIdChasis());
     }
     
-    @Test
-    public void deleteAutomovilTest() throws BusinessLogicException {
-        AutomovilEntity entity = data.get(1);
-        autoLogic.deleteAutomovil(entity.getId());
-        AutomovilEntity deleted = em.find(AutomovilEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-    }
+    
     
     
     

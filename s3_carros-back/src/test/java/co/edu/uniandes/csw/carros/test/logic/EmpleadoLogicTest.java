@@ -180,7 +180,20 @@ public class EmpleadoLogicTest {
         Assert.assertNull(deleted);
     }
     
-    
+    @Test
+    public void getAllEmpleadosTest() {
+        List<EmpleadoEntity> list = empleadoLogic.getAllEmpleados();
+        Assert.assertEquals(data.size(), list.size());
+        for(EmpleadoEntity entity : list) {
+            boolean found = false;
+            for (EmpleadoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
     
 }
 

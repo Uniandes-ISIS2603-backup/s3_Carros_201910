@@ -66,11 +66,7 @@ public class AutomovilLogic {
         return entity;     
     }
     
-    public void deleteAutomovil(Long autoID){
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id = {0}", autoID);
-        autoPersistece.deleteAutomovil(autoID);
-        LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", autoID);
-    }
+    
     
     public AutomovilEntity updateAutomovil(AutomovilEntity auto){
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
