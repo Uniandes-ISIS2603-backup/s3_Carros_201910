@@ -98,10 +98,9 @@ public class ClienteResource {
        if(clienteLogic.getCliente(clienteID) == null){
            throw new WebApplicationException("El recurso /clientes/" + clienteID + " no existe.", 404);
        }
-       ClienteEntity entity = clienteLogic.updateCliente(cliente.toEntity());
-       ClienteDetailDTO clienteDto = new ClienteDetailDTO(entity);
+       ClienteDetailDTO clienteDto = new ClienteDetailDTO( clienteLogic.updateCliente(cliente.toEntity()));
        LOGGER.log(Level.INFO, "ClienteResource updateCliente: output: {0}", clienteDto);     
-        return clienteDto;
+       return clienteDto;
     }
     
       /*
