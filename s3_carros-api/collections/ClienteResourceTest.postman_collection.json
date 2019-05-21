@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "f1b34803-14bb-4185-be66-463bda1ca6f7",
+		"name": "ClienteResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "960cddc1-fdfd-4e35-8f90-6aba9d396f3c",
+						"exec": [
+							"tests[\"No genera error en el GetAll\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10c506a4-284e-4575-b131-fdb21c45df83",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f325c147-249f-47a3-9f48-a0d4ea7cf333",
+						"exec": [
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Nicolas Vazquez\",\n\t\"correo\": \"nv@gmail.com\",\n\t\"telefono\": \"1234512313\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un cliente con un correo ya existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fb5c287-0e36-4072-b09d-a52fe6937680",
+						"exec": [
+							"tests[\"Genera error en el Post por correo repetido\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Javier Pulido\",\n\t\"correo\": \"cp@mail.com\",\n\t\"telefono\": \"12345678\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2175909-7b75-41c9-8ea1-40a584d5e569",
+						"exec": [
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\": \"cp@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar cliente con el mismo correo de otro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00bece4b-7932-45d9-9d6e-273a7cd77b6b",
+						"exec": [
+							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\": \"ce@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4a2f71c-b114-46b5-8fe3-a64684f4552f",
+						"exec": [
+							"Tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/7",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

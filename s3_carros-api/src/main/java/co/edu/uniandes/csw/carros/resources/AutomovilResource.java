@@ -63,7 +63,7 @@ public class AutomovilResource {
     
     
     @GET
-    @Path("(autoId: \\d+)")
+    @Path("{autoId: \\d+}")
     public AutomovilDTO getAutomovil(@PathParam("autoId") Long autoId){
         LOGGER.log(Level.INFO, "AutomovilResource getAutomovil: input: {0}", autoId);
         AutomovilEntity autoEntity = autoLogic.getAutomovil(autoId);
@@ -96,7 +96,7 @@ public class AutomovilResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /automoviles/" + autoID + " no existe.", 404);
         }
-        autoLogic.deleteAutomovil(autoID);
+//        autoLogic.deleteAutomovil(autoID);
     }
     
     private List<AutomovilDTO> listEntity2DetailDTO(List<AutomovilEntity> entityList){
@@ -106,5 +106,5 @@ public class AutomovilResource {
         }
         return list;
     }
-    
+     
 }
