@@ -11,16 +11,16 @@ delete from MARCAENTITY;
 delete from RegistroCompraEntity;
 delete from PuntoVentaEntity;
 
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (1, '643 Hanover Way', '(326) 3402306', -5.1443118, -38.0850339, 'GOOFELLAS-Calle 26');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (2, '5896 Schurz Terrace', '(291) 3167263', 20.7491091, 106.3699271, 'GOOFELLAS - Av las americas');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (3, '88063 Dawn Trail', '(366) 7081866', 5.586693, -74.2296713, 'GOOFELLAS- Andino');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (4, '2590 Northland Crossing', '(606) 5177758', -14.16568, -72.658867, 'GOOFELLAS- Autonorte Cll. 134');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (5, '2 Anhalt Way', '(182) 4659961', 29.731101, 116.251947, 'GOOFELLAS- Floresta');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (6, '7816 Holy Cross Park', '(423) 5764086', 33.3437146, 130.6838866, 'GOOFELLAS - Iserra 100');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (7, '058 Holmberg Lane', '(581) 9633962', 4.338952, -73.938919, 'GOOFELLAS -Gaymaral');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (8, '452 Milwaukee Hill', '(413) 9735427', -18.0580139, 13.8361177, 'GOOFELLAS- Candelaria');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (9, '452  Hill', '(456) 9735427', -18.0580139, 13.84551177, 'GOOFELLAS- Centro mayor');
-insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (10, '8778 Banding Avenue', '(771) 1211177', 15.187831, 120.057435,  'GOOFELLAS - NQS');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (1, '643 Hanover Way', '(326) 3402306', -5.1443118, -38.0850339, 'GOODFELLAS-Calle 26');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (2, '5896 Schurz Terrace', '(291) 3167263', 20.7491091, 106.3699271, 'GOODFELLAS - Av las americas');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (3, '88063 Dawn Trail', '(366) 7081866', 5.586693, -74.2296713, 'GOODFELLAS- Andino');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (4, '2590 Northland Crossing', '(606) 5177758', -14.16568, -72.658867, 'GOODFELLAS- Autonorte Cll. 134');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (5, '2 Anhalt Way', '(182) 4659961', 29.731101, 116.251947, 'GOODFELLAS- Floresta');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (6, '7816 Holy Cross Park', '(423) 5764086', 33.3437146, 130.6838866, 'GOODFELLAS - Iserra 100');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (7, '058 Holmberg Lane', '(581) 9633962', 4.338952, -73.938919, 'GOODFELLAS -Gaymaral');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (8, '452 Milwaukee Hill', '(413) 9735427', -18.0580139, 13.8361177, 'GOODFELLAS- Candelaria');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (9, '452  Hill', '(456) 9735427', -18.0580139, 13.84551177, 'GOODFELLAS- Centro mayor');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (10, '8778 Banding Avenue', '(771) 1211177', 15.187831, 120.057435,  'GOODFELLAS - NQS');
 
 
 
@@ -40,15 +40,15 @@ insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (1, 
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (1, 8);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (1, 5);
 
-insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (2, 1);
+insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (2, 2);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (2, 5);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (2, 7);
 
-insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (3, 1);
+insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (3, 3);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (3, 10);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (3, 9);
 
-insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (4, 1);
+insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (4, 4);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (4, 2);
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (4, 7);
 
@@ -86,7 +86,7 @@ insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN) values (2, 'GT-R R32-R34
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (3, 'Versa', 1, 'https://st.motortrend.com/uploads/sites/10/2015/11/2010-nissan-versa-1.8-s-hatchback-angular-front.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (4, 'Juke-R', 1,'https://st.motortrend.com/uploads/sites/10/2017/11/2012-nissan-juke-sv-fwd-cvt-suv-angular-front.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (5, 'Sentra', 1, 'https://www.cstatic-images.com/car-pictures/xl/usc70nic061f121001.png');
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (6, 'Terrain', 2, 'https://www.gmc.com/content/dam/gmc/na/us/english/index/retail/retail-lp/01-images/2018-gmc-terrain-denali-black.png?imwidth=600)x';
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (6, 'Terrain', 2, 'https://i.imgur.com/gCXf21p.png';
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (7, 'Terrain x', 2,'https://s3.amazonaws.com/fzautomotive/dealers/59248987610a5.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (8, 'Acadia', 2, 'https://di-uploads-pod2.dealerinspire.com/carlblackchevybuickgmckennesaw/uploads/2018/11/2019-GMC-Acadia-Model.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (9, 'Acadia Denali', 2, 'https://crls.io/s/evox%2Fcolor_2400_032_png%2FMY2018%2F12378%2F12378_cc2400_032_GB8.png/feature/n/gmc-acadia.png');
