@@ -73,5 +73,11 @@ public class AutomovilLogic {
         return newEntity;
     }
     
+    public void deleteAutomovil(Long autoId){
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", autoId);
+        autoPersistece.deleteAutomovil(autoId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el empleado con id = {0}", autoId);
+    }
+    
     
 }

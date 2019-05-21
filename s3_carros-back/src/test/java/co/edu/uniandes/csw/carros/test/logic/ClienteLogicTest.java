@@ -196,4 +196,19 @@ public class ClienteLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
     }
+    
+    @Test
+    public void getAllClienteTest() {
+        List<ClienteEntity> list = clienteLogic.getAllCliente();
+        Assert.assertEquals(data.size(), list.size());
+        for(ClienteEntity entity : list) {
+            boolean found = false;
+            for (ClienteEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 }

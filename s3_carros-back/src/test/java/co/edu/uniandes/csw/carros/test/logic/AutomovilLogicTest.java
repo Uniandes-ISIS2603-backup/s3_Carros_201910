@@ -122,6 +122,7 @@ public class AutomovilLogicTest {
     @Test
     public void getAutomovilesTest() {
         List<AutomovilEntity> list = autoLogic.getAutomoviles();
+        Assert.assertEquals(data.size(), list.size());
         for(AutomovilEntity entity : list) {
             boolean found = false;
             for (AutomovilEntity storedEntity : data) {
@@ -143,6 +144,15 @@ public class AutomovilLogicTest {
         AutomovilEntity resp = em.find(AutomovilEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getIdChasis(), resp.getIdChasis());
+    }
+    
+    
+    @Test
+    public void deleteAutomovilTest(){
+        AutomovilEntity auto = data.get(0);
+        autoLogic.deleteAutomovil(auto.getId());
+        AutomovilEntity deleted = em.find(AutomovilEntity.class, auto.getId());
+        Assert.assertNull(deleted);
     }
     
     
