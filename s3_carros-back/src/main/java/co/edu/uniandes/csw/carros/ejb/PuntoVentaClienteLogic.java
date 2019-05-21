@@ -95,8 +95,6 @@ public class PuntoVentaClienteLogic
         List<ClienteEntity> clienteList = clientePersistence.findAllClientes();
         for (ClienteEntity cliente : clienteList) {
             if (empleados.contains(cliente)) {
-                //Falta mirar que no se agregue solamente
-                //REVISAR
                 cliente.addPuntoVenta(puntoVentaEntity);
             } else if (cliente.getPuntosVenta()!= null && cliente.getPuntosVenta().equals(puntoVentaEntity)) {
                 cliente.setPuntosVenta(null);

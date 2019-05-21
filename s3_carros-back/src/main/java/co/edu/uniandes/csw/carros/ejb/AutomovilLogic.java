@@ -27,12 +27,7 @@ public class AutomovilLogic {
     
     @Inject
     private AutomovilPersistence autoPersistece;
-    
-    
-    
-    
-    
-    
+
     /*Crear un nuevo automovil
     Regla de negocio: no puede haber dos automoviles con el mismo id en toda la base de datos
     */
@@ -71,6 +66,12 @@ public class AutomovilLogic {
     public AutomovilEntity updateAutomovil(AutomovilEntity auto){
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
         return newEntity;
+    }
+    
+    public void deleteAutomovil(Long autoId){
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", autoId);
+        autoPersistece.deleteAutomovil(autoId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el empleado con id = {0}", autoId);
     }
     
     
