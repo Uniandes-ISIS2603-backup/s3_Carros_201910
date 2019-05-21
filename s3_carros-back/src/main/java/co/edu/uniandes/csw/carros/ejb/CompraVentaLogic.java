@@ -50,18 +50,17 @@ public class CompraVentaLogic
      * persistir.
      * @return La entidad de la compraVenta luego de persistirla.
      * @throws BusinessLogicException Si la compraVenta a persistir ya existe o si PuntoVenta, Cliente, Empleado o Automovil no existen en la base de datos.
-     *         NulPointeException Si PuntoVenta, Cliente, Empleado o Automovil son null.
      */
-    public CompraVentaEntity createCompraVenta(CompraVentaEntity compraVentaEntity) throws BusinessLogicException, NullPointerException
+    public CompraVentaEntity createCompraVenta(CompraVentaEntity compraVentaEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compraVenta");
         if (compraVentaEntity == null) 
         {
-            throw new NullPointerException("La CompraVenta es null.");
+            throw new BusinessLogicException("La CompraVenta es null.");
         }
         if(compraVentaEntity.getPuntoVenta() == null) 
         {
-            throw new NullPointerException("El puntoVenta es null.");
+            throw new BusinessLogicException("El puntoVenta es null.");
         }
         if(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()) == null) 
         {
@@ -69,7 +68,7 @@ public class CompraVentaLogic
         }
         if(compraVentaEntity.getCliente() == null) 
         {
-            throw new NullPointerException("El cliente es null.");
+            throw new BusinessLogicException("El cliente es null.");
         }
         if(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()) == null) 
         {
@@ -77,13 +76,13 @@ public class CompraVentaLogic
         }
         if(compraVentaEntity.getAutomovilFacturado() == null) 
         {
-            throw new NullPointerException("El automovil es null.");
+            throw new BusinessLogicException("El automovil es null.");
         }
         if(automovilPersistence.findAutomovil(compraVentaEntity.getAutomovilFacturado().getId()) == null) 
         {
             throw new BusinessLogicException("El automovil no existe en la base de datos.");
         }
-        
+        System.out.println("Llega hasta acá");
         compraVentaEntity.setPuntoVenta(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()));
         compraVentaEntity.setCliente(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()));
         compraVentaEntity.setEmpleado(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()));
