@@ -27,12 +27,7 @@ public class AutomovilLogic {
     
     @Inject
     private AutomovilPersistence autoPersistece;
-    
-    
-    
-    
-    
-    
+
     /*Crear un nuevo automovil
     Regla de negocio: no puede haber dos automoviles con el mismo id en toda la base de datos
     */

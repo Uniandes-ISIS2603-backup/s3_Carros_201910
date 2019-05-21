@@ -43,7 +43,7 @@ public class PuntoVentaLogic
     {
         if(persistence.findByDireccion(puntoVenta.getDireccion())!= null)
         {
-            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion:  "+ puntoVenta.getDireccion());
+            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion: "+ puntoVenta.getDireccion());
         }
         if(puntoVenta == null)
         {
