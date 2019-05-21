@@ -86,7 +86,7 @@ insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN) values (2, 'GT-R R32-R34
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (3, 'Versa', 1, 'https://st.motortrend.com/uploads/sites/10/2015/11/2010-nissan-versa-1.8-s-hatchback-angular-front.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (4, 'Juke-R', 1,'https://st.motortrend.com/uploads/sites/10/2017/11/2012-nissan-juke-sv-fwd-cvt-suv-angular-front.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (5, 'Sentra', 1, 'https://www.cstatic-images.com/car-pictures/xl/usc70nic061f121001.png');
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (6, 'Terrain', 2, 'https://www.gmc.com/content/dam/gmc/na/us/english/index/retail/retail-lp/01-images/2018-gmc-terrain-denali-black.png?imwidth=600)x';
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (6, 'Terrain', 2, '';
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (7, 'Terrain x', 2,'https://s3.amazonaws.com/fzautomotive/dealers/59248987610a5.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (8, 'Acadia', 2, 'https://di-uploads-pod2.dealerinspire.com/carlblackchevybuickgmckennesaw/uploads/2018/11/2019-GMC-Acadia-Model.png');
 insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (9, 'Acadia Denali', 2, 'https://crls.io/s/evox%2Fcolor_2400_032_png%2FMY2018%2F12378%2F12378_cc2400_032_GB8.png/feature/n/gmc-acadia.png');
