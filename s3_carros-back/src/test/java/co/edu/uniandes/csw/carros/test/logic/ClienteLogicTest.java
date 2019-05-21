@@ -185,4 +185,15 @@ public class ClienteLogicTest {
         ClienteEntity deleted = em.find(ClienteEntity.class, cliente.getId());
         Assert.assertNull(deleted);
     }
+    
+    
+    
+    @Test
+    public void getClienteTest() {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity resultEntity = clienteLogic.getCliente(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
+    }
 }
