@@ -19,20 +19,21 @@ insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre
 insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (6, '7816 Holy Cross Park', '(423) 5764086', 33.3437146, 130.6838866, 'GOOFELLAS - Iserra 100');
 insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (7, '058 Holmberg Lane', '(581) 9633962', 4.338952, -73.938919, 'GOOFELLAS -Gaymaral');
 insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (8, '452 Milwaukee Hill', '(413) 9735427', -18.0580139, 13.8361177, 'GOOFELLAS- Candelaria');
+insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (9, '452  Hill', '(456) 9735427', -18.0580139, 13.84551177, 'GOOFELLAS- Centro mayor');
 insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (10, '8778 Banding Avenue', '(771) 1211177', 15.187831, 120.057435,  'GOOFELLAS - NQS');
 
 
 
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (1, 'Innovation that exites','https://i.ytimg.com/vi/YI7WaagSVE0/maxresdefault.jpg', 'Nissan');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (2, 'We are professional grade ', 'https://www.gmc.com.mx/content/dam/gmc/na/mx/es/index/current-offers/01-images/gmc-offers-mh-lg.jpg?imwidth=1200', 'GMC');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (3, 'Go Further', 'https://www.ford.com/cmslibs/content/dam/brand_ford/en_us/brand/campaigns/2019/bfp/BFP_Billboard_Desktop_Edge_2160x945.jpg/_jcr_content/renditions/cq5dam.web.1440.1440.jpeg', 'Ford');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (4, 'There is no substitute', 'https://www.diariomotor.com/imagenes/picscache/1920x1600c/porsche-718-boxster-video_1920x1600c.jpg', 'Porsche');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (5, 'Lets Go Places', 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2017/11/04/15097995704823.jpg', 'Toyota');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (6, 'Das Beste oder nichts', '../assets/Images/MERCEDES.jpg', 'Merdeces');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (7, 'Excellence Through Passion', 'https://www.diariomotor.com/imagenes/picscache/1920x1600c/maserati_ghibli_ficha_0418_033_1920x1600c.jpg', 'Maserati');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (8, 'Varsprung durch Technik', '../assets/Images/AUDI.jpg', 'Audi');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (9, 'The Ultimate Driving Machine', '../assets/Images/BMW.jpg', 'BMW');
-insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA) values (10, 'Jinba Ittai', 'https://cochesnuevos.autofacil.es/img/MAZDA_3_SEDAN_2019.jpg', 'Mazda');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (1, 'Innovation that exites','https://i.ytimg.com/vi/YI7WaagSVE0/maxresdefault.jpg', 'Nissan', 'http://www.car-brand-names.com/wp-content/uploads/2015/08/Nissan-logo.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, logo) values (2, 'We are professional grade ', 'https://www.gmc.com.mx/content/dam/gmc/na/mx/es/index/current-offers/01-images/gmc-offers-mh-lg.jpg?imwidth=1200', 'GMC', 'https://logos-coches.com/wp-content/uploads/2018/04/GMC-logo.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (3, 'Go Further', 'https://www.ford.com/cmslibs/content/dam/brand_ford/en_us/brand/campaigns/2019/bfp/BFP_Billboard_Desktop_Edge_2160x945.jpg/_jcr_content/renditions/cq5dam.web.1440.1440.jpeg', 'Ford', 'http://assets.stickpng.com/thumbs/580b585b2edbce24c47b2c67.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (4, 'There is no substitute', 'https://www.diariomotor.com/imagenes/picscache/1920x1600c/porsche-718-boxster-video_1920x1600c.jpg', 'Porsche', 'https://i.pinimg.com/originals/98/88/6b/98886b4f85abb7dff6587bdf424d2d9c.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (5, 'Lets Go Places', 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2017/11/04/15097995704823.jpg', 'Toyota', 'http://propertybeyond.com.au/wp-content/uploads/2015/08/toyota.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (6, 'Das Beste oder nichts', '../assets/Images/MERCEDES.jpg', 'Merdeces', 'https://logos-coches.com/wp-content/uploads/2018/04/Mercedes-Benz-logo.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (7, 'Excellence Through Passion', 'https://www.diariomotor.com/imagenes/picscache/1920x1600c/maserati_ghibli_ficha_0418_033_1920x1600c.jpg', 'Maserati','http://pngimg.com/uploads/maserati/maserati_PNG1.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (8, 'Varsprung durch Technik', '../assets/Images/AUDI.jpg', 'Audi', 'http://www.rentacarfloridacars.com/wp-content/uploads/2016/12/Audi-Logo-2013.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (9, 'The Ultimate Driving Machine', '../assets/Images/BMW.jpg', 'BMW', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/1200px-BMW.svg.png');
+insert into MARCAENTITY (ID, DESCRIPCION, IMAGEN, NOMBREMARCA, LOGO) values (10, 'Jinba Ittai', 'https://cochesnuevos.autofacil.es/img/MAZDA_3_SEDAN_2019.jpg', 'Mazda', 'https://upload.wikimedia.org/wikipedia/nah/thumb/b/b1/Mazda_logo.png/640px-Mazda_logo.png');
 
 
 insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (1, 1);
@@ -77,59 +78,66 @@ insert into MARCAENTITY_PUNTOVENTAENTITY (PUNTOSVENTA_ID, MARCAS_ID) values (10,
 
 INSERT INTO MODELOENTITY (ID,AIRBAG,AIREAC,ASIENTOS,CILINDRAJE,COMBUSTIBLE,DIRECCION,FRENOSABS,IMAGEN,NOMBRE,NUMEROPUERTAS,TRACCION,TRANSMISION,VIDRIOS,MARCA_ID) 
                             VALUES (1,1,1,'Sintéticos',1600,
-                            'Gasolina','Asistida',1, 'https://acs2.blob.core.windows.net/imgcatalogo/l/VA_00cfc4bccae440058856dd81da32ee2b.jpg',
-                            'Focus',3,'Total','Automática',
-                            'Eléctricos',3);
+                            'Gasolina','Asistida',1, 'https://2.bp.blogspot.com/-crgHLYSfi64/VzxWduE9dzI/AAAAAAAACpQ/MUNeSMw7-aIO1zbKcS6e4Yi0q8j_cyGkACLcB/s1600/Nissan%2BR390%2BGT1.png',
+                            'R390 GT1',3,'Total','Automática',
+                            'Eléctricos',1);
 
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (2, 'M', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (3, 'Mustang', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (4, 'G37', 5);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (5, 'MX-5', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (6, 'Esprit', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (7, 'Pathfinder', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (8, 'Tercel', 8);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (9, 'Civic', 4);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (10, '530', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (11, 'Integra', 8);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (12, 'Sephia', 8);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (13, 'Focus', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (14, 'Sequoia', 4);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (15, 'CR-V', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (16, 'Silverado 1500', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (17, 'Quest', 7);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (18, 'Celica', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (19, 'Legend', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (20, 'Summit', 4);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (21, 'MPV', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (22, 'Malibu', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (23, 'Escalade', 7);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (24, 'Range Rover Sport', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (25, 'Lumina', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (26, 'Silverado 3500', 8);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (27, 'LX', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (28, 'Coupe', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (29, 'Chariot', 5);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (30, 'Avalon', 4);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (31, 'Challenger', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (32, 'Monterey', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (33, 'Sonoma', 9);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (34, 'Ram Wagon B150', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (35, 'Precis', 5);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (36, 'Prizm', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (37, '960', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (38, 'Touareg', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (39, 'Nubira', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (40, 'Protege', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (41, 'Forester', 8);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (42, 'Express 2500', 9);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (43, 'Express 2500', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (44, '190E', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (45, '98', 1);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (46, 'Bonneville', 10);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (47, 'Econoline E250', 6);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (48, 'M3', 2);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (49, 'Accord', 3);
-insert into MODELOENTITY (ID, NOMBRE, MARCA_ID) values (50, 'Miata MX-5', 9);
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN) values (2, 'GT-R R32-R34', 1, 'https://postmediadriving.files.wordpress.com/2019/04/chrome-image-402046.png?w=800&h=520&crop=1');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (3, 'Versa', 1, 'https://st.motortrend.com/uploads/sites/10/2015/11/2010-nissan-versa-1.8-s-hatchback-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (4, 'Juke-R', 1,'https://st.motortrend.com/uploads/sites/10/2017/11/2012-nissan-juke-sv-fwd-cvt-suv-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (5, 'Sentra', 1, 'https://www.cstatic-images.com/car-pictures/xl/usc70nic061f121001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (6, 'Terrain', 2, 'https://www.gmc.com/content/dam/gmc/na/us/english/index/retail/retail-lp/01-images/2018-gmc-terrain-denali-black.png?imwidth=600)x';
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (7, 'Terrain x', 2,'https://s3.amazonaws.com/fzautomotive/dealers/59248987610a5.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (8, 'Acadia', 2, 'https://di-uploads-pod2.dealerinspire.com/carlblackchevybuickgmckennesaw/uploads/2018/11/2019-GMC-Acadia-Model.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (9, 'Acadia Denali', 2, 'https://crls.io/s/evox%2Fcolor_2400_032_png%2FMY2018%2F12378%2F12378_cc2400_032_GB8.png/feature/n/gmc-acadia.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (10, 'Canyon Denali', 2, 'https://static.tcimg.net/vehicles/primary/8dd958ffdda18717/2019-GMC-Canyon-white-full_color-driver_side_front_quarter.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (11, 'Fiesta ST', 3, 'https://www.ford.com/cmslibs/content/dam/vdm_ford/live/en_us/ford/nameplate/fiesta/2019/collections/adplanner/19_frd_fie_5dr_st_ospc_356x180.png/_jcr_content/renditions/cq5dam.web.1280.1280.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (12, 'Focus', 3,'https://st.motortrend.ca/uploads/sites/10/2017/05/2017-ford-focus-titanium-sedan-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (13, 'Explorer', 3, 'https://di-uploads-pod14.dealerinspire.com/kingsford/uploads/2018/02/ford_explorer2018_red.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (14, 'Mustang', 3, 'https://cloudflarestockimages.dealereprocess.com/resrc/images/stockphoto_asset-c_limit,f_auto,fl_lossy,w_700/v1/svp/Colors_PNG1280/2019/19ford/19fordmustangfastbkecocp6fa/ford_19mustangfastbkecocp6fa_angularfront_racered');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (15, 'Raptor', 3, 'https://leie-autos.be/wp-content/uploads/2018/04/vehicle-4-2.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (16, '911 Carrera RS', 4, 'https://postmediadriving.files.wordpress.com/2018/05/chrome-image-394157.png?w=800&h=520&crop=1');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (17, '718 GTS', 4, 'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBRSMkx.img?w=354&h=236&m=7');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (18, '911 g3t', 4, 'https://di-uploads-pod15.dealerinspire.com/rusnakwestlakeporsche/uploads/2018/12/cc_2018PRC010017_01_640_G1-copy-1.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (19, ' 911 Speedster', 4, 'https://www.cstatic-images.com/car-pictures/xl/usd00prc014a021001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (20, 'Panamera GTS', 4, 'https://www.cstatic-images.com/car-pictures/xl/USC30PRC102A021001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (21, 'Carolla', 5, 'https://www.cstatic-images.com/car-pictures/xl/usc70toc041g021001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (22, 'Prius', 5, 'https://www.howardsgroup.co.uk/assets/brands/toyota/prius/toyota-prius-new-blue%20(1).png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (23, 'GT86', 5, 'https://www.toyota-canarias.es/sites/default/files/2019-01/gt86_27_m7y_p2.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (24, 'Hilux', 5, 'https://daltontoyota.com.mx/modelos/hilux/colors/01.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (25, 'Prado', 5, 'https://www.toyota.com.co/wp-content/uploads/2018/03/Prado-Vx.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (26, 'Clase A', 6, 'https://s3-us-west-2.amazonaws.com/static.izmocars.com/toolkit/commonassets/2019/19mercedesbenz/19mercedesbenzclasea/19mercedesbenzclasea_animations/_mxcolor/_570x380/mercedesbenz_19clasea_azulmardelsur.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (27, 'Clase E', 6, 'https://s3-eu-west-1.amazonaws.com/maxterauto-assets/gamas/images_colours/color_cabecera-34-286-1746-545-1549369262.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (28, 'Clase CLS', 6, 'https://www.arval.es/sites/es/files/media/mercedes_15c220bluetecsa_4b_lowaggressive_negro-estandar.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (29, 'AMG GT', 6, 'https://www.cstatic-images.com/car-pictures/xl/usc80mbcar2b021001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (30, 'GLE', 6, 'https://automobile-assets.s3.amazonaws.com/automobile/body/mercedes-g-class-2018-2019-1542112553.86.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (31, 'Ghibli', 7, 'https://st.motortrend.com/uploads/sites/10/2018/01/2018-maserati-ghibli-sedan-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (32, 'Levante', 7, 'https://www.mirenting.es/wp-content/uploads/2019/01/Levante-S-new-18-1.png.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (33, 'Quattroporte', 7, 'https://bookluxurycar.com/listing_image/original/Maserati-GRANTURISMO-SPORT-car.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (34, 'GranTurismo', 7, 'https://st.motortrend.com/uploads/sites/10/2015/11/2015-maserati-granturismo-sport-convertible-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (35, 'GranCabrio', 7, 'https://res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/editorial/vhs/Maserati-GranCabrio.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (36, 'A4', 8, 'https://www.levantewagen.es/uploads/cms/con_contenido/plataforma_2/02/44/61/images/A4.jpg');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (37, 'A5', 8, 'https://img.sm360.ca/ir/w640h390c/images/newcar/ca/2019/audi/a5-sportback/komfort/coupe/exteriorColors/12018_cc0640_032_s9.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (38, 'Q8', 8, 'https://pictures.dealer.com/s/schaumburgaudiaoa/0312/5b40989b3476db148c615c75b0b90590x.jpg');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (39, 'R8', 8, 'https://postmediadriving.files.wordpress.com/2019/03/chrome-image-397953.png?w=800&h=520&crop=1');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (40, 'e-tron GT', 8, 'https://img1.bitautoimg.com/autoalbum/files/20181206/090/0312150909_6.jpg');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (41, 'Serie 1', 9, 'https://www.arval.es/sites/es/files/media/bmw_serie1_delantera.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (42, 'M2401', 9, 'https://www.cstatic-images.com/car-pictures/xl/usc80bmc803a021001.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (43, 'X6', 9, 'https://st.motortrend.com/uploads/sites/10/2016/12/2017-bmw-x6-sdrive35i-suv-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (44, 'M3', 9, 'https://st.motortrend.com/uploads/sites/10/2015/11/2015-bmw-m3-sedan-angular-front.png?interpolation=lanczos-none&fit=around|392:261');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (45, 'i8 Coupe ', 9, 'https://cache.bmwusa.com/cosy.arox?pov=walkaround&brand=WBBI&vehicle=19IC&client=byo&paint=P0C23&fabric=FNGEK&sa=S027K,S0322,S0508,S0610&date=20180306&angle=330&quality=100&resp=png&BKGND=TRANSPARENT&SHARP=30&HEIGHT=24%25');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (46, 'Mazda 2', 10, 'https://s3-ap-southeast-2.amazonaws.com/imotor-cms/images_cms/a2c3ca42-4022-4297-b360-7a55e5f18f3e.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (47, 'Mazda 3', 10, 'http://www.mazdamonclova.com/img/autos/MZ3H18/versiones/MZMZ3H1801.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (48, 'Mazda 6', 10, 'https://st.motortrend.com/uploads/sites/10/2018/06/2018-mazda-mazda6-grand-touring-reserve-sedan-angular-front.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (49, 'Mazda mx-5', 10, 'https://www.mazda.com.au/globalassets/settings/vehicle-assets/mx-5/2018-09---ipm/roadster-gt/maz13777_mx-5_soft-top_2.0l_roadstergt_soulredcrystal_front_980x520_rgb.png');
+insert into MODELOENTITY (ID, NOMBRE, MARCA_ID, IMAGEN)  values (50, 'Mazda cx-5', 10, 'https://www.mazda.co.nz/sites/default/files/MDZ3994_CX-5_GLX_Deep-Crystal-Blue_Front.png');
+
+
+
+
+
+
+
 
 insert into REGISTROCOMPRAENTITY (id, FECHACOMPRA, NOMBREVENDEDOR, PRECIOCOMPRADO, PUNTOVENTA_ID) values (1, '6/7/2018', 'Ailsun Jencey', 6502, 7);
 insert into REGISTROCOMPRAENTITY (id, FECHACOMPRA, NOMBREVENDEDOR, PRECIOCOMPRADO, PUNTOVENTA_ID) values (2, '9/18/2018', 'Hakim O''Kynsillaghe', 8232, 10);

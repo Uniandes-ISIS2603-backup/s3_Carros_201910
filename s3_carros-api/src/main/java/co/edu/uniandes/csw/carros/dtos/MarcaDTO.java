@@ -120,7 +120,7 @@ public class MarcaDTO implements Serializable{
     public String getLogo() {
         return logo;
     }
-
+ 
     /**
      * @param logo the logo to set
      */
