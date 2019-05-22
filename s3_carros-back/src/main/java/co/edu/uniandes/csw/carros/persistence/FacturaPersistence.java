@@ -57,27 +57,7 @@ public class FacturaPersistence
         return result;
     }
     
-    /**
-     * Busca si hay Facturas con los ids que se envían de argumento
-     *
-     * @param ids: Lista de ids de factura que se están buscando.
-     * @return Lista de Facturas, lista vacía si no existe ninguna.
-     */
-    public List<FacturaEntity> findListByIDs(List<Long> ids) {
-        LOGGER.log(Level.INFO, "Consultando lista Factura por ids", ids);
-        List<FacturaEntity> result = new ArrayList<>();        
-        Iterator iterador = ids.iterator();
-        while(iterador.hasNext())
-        {
-            FacturaEntity busqueda = findByID((Long) iterador.next());
-            if(busqueda != null)
-            {
-                result.add(busqueda);
-            }
-        }
-        LOGGER.log(Level.INFO, "Saliendo de consultar lista Factura por id", ids);
-        return result;
-    }
+    
     
     /**
      * Devuelve todas las facturas de la base de datos.

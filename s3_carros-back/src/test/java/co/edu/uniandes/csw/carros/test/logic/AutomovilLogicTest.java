@@ -40,11 +40,11 @@ public class AutomovilLogicTest {
     @Inject
     private AutomovilLogic autoLogic;
     
-    @PersistenceContext
-    private EntityManager em;
-    
     @Inject
     UserTransaction utx;
+    
+    @PersistenceContext
+    private EntityManager em;
     
 
     
@@ -103,7 +103,8 @@ public class AutomovilLogicTest {
     @Test
     public void createAutomovilTest() throws BusinessLogicException{
         
-        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class); 
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+        newEntity.setModelo(modelo);
         AutomovilEntity result = autoLogic.createAutomovil(newEntity);
         Assert.assertNotNull(result);
         AutomovilEntity entity = em.find(AutomovilEntity.class, result.getId());
@@ -112,16 +113,56 @@ public class AutomovilLogicTest {
     
     
     @Test(expected = BusinessLogicException.class)
-    public void createAutomovilMismoID() throws BusinessLogicException
+    public void createAutomovilMismoIDChasis() throws BusinessLogicException
     {
         AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
         newEntity.setIdChasis(data.get(0).getIdChasis());
         autoLogic.createAutomovil(newEntity);
     }
     
+    /**
+     * Prueba para crear un automovil cuando la entidad es null.
+     *
+     * @throws BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createAutomovilNullTest() throws BusinessLogicException
+    {
+        autoLogic.createAutomovil(null);
+    }
+    
+    /**
+     * Prueba para crear un automovil con modelo en null.
+     *
+     * @throws BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createAutomovilConNullModeloTest() throws BusinessLogicException
+    {
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+        newEntity.setModelo(null);
+        autoLogic.createAutomovil(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Automovil con un modelo que no existe.
+     *
+     * @throws BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createAutomovilConModeloInexistenteTest() throws BusinessLogicException 
+    {
+        AutomovilEntity newEntity = factory.manufacturePojo(AutomovilEntity.class);
+        ModeloEntity modelolEntity = new ModeloEntity();
+        modelolEntity.setId(Long.MIN_VALUE);
+        newEntity.setModelo(modelolEntity);
+        autoLogic.createAutomovil(newEntity);
+    }
+    
     @Test
     public void getAutomovilesTest() {
         List<AutomovilEntity> list = autoLogic.getAutomoviles();
+        Assert.assertEquals(data.size(), list.size());
         for(AutomovilEntity entity : list) {
             boolean found = false;
             for (AutomovilEntity storedEntity : data) {
@@ -145,13 +186,16 @@ public class AutomovilLogicTest {
         Assert.assertEquals(pojoEntity.getIdChasis(), resp.getIdChasis());
     }
     
+    
     @Test
-    public void deleteAutomovilTest() throws BusinessLogicException {
-        AutomovilEntity entity = data.get(1);
-        autoLogic.deleteAutomovil(entity.getId());
-        AutomovilEntity deleted = em.find(AutomovilEntity.class, entity.getId());
+    public void deleteAutomovilTest(){
+        AutomovilEntity auto = data.get(0);
+        autoLogic.deleteAutomovil(auto.getId());
+        AutomovilEntity deleted = em.find(AutomovilEntity.class, auto.getId());
         Assert.assertNull(deleted);
     }
+    
+    
     
     
     

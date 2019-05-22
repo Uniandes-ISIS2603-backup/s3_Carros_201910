@@ -42,7 +42,6 @@ public class ModeloResource {
     @Inject
     private ModeloLogic logicModelo;
     
-    
     @POST
     public ModeloDTO createModelo(ModeloDTO modeloDTO) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "ModeloResource createModelo: input: {0}", modeloDTO);
@@ -64,7 +63,6 @@ public class ModeloResource {
        LOGGER.log(Level.INFO, "modeloresoruce getModelos: output: {0}", listaModelos);
        return listaModelos; 
     }
-    
     
     @GET 
     @Path("{modeloID: \\d+}")
@@ -104,10 +102,6 @@ public class ModeloResource {
         LOGGER.info("PuntoVentaResourse deletePuntoVenta: output: void"); 
     }
     
-    
-    
-    
-    
     private List<ModeloDetailDTO> listEntity2DetailDTO(List<ModeloEntity> entityList){
         List<ModeloDetailDTO> list = new ArrayList<>();
         for (ModeloEntity entity : entityList) {
@@ -125,6 +119,5 @@ public class ModeloResource {
         }
         return ModeloAutomovilesResource.class;
     }
-    
     
 }

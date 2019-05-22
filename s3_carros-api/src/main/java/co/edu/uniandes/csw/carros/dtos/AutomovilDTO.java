@@ -35,7 +35,6 @@ public class AutomovilDTO  implements Serializable{
      */
     private String tipo;    
     
-    
     /**
      * referencia del vehiculo seguida de la marca
      */
@@ -73,13 +72,11 @@ public class AutomovilDTO  implements Serializable{
      */
     private String cuidadMatricula;
     
-        
     /**
      * precio de venta al publico
      */
     private Double precioVenta;
 
-    
     /**
      * ide del punto de venta donde esta el automovil
      */

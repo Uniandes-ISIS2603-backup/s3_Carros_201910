@@ -126,4 +126,18 @@ public class MarcaDTO implements Serializable{
         this.descripcion = descripcion;
     }
 
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+ 
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
 }

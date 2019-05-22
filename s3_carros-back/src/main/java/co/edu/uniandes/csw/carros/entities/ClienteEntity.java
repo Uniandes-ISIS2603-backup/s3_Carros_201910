@@ -8,8 +8,8 @@ package co.edu.uniandes.csw.carros.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,13 +26,12 @@ public class ClienteEntity extends BaseEntity implements Serializable{
     private String telefono;
     
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", fetch = LAZY)
     private List<CompraVentaEntity> compras = new ArrayList<CompraVentaEntity>();
     
     @PodamExclude
     @ManyToMany
     private List<PuntoVentaEntity> puntosVenta;
-    
     
     public ClienteEntity(){
         

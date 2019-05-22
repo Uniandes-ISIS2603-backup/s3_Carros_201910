@@ -1,11 +1,241 @@
 {
 	"info": {
-		"_postman_id": "40dd255a-3b48-461b-b9c4-37a7409ddb7e",
+		"_postman_id": "18efa9b8-52ad-4236-ba29-7a4dbb45f2eb",
 		"name": "EmpleadoResourceTest",
 		"description": "Empleado Resource Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear Punto Venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc1bbd29-d561-4b01-b8e7-ca2980c16193",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"direccion\":\"Calle 10\", \n\t\"telefono\": \"3216584\",\n\t\"nombre\": \"a\",\n\t\"latitud\": \"123456\",\n\t\"longitud\": \"125847\",\n\t\"rutaFotos\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un empleado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bb48289-9dd3-4746-81ec-e08e0e0d1488",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.empleadoID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jp@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un empleado 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bb48289-9dd3-4746-81ec-e08e0e0d1488",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.empleadoID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jpas@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un empleado con el mismo correo de otro empleado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dba8b0f1-7ef1-4919-8124-5c5c40326d25",
+						"exec": [
+							"tests[\"Genera error en el Post por correo repetido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El empleado con el correo ingresado ya existe\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jp@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear empleado con PuntoVenta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17916272-937c-4959-890f-0488b4b941e8",
+						"exec": [
+							"tests[\"No crea con ISBN invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"¡El punto de venta asignado al empleado no existe!\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"name": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jpasd@gmail.com\",\n\t\"puntoVenta\": { \"id\": 0 }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Obtener todos los empleados",
 			"event": [
@@ -62,6 +292,8 @@
 					"script": {
 						"id": "2f3cc282-eda8-4f2b-893c-cb509abd3937",
 						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -75,7 +307,6 @@
 				"method": "GET",
 				"header": [
 					{
-						"disabled": false,
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"type": "text",
@@ -87,7 +318,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -97,42 +328,46 @@
 						"s3_carros-api",
 						"api",
 						"empleados",
-						"1"
+						"{{new_id_b}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un empleado",
+			"name": "Obtener un empleado que no existe",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6bb48289-9dd3-4746-81ec-e08e0e0d1488",
+						"id": "2f3cc282-eda8-4f2b-893c-cb509abd3937",
 						"exec": [
-							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/0 no existe\");"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jo@gmail.com\",\n\t\"puntoVenta\": { \"id\": 1 }\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -141,51 +376,8 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"empleados"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Crear un empleado con el mismo correo de otro empleado",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "dba8b0f1-7ef1-4919-8124-5c5c40326d25",
-						"exec": [
-							"tests[\"Genera error en el Post por correo repetido\"] = responseCode.code === 412;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Juan Ospina\",\n\t\"extension\": 1234,\n\t\"correo\": \"jp@gmail.com\",\n\t\"puntoVenta\": { \"id\": 1 }\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"empleados"
+						"empleados",
+						"0"
 					]
 				}
 			},
@@ -199,6 +391,8 @@
 					"script": {
 						"id": "ca06c55e-2878-49ad-898e-00fe9969ea3f",
 						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -217,10 +411,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"type\": \"empleadoDetailDTO\",\n    \"correo\": \"jperez@mail.com\",\n    \"empleadoID\": 1,\n    \"extension\": 318,\n    \"nombre\": \"Juan Perez\",\n    \"listaVentas\": []\n}"
+					"raw": "{\n    \"nombre\": \"Juan Ospina\",\n\t\"extension\": 1226,\n\t\"correo\": \"jp@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -230,7 +424,7 @@
 						"s3_carros-api",
 						"api",
 						"empleados",
-						"1"
+						"{{new_id_b}}"
 					]
 				}
 			},
@@ -244,7 +438,8 @@
 					"script": {
 						"id": "3113ec9b-8b87-4f8b-bb8c-81fea4089805",
 						"exec": [
-							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;"
+							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un empleado con el correo ingresado\");"
 						],
 						"type": "text/javascript"
 					}
@@ -262,10 +457,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"type\": \"empleadoDetailDTO\",\n    \"correo\": \"jp@mail.com\",\n    \"empleadoID\": 2,\n    \"extension\": 314,\n    \"nombre\": \"Juan Rodriguez\",\n    \"listaVentas\": []\n}"
+					"raw": "{\n    \"nombre\": \"Juan Ospina\",\n\t\"extension\": 1226,\n\t\"correo\": \"jpas@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -275,7 +470,99 @@
 						"s3_carros-api",
 						"api",
 						"empleados",
-						"2"
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un empleado con PuntoVenta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3113ec9b-8b87-4f8b-bb8c-81fea4089805",
+						"exec": [
+							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El punto de venta asignado no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Juan Ospina\",\n\t\"extension\": 1226,\n\t\"correo\": \"jp@gmail.com\",\n\t\"puntoVenta\": { \"id\": 0 }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un empleado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3113ec9b-8b87-4f8b-bb8c-81fea4089805",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/0 no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Juan Ospina\",\n\t\"extension\": 1226,\n\t\"correo\": \"jpas@gmail.com\",\n\t\"puntoVenta\": { \"id\": {{new_id_e}} }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados",
+						"0"
 					]
 				}
 			},
@@ -289,7 +576,7 @@
 					"script": {
 						"id": "1a5fed29-f4b6-4c6a-8965-8502466b9a3b",
 						"exec": [
-							"ests[\"No genera error en el Post\"] = responseCode.code === 404;"
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
 						],
 						"type": "text/javascript"
 					}
@@ -310,7 +597,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/3",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -320,7 +607,136 @@
 						"s3_carros-api",
 						"api",
 						"empleados",
-						"3"
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un empleado 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a5fed29-f4b6-4c6a-8965-8502466b9a3b",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un empleado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a5fed29-f4b6-4c6a-8965-8502466b9a3b",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/0 no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"empleados",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un punto de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c19b61d6-7424-4d78-9d12-3c39ac4973a6",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_e}}"
 					]
 				}
 			},

@@ -28,18 +28,28 @@ public class AutomovilLogic {
     @Inject
     private AutomovilPersistence autoPersistece;
     
-    
-    
-    
-    
-    
+    @Inject
+    private ModeloPersistence modeloPersistence;
+
     /*Crear un nuevo automovil
     Regla de negocio: no puede haber dos automoviles con el mismo id en toda la base de datos
     */
-    public AutomovilEntity createAutomovil(AutomovilEntity automovil) throws BusinessLogicException{
-        
+    public AutomovilEntity createAutomovil(AutomovilEntity automovil) throws BusinessLogicException
+    {
+        if(automovil == null) 
+        {
+            throw new BusinessLogicException("El automovil es null.");
+        }
         if(autoPersistece.findByIdChasis(automovil.getIdChasis()) != null){
-            throw new BusinessLogicException("Ya existe un automovil con el id: " + automovil.getIdChasis());
+            throw new BusinessLogicException("Ya existe un automovil con el idChasis: " + automovil.getIdChasis());
+        }
+        if(automovil.getModelo() == null)
+        {
+            throw new BusinessLogicException("El modelo es null.");
+        }
+        if(modeloPersistence.findModelo(automovil.getModelo().getId()) == null) 
+        {
+            throw new BusinessLogicException("El modelo no existe en la base de datos.");
         }
         autoPersistece.create(automovil);
         return automovil;
@@ -66,15 +76,17 @@ public class AutomovilLogic {
         return entity;     
     }
     
-    public void deleteAutomovil(Long autoID){
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el automovil con id = {0}", autoID);
-        autoPersistece.deleteAutomovil(autoID);
-        LOGGER.log(Level.INFO, "termina proceso de borrar el automovil con id = {0}", autoID);
-    }
+    
     
     public AutomovilEntity updateAutomovil(AutomovilEntity auto){
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
         return newEntity;
+    }
+    
+    public void deleteAutomovil(Long autoId){
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", autoId);
+        autoPersistece.deleteAutomovil(autoId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el empleado con id = {0}", autoId);
     }
     
     

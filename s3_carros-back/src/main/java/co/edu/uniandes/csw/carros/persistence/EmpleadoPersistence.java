@@ -60,7 +60,6 @@ public class EmpleadoPersistence {
     public void updateEmpleado(EmpleadoEntity empleado){
         em.merge(empleado);
     }
-    
    
     /**
      * Busca si hay algun empleado con el correo que se envía de argumento

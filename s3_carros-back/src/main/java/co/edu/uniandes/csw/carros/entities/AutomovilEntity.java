@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.carros.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import static javax.persistence.FetchType.LAZY;
 import javax.persistence.ManyToOne;
@@ -24,22 +25,14 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private ModeloEntity modelo;
    
-    
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "automovil", fetch = LAZY, cascade = CascadeType.ALL)
     private RegistroCompraEntity registroCompra;
-    
     
     @PodamExclude
     @OneToOne(mappedBy = "automovilFacturado", fetch = LAZY)
     private CompraVentaEntity compraVenta;
            
-    
-    /**
-     * ruta de la imagen del auto
-     */
-    private String imagen_auto;
-    
     /**
      * disponibilidad del vehiculo dentro del 
      * punto de venta
@@ -102,13 +95,6 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     private Integer puntoVentaID;
     
     private String imagen;
-    
-    
-    
-
-   
-    
-    
     
     /**
      * @return the disponible

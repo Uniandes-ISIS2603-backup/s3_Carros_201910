@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "9f80e08e-270b-444b-9fa4-820801e7c96f",
+		"name": "ModeloResourseTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.idMarca);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"nombreMarca\": \"nombre\",\r\n    \"imagen\": \"asder\",\r\n    \"logo\": \"asdef\",\r\n    \"descripcion\": \"abc\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Modelo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.modeloID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\": { \"idMarca\": {{new_id_a}} },\n\t\"nombre\": \"Modelo1\",\n\t\"imagen\": \"asd\",\n\t\"numeroPuertas\": 4,\n\t\"transmision\": \"Electrica\",\n\t\"traccion\": \"trasera\",\n\t\"airBag\": true,\n    \"aireAc\": true,\n    \"asientos\": \"Sintéticos\",\n    \"cilindraje\": 1600,\n    \"combustible\": \"Gasolina\",\n    \"direccion\": \"Asistida\",\n    \"frenosABS\": true,\n    \"vidrios\": \"Eléctricos\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Modelo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.modeloID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\": { \"idMarca\": {{new_id_a}} },\n\t\"nombre\": \"Modelo2\",\n\t\"imagen\": \"asd\",\n\t\"numeroPuertas\": 4,\n\t\"transmision\": \"Electrica\",\n\t\"traccion\": \"trasera\",\n\t\"airBag\": true,\n    \"aireAc\": true,\n    \"asientos\": \"Sintéticos\",\n    \"cilindraje\": 1600,\n    \"combustible\": \"Gasolina\",\n    \"direccion\": \"Asistida\",\n    \"frenosABS\": true,\n    \"vidrios\": \"Eléctricos\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un modelo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los modelos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un modelo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3df5bf1a-bbb9-4fda-bf0e-0c528d995cc4",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /modelos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un modelo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.modeloID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\": { \"idMarca\": {{new_id_a}} },\n\t\"nombre\": \"Modelo1\",\n\t\"imagen\": \"asd\",\n\t\"numeroPuertas\": 4,\n\t\"transmision\": \"Electrica\",\n\t\"traccion\": \"trasera\",\n\t\"airBag\": true,\n    \"aireAc\": true,\n    \"asientos\": \"Sintéticos\",\n    \"cilindraje\": 1600,\n    \"combustible\": \"Gasolina\",\n    \"direccion\": \"Asistida\",\n    \"frenosABS\": true,\n    \"vidrios\": \"Eléctricos\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un modelo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /modelos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"marca\": { \"idMarca\": {{new_id_a}} },\n\t\"nombre\": \"Modelo1\",\n\t\"imagen\": \"asd\",\n\t\"numeroPuertas\": 4,\n\t\"transmision\": \"Electrica\",\n\t\"traccion\": \"trasera\",\n\t\"airBag\": true,\n    \"aireAc\": true,\n    \"asientos\": \"Sintéticos\",\n    \"cilindraje\": 1600,\n    \"combustible\": \"Gasolina\",\n    \"direccion\": \"Asistida\",\n    \"frenosABS\": true,\n    \"vidrios\": \"Eléctricos\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar modelo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar modelo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar modelo que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /modelos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
