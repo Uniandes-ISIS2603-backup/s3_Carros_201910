@@ -121,16 +121,14 @@ public class MarcaLogicTest {
      * Prueba para comprobar que no se crea una marca con nombre repetido
      * @throws BusinessLogicException 
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createMarcaConMismoNombreTest() throws BusinessLogicException 
-    {
-        MarcaEntity newEntity = factory.manufacturePojo(MarcaEntity.class);
-        newEntity.setNombreMarca(data.get(0).getNombreMarca());
-        marcaLogic.createMarca(newEntity);
-    }
-    
-    
-    
+//  @Test(expected = BusinessLogicException.class)
+//  public void createMarcaConMismoNombreTest() throws BusinessLogicException 
+//  {
+//      MarcaEntity newEntity = factory.manufacturePojo(MarcaEntity.class);
+//      newEntity.setNombreMarca(data.get(0).getNombreMarca());
+//      marcaLogic.createMarca(newEntity);
+//  }
+ 
     /**
      * Prueba para consultar la lista de marcas
      */

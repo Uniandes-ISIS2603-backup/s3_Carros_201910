@@ -25,19 +25,14 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private ModeloEntity modelo;
    
-    
     @PodamExclude
     @OneToOne(mappedBy = "automovil", fetch = LAZY, cascade = CascadeType.ALL)
     private RegistroCompraEntity registroCompra;
-    
     
     @PodamExclude
     @OneToOne(mappedBy = "automovilFacturado", fetch = LAZY)
     private CompraVentaEntity compraVenta;
            
-    
-  
-    
     /**
      * disponibilidad del vehiculo dentro del 
      * punto de venta
@@ -100,13 +95,6 @@ public class AutomovilEntity extends BaseEntity implements Serializable{
     private Integer puntoVentaID;
     
     private String imagen;
-    
-    
-    
-
-   
-    
-    
     
     /**
      * @return the disponible

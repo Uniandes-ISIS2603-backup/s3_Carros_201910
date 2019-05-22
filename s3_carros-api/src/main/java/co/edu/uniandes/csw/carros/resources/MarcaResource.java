@@ -43,14 +43,14 @@ public class MarcaResource {
     
     @POST
     public MarcaDTO createMarca(MarcaDTO marca) throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "ModeloResource createModelo: input: {0}", marca);
+        LOGGER.log(Level.INFO, "MarcaResource createMarca: input: {0}", marca);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         MarcaEntity marcaEntity = marca.toEntity();
         // Invoca la lógica para crear la editorial nueva
         MarcaEntity nuevaMarcaEntity = logicMarca.createMarca(marcaEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         MarcaDTO nuevaMarcaoDTO = new MarcaDTO(nuevaMarcaEntity);
-        LOGGER.log(Level.INFO, "ModeloResource createModelo: output: {0}", nuevaMarcaEntity);
+        LOGGER.log(Level.INFO, "MarcaResource createMarca: output: {0}", nuevaMarcaEntity);
         return nuevaMarcaoDTO;
     }   
     
@@ -76,13 +76,13 @@ public class MarcaResource {
     @GET
     @Path("{marcaID: \\d+}")
     public MarcaDetailDTO getMarca(@PathParam("marcaID") Long MarcaId) throws WebApplicationException{
-        LOGGER.log(Level.INFO, "Modeloresorurce getModelo: input: {0}", MarcaId);
+        LOGGER.log(Level.INFO, "Marcaresorurce getMarca: input: {0}", MarcaId);
         MarcaEntity marcaEntity = logicMarca.getMarca(MarcaId);
         if (marcaEntity == null) {
             throw new WebApplicationException("El recurso /marca/" + MarcaId + " no existe.", 404);
         }
         MarcaDetailDTO detailDTO = new MarcaDetailDTO(marcaEntity);
-        LOGGER.log(Level.INFO, "ModeloResource getModelo: output: {0}", detailDTO);
+        LOGGER.log(Level.INFO, "MarcaResource getMarca: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -91,26 +91,26 @@ public class MarcaResource {
     @PUT
     @Path("{marcaID: \\d+}")
     public MarcaDetailDTO updateModelo(@PathParam("marcaID") Long marcaID, MarcaDTO marca )throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "ModeloResource UpdateModelo: input: id:{0} , modelo: {1}", new Object[]{marcaID, marca});
+        LOGGER.log(Level.INFO, "MarcaResource UpdateMarca: input: id:{0} , modelo: {1}", new Object[]{marcaID, marca});
         marca.setIdMarca(marcaID);
         if (logicMarca.getMarca(marcaID) == null) {
             throw new WebApplicationException("El recurso /marcas/" + marcaID + " no existe.", 404);
         }
         MarcaDetailDTO detailDTO = new MarcaDetailDTO(logicMarca.updateMarca(marca.toEntity()));
-        LOGGER.log(Level.INFO, "ModeloResource updateModelo: output: {0}", detailDTO);
+        LOGGER.log(Level.INFO, "MarcaResource updateMarca: output: {0}", detailDTO);
         return detailDTO;
     }
     
     @DELETE
     @Path("{marcaID: \\d+}")
-    public void deleteMarca(@PathParam("idMarca") Long marcaID) throws BusinessLogicException
+    public void deleteMarca(@PathParam("marcaID") Long marcaID) throws BusinessLogicException
     {
-       LOGGER.log(Level.INFO, "PuntoVentaResourse deletePuntoVenta: input: {0}", marcaID);
+       LOGGER.log(Level.INFO, "MarcaResourse deleteMarca: input: {0}", marcaID);
         if (logicMarca.getMarca(marcaID) == null) {
-            throw new WebApplicationException("El recurso /modelos/" + marcaID + " no existe.", 404);
+            throw new WebApplicationException("El recurso /marcas/" + marcaID + " no existe.", 404);
         }
         logicMarca.deleteMarca(marcaID);
-        LOGGER.info("PuntoVentaResourse deletePuntoVenta: output: void"); 
+        LOGGER.info("MarcaResourse deleteMarca: output: void"); 
     }
     
     @Path("{marcaID: \\d+}/modelos")

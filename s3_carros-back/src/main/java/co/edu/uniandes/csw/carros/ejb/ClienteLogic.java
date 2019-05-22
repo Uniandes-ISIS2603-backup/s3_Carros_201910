@@ -61,7 +61,8 @@ public class ClienteLogic {
      *
      * Actualizar un cliente.
      */
-    public ClienteEntity updateCliente(ClienteEntity cliente)throws BusinessLogicException{
+    public ClienteEntity updateCliente(ClienteEntity cliente)throws BusinessLogicException
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", cliente.getId());
         ClienteEntity search = persistence.findClientePorCorreo(cliente.getCorreo());
         if(search == null || search.getId() == cliente.getId()){
@@ -80,10 +81,9 @@ public class ClienteLogic {
            throw new BusinessLogicException("Ya hay un cliente con el mismo correo");
         }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", cliente.getId());
-        return cliente;
+        return new ClienteEntity();
     }
-     
-        
+    
     /**
      *
      * Obtener un cliente por medio de su id.

@@ -47,7 +47,7 @@ public class PuntoVentaLogic
         }
         if(puntoVenta == null)
         {
-            throw  new BusinessLogicException("EL id es error");
+            throw  new BusinessLogicException("EL Entity es error");
         }
         puntoVenta = persistence.create(puntoVenta);
         return puntoVenta;

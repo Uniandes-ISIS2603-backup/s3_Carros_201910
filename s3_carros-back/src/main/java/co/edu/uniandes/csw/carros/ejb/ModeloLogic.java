@@ -34,15 +34,7 @@ public class ModeloLogic {
     private ModeloPersistence modeloPeristence;
     
     public ModeloEntity createModelo(ModeloEntity modelo) throws BusinessLogicException{
-        
-        LOGGER.log(Level.INFO, "Inicia proceso de creación del Modelo");
-        if(modeloPeristence.findModelo(modelo.getId()) != null){
-            throw new BusinessLogicException("ya existe un modelo con el id: " + modelo.getId());
-        }
-        if(modeloPeristence.findByNombre(modelo.getNombre()) != null){
-            throw new BusinessLogicException("ya existe un modelo con el nombre: " + modelo.getNombre());
-        }
-        
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del Modelo");        
         modeloPeristence.createModelo(modelo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del Modelo");
         return modelo;

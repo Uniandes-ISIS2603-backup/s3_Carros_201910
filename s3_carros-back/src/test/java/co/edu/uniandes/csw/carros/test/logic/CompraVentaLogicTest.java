@@ -207,7 +207,6 @@ public class CompraVentaLogicTest
         compraVentaLogic.createCompraVenta(newEntity);
     }
     
-    
     /**
      * Prueba para crear una CompraVenta cuando la entidad es null.
      *

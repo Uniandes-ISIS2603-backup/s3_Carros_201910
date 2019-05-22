@@ -1,20 +1,20 @@
 {
 	"info": {
-		"_postman_id": "94c9ac17-26ff-44dd-b689-3d393f14506c",
-		"name": "ClienteResourceTest",
+		"_postman_id": "c99da54d-2603-4e24-a35f-c08718875135",
+		"name": "MarcaResourceTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Crear un cliente",
+			"name": "Crear Marca",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f325c147-249f-47a3-9f48-a0d4ea7cf333",
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_a\",data.clienteID);",
+							"postman.setGlobalVariable(\"new_id_a\",data.idMarca);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -27,16 +27,16 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Nicolas Vazquez\",\n\t\"correo\": \"nv@gmail.com\",\n\t\"telefono\": \"1234512313\"\n}"
+					"raw": "{\r\n\t\"nombreMarca\": \"nombre\",\r\n    \"imagen\": \"asder\",\r\n    \"logo\": \"asdef\",\r\n    \"descripcion\": \"abc\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -45,22 +45,22 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes"
+						"marcas"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un cliente 2",
+			"name": "Crear Marca 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f325c147-249f-47a3-9f48-a0d4ea7cf333",
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_b\",data.clienteID);",
+							"postman.setGlobalVariable(\"new_id_b\",data.idMarca);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -73,16 +73,16 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Nicolas Vazquez\",\n\t\"correo\": \"nvas@gmail.com\",\n\t\"telefono\": \"1234512313\"\n}"
+					"raw": "{\r\n\t\"nombreMarca\": \"nombre2\",\r\n    \"imagen\": \"asderad\",\r\n    \"logo\": \"asdefds\",\r\n    \"descripcion\": \"abeqwc\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -91,31 +91,80 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes"
+						"marcas"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un cliente con un correo ya existente",
+			"name": "Obtener  todas las marcas",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5fb5c287-0e36-4072-b09d-a52fe6937680",
+						"id": "b3ccbc8f-173e-45e5-afef-4afff7e82743",
 						"exec": [
-							"tests[\"Genera error en el Post por correo repetido\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya hay un cliente con el mismo correo, por favor utilice otro\");",
-							"",
+							"tests[\"No genera error en el GetAll\"] = responseCode.code === 200;",
 							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3ccbc8f-173e-45e5-afef-4afff7e82743",
+						"exec": [
+							"tests[\"No genera error en el GetAll\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -126,47 +175,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Javier Pulido\",\n\t\"correo\": \"nv@gmail.com\",\n\t\"telefono\": \"12345678\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"clientes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener todos los clientes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "960cddc1-fdfd-4e35-8f90-6aba9d396f3c",
-						"exec": [
-							"tests[\"No genera error en el GetAll\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -175,44 +187,7 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener un cliente",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "10c506a4-284e-4575-b131-fdb21c45df83",
-						"exec": [
-							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"clientes",
+						"marcas",
 						"{{new_id_a}}"
 					]
 				}
@@ -220,61 +195,25 @@
 			"response": []
 		},
 		{
-			"name": "Obtener un cliente que no existe",
+			"name": "Obtener una marca que no existe",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "10c506a4-284e-4575-b131-fdb21c45df83",
+						"id": "b3ccbc8f-173e-45e5-afef-4afff7e82743",
 						"exec": [
 							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /marca/0 no existe\");"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/0",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"clientes",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar un cliente que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c2175909-7b75-41c9-8ea1-40a584d5e569",
-						"exec": [
-							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -285,10 +224,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"correo\": \"cp@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/0",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -297,7 +236,7 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes",
+						"marcas",
 						"0"
 					]
 				}
@@ -305,61 +244,16 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar un cliente",
+			"name": "Actualizar una marca",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c2175909-7b75-41c9-8ea1-40a584d5e569",
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"correo\": \"cp@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"clientes",
-						"{{new_id_a}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar cliente con el mismo correo de otro",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "00bece4b-7932-45d9-9d6e-273a7cd77b6b",
-						"exec": [
-							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;"
 						],
 						"type": "text/javascript"
 					}
@@ -377,10 +271,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"correo\": \"ce@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+					"raw": "{\r\n\t\"nombreMarca\": \"NuevoNombre\",\r\n    \"imagen\": \"NuevaImagen\",\r\n    \"logo\": \"NuevoLogo\",\r\n    \"descripcion\": \"abc\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -389,7 +283,7 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes",
+						"marcas",
 						"{{new_id_a}}"
 					]
 				}
@@ -397,12 +291,58 @@
 			"response": []
 		},
 		{
-			"name": "Eliminar un cliente",
+			"name": "Actualizar una marca que no existe",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4a2f71c-b114-46b5-8fe3-a64684f4552f",
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /marcas/0 no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"nombreMarca\": \"NuevoNombre\",\r\n    \"imagen\": \"NuevaImagen\",\r\n    \"logo\": \"NuevoLogo\",\r\n    \"descripcion\": \"abc\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
 						],
@@ -418,7 +358,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -427,7 +367,7 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes",
+						"marcas",
 						"{{new_id_a}}"
 					]
 				}
@@ -435,12 +375,12 @@
 			"response": []
 		},
 		{
-			"name": "Eliminar un cliente 2",
+			"name": "Borrar marca 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4a2f71c-b114-46b5-8fe3-a64684f4552f",
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
 						"exec": [
 							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
 						],
@@ -456,7 +396,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -465,8 +405,47 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"clientes",
+						"marcas",
 						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar marca que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /marcas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas",
+						"0"
 					]
 				}
 			},

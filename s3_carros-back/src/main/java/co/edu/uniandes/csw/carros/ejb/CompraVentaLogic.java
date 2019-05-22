@@ -56,6 +56,7 @@ public class CompraVentaLogic
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compraVenta");
         if (compraVentaEntity == null) 
         {
+            System.out.println("co.edu.uniandes.csw.carros.ejb.CompraVentaLogic.createCompraVenta()");
             throw new BusinessLogicException("La CompraVenta es null.");
         }
         if(compraVentaEntity.getPuntoVenta() == null) 
@@ -82,7 +83,6 @@ public class CompraVentaLogic
         {
             throw new BusinessLogicException("El automovil no existe en la base de datos.");
         }
-        System.out.println("Llega hasta acá");
         compraVentaEntity.setPuntoVenta(puntoVentaPersistence.find(compraVentaEntity.getPuntoVenta().getId()));
         compraVentaEntity.setCliente(clientePersistence.findCliente(compraVentaEntity.getCliente().getId()));
         compraVentaEntity.setEmpleado(empleadoPersistence.findEmpleado(compraVentaEntity.getEmpleado().getId()));

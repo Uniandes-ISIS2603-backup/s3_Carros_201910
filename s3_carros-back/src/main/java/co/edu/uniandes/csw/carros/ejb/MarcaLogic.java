@@ -34,12 +34,12 @@ public class MarcaLogic {
     public MarcaEntity createMarca(MarcaEntity marcaEntity) throws BusinessLogicException{
         if(marcaEntity == null)
         {
-            throw  new BusinessLogicException("ELa marca es null.");
+            throw  new BusinessLogicException("La marca es null.");
         }
-        if(persistence.findByNombreMarca(marcaEntity.getNombreMarca())!= null)
-        {
-            throw new BusinessLogicException("Ya existe una marca con el nombre:  " + marcaEntity.getNombreMarca());
-        }
+//      if(persistence.findByNombreMarca(marcaEntity.getNombreMarca())!= null)
+//      {
+//          throw new BusinessLogicException("Ya existe una marca con el nombre:  " + marcaEntity.getNombreMarca());
+//      }
         MarcaEntity marca = persistence.create(marcaEntity);
         
         return marca;

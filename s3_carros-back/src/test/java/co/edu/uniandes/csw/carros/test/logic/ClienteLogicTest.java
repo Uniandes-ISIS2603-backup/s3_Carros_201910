@@ -140,8 +140,6 @@ public class ClienteLogicTest {
         clienteLogic.createCliente(nuevoCliente);
     }
     
-    
-    
      /**
      * Prueba para actualizar un Cliente.
      */

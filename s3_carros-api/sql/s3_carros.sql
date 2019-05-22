@@ -5,10 +5,10 @@ delete from FacturaEntity;
 delete from CompraVentaEntity;
 delete from ClienteEntity;
 delete from EmpleadoEntity;
+delete from RegistroCompraEntity;
 delete from AUTOMOVILENTITY;
 delete from MODELOENTITY;
 delete from MARCAENTITY;
-delete from RegistroCompraEntity;
 delete from PuntoVentaEntity;
 
 insert into PUNTOVENTAENTITY (id, direccion, TELEFONO, latitud, longitud, Nombre) values (1000, '643 Hanover Way', '(326) 3402306', -5.1443118, -38.0850339, 'GOODFELLAS-Calle 26');
