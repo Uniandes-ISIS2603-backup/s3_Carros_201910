@@ -76,17 +76,11 @@ public class ClienteLogic {
             }
             persistence.updateCliente(cliente);
         }
-        //else{
-        //    List<ClienteEntity> search = persistence.findClientePorCorreo(correo);
-        //    if(search.isEmpty()){
-        //        persistence.updateCliente(cliente);
-        //    }
-        //    else{
-        //       throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
-        //    }
-        //}
+        else{
+               throw new BusinessLogicException("Ya existe un cliente con el correo ingresado");
+            }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", cliente.getId());
-        return new ClienteEntity();
+        return cliente;
     }
     
     /**
@@ -112,5 +106,4 @@ public class ClienteLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los clientes");
         return lista;     
     }
-     
 }

@@ -72,10 +72,10 @@ public class EmpleadoLogic {
             if(pVenta != null){
                 persistence.updateEmpleado(empleado);
             }
-            else{
-                throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
-            }
         }
+        else{
+               throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
+            }
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", empleado);
         return empleado;
     }

@@ -83,21 +83,7 @@ public class MarcaDTO implements Serializable{
     public void setIdMarca(Long idMarca) {
         this.idMarca = idMarca;
     }
-
-    /**
-     * @return the logo
-     */
-    public String getLogo() {
-        return logo;
-    }
-
-    /**
-     * @param logo the logo to set
-     */
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
+    
     /**
      * @return the imagen
      */
