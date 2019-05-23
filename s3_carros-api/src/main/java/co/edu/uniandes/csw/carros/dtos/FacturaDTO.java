@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.carros.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,11 +19,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 public class FacturaDTO extends CascaraDTO implements Serializable
 {
-    /**
-     * Número de la cuenta bancaria del consecionario.
-     */
-    public final static int CUENTA_DESTINO = 123456;
-    
+     private static final Logger LOGGER = Logger.getLogger(FacturaDTO.class.getName());
+     
     /**
      * Identificador único de la transacción asociada a la factura.
      */
@@ -38,8 +37,6 @@ public class FacturaDTO extends CascaraDTO implements Serializable
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
-
-
      /**
      * Constructor vacío de Factura.
      */
@@ -70,11 +67,15 @@ public class FacturaDTO extends CascaraDTO implements Serializable
      */
     public FacturaEntity toEntity() 
     {
+        LOGGER.log(Level.INFO, "To entity Factura");
         FacturaEntity facturaEntity = new FacturaEntity();
+        LOGGER.log(Level.INFO, "To entity Factura 1");
         facturaEntity.setId(this.facturaID);
+        LOGGER.log(Level.INFO, "To entity Factura 2");
         facturaEntity.setCuentaOrigen(this.cuentaOrigen);
+        LOGGER.log(Level.INFO, "To entity Factura 3");
         facturaEntity.setFecha(this.fecha);
-       
+       LOGGER.log(Level.INFO, "To entity Factura sale");
         return facturaEntity;
     }
     

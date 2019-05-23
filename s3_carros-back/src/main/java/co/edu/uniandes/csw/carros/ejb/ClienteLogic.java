@@ -65,9 +65,12 @@ public class ClienteLogic {
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", cliente.getId());
         ClienteEntity search = persistence.findClientePorCorreo(cliente.getCorreo());
+        LOGGER.log(Level.INFO, "To entity ClienteDetail logic");
         if(search == null || search.getId() == cliente.getId()){
+            LOGGER.log(Level.INFO, "To entity ClienteDetail logic if");
             List<PuntoVentaEntity> puntos = cliente.getPuntosVenta();
-            if(puntos != null || !puntos.isEmpty()){
+            if(puntos != null){
+                LOGGER.log(Level.INFO, "To entity ClienteDetail logic if 2");
                 for(int i=0; i<puntos.size(); i++){
                     PuntoVentaEntity pVenta = persPuntoVenta.find(puntos.get(i).getId());
                     if(pVenta == null){
@@ -75,7 +78,9 @@ public class ClienteLogic {
                     }
                 }
             }
+            LOGGER.log(Level.INFO, "To entity ClienteDetail logic ads");
             persistence.updateCliente(cliente);
+            LOGGER.log(Level.INFO, "To entity ClienteDetail logic persiste");
         }
         else{
            throw new BusinessLogicException("Ya hay un cliente con el mismo correo");

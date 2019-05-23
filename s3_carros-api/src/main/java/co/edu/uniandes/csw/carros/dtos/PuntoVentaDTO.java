@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *DTO del punto donde se venderan los autos
@@ -14,7 +16,7 @@ import java.io.Serializable;
  */
 public class PuntoVentaDTO implements Serializable
 {
- 
+ private static final Logger LOGGER = Logger.getLogger(PuntoVentaDTO.class.getName());
  /**
   * id con el cual el programa identifica el punto de venta
   */
@@ -93,17 +95,26 @@ public class PuntoVentaDTO implements Serializable
      */
     public PuntoVentaEntity toEntity()
     {
+       LOGGER.log(Level.INFO, "To entity PuntoVenta");
        PuntoVentaEntity entity = new PuntoVentaEntity();
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 1");
        entity.setDireccion(this.direccion);
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 2");
        entity.setTelefono(this.telefono);
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 3");
        entity.setId(this.getId());
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 4");
        entity.setNombre(this.nombre);
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 5");
        entity.setLatitud(this.latitud);
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 6");
        entity.setLongitud(this.longitud);
+       LOGGER.log(Level.INFO, "To entity PuntoVenta 7");
        entity.setRutaFotos(this.rutaFotos);
-       
+       LOGGER.log(Level.INFO, "To entity PuntoVenta sale");
        return entity;
     }
+    
     /**
      * Contructor del DTO que crea un nuevo punto de venta apartir de un entity
      * @param entity para crear un puntoVentaDTO a parir de este

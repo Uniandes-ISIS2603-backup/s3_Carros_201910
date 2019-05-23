@@ -56,7 +56,6 @@ public class CompraVentaLogic
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la compraVenta");
         if (compraVentaEntity == null) 
         {
-            System.out.println("co.edu.uniandes.csw.carros.ejb.CompraVentaLogic.createCompraVenta()");
             throw new BusinessLogicException("La CompraVenta es null.");
         }
         if(compraVentaEntity.getPuntoVenta() == null) 

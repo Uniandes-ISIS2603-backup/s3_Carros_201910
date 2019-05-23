@@ -65,6 +65,10 @@ public class CompraVentaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private PuntoVentaEntity puntoVenta;
     
+    
+    public CompraVentaEntity()
+    {     
+    }
     /**
      * @return the calificacionCompra
      */
