@@ -93,7 +93,7 @@ public class ClienteResource {
     @PUT
     @Path("{clienteID: \\d+}")
     public ClienteDetailDTO updateCliente(@PathParam("clienteID") Long clienteID, ClienteDetailDTO cliente) throws BusinessLogicException{
-      LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: id:{0} , cliente: {1}", new Object[]{clienteID, cliente});
+       LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: id:{0} , cliente: {1}", new Object[]{clienteID, cliente});
        cliente.setClienteID(clienteID);
        if(clienteLogic.getCliente(clienteID) == null){
            throw new WebApplicationException("El recurso /clientes/" + clienteID + " no existe.", 404);

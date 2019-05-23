@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 public class CompraVentaDTO extends CascaraDTO implements Serializable
 { 
+    
     /**
      * Identificador único de la transacción.
      */
@@ -162,21 +163,21 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
         {
             compraVentaEntity.setCliente(this.cliente.toEntity());
         }
+        if(this.puntoVenta != null)
+        {
+            compraVentaEntity.setPuntoVenta(this.puntoVenta.toEntity());        
+        }
+        if(this.factura != null)
+        {    
+            compraVentaEntity.setFactura(this.factura.toEntity());
+        }
+        if(this.automovilFacturado != null)
+        {
+            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
+        }
         if(this.empleado != null)
         {
             compraVentaEntity.setEmpleado(this.empleado.toEntity());
-        }
-        if(this.factura != null)
-        {
-            compraVentaEntity.setFactura(this.factura.toEntity());
-        }
-        if(this.puntoVenta != null)
-        {
-            compraVentaEntity.setPuntoVenta(this.puntoVenta.toEntity());
-        }
-        if (this.automovilFacturado != null) 
-        {
-            compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
         }
         return compraVentaEntity;
     }

@@ -58,11 +58,8 @@ public class CompraVentaResource
     public CompraVentaDTO createCompraVenta( CompraVentaDTO compraVenta ) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComporaVentaResourse createCompraVenta: imput: {0}", compraVenta);
-        //DTO (json) a Entity para ser manejado por la lógica.
-        CompraVentaEntity compraVentaEntity = compraVenta.toEntity();
-        //Invoca la lógica para crear la compraVenta nueva.
-        CompraVentaEntity nuevaCompraVentaEntity = compraVentaLogic.createCompraVenta(compraVentaEntity);
-        //Como debe retornar DTO (json) se invoca el constructor del DTO con argumento el entity nuevo.
+        CompraVentaEntity entity = compraVenta.toEntity();
+        CompraVentaEntity nuevaCompraVentaEntity = compraVentaLogic.createCompraVenta(entity);
         CompraVentaDTO nuevaCompraVentaDTO = new CompraVentaDTO(nuevaCompraVentaEntity);
         LOGGER.log(Level.INFO, "CompraVentaResourse createCompraVenta: output: {0}", nuevaCompraVentaDTO);
         return nuevaCompraVentaDTO;

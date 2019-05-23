@@ -67,7 +67,7 @@ public class ClienteLogic {
         ClienteEntity search = persistence.findClientePorCorreo(cliente.getCorreo());
         if(search == null || search.getId() == cliente.getId()){
             List<PuntoVentaEntity> puntos = cliente.getPuntosVenta();
-            if(puntos != null || !puntos.isEmpty()){
+            if(puntos != null){
                 for(int i=0; i<puntos.size(); i++){
                     PuntoVentaEntity pVenta = persPuntoVenta.find(puntos.get(i).getId());
                     if(pVenta == null){

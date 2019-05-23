@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.carros.dtos;
 
 import co.edu.uniandes.csw.carros.entities.EmpleadoEntity;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,7 +16,7 @@ import java.io.Serializable;
  */
 public class EmpleadoDTO implements Serializable{
 
-    
+    private static final Logger LOGGER = Logger.getLogger(EmpleadoDTO.class.getName());
     private Long empleadoID;
     private String nombre;
     private Integer extension;
@@ -118,12 +120,23 @@ public class EmpleadoDTO implements Serializable{
      * @return Un Entity con los valores del DTO
      */
     public EmpleadoEntity toEntity(){
+        LOGGER.log(Level.INFO, "To entity Empleado");
         EmpleadoEntity entity = new EmpleadoEntity();
+        LOGGER.log(Level.INFO, "To entity Empleado 1");
         entity.setNombre(this.nombre);
+        LOGGER.log(Level.INFO, "To entity Empleado 2");
         entity.setCorreo(this.correo);
+        LOGGER.log(Level.INFO, "To entity Empleado 3");
         entity.setExtension(this.extension);
+        LOGGER.log(Level.INFO, "To entity Empleado 4");
         entity.setId(this.empleadoID);
-        entity.setPuntoVenta(getPuntoVenta().toEntity());
+        LOGGER.log(Level.INFO, "To entity Empleado 5");
+        if(this.puntoVenta != null)
+        {
+        LOGGER.log(Level.INFO, "To entity Empleado 5 if");
+            entity.setPuntoVenta(this.puntoVenta.toEntity());
+        }
+        LOGGER.log(Level.INFO, "To entity Empleado sale");
         return entity;
     }   
 }

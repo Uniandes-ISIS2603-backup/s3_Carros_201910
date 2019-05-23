@@ -108,15 +108,6 @@ public class CompraVentaDetailDTO extends CompraVentaDTO implements Serializable
             }
             compraventaEntity.setQuejasReclamos(quejasRelamosEntity);
         }
-//        if (quejasReclamosEmpleado != null) 
-//        {
-//            List<QuejasReclamosEntity> quejasRelamosEmpleadoEntity = new ArrayList<>();
-//            for (QuejasReclamosDTO quejasReclamosDTO : quejasReclamosEmpleado) 
-//            {
-//                quejasRelamosEmpleadoEntity.add(quejasReclamosDTO.toEntity());
-//            }
-//            compraventaEntity.setQuejasReclamosEmpleado(quejasRelamosEmpleadoEntity);
-//        }
         return compraventaEntity;
     }
     
