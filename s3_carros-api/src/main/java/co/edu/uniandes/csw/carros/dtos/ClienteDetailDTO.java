@@ -12,8 +12,6 @@ import co.edu.uniandes.csw.carros.entities.PuntoVentaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     private List<CompraVentaDTO> listaCompras;
     private List<PuntoVentaDTO> listaPuntosVentas;
-    private static final Logger LOGGER = Logger.getLogger(ClienteDTO.class.getName());
+    
     /**
      * Constructor por defecto
      */
@@ -54,34 +52,23 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
      * Transformar un DTO a un Entity
      */
     public ClienteEntity toEntity(){
-        LOGGER.log(Level.INFO, "To entity ClienteDetail");
         ClienteEntity entity = super.toEntity();
-        LOGGER.log(Level.INFO, "To entity Cliente 1 "+entity.getCorreo() + "  " + entity.getNombre() + "  " + entity.getTelefono());
         if(listaCompras != null)
         {
-            LOGGER.log(Level.INFO, "To entity Cliente if");
             List<CompraVentaEntity> comprasEntity = new ArrayList<>();
             for(CompraVentaDTO compraDto : listaCompras){
-                LOGGER.log(Level.INFO, "To entity Cliente for");
                 comprasEntity.add(compraDto.toEntity());
             }
-            LOGGER.log(Level.INFO, "To entity Cliente sale for");
             entity.setCompras(comprasEntity);
-            LOGGER.log(Level.INFO, "To entity Cliente 2");
         }
-        LOGGER.log(Level.INFO, "To entity Cliente sale if else");
         if(listaPuntosVentas != null)
         {
-            LOGGER.log(Level.INFO, "To entity Cliente if 2");
             List<PuntoVentaEntity> puntosEntity = new ArrayList<>();
             for(PuntoVentaDTO punto : listaPuntosVentas){
-                LOGGER.log(Level.INFO, "To entity Cliente for 2");
                 puntosEntity.add(punto.toEntity());
             }
-            LOGGER.log(Level.INFO, "To entity Cliente sale for");
             entity.setPuntosVenta(puntosEntity);
         }
-        LOGGER.log(Level.INFO, "To entity Cliente sale if else");
         return entity;
     }
     

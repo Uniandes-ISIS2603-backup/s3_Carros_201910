@@ -23,7 +23,7 @@ import javax.inject.Inject;
 @Stateless
 public class AutomovilLogic {
     
-    private static final Logger LOGGER = Logger.getLogger(PuntoVentaLogic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AutomovilLogic.class.getName());
     
     @Inject
     private AutomovilPersistence autoPersistece;
@@ -36,6 +36,7 @@ public class AutomovilLogic {
     */
     public AutomovilEntity createAutomovil(AutomovilEntity automovil) throws BusinessLogicException
     {
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del automovil");
         if(automovil == null) 
         {
             throw new BusinessLogicException("El automovil es null.");
@@ -52,6 +53,7 @@ public class AutomovilLogic {
             throw new BusinessLogicException("El modelo no existe en la base de datos.");
         }
         autoPersistece.create(automovil);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del automovil");
         return automovil;
     }
     
@@ -79,7 +81,9 @@ public class AutomovilLogic {
     
     
     public AutomovilEntity updateAutomovil(AutomovilEntity auto){
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el automovil con id = {0}", auto.getId());
         AutomovilEntity newEntity = autoPersistece.updateAutomovil(auto);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el automovil con id = {0}", auto.getId());
         return newEntity;
     }
     

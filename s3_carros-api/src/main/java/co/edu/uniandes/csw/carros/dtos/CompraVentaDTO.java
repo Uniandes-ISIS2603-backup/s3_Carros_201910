@@ -9,8 +9,6 @@ import co.edu.uniandes.csw.carros.adapters.DateAdapter;
 import co.edu.uniandes.csw.carros.entities.CompraVentaEntity;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**CompraVentaDTO Objeto de transferencia de datos de CompraVentas. Los DTO
@@ -39,7 +37,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 public class CompraVentaDTO extends CascaraDTO implements Serializable
 { 
-    private static final Logger LOGGER = Logger.getLogger(CompraVentaDTO.class.getName());
     
     /**
      * Identificador único de la transacción.
@@ -157,43 +154,31 @@ public class CompraVentaDTO extends CascaraDTO implements Serializable
      */
     public CompraVentaEntity toEntity() 
     {
-        LOGGER.log(Level.INFO, "To entity compraVenta");
         CompraVentaEntity compraVentaEntity = new CompraVentaEntity();
-        LOGGER.log(Level.INFO, "To entity compraVenta 2");
         compraVentaEntity.setId(this.ventaID);
-        LOGGER.log(Level.INFO, "To entity compraVenta 3");
         compraVentaEntity.setCalificacionCompra(this.calificacionCompra);
-        LOGGER.log(Level.INFO, "To entity compraVenta 4");
         compraVentaEntity.setFecha(this.fecha);
-        LOGGER.log(Level.INFO, "To entity compraVenta 5");
         compraVentaEntity.setPagado(this.pagado);
         if(this.cliente != null)
         {
-            LOGGER.log(Level.INFO, "To entity compraVenta 6");
             compraVentaEntity.setCliente(this.cliente.toEntity());
         }
         if(this.puntoVenta != null)
         {
-            LOGGER.log(Level.INFO, "To entity compraVenta 7");
             compraVentaEntity.setPuntoVenta(this.puntoVenta.toEntity());        
         }
-        LOGGER.log(Level.INFO, "To entity compraVenta 8");
         if(this.factura != null)
         {    
-        LOGGER.log(Level.INFO, "To entity compraVenta 8 if");
             compraVentaEntity.setFactura(this.factura.toEntity());
         }
         if(this.automovilFacturado != null)
         {
-            LOGGER.log(Level.INFO, "To entity compraVenta 9");
             compraVentaEntity.setAutomovilFacturado(this.automovilFacturado.toEntity());
         }
         if(this.empleado != null)
         {
-            LOGGER.log(Level.INFO, "To entity compraVenta 10");
             compraVentaEntity.setEmpleado(this.empleado.toEntity());
         }
-        LOGGER.log(Level.INFO, "Termina To entity compraVenta");
         return compraVentaEntity;
     }
     

@@ -129,13 +129,17 @@ public class AutomovilDTO  implements Serializable{
         auto.setCuidadMatricula(this.cuidadMatricula);
         auto.setDisponible(this.disponible);
         auto.setIdChasis(this.idChasis);
+        auto.setImagen(this.imagen);
         auto.setMatrcula(this.matricula);
+        if(this.modelo != null)
+        {
+            auto.setModelo(this.modelo.toEntity());
+        }
         auto.setPrecioVenta(this.precioVenta);
         auto.setPuntoVentaID(this.puntoVentaID);
         auto.setRecorrido(this.recorrido);
         auto.setReferencia(this.referencia);
         auto.setTipo(this.tipo);
-        auto.setImagen(this.imagen);
         if(this.registroCompra != null)
         {
             auto.setRegistroCompra(this.registroCompra.toEntity());

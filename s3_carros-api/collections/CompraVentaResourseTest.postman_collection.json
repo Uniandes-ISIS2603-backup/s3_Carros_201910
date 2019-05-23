@@ -7,12 +7,12 @@
 	},
 	"item": [
 		{
-			"name": "Crear un PuntoVenta",
+			"name": "Crear Punto Venta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"id": "dc1bbd29-d561-4b01-b8e7-ca2980c16193",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_a\",data.id);",
@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+					"raw": "{\n\t\"direccion\":\"Calle 10\", \n\t\"telefono\": \"3216584\",\n\t\"nombre\": \"a\",\n\t\"latitud\": \"123456\",\n\t\"longitud\": \"125847\",\n\t\"rutaFotos\": \"\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
@@ -53,15 +53,15 @@
 			"response": []
 		},
 		{
-			"name": "Crear un Empleado",
+			"name": "Crear un cliente",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"id": "f325c147-249f-47a3-9f48-a0d4ea7cf333",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"postman.setGlobalVariable(\"new_id_b\",data.clienteID);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -80,10 +80,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Jorge Fondebrider\",\n    \"extension\": 328,\n    \"correo\": \"jorF@mail.com\",\n    \"puntoVenta\": { \n    \t\t\t\t\"id\": {{new_id_a}} \n    \t\t\t  },\n    \"listaVentas\": [{}]\n}"
+					"raw": "{\n\t\"nombre\": \"Nicolas Vazquez\",\n\t\"correo\": \"nv@gmail.com\",\n\t\"telefono\": \"1234512313\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/empleados",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -92,22 +92,22 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"empleados"
+						"clientes"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un Cliente",
+			"name": "Crear Marca",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"id": "8d177421-5543-4816-8435-6d756fae5221",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"postman.setGlobalVariable(\"new_id_c\",data.idMarca);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -126,10 +126,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+					"raw": "{\r\n\t\"nombreMarca\": \"nombre\",\r\n    \"imagen\": \"asder\",\r\n    \"logo\": \"asdef\",\r\n    \"descripcion\": \"abc\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -138,22 +138,22 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"puntosdeVenta"
+						"marcas"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear una Marca",
+			"name": "Crear Modelo",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"postman.setGlobalVariable(\"new_id_d\",data.modeloID);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -172,10 +172,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+					"raw": "{\n\t\"marca\": { \"idMarca\": {{new_id_c}} },\n\t\"nombre\": \"Modelo1\",\n\t\"imagen\": \"asd\",\n\t\"numeroPuertas\": 4,\n\t\"transmision\": \"Electrica\",\n\t\"traccion\": \"trasera\",\n\t\"airBag\": true,\n    \"aireAc\": true,\n    \"asientos\": \"Sintéticos\",\n    \"cilindraje\": 1600,\n    \"combustible\": \"Gasolina\",\n    \"direccion\": \"Asistida\",\n    \"frenosABS\": true,\n    \"vidrios\": \"Eléctricos\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -184,22 +184,22 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"puntosdeVenta"
+						"modelos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un Modelo",
+			"name": "Crear Automovil",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "5157100e-eb23-4002-9d2b-dce1cdb573f1",
+						"id": "afb9f8d0-cf48-4a85-b167-42b0d28f2f00",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"postman.setGlobalVariable(\"new_id_e\",data.autoId);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -218,10 +218,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"dirreccion\": \"Calle 15 #23-18\",\n\t\"telefono\": \"3504848\"\n}"
+					"raw": "{ \n\t\t\"anio\": 2015,\n        \"color\": \"Rojo\",\n        \"cuidadMatricula\": \"Bogotá\",\n        \"disponible\": true,\n        \"idChasis\": 100,\n        \"matrcula\": \"VGC-265\",\n        \"precioVenta\": 48000,\n        \"puntoVentaID\": 1000,\n        \"recorrido\": 60,\n        \"referencia\": \"\",\n        \"tipo\": \"Camioneta\",\n        \"modelo\": { \"modeloID\": {{new_id_d}} }\n}\n"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/automoviles",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -230,7 +230,234 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"puntosdeVenta"
+						"automoviles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una compraVenta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\",data.ventaID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 5,\r\n       \"fecha\": \"2019-05-22\",\r\n       \"pagado\": true,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una compraVenta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_g\",data.ventaID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 5,\r\n       \"fecha\": \"2019-05-27\",\r\n       \"pagado\": true,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una compraVenta con PuntoVenta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"tests[\"No crea con puntoVenta inexistente\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El puntoVenta no existe en la base de datos.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 5,\r\n       \"fecha\": \"2019-05-22\",\r\n       \"pagado\": true,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": 0 }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una compraVenta con cliente inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"tests[\"No crea con cliente inexistente\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El cliente no existe en la base de datos.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 5,\r\n       \"fecha\": \"2019-05-22\",\r\n       \"pagado\": true,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": 0 },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una compraVenta con automovil inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"tests[\"No crea con automovil inexistente\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El automovil no existe en la base de datos.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 5,\r\n       \"fecha\": \"2019-05-22\",\r\n       \"pagado\": true,\r\n       \"automovilFacturado\": { \"autoId\": 0 },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas"
 					]
 				}
 			},
@@ -244,7 +471,9 @@
 					"script": {
 						"id": "dd422a5b-12c6-4c99-8687-3e52f2f1a0f4",
 						"exec": [
-							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GetAll\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
@@ -284,37 +513,26 @@
 			"response": []
 		},
 		{
-			"name": "Crear una compraVenta",
+			"name": "Obtener CompraVenta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"id": "b2c1c487-fef5-4aad-bbd4-52d5b496d62b",
 						"exec": [
+							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_z\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n}"
-				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas",
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas/{{new_id_f}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -323,7 +541,314 @@
 					"path": [
 						"s3_carros-api",
 						"api",
-						"compraVentas"
+						"compraVentas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener CompraVenta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2c1c487-fef5-4aad-bbd4-52d5b496d62b",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compraVentas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una compraVenta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 4,\r\n       \"fecha\": \"2019-05-30\",\r\n       \"pagado\": false,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una compraVenta inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d59e443b-7f63-479e-a02c-45a24ab10b55",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compraVentas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"calificacionCompra\": 4,\r\n       \"fecha\": \"2019-05-30\",\r\n       \"pagado\": false,\r\n       \"automovilFacturado\": { \"autoId\": {{new_id_e}} },\r\n       \"cliente\": {\"clienteID\": {{new_id_b}} },\r\n       \"puntoVenta\": {\"id\": {{new_id_a}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/compraVentas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"compraVentas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Automovil",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/automoviles/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"automoviles",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar modelo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/modelos/{{new_id_d}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"modelos",
+						"{{new_id_d}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar marca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79cdde86-2c73-4936-9b36-f77fdb58bb68",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/marcas/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"marcas",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4a2f71c-b114-46b5-8fe3-a64684f4552f",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"clientes",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un punto de venta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c19b61d6-7424-4d78-9d12-3c39ac4973a6",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/puntosdeVenta/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_carros-api",
+						"api",
+						"puntosdeVenta",
+						"{{new_id_a}}"
 					]
 				}
 			},
