@@ -47,9 +47,6 @@ public class FacturaLogic
         if (compraVentaPersistence.findByID(facturaEntity.getCompraVenta().getId()) == null) {
             throw new BusinessLogicException("La compraVenta no existe en la base de datos.");
         }
-        if (facturaPersistence.findByID(facturaEntity.getId()) != null) {
-            throw new BusinessLogicException("El ID de la Factura ya existe");
-        }
         facturaPersistence.create(facturaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la Factura");
         return facturaEntity;

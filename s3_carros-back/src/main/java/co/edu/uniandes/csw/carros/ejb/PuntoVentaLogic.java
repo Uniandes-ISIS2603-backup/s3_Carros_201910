@@ -41,13 +41,13 @@ public class PuntoVentaLogic
      */
     public PuntoVentaEntity createPuntoVenta(PuntoVentaEntity puntoVenta) throws BusinessLogicException
     {
-        if(persistence.findByDireccion(puntoVenta.getDireccion())!= null)
-        {
-            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion: "+ puntoVenta.getDireccion());
-        }
         if(puntoVenta == null)
         {
             throw  new BusinessLogicException("EL Entity es error");
+        }
+        if(persistence.findByDireccion(puntoVenta.getDireccion())!= null)
+        {
+            throw new BusinessLogicException("Ya existe un Punto de venta con la direccion: "+ puntoVenta.getDireccion());
         }
         puntoVenta = persistence.create(puntoVenta);
         return puntoVenta;
