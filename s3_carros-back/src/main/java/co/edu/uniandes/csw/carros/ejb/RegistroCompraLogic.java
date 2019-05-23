@@ -66,7 +66,7 @@ public class RegistroCompraLogic
         LOGGER.log(Level.INFO, "Inicia proceso de consultarla compra con el id = {0}", registroCompraId);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         RegistroCompraEntity entity = persistence.find(registroCompraId);
-        if (registroCompraId == null) {
+        if (registroCompraId == null) { 
             LOGGER.log(Level.SEVERE, "La compra con el id = {0} no existe", registroCompraId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar la compra con  id = {0}", registroCompraId);
