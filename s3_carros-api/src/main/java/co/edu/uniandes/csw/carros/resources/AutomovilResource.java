@@ -44,7 +44,7 @@ public class AutomovilResource {
     
     @POST
     public AutomovilDTO createAutomovil(AutomovilDTO auto) throws BusinessLogicException{
-       LOGGER.log(Level.INFO, "AutomovilResource createAutomovil: input: {0}" + " modelo : " + auto.getModelo(), auto);
+       LOGGER.log(Level.INFO, "AutomovilResource createAutomovil: input: {0}", auto);
         AutomovilDTO nuevoAutomovilDTO = new AutomovilDTO(autoLogic.createAutomovil(auto.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource createFactura: output: {0}", nuevoAutomovilDTO);
         return nuevoAutomovilDTO; 
@@ -77,7 +77,7 @@ public class AutomovilResource {
     
     
     @PUT
-    @Path("{autoId: \\d+}")
+    @Path("(autoId: \\d+)")
     public AutomovilDTO updateAutomovil(@PathParam("autoId") Long autoId, AutomovilDTO auto) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Automovilresorice updateAutomovil: input: id:{0} , auto: {1}", new Object[]{autoId, auto});
         auto.setAutoId(autoId);
@@ -89,15 +89,15 @@ public class AutomovilResource {
         return DTO;
     }
     
-    @DELETE
-    @Path("{autoId: \\d+}")
-    public void deleteAutomovil(@PathParam("autoId") Long autoID){
-        AutomovilEntity entity = autoLogic.getAutomovil(autoID);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /automoviles/" + autoID + " no existe.", 404);
-        }
-        autoLogic.deleteAutomovil(autoID);
-    }
+    //@DELETE
+    //@Path("(autoId: \\d+)")
+    //public void deleteAutomovil(@PathParam("autoId") Long autoID){
+    //    AutomovilEntity entity = autoLogic.getAutomovil(autoID);
+    //    if (entity == null) {
+    //        throw new WebApplicationException("El recurso /automoviles/" + autoID + " no existe.", 404);
+    //    }
+    //    autoLogic.deleteAutomovil(autoID);
+    //}
     
     private List<AutomovilDTO> listEntity2DetailDTO(List<AutomovilEntity> entityList){
         List<AutomovilDTO> list = new ArrayList<>();

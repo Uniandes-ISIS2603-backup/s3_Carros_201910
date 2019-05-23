@@ -32,7 +32,6 @@ import javax.ws.rs.WebApplicationException;
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("marcas/{modeloID: \\d+}/modelos")
 public class MarcaModelosResource {
     private static final Logger LOGGER = Logger.getLogger(MarcaModelosResource.class.getName());
 

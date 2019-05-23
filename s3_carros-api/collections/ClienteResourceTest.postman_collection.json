@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "57aca00a-77b4-4b3e-8a83-d541a088fb24",
+		"_postman_id": "94c9ac17-26ff-44dd-b689-3d393f14506c",
 		"name": "ClienteResourceTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -161,6 +161,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes",
 					"protocol": "http",
@@ -194,6 +198,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
 					"protocol": "http",
@@ -229,6 +237,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/0",
 					"protocol": "http",
@@ -320,7 +332,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"correo\": \"nvas@gmail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+					"raw": "{\n\t\"correo\": \"cp@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
@@ -347,8 +359,7 @@
 					"script": {
 						"id": "00bece4b-7932-45d9-9d6e-273a7cd77b6b",
 						"exec": [
-							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya hay un cliente con el mismo correo\");"
+							"tests[\"Se genera error en el Put por el correo\"] = responseCode.code === 412;"
 						],
 						"type": "text/javascript"
 					}
@@ -366,7 +377,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"correo\": \"nvas@gmail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
+					"raw": "{\n\t\"correo\": \"ce@mail.com\",\n\t\"nombre\": \"Camilo Perez\",\n\t\"telefono\": \"314567894\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/{{new_id_a}}",
@@ -456,45 +467,6 @@
 						"api",
 						"clientes",
 						"{{new_id_b}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar un cliente que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "e4a2f71c-b114-46b5-8fe3-a64684f4552f",
-						"exec": [
-							"tests[\"No elimina con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_carros-api/api/clientes/0",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_carros-api",
-						"api",
-						"clientes",
-						"0"
 					]
 				}
 			},
