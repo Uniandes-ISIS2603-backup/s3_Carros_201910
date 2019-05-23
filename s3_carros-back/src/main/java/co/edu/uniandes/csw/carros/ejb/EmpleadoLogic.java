@@ -24,10 +24,10 @@ import javax.inject.Inject;
 public class EmpleadoLogic {
     
     @Inject
-    private EmpleadoPersistence persistence; //atributo para acceder a la persistencia
+    private EmpleadoPersistence persistence; //atributo para acceder a la persistencia empleado
     
     @Inject 
-    private PuntoVentaPersistence persPuntoVenta;
+    private PuntoVentaPersistence persPuntoVenta; //atributo para acceder a la persistencia punto de venta
     
     private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
     
@@ -39,11 +39,18 @@ public class EmpleadoLogic {
         EmpleadoEntity search = persistence.findEmpleadoPorCorreo(nuevoEmpleado.getCorreo());
         if(search == null){
             if(nuevoEmpleado.getPuntoVenta() == null){
-                throw new BusinessLogicException("!El empleado no tiene ningún punto de venta asociado¡");
+                throw new BusinessLogicException("¡El empleado no tiene ningún punto de venta asociado!");
             }
-            persistence.create(nuevoEmpleado);
-            LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
-            return nuevoEmpleado;
+            else{
+                PuntoVentaEntity pVenta = persPuntoVenta.find(nuevoEmpleado.getPuntoVenta().getId());
+                if(pVenta == null){
+                    throw new BusinessLogicException("¡El punto de venta asignado al empleado no existe!");
+                }
+                nuevoEmpleado.setPuntoVenta(pVenta);
+                persistence.create(nuevoEmpleado);
+                LOGGER.log(Level.INFO, "Inicia proceso de creación del empleado");
+                return nuevoEmpleado;
+            }           
         }
         else{
             throw new BusinessLogicException("El empleado con el correo ingresado ya existe");
@@ -72,10 +79,14 @@ public class EmpleadoLogic {
             if(pVenta != null){
                 persistence.updateEmpleado(empleado);
             }
+            else{
+                throw new BusinessLogicException("El punto de venta asignado no existe");
+            }              
         }
         else{
-               throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
-            }
+            throw new BusinessLogicException("Ya existe un empleado con el correo ingresado");
+        }
+        
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el empleado con id = {0}", empleado);
         return empleado;
     }

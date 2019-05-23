@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
- 
+
 /**
  *Logica del recurso punto de venta
  * @author Daniel Lozano

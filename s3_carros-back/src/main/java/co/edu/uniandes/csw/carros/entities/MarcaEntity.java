@@ -43,6 +43,21 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     private List<ModeloEntity> modelos = new ArrayList<>();
      
     /**
+     * @return the nombreMarca
+     */
+    public String getNombreMarca() {
+        return nombreMarca;
+    }
+
+    /**
+     * @param nombreMarca the nombreMarca to set
+     */
+    public void setNombreMarca(String nombreMarca) {
+        this.nombreMarca = nombreMarca;
+    }
+    
+    
+        /**
      * @return the puntosVenta
      */
     public List<PuntoVentaEntity> getPuntosVenta() {
@@ -80,34 +95,6 @@ public class MarcaEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the nombreMarca
-     */
-    public String getNombreMarca() {
-        return nombreMarca;
-    }
-
-    /**
-     * @param nombreMarca the nombreMarca to set
-     */
-    public void setNombreMarca(String nombreMarca) {
-        this.nombreMarca = nombreMarca;
-    }
-
-    /**
-     * @return the logo
-     */
-    public String getLogo() {
-        return logo;
-    }
-
-    /**
-     * @param logo the logo to set
-     */
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    /**
      * @return the imagen
      */
     public String getImagen() {
@@ -133,5 +120,19 @@ public class MarcaEntity extends BaseEntity implements Serializable{
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the logo
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * @param logo the logo to set
+     */
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }
